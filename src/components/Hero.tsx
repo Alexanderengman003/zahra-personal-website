@@ -1,80 +1,84 @@
 import { ArrowDown, Download, Github, Linkedin, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import heroBackground from "@/assets/hero-background.jpg";
 
 export function Hero() {
   return (
     <section 
       id="home" 
-      className="min-h-screen flex items-center justify-center relative overflow-hidden"
-      style={{
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url(${heroBackground})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundAttachment: 'fixed'
-      }}
+      className="bg-background py-16 sm:py-20"
     >
-      {/* Overlay gradient */}
-      <div className="absolute inset-0 hero-gradient opacity-90" />
-      
-      <div className="relative z-10 mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
-        <div className="text-center">
-          {/* Animated greeting */}
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+          {/* Profile Image */}
           <div className="animate-fade-up">
-            <p className="text-lg font-medium text-primary-light mb-4">Hello, I'm</p>
-            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl">
-              Alexander
-            </h1>
-            <div className="mt-4">
-              <h2 className="text-xl sm:text-2xl lg:text-3xl font-medium text-gradient">
-                Software Developer & Problem Solver
-              </h2>
+            <div className="relative">
+              <img
+                src="/lovable-uploads/fc819219-43d3-4817-b8da-08b472acd701.png"
+                alt="Alexander - Professional Headshot"
+                className="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full object-cover shadow-large"
+              />
             </div>
           </div>
 
-          {/* Description */}
-          <div className="animate-fade-up" style={{ animationDelay: "0.2s" }}>
-            <p className="mt-8 text-lg leading-8 text-gray-200 max-w-2xl mx-auto">
-              Passionate about creating elegant solutions to complex problems. 
-              I build web applications that are both beautiful and functional, 
-              with a focus on user experience and clean code.
-            </p>
-          </div>
+          {/* Content */}
+          <div className="flex-1 text-center lg:text-left">
+            {/* Animated greeting */}
+            <div className="animate-fade-up" style={{ animationDelay: "0.1s" }}>
+              <p className="text-lg font-medium text-primary mb-4">Hello, I'm</p>
+              <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+                Alexander
+              </h1>
+              <div className="mt-4">
+                <h2 className="text-xl sm:text-2xl lg:text-3xl font-medium text-gradient">
+                  Software Developer & Problem Solver
+                </h2>
+              </div>
+            </div>
 
-          {/* CTA Buttons */}
-          <div className="animate-fade-up flex flex-col sm:flex-row gap-4 justify-center mt-10" style={{ animationDelay: "0.4s" }}>
-            <Button size="lg" variant="hero" className="hover-lift">
-              <Mail className="mr-2 h-4 w-4" />
-              Get In Touch
-            </Button>
-            <Button variant="outline" size="lg" className="hover-lift border-white/30 text-white hover:bg-white/10">
-              <Download className="mr-2 h-4 w-4" />
-              Download Resume
-            </Button>
-          </div>
+            {/* Description */}
+            <div className="animate-fade-up" style={{ animationDelay: "0.2s" }}>
+              <p className="mt-8 text-lg leading-8 text-muted-foreground max-w-2xl mx-auto lg:mx-0">
+                Passionate about creating elegant solutions to complex problems. 
+                I build web applications that are both beautiful and functional, 
+                with a focus on user experience and clean code.
+              </p>
+            </div>
 
-          {/* Social Links */}
-          <div className="animate-fade-up flex justify-center gap-6 mt-8" style={{ animationDelay: "0.6s" }}>
-            <Button variant="ghost" size="sm" className="h-10 w-10 rounded-full hover:bg-white/10 text-white">
-              <Github className="h-5 w-5" />
-            </Button>
-            <Button variant="ghost" size="sm" className="h-10 w-10 rounded-full hover:bg-white/10 text-white">
-              <Linkedin className="h-5 w-5" />
-            </Button>
-            <Button variant="ghost" size="sm" className="h-10 w-10 rounded-full hover:bg-white/10 text-white">
-              <Mail className="h-5 w-5" />
-            </Button>
-          </div>
+            {/* CTA Buttons */}
+            <div className="animate-fade-up flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mt-10" style={{ animationDelay: "0.3s" }}>
+              <Button size="lg" variant="default" className="hover-lift">
+                <Mail className="mr-2 h-4 w-4" />
+                Get In Touch
+              </Button>
+              <Button variant="outline" size="lg" className="hover-lift">
+                <Download className="mr-2 h-4 w-4" />
+                Download Resume
+              </Button>
+            </div>
 
-          {/* Scroll indicator */}
-          <div className="animate-fade-up mt-16" style={{ animationDelay: "0.8s" }}>
-            <a
-              href="#about"
-              className="inline-flex items-center text-sm font-medium text-gray-300 hover:text-white transition-colors animate-float"
-            >
-              <ArrowDown className="h-4 w-4 mr-2" />
-              Scroll to explore
-            </a>
+            {/* Social Links */}
+            <div className="animate-fade-up flex justify-center lg:justify-start gap-6 mt-8" style={{ animationDelay: "0.4s" }}>
+              <Button variant="ghost" size="sm" className="h-10 w-10 rounded-full hover:bg-accent">
+                <Github className="h-5 w-5" />
+              </Button>
+              <Button variant="ghost" size="sm" className="h-10 w-10 rounded-full hover:bg-accent">
+                <Linkedin className="h-5 w-5" />
+              </Button>
+              <Button variant="ghost" size="sm" className="h-10 w-10 rounded-full hover:bg-accent">
+                <Mail className="h-5 w-5" />
+              </Button>
+            </div>
+
+            {/* Scroll indicator */}
+            <div className="animate-fade-up mt-12" style={{ animationDelay: "0.5s" }}>
+              <a
+                href="#about"
+                className="inline-flex items-center text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <ArrowDown className="h-4 w-4 mr-2" />
+                Scroll to explore
+              </a>
+            </div>
           </div>
         </div>
       </div>
