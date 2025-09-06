@@ -23,14 +23,16 @@ export function Hero() {
           {/* Content */}
           <div className="flex-1 text-center lg:text-left">
             {/* Animated greeting */}
-            <div className="animate-fade-up" style={{ animationDelay: "0.1s" }}>
-              <p className="text-lg font-medium text-primary mb-1">Hello, I'm</p>
-              <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-                Alexander
-              </h1>
-              <div className="mt-4">
-                <h2 className="text-xl sm:text-2xl lg:text-3xl font-medium text-gradient">
-                  Semiconductor engineering & sales
+            <div className="animate-fade-up space-y-6 mb-4" style={{ animationDelay: "0.1s" }}>
+              <div className="space-y-3">
+                <p className="text-xl font-medium text-primary tracking-wide">Hello, I'm</p>
+                <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-foreground leading-tight">
+                  Alexander
+                </h1>
+              </div>
+              <div className="pt-2">
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-gradient leading-relaxed tracking-wide">
+                  Semiconductor Engineering & Sales
                 </h2>
               </div>
             </div>
@@ -65,16 +67,6 @@ export function Hero() {
               </a>
             </div>
 
-            {/* Scroll indicator */}
-            <div className="animate-fade-up mt-12" style={{ animationDelay: "0.5s" }}>
-              <a
-                href="#about"
-                className="inline-flex items-center text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-              >
-                <ArrowDown className="h-4 w-4 mr-2" />
-                Scroll to explore
-              </a>
-            </div>
           </div>
         </div>
       </div>
