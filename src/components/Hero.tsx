@@ -1,7 +1,10 @@
 import { ArrowDown, Download, Linkedin, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/hooks/use-language";
 
 export function Hero() {
+  const { t } = useLanguage();
+  
   return (
     <section 
       id="home" 
@@ -24,13 +27,13 @@ export function Hero() {
           <div className="flex-1 text-center lg:text-left">
             {/* Animated greeting */}
             <div className="animate-fade-up" style={{ animationDelay: "0.1s" }}>
-              <p className="text-lg font-medium text-primary mb-1">Hello, I'm</p>
+              <p className="text-lg font-medium text-primary mb-1">{t("hello")}</p>
               <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-                Alexander
+                {t("name")}
               </h1>
               <div className="mt-4">
                 <h2 className="text-xl sm:text-2xl lg:text-3xl font-medium text-gradient">
-                  Semiconductor engineering & sales
+                  {t("title")}
                 </h2>
               </div>
             </div>
@@ -38,21 +41,21 @@ export function Hero() {
             {/* Description */}
             <div className="animate-fade-up" style={{ animationDelay: "0.2s" }}>
               <p className="mt-8 text-lg leading-8 text-muted-foreground max-w-2xl mx-auto lg:mx-0">
-                Passionate about advancing semiconductor technology and hardware innovation. 
-                I specialize in materials development, device fabrication, and bringing 
-                cutting-edge research from lab to production with precision and creativity.
+                {t("description")}
               </p>
             </div>
 
             {/* CTA Buttons */}
             <div className="animate-fade-up flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mt-10" style={{ animationDelay: "0.3s" }}>
-              <Button size="lg" variant="default" className="hover-lift">
-                <Mail className="mr-2 h-4 w-4" />
-                Get In Touch
-              </Button>
+              <a href="mailto:alexander@engman.nu">
+                <Button size="lg" variant="default" className="hover-lift">
+                  <Mail className="mr-2 h-4 w-4" />
+                  {t("getInTouch")}
+                </Button>
+              </a>
               <Button variant="outline" size="lg" className="hover-lift">
                 <Download className="mr-2 h-4 w-4" />
-                Download Resume
+                {t("downloadResume")}
               </Button>
             </div>
 
@@ -60,7 +63,7 @@ export function Hero() {
             <div className="animate-fade-up flex justify-center lg:justify-start gap-6 mt-8" style={{ animationDelay: "0.4s" }}>
               <a href="https://www.linkedin.com/in/alexanderengman" target="_blank" rel="noopener noreferrer">
                 <Button variant="ghost" size="sm" className="h-10 w-10 rounded-full hover:bg-accent">
-                  <Linkedin className="h-5 w-5" />
+                  <Linkedin className="h-5 w-5 text-[#0077B5]" />
                 </Button>
               </a>
               <a href="mailto:alexander@engman.nu">
@@ -77,7 +80,7 @@ export function Hero() {
                 className="inline-flex items-center text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
               >
                 <ArrowDown className="h-4 w-4 mr-2" />
-                Scroll to explore
+                {t("scrollExplore")}
               </a>
             </div>
           </div>
