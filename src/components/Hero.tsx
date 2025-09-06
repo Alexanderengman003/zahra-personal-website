@@ -1,4 +1,4 @@
-import { ArrowDown, Download, Linkedin, Mail } from "lucide-react";
+import { ArrowDown, Download, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/hooks/use-language";
 
@@ -63,7 +63,11 @@ export function Hero() {
             <div className="animate-fade-up flex justify-center lg:justify-start gap-6 mt-8" style={{ animationDelay: "0.4s" }}>
               <a href="https://www.linkedin.com/in/alexanderengman" target="_blank" rel="noopener noreferrer">
                 <Button variant="ghost" size="sm" className="h-10 w-10 rounded-full hover:bg-accent">
-                  <Linkedin className="h-5 w-5 text-[#0077B5]" />
+                  <img 
+                    src="/lovable-uploads/52683b88-43fb-40e0-b946-7852b4bc9be2.png" 
+                    alt="LinkedIn"
+                    className="h-5 w-5"
+                  />
                 </Button>
               </a>
               <a href="mailto:alexander@engman.nu">
