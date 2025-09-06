@@ -1,4 +1,4 @@
-import { ArrowDown, Download, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowDown, Download, Linkedin, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export function Hero() {
@@ -30,7 +30,7 @@ export function Hero() {
               </h1>
               <div className="mt-4">
                 <h2 className="text-xl sm:text-2xl lg:text-3xl font-medium text-gradient">
-                  Materials Science Engineer
+                  Semiconductor engineering & sales
                 </h2>
               </div>
             </div>
@@ -58,15 +58,16 @@ export function Hero() {
 
             {/* Social Links */}
             <div className="animate-fade-up flex justify-center lg:justify-start gap-6 mt-8" style={{ animationDelay: "0.4s" }}>
-              <Button variant="ghost" size="sm" className="h-10 w-10 rounded-full hover:bg-accent">
-                <Github className="h-5 w-5" />
-              </Button>
-              <Button variant="ghost" size="sm" className="h-10 w-10 rounded-full hover:bg-accent">
-                <Linkedin className="h-5 w-5" />
-              </Button>
-              <Button variant="ghost" size="sm" className="h-10 w-10 rounded-full hover:bg-accent">
-                <Mail className="h-5 w-5" />
-              </Button>
+              <a href="https://www.linkedin.com/in/alexanderengman" target="_blank" rel="noopener noreferrer">
+                <Button variant="ghost" size="sm" className="h-10 w-10 rounded-full hover:bg-accent">
+                  <Linkedin className="h-5 w-5" />
+                </Button>
+              </a>
+              <a href="mailto:alexander@engman.nu">
+                <Button variant="ghost" size="sm" className="h-10 w-10 rounded-full hover:bg-accent">
+                  <Mail className="h-5 w-5" />
+                </Button>
+              </a>
             </div>
 
             {/* Scroll indicator */}
