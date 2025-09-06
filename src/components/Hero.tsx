@@ -66,7 +66,7 @@ export function Hero() {
                   <img 
                     src="/lovable-uploads/52683b88-43fb-40e0-b946-7852b4bc9be2.png" 
                     alt="LinkedIn"
-                    className="h-5 w-5"
+                    className="h-5 w-5 rounded-sm object-cover"
                   />
                 </Button>
               </a>
