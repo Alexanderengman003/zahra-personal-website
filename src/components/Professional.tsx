@@ -1,4 +1,5 @@
 import { MapPin, Calendar, Building } from "lucide-react";
+import { useLanguage } from "@/hooks/use-language";
 
 const professionalRoles = [
   {
@@ -69,16 +70,18 @@ const professionalRoles = [
 ];
 
 export function Professional() {
+  const { t } = useLanguage();
+  
   return (
     <section id="professional" className="py-24 bg-background">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Header */}
         <div className="mx-auto max-w-2xl text-center mb-16">
           <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            Professional Experience
+            {t("professionalTitle")}
           </h2>
           <p className="mt-6 text-lg leading-8 text-muted-foreground">
-            My professional journey in semiconductor engineering, materials science, and technical sales.
+            {t("professionalDescription")}
           </p>
         </div>
 
@@ -121,7 +124,7 @@ export function Professional() {
 
                 {/* Responsibilities */}
                 <div>
-                  <h4 className="text-sm font-semibold text-foreground mb-3">Key Responsibilities</h4>
+                  <h4 className="text-sm font-semibold text-foreground mb-3">{t("keyResponsibilities")}</h4>
                   <ul className="space-y-2">
                     {role.responsibilities.map((responsibility, responsibilityIndex) => (
                       <li

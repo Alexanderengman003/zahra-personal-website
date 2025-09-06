@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
-import { LanguageToggle } from "@/components/LanguageToggle";
+import { LanguageDropdown } from "@/components/LanguageDropdown";
 import { useLanguage } from "@/hooks/use-language";
 
 export function Header() {
@@ -60,7 +60,7 @@ export function Header() {
 
         {/* Desktop controls */}
         <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center lg:gap-4">
-          <LanguageToggle />
+          <LanguageDropdown />
           <ThemeToggle />
         </div>
       </nav>
@@ -104,7 +104,7 @@ export function Header() {
                   ))}
                 </div>
                 <div className="py-6 flex gap-4">
-                  <LanguageToggle />
+                  <LanguageDropdown />
                   <ThemeToggle />
                 </div>
               </div>
