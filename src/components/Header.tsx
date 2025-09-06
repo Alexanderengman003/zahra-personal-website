@@ -19,8 +19,15 @@ export function Header() {
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
         {/* Logo */}
         <div className="flex lg:flex-1">
-          <a href="#home" className="-m-1.5 p-1.5">
-            <span className="text-xl font-bold text-gradient">Alexander</span>
+          <a href="#home" className="-m-1.5 p-1.5 group">
+            <div className="flex items-center gap-2">
+              <div className="relative">
+                <div className="w-8 h-8 bg-gradient-to-br from-primary to-primary-hover rounded-lg shadow-subtle group-hover:shadow-glow transition-all duration-300 flex items-center justify-center">
+                  <span className="text-sm font-bold text-primary-foreground">A</span>
+                </div>
+              </div>
+              <span className="text-xl font-bold text-gradient tracking-tight">Alexander</span>
+            </div>
           </a>
         </div>
 
@@ -60,8 +67,15 @@ export function Header() {
           <div className="fixed inset-0 z-50" />
           <div className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-background px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-border">
             <div className="flex items-center justify-between">
-              <a href="#home" className="-m-1.5 p-1.5">
-                <span className="text-xl font-bold text-gradient">Alexander</span>
+              <a href="#home" className="-m-1.5 p-1.5 group">
+                <div className="flex items-center gap-2">
+                  <div className="relative">
+                    <div className="w-8 h-8 bg-gradient-to-br from-primary to-primary-hover rounded-lg shadow-subtle group-hover:shadow-glow transition-all duration-300 flex items-center justify-center">
+                      <span className="text-sm font-bold text-primary-foreground">A</span>
+                    </div>
+                  </div>
+                  <span className="text-xl font-bold text-gradient tracking-tight">Alexander</span>
+                </div>
               </a>
               <Button
                 variant="ghost"
