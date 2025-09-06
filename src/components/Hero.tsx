@@ -30,7 +30,7 @@ export function Hero() {
               </h1>
               <div className="mt-4">
                 <h2 className="text-xl sm:text-2xl lg:text-3xl font-medium text-gradient">
-                  Software Developer & Problem Solver
+                  Materials Science Engineer
                 </h2>
               </div>
             </div>
@@ -38,9 +38,9 @@ export function Hero() {
             {/* Description */}
             <div className="animate-fade-up" style={{ animationDelay: "0.2s" }}>
               <p className="mt-8 text-lg leading-8 text-muted-foreground max-w-2xl mx-auto lg:mx-0">
-                Passionate about creating elegant solutions to complex problems. 
-                I build web applications that are both beautiful and functional, 
-                with a focus on user experience and clean code.
+                Passionate about advancing semiconductor technology and hardware innovation. 
+                I specialize in materials development, device fabrication, and bringing 
+                cutting-edge research from lab to production with precision and creativity.
               </p>
             </div>
 

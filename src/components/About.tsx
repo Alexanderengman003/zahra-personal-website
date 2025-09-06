@@ -44,19 +44,8 @@ export function About() {
               <div className="card-gradient rounded-2xl p-8 shadow-medium hover-lift">
                 <h3 className="text-xl font-semibold text-foreground mb-4">My Journey</h3>
                 <div className="prose prose-gray dark:prose-invert">
-                  <p className="text-muted-foreground leading-relaxed mb-4">
-                    My passion for technology started early, and I've been building things with code 
-                    for over 5 years. I believe in the power of technology to solve real-world problems 
-                    and create positive impact.
-                  </p>
-                  <p className="text-muted-foreground leading-relaxed mb-4">
-                    When I'm not coding, you can find me exploring new technologies, contributing to 
-                    open source projects, or enjoying outdoor activities. I'm always eager to learn 
-                    and take on new challenges.
-                  </p>
                   <p className="text-muted-foreground leading-relaxed">
-                    Currently, I'm focused on full-stack development with modern frameworks and 
-                    cloud technologies, always striving to write clean, efficient, and maintainable code.
+                    My background stems from a bachelor's degree in Materials Science and Engineering and a master's in nanotechnology from KTH Royal Institute of Technology in Stockholm. I've gained diverse experience in fields such as materials development, semiconductor fabrication, and medical device design. My key strengths include being a quick learner, possessing a creative mindset, and maintaining a keen eye for detail in all my work.
                   </p>
                 </div>
               </div>
