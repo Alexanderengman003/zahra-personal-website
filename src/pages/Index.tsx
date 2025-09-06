@@ -24,7 +24,7 @@ const Index = () => {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="text-center">
             <p className="text-sm text-muted-foreground">
-              © 2024 Alexander. Built with passion using React, TypeScript, and Tailwind CSS.
+              © 2025 Alexander Engman. Built with some AI and a lot of coding.
             </p>
             <div className="mt-4 flex justify-center space-x-6">
               <a
