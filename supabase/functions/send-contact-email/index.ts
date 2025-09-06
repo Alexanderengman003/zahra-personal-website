@@ -1,4 +1,7 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { Resend } from "npm:resend@2.0.0";
+
+const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -52,12 +55,25 @@ serve(async (req) => {
       timestamp: new Date().toISOString(),
     });
 
-    // In a real implementation, you would:
-    // 1. Send an email using a service like SendGrid, Resend, or AWS SES
-    // 2. Store the message in a database
-    // 3. Send notifications to admin
+    // Send email using Resend
+    const emailResponse = await resend.emails.send({
+      from: 'Portfolio Contact <onboarding@resend.dev>',
+      to: ['your-email@example.com'], // Replace with your actual email
+      subject: `Portfolio Contact: ${subject}`,
+      html: `
+        <h2>New Contact Form Submission</h2>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Subject:</strong> ${subject}</p>
+        <p><strong>Message:</strong></p>
+        <p>${message.replace(/\n/g, '<br>')}</p>
+        <hr>
+        <p><em>Submitted at: ${new Date().toISOString()}</em></p>
+      `,
+    });
 
-    // For now, we'll simulate success
+    console.log('Email sent successfully:', emailResponse);
+
     return new Response(
       JSON.stringify({ 
         success: true, 
