@@ -1,25 +1,35 @@
-import { Code, Coffee, Lightbulb, Users } from "lucide-react";
+import { Code, Cpu, Heart, Users, TrendingUp, Box } from "lucide-react";
 
 const features = [
   {
-    icon: Code,
-    title: "Clean Code",
-    description: "Writing maintainable, scalable, and well-documented code is my passion."
+    icon: Cpu,
+    title: "Semiconductors",
+    description: "Previous experience in semiconductor design and manufacturing such as MEMS and CMOS, semiconductor physics and quantum devices, with an emphasis on cleanroom fabrication."
   },
   {
-    icon: Lightbulb,
-    title: "Problem Solving",
-    description: "I love tackling complex challenges and finding elegant solutions."
+    icon: Heart,
+    title: "Medical technology",
+    description: "Developing innovative medical devices from concept to market, ensuring compliance with ISO 13485 and MDR standards throughout the R&D, design, and manufacturing processes."
   },
   {
     icon: Users,
-    title: "Collaboration",
-    description: "Strong communication skills and experience working in agile teams."
+    title: "Project management",
+    description: "Experienced in AGILE methodology, leading cross-functional teams to deliver innovative products. Skilled in balancing stakeholder needs, managing resources, and ensuring timely project completion."
   },
   {
-    icon: Coffee,
-    title: "Continuous Learning",
-    description: "Always exploring new technologies and improving my craft."
+    icon: TrendingUp,
+    title: "Business development",
+    description: "Actively engaging with customers and prospects, forging strategic partnerships, and expanding market reach to drive sustainable business expansion and revenue growth."
+  },
+  {
+    icon: Code,
+    title: "Software development",
+    description: "Development experience in several common programming languages, for stand-alone software projects as well as interfacing with hardware of various kinds."
+  },
+  {
+    icon: Box,
+    title: "Product design",
+    description: "Guiding products from concept to market, within hardware and software, including prototyping, design and manufacturing and product life-cycle management, with user needs in mind."
   }
 ];
 
@@ -32,8 +42,8 @@ export function About() {
             About Me
           </h2>
           <p className="mt-6 text-lg leading-8 text-muted-foreground">
-            I'm a passionate software developer with a keen eye for design and a love for creating 
-            meaningful digital experiences.
+            I'm a materials science engineer with expertise in semiconductor technology and a passion for 
+            developing innovative solutions in hardware and medical device manufacturing.
           </p>
         </div>
 
