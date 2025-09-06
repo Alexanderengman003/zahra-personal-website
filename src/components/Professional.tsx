@@ -3,44 +3,72 @@ import { MapPin, Calendar, Building } from "lucide-react";
 const professionalRoles = [
   {
     id: 1,
-    title: "Senior Software Engineer",
-    company: "Tech Innovation Corp",
-    location: "San Francisco, CA",
-    period: "2022 - Present",
-    description: "Lead development of scalable web applications serving 100k+ users. Architected microservices infrastructure and mentored junior developers.",
-    technologies: ["React", "Node.js", "AWS", "PostgreSQL", "TypeScript"],
+    title: "Technical Account Manager",
+    company: "EBV Elektronik",
+    location: "Stockholm, SWEDEN",
+    period: "June 2025 – Currently ongoing",
+    description: "Account manager within semiconductors and electronic components providing technical support for new and existing customers.",
+    technologies: ["Semiconductors", "Electronic Components", "Customer Relations"],
     achievements: [
-      "Reduced application load time by 40% through optimization",
-      "Led a team of 5 developers on critical product features",
-      "Implemented CI/CD pipelines improving deployment frequency by 300%"
+      "Account manager within semiconductors and electronic components",
+      "Technical support for new and existing customers",
+      "Business development and other related activities"
     ]
   },
   {
     id: 2,
-    title: "Full Stack Developer",
-    company: "Digital Solutions Inc",
-    location: "New York, NY",
-    period: "2020 - 2022",
-    description: "Developed and maintained full-stack applications for e-commerce and fintech clients. Collaborated with cross-functional teams to deliver high-quality solutions.",
-    technologies: ["Vue.js", "Python", "Django", "MySQL", "Docker"],
+    title: "Application Engineer",
+    company: "Exeger Operations AB",
+    location: "Stockholm, SWEDEN",
+    period: "October 2024 – June 2025",
+    description: "Development of prototypes and products for customer applications with focus on electrical design and rapid prototyping.",
+    technologies: ["Product Development", "Electrical Design", "Rapid Prototyping"],
     achievements: [
-      "Built payment processing system handling $2M+ monthly transactions",
-      "Developed real-time analytics dashboard for client insights",
-      "Achieved 99.9% uptime for critical client applications"
+      "Development of prototypes and products for customer applications",
+      "Electrical design and rapid prototyping for product development",
+      "Technical sales and customer support"
     ]
   },
   {
     id: 3,
-    title: "Frontend Developer",
-    company: "Creative Web Studio",
-    location: "Austin, TX",
-    period: "2019 - 2020",
-    description: "Created responsive web interfaces and interactive user experiences. Worked closely with designers to implement pixel-perfect designs.",
-    technologies: ["HTML5", "CSS3", "JavaScript", "React", "Sass"],
+    title: "Application Specialist",
+    company: "Ascilion AB",
+    location: "Stockholm, SWEDEN",
+    period: "January 2024 – October 2024",
+    description: "R&D and product development with focus on medical device development following ISO standards.",
+    technologies: ["R&D", "Medical Devices", "ISO 13485", "IEC 60601-1", "IEC 62304"],
     achievements: [
-      "Improved user engagement by 60% through UX improvements",
-      "Delivered 15+ client projects on time and under budget",
-      "Established component library used across multiple projects"
+      "R&D and product development/design",
+      "Customer relations and business development",
+      "Medical device product development (ISO 13485, IEC 60601-1, IEC 62304)"
+    ]
+  },
+  {
+    id: 4,
+    title: "Development Engineer",
+    company: "Ascilion AB",
+    location: "Stockholm, SWEDEN",
+    period: "February 2021 – January 2024",
+    description: "SPC, AOI and development of semiconductor components with focus on software and hardware development.",
+    technologies: ["SPC", "AOI", "Semiconductors", "Software Development", "Hardware Development"],
+    achievements: [
+      "SPC, AOI and development of semiconductor components",
+      "Software and hardware development",
+      "Development and design of test systems and experiments"
+    ]
+  },
+  {
+    id: 5,
+    title: "Process Engineer",
+    company: "Bright Day Graphene AB",
+    location: "Stockholm, SWEDEN",
+    period: "June 2020 – January 2021",
+    description: "Process development and scaling of manufacturing with focus on electrochemistry and materials characterization.",
+    technologies: ["Process Development", "Manufacturing", "Electrochemistry", "Materials Characterization"],
+    achievements: [
+      "Process development and scaling of manufacturing",
+      "Process design and analysis",
+      "Electrochemistry and materials characterization"
     ]
   }
 ];
@@ -52,10 +80,10 @@ export function Professional() {
         {/* Header */}
         <div className="mx-auto max-w-2xl text-center mb-16">
           <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            Professional Experience
+            Working Experience
           </h2>
           <p className="mt-6 text-lg leading-8 text-muted-foreground">
-            A journey through my professional career, building innovative solutions and leading teams.
+            A journey through my professional career in semiconductor engineering and technology development.
           </p>
         </div>
 

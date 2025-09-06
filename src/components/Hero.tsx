@@ -59,14 +59,9 @@ export function Hero() {
             {/* Social Links */}
             <div className="animate-fade-up flex justify-center lg:justify-start gap-6 mt-8" style={{ animationDelay: "0.4s" }}>
               <a href="https://www.linkedin.com/in/alexanderengman" target="_blank" rel="noopener noreferrer">
-                <Button variant="ghost" size="sm" className="h-10 w-10 rounded-full hover:bg-accent">
-                  <Linkedin className="h-5 w-5" />
-                </Button>
-              </a>
-              <a href="mailto:alexander@engman.nu">
-                <Button variant="ghost" size="sm" className="h-10 w-10 rounded-full hover:bg-accent">
-                  <Mail className="h-5 w-5" />
-                </Button>
+                <div className="h-12 w-12 bg-[#0077B5] rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 flex items-center justify-center">
+                  <Linkedin className="h-6 w-6 text-white" />
+                </div>
               </a>
             </div>
 
