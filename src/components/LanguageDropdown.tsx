@@ -33,7 +33,7 @@ export function LanguageDropdown() {
         aria-haspopup="true"
       >
         <Globe className="h-4 w-4" />
-        <span className="text-lg">{currentLanguage?.flag}</span>
+        <span className="text-sm font-medium">{currentLanguage?.name}</span>
         <ChevronDown className={`h-3 w-3 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
       </Button>
       
