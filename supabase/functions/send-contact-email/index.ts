@@ -58,7 +58,7 @@ serve(async (req) => {
     // Send email using Resend
     const emailResponse = await resend.emails.send({
       from: 'Portfolio Contact <onboarding@resend.dev>',
-      to: ['your-email@example.com'], // Replace with your actual email
+      to: ['alexander@engman.nu'],
       subject: `Portfolio Contact: ${subject}`,
       html: `
         <h2>New Contact Form Submission</h2>
