@@ -2,12 +2,12 @@ import { Progress } from "@/components/ui/progress";
 import { useEffect, useRef, useState } from "react";
 
 const personalityTraits = [
-  { left: "Introvert", right: "Extrovert", value: 25 }, // 75% extrovert = 25% right of center
-  { left: "Practical", right: "Creative", value: 10 }, // 60% creative = 10% right of center  
-  { left: "Independent", right: "Collaborative", value: 20 }, // 70% collaborative = 20% right of center
-  { left: "Analytical", right: "Intuitive", value: 30 }, // 80% analytical = 30% left of center
-  { left: "Detail", right: "Big picture", value: -5 }, // 45% big picture = 5% left of center
-  { left: "Feeling", right: "Thinking", value: 20 } // 70% thinking = 20% right of center
+  { left: "Introvert", right: "Extrovert", value: 75 }, // 75% extrovert
+  { left: "Practical", right: "Creative", value: 60 }, // 60% creative
+  { left: "Independent", right: "Collaborative", value: 70 }, // 70% collaborative
+  { left: "Analytical", right: "Intuitive", value: 20 }, // 20% intuitive
+  { left: "Detail", right: "Big picture", value: 45 }, // 45% big picture
+  { left: "Feeling", right: "Thinking", value: 70 } // 70% thinking
 ];
 
 const itSkills = [
@@ -74,22 +74,15 @@ export function Skills() {
             <div className="space-y-8">
               {personalityTraits.map((trait, index) => (
                 <div key={index} className="space-y-4">
-                  <div className="flex justify-between text-sm font-medium text-muted-foreground">
+                  <div className="flex justify-between text-sm font-medium text-foreground">
                     <span>{trait.left}</span>
                     <span>{trait.right}</span>
                   </div>
-                  <div className="relative bg-muted/50 rounded-full h-4">
-                    {/* Center line */}
-                    <div className="absolute left-1/2 top-0 w-px h-4 bg-border transform -translate-x-0.5" />
-                    {/* Animated slider */}
+                  <div className="relative bg-muted rounded-full h-6 overflow-hidden">
                     <div 
-                      className={`absolute top-1 w-6 h-2 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full shadow-md transition-all duration-1000 ease-out ${
-                        isVisible ? '' : 'left-1/2 transform -translate-x-3'
-                      }`}
+                      className={`h-full bg-gradient-to-r from-blue-400 to-blue-500 rounded-full transition-all duration-1000 ease-out`}
                       style={{ 
-                        left: isVisible 
-                          ? `calc(50% + ${trait.value * 1.5}px - 12px)` 
-                          : 'calc(50% - 12px)',
+                        width: isVisible ? `${trait.value}%` : '0%',
                         transitionDelay: `${index * 200}ms`
                       }}
                     />
@@ -111,9 +104,9 @@ export function Skills() {
                     <span className="text-sm font-medium text-foreground">{skill.name}</span>
                     <span className="text-sm font-semibold text-primary">{skill.value}%</span>
                   </div>
-                  <div className="relative bg-muted/50 rounded-full h-3 overflow-hidden">
+                  <div className="relative bg-muted rounded-full h-3 overflow-hidden">
                     <div 
-                      className={`h-full bg-gradient-to-r from-blue-500 to-purple-600 rounded-full transition-all duration-1000 ease-out`}
+                      className={`h-full bg-gradient-to-r from-blue-400 to-blue-500 rounded-full transition-all duration-1000 ease-out`}
                       style={{ 
                         width: isVisible ? `${skill.value}%` : '0%',
                         transitionDelay: `${index * 150}ms`
@@ -137,9 +130,9 @@ export function Skills() {
                     <span className="text-sm font-medium text-foreground">{language.name}</span>
                     <span className="text-sm font-semibold text-primary">{language.value}%</span>
                   </div>
-                  <div className="relative bg-muted/50 rounded-full h-3 overflow-hidden">
+                  <div className="relative bg-muted rounded-full h-3 overflow-hidden">
                     <div 
-                      className={`h-full bg-gradient-to-r from-blue-500 to-purple-600 rounded-full transition-all duration-1000 ease-out`}
+                      className={`h-full bg-gradient-to-r from-blue-400 to-blue-500 rounded-full transition-all duration-1000 ease-out`}
                       style={{ 
                         width: isVisible ? `${language.value}%` : '0%',
                         transitionDelay: `${index * 150}ms`
