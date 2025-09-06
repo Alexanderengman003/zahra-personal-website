@@ -2,20 +2,17 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
-import { LanguageDropdown } from "@/components/LanguageDropdown";
-import { useLanguage } from "@/hooks/use-language";
+
+const navigation = [
+  { name: "Home", href: "#home" },
+  { name: "About", href: "#about" },
+  { name: "Projects", href: "#projects" },
+  { name: "Professional", href: "#professional" },
+  { name: "Contact", href: "#contact" },
+];
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { t } = useLanguage();
-
-  const navigation = [
-    { name: t("home"), href: "#home" },
-    { name: t("about"), href: "#about" },
-    { name: t("projects"), href: "#projects" },
-    { name: t("professional"), href: "#professional" },
-    { name: t("contact"), href: "#contact" },
-  ];
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 glass border-b border-border/50">
@@ -58,9 +55,8 @@ export function Header() {
           ))}
         </div>
 
-        {/* Desktop controls */}
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center lg:gap-4">
-          <LanguageDropdown />
+        {/* Theme toggle */}
+        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <ThemeToggle />
         </div>
       </nav>
@@ -103,8 +99,7 @@ export function Header() {
                     </a>
                   ))}
                 </div>
-                <div className="py-6 flex gap-4">
-                  <LanguageDropdown />
+                <div className="py-6">
                   <ThemeToggle />
                 </div>
               </div>

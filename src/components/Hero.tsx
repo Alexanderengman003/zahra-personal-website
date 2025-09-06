@@ -1,10 +1,7 @@
-import { ArrowDown, Download, Mail } from "lucide-react";
+import { ArrowDown, Download, Linkedin, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useLanguage } from "@/hooks/use-language";
 
 export function Hero() {
-  const { t } = useLanguage();
-  
   return (
     <section 
       id="home" 
@@ -27,13 +24,13 @@ export function Hero() {
           <div className="flex-1 text-center lg:text-left">
             {/* Animated greeting */}
             <div className="animate-fade-up" style={{ animationDelay: "0.1s" }}>
-              <p className="text-lg font-medium text-primary mb-1">{t("hello")}</p>
+              <p className="text-lg font-medium text-primary mb-1">Hello, I'm</p>
               <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-                {t("name")}
+                Alexander
               </h1>
               <div className="mt-4">
                 <h2 className="text-xl sm:text-2xl lg:text-3xl font-medium text-gradient">
-                  {t("title")}
+                  Semiconductor engineering & sales
                 </h2>
               </div>
             </div>
@@ -41,33 +38,34 @@ export function Hero() {
             {/* Description */}
             <div className="animate-fade-up" style={{ animationDelay: "0.2s" }}>
               <p className="mt-8 text-lg leading-8 text-muted-foreground max-w-2xl mx-auto lg:mx-0">
-                {t("description")}
+                Passionate about advancing semiconductor technology and hardware innovation. 
+                I specialize in materials development, device fabrication, and bringing 
+                cutting-edge research from lab to production with precision and creativity.
               </p>
             </div>
 
             {/* CTA Buttons */}
             <div className="animate-fade-up flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mt-10" style={{ animationDelay: "0.3s" }}>
-              <a href="mailto:alexander@engman.nu">
-                <Button size="lg" variant="default" className="hover-lift">
-                  <Mail className="mr-2 h-4 w-4" />
-                  {t("getInTouch")}
-                </Button>
-              </a>
+              <Button size="lg" variant="default" className="hover-lift">
+                <Mail className="mr-2 h-4 w-4" />
+                Get In Touch
+              </Button>
               <Button variant="outline" size="lg" className="hover-lift">
                 <Download className="mr-2 h-4 w-4" />
-                {t("downloadResume")}
+                Download Resume
               </Button>
             </div>
 
             {/* Social Links */}
             <div className="animate-fade-up flex justify-center lg:justify-start gap-6 mt-8" style={{ animationDelay: "0.4s" }}>
               <a href="https://www.linkedin.com/in/alexanderengman" target="_blank" rel="noopener noreferrer">
-                <Button variant="ghost" size="sm" className="h-12 w-12 rounded-lg hover:bg-accent/50 p-2">
-                  <img 
-                    src="/lovable-uploads/52683b88-43fb-40e0-b946-7852b4bc9be2.png" 
-                    alt="LinkedIn"
-                    className="h-8 w-8 rounded-md object-cover"
-                  />
+                <Button variant="ghost" size="sm" className="h-10 w-10 rounded-full hover:bg-accent">
+                  <Linkedin className="h-5 w-5" />
+                </Button>
+              </a>
+              <a href="mailto:alexander@engman.nu">
+                <Button variant="ghost" size="sm" className="h-10 w-10 rounded-full hover:bg-accent">
+                  <Mail className="h-5 w-5" />
                 </Button>
               </a>
             </div>
@@ -79,7 +77,7 @@ export function Hero() {
                 className="inline-flex items-center text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
               >
                 <ArrowDown className="h-4 w-4 mr-2" />
-                {t("scrollExplore")}
+                Scroll to explore
               </a>
             </div>
           </div>

@@ -2,7 +2,6 @@ import { useState } from "react";
 import { ExternalLink, Github, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useLanguage } from "@/hooks/use-language";
 import ecommerceImg from "@/assets/project-ecommerce.jpg";
 import tasksImg from "@/assets/project-tasks.jpg";
 import dashboardImg from "@/assets/project-dashboard.jpg";
@@ -70,17 +69,18 @@ const projects = [
   },
 ];
 
+const categories = ["All", "Full Stack", "Frontend", "Backend", "Mobile", "Data Science", "DevOps"];
+
 export function Projects() {
-  const { t } = useLanguage();
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState(t("allCategories"));
+  const [selectedCategory, setSelectedCategory] = useState("All");
 
   const filteredProjects = projects.filter(project => {
     const matchesSearch = project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          project.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          project.technologies.some(tech => tech.toLowerCase().includes(searchTerm.toLowerCase()));
     
-    const matchesCategory = selectedCategory === t("allCategories") || project.category === selectedCategory;
+    const matchesCategory = selectedCategory === "All" || project.category === selectedCategory;
     
     return matchesSearch && matchesCategory;
   });
@@ -90,10 +90,11 @@ export function Projects() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            {t("projectsTitle")}
+            Featured Projects
           </h2>
           <p className="mt-6 text-lg leading-8 text-muted-foreground">
-            {t("projectsDescription")}
+            A collection of projects that showcase my skills and passion for building 
+            innovative solutions.
           </p>
         </div>
 
@@ -102,7 +103,7 @@ export function Projects() {
           <div className="relative">
             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <Input
-              placeholder={t("searchProjects")}
+              placeholder="Search projects, technologies..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="pl-10"
@@ -111,7 +112,7 @@ export function Projects() {
 
           {/* Category Filter */}
           <div className="mt-6 flex flex-wrap justify-center gap-2">
-            {[t("allCategories"), "Full Stack", "Frontend", "Backend", "Mobile", "Data Science", "DevOps"].map((category) => (
+            {categories.map((category) => (
               <Button
                 key={category}
                 variant={selectedCategory === category ? "default" : "outline"}
@@ -212,7 +213,7 @@ export function Projects() {
         {filteredProjects.length === 0 && (
           <div className="text-center mt-12">
             <p className="text-muted-foreground">
-              {t("noResults")}
+              No projects found matching your criteria. Try adjusting your search or filter.
             </p>
           </div>
         )}

@@ -5,11 +5,8 @@ import { Projects } from "@/components/Projects";
 import { Professional } from "@/components/Professional";
 import { Education } from "@/components/Education";
 import { Contact } from "@/components/Contact";
-import { useLanguage } from "@/hooks/use-language";
 
 const Index = () => {
-  const { t } = useLanguage();
-  
   return (
     <div className="smooth-scroll">
       <Header />
@@ -27,7 +24,7 @@ const Index = () => {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="text-center">
             <p className="text-sm text-muted-foreground">
-              © 2025 Alexander Engman. {t("footerText")}
+              © 2025 Alexander Engman. Built with some AI and a lot of coding.
             </p>
             <div className="mt-4 flex justify-center space-x-6">
               <a

@@ -1,87 +1,61 @@
 import { MapPin, Calendar, Building } from "lucide-react";
-import { useLanguage } from "@/hooks/use-language";
 
 const professionalRoles = [
   {
     id: 1,
-    title: "Technical Account Manager",
-    company: "EBV Elektronik",
-    location: "Stockholm, SWEDEN",
-    period: "June 2025 - Present",
-    description: "Account management within semiconductors and electronic components, providing comprehensive technical support and business development services.",
-    responsibilities: [
-      "Account manager within semiconductors and electronic components",
-      "Technical support for new and existing customers",
-      "Business development and other related activities"
+    title: "Senior Software Engineer",
+    company: "Tech Innovation Corp",
+    location: "San Francisco, CA",
+    period: "2022 - Present",
+    description: "Lead development of scalable web applications serving 100k+ users. Architected microservices infrastructure and mentored junior developers.",
+    technologies: ["React", "Node.js", "AWS", "PostgreSQL", "TypeScript"],
+    achievements: [
+      "Reduced application load time by 40% through optimization",
+      "Led a team of 5 developers on critical product features",
+      "Implemented CI/CD pipelines improving deployment frequency by 300%"
     ]
   },
   {
     id: 2,
-    title: "Application Engineer",
-    company: "Exeger Operations AB",
-    location: "Stockholm, SWEDEN", 
-    period: "October 2024 - June 2025",
-    description: "Focused on prototype and product development for customer applications, combining electrical design with technical sales expertise.",
-    responsibilities: [
-      "Development of prototypes and products for customer applications",
-      "Electrical design and rapid prototyping for product development",
-      "Technical sales and customer support"
+    title: "Full Stack Developer",
+    company: "Digital Solutions Inc",
+    location: "New York, NY",
+    period: "2020 - 2022",
+    description: "Developed and maintained full-stack applications for e-commerce and fintech clients. Collaborated with cross-functional teams to deliver high-quality solutions.",
+    technologies: ["Vue.js", "Python", "Django", "MySQL", "Docker"],
+    achievements: [
+      "Built payment processing system handling $2M+ monthly transactions",
+      "Developed real-time analytics dashboard for client insights",
+      "Achieved 99.9% uptime for critical client applications"
     ]
   },
   {
     id: 3,
-    title: "Application Specialist",
-    company: "Ascilion AB",
-    location: "Stockholm, SWEDEN",
-    period: "January 2024 - October 2024",
-    description: "Specialized in R&D and product development with a focus on medical device development, ensuring compliance with industry standards.",
-    responsibilities: [
-      "R&D and product development/design",
-      "Customer relations and business development",
-      "Medical device product development (ISO 13485, IEC 60601-1, IEC 62304)"
-    ]
-  },
-  {
-    id: 4,
-    title: "Development Engineer",
-    company: "Ascilion AB",
-    location: "Stockholm, SWEDEN",
-    period: "February 2021 - January 2024",
-    description: "Comprehensive engineering role involving semiconductor component development, software/hardware development, and test system design.",
-    responsibilities: [
-      "SPC, AOI and development of semiconductor components",
-      "Software and hardware development",
-      "Development and design of test systems and experiments"
-    ]
-  },
-  {
-    id: 5,
-    title: "Process Engineer",
-    company: "Bright Day Graphene AB",
-    location: "Stockholm, SWEDEN",
-    period: "June 2020 - January 2021",
-    description: "Focused on process development and manufacturing scaling, with expertise in electrochemistry and materials characterization.",
-    responsibilities: [
-      "Process development and scaling of manufacturing",
-      "Process design and analysis", 
-      "Electrochemistry and materials characterization"
+    title: "Frontend Developer",
+    company: "Creative Web Studio",
+    location: "Austin, TX",
+    period: "2019 - 2020",
+    description: "Created responsive web interfaces and interactive user experiences. Worked closely with designers to implement pixel-perfect designs.",
+    technologies: ["HTML5", "CSS3", "JavaScript", "React", "Sass"],
+    achievements: [
+      "Improved user engagement by 60% through UX improvements",
+      "Delivered 15+ client projects on time and under budget",
+      "Established component library used across multiple projects"
     ]
   }
 ];
 
 export function Professional() {
-  const { t } = useLanguage();
-  
   return (
     <section id="professional" className="py-24 bg-background">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Header */}
         <div className="mx-auto max-w-2xl text-center mb-16">
           <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            {t("professionalTitle")}
+            Professional Experience
           </h2>
           <p className="mt-6 text-lg leading-8 text-muted-foreground">
-            {t("professionalDescription")}
+            A journey through my professional career, building innovative solutions and leading teams.
           </p>
         </div>
 
@@ -122,17 +96,32 @@ export function Professional() {
                   {role.description}
                 </p>
 
-                {/* Responsibilities */}
+                {/* Technologies */}
+                <div className="mb-6">
+                  <h4 className="text-sm font-semibold text-foreground mb-3">Technologies Used</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {role.technologies.map((tech) => (
+                      <span
+                        key={tech}
+                        className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Achievements */}
                 <div>
-                  <h4 className="text-sm font-semibold text-foreground mb-3">{t("keyResponsibilities")}</h4>
+                  <h4 className="text-sm font-semibold text-foreground mb-3">Key Achievements</h4>
                   <ul className="space-y-2">
-                    {role.responsibilities.map((responsibility, responsibilityIndex) => (
+                    {role.achievements.map((achievement, achievementIndex) => (
                       <li
-                        key={responsibilityIndex}
+                        key={achievementIndex}
                         className="flex items-start gap-3 text-sm text-muted-foreground"
                       >
                         <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
-                        <span>{responsibility}</span>
+                        <span>{achievement}</span>
                       </li>
                     ))}
                   </ul>
