@@ -24,7 +24,7 @@ export function Hero() {
           <div className="flex-1 text-center lg:text-left">
             {/* Animated greeting */}
             <div className="animate-fade-up" style={{ animationDelay: "0.1s" }}>
-              <p className="text-lg font-medium text-primary mb-4">Hello, I'm</p>
+              <p className="text-lg font-medium text-primary mb-1">Hello, I'm</p>
               <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
                 Alexander
               </h1>
