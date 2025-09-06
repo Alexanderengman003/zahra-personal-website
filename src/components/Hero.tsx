@@ -5,7 +5,7 @@ export function Hero() {
   return (
     <section 
       id="home" 
-      className="bg-background py-16 sm:py-20"
+      className="bg-background pt-24 pb-16 sm:pt-32 sm:pb-20"
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
