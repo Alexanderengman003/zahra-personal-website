@@ -2,74 +2,24 @@ import { useState } from "react";
 import { ExternalLink, Github, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import ecommerceImg from "@/assets/project-ecommerce.jpg";
-import tasksImg from "@/assets/project-tasks.jpg";
-import dashboardImg from "@/assets/project-dashboard.jpg";
+import stretchableImg from "@/assets/stretchable-microsupercapacitors.jpg";
 
 const projects = [
   {
     id: 1,
-    title: "E-Commerce Platform",
-    description: "A full-stack e-commerce solution built with React, Node.js, and PostgreSQL. Features include user authentication, payment processing, and admin dashboard.",
-    image: ecommerceImg,
-    technologies: ["React", "Node.js", "PostgreSQL", "Stripe", "Tailwind CSS"],
-    githubUrl: "https://github.com/alexander/ecommerce",
-    liveUrl: "https://ecommerce-demo.alexander.dev",
-    category: "Full Stack",
-  },
-  {
-    id: 2,
-    title: "Task Management App",
-    description: "A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.",
-    image: tasksImg,
-    technologies: ["Vue.js", "Firebase", "TypeScript", "Socket.io"],
-    githubUrl: "https://github.com/alexander/taskmanager",
-    liveUrl: "https://tasks.alexander.dev",
-    category: "Frontend",
-  },
-  {
-    id: 3,
-    title: "API Gateway Service",
-    description: "A high-performance API gateway built with Go, featuring rate limiting, authentication, and load balancing for microservices architecture.",
-    image: dashboardImg,
-    technologies: ["Go", "Redis", "Docker", "Kubernetes", "gRPC"],
-    githubUrl: "https://github.com/alexander/api-gateway",
-    liveUrl: null,
-    category: "Backend",
-  },
-  {
-    id: 4,
-    title: "Data Visualization Dashboard",
-    description: "An interactive dashboard for data visualization and analytics, featuring real-time charts, filters, and export capabilities.",
-    image: dashboardImg,
-    technologies: ["React", "D3.js", "Python", "FastAPI", "Chart.js"],
-    githubUrl: "https://github.com/alexander/data-dashboard",
-    liveUrl: "https://dashboard.alexander.dev",
-    category: "Data Science",
-  },
-  {
-    id: 5,
-    title: "Mobile Weather App",
-    description: "A cross-platform mobile weather application with location-based forecasts, weather alerts, and beautiful animations.",
-    image: ecommerceImg,
-    technologies: ["React Native", "Expo", "Weather API", "Redux"],
-    githubUrl: "https://github.com/alexander/weather-app",
-    liveUrl: null,
-    category: "Mobile",
-  },
-  {
-    id: 6,
-    title: "DevOps Automation Suite",
-    description: "A comprehensive DevOps toolkit for CI/CD pipeline automation, infrastructure as code, and deployment management.",
-    image: tasksImg,
-    technologies: ["Python", "Terraform", "AWS", "Jenkins", "Ansible"],
-    githubUrl: "https://github.com/alexander/devops-suite",
-    liveUrl: null,
-    category: "DevOps",
+    title: "Stretchable Microsupercapacitors",
+    description: "Master's thesis research developing novel Direct Ink Writing method for 3D printing intrinsically stretchable energy storage devices. Achieved 80% stretchability with 740 µF cm⁻² capacitance using PEDOT:PSS conductive inks on TPU substrates.",
+    image: stretchableImg,
+    technologies: ["3D Printing", "PEDOT:PSS", "Direct Ink Writing", "Electrochemical Analysis", "Materials Science", "TPU Substrates"],
+    githubUrl: null,
+    liveUrl: "#", // Link to thesis
+    category: "Research",
+    date: "Jan 2020 - Jun 2020",
+    institution: "KTH Royal Institute of Technology"
   },
 ];
 
-const categories = ["All", "Full Stack", "Frontend", "Backend", "Mobile", "Data Science", "DevOps"];
+const categories = ["All", "Research"];
 
 export function Projects() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -90,11 +40,11 @@ export function Projects() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            Featured Projects
+            Research Work
           </h2>
           <p className="mt-6 text-lg leading-8 text-muted-foreground">
-            A collection of projects that showcase my skills and passion for building 
-            innovative solutions.
+            Academic research project showcasing expertise in materials science, 
+            nanotechnology, and advanced fabrication techniques.
           </p>
         </div>
 
@@ -168,6 +118,10 @@ export function Projects() {
                   </span>
                 </div>
                 
+                {project.date && (
+                  <p className="text-xs text-muted-foreground mb-2">{project.date} • {project.institution}</p>
+                )}
+                
                 <p className="text-sm text-muted-foreground leading-relaxed mb-4">
                   {project.description}
                 </p>
@@ -200,7 +154,7 @@ export function Projects() {
                   {project.liveUrl && (
                     <Button size="sm" variant="default" className="flex-1">
                       <ExternalLink className="mr-2 h-3 w-3" />
-                      Live Demo
+                      Read Thesis
                     </Button>
                   )}
                 </div>
