@@ -1,6 +1,5 @@
 import { ArrowDown, Download, Linkedin, Mail, Sparkles, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { TypewriterEffect } from "./TypewriterEffect";
 
 export function Hero() {
   return (
@@ -36,11 +35,7 @@ export function Hero() {
             <div className="animate-fade-up space-y-6 mb-8" style={{ animationDelay: "0.2s" }}>
               <div className="space-y-4">
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.3] pb-4">
-                  <TypewriterEffect 
-                    text="Alexander Engman" 
-                    speed={150}
-                    className="block text-gradient font-handwritten"
-                  />
+                  <span className="block text-gradient font-handwritten">Alexander Engman</span>
                 </h1>
               </div>
               
@@ -71,7 +66,7 @@ export function Hero() {
                   import('@/lib/analytics').then(({ trackEvent }) => {
                     trackEvent('contact_button_click', { source: 'hero' });
                   });
-                  window.location.href = 'mailto:hello@alexander.dev';
+                  window.location.href = 'mailto:alexander@engman.nu?subject=Contact from Portfolio&body=Hello Alexander,';
                 }}
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-primary-hover to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
