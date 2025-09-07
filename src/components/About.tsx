@@ -53,7 +53,7 @@ export function About() {
             <div className="card-gradient rounded-2xl p-8 shadow-medium hover-lift">
               <h3 className="text-xl font-semibold text-foreground mb-4">My Journey</h3>
               <p className="text-muted-foreground leading-relaxed">
-                My background stems from a bachelor's degree in Materials Science and Engineering and a master's in nanotechnology from KTH Royal Institute of Technology in Stockholm. I've gained diverse experience in fields such as materials development, semiconductor fabrication, and medical device design. My key strengths include being a quick learner, possessing a creative mindset, and maintaining a keen eye for detail in all my work.
+                With a background in Materials Science and Engineering (B.Sc.) and Nanotechnology (M.Sc.) from KTH Royal Institute of Technology, I have built a strong foundation in materials development, semiconductor fabrication, and hardware/software design. Throughout my career, semiconductors have been the red thread — from research and product development to practical applications in advanced hardware. Today, I have transitioned into a business-oriented role, leveraging my technical expertise to drive growth in sales, connect technology with customer needs, and contribute to advancing semiconductor innovation.
               </p>
             </div>
           </div>
