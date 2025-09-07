@@ -19,8 +19,11 @@ import {
   Calendar,
   ArrowUpRight,
   ArrowDownRight,
-  Loader2
+  Loader2,
+  Sun,
+  Moon
 } from "lucide-react";
+import { LineChart as RechartsLineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart as RechartsBarChart, Bar } from "recharts";
 import { getAnalyticsStats } from "@/lib/analytics";
 
 const Analytics = () => {
@@ -181,25 +184,70 @@ const Analytics = () => {
             </Card>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+          {/* Traffic Chart */}
+          <Card className="card-gradient mb-8">
+            <CardHeader>
+              <CardTitle className="font-modern">Traffic Overview</CardTitle>
+              <CardDescription className="font-modern">Daily page views and unique visitors</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="h-[300px]">
+                <ResponsiveContainer width="100%" height="100%">
+                  <RechartsLineChart data={stats.trafficData}>
+                    <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
+                    <XAxis 
+                      dataKey="date" 
+                      className="text-xs fill-muted-foreground"
+                      tickFormatter={(value) => new Date(value).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                    />
+                    <YAxis className="text-xs fill-muted-foreground" />
+                    <Tooltip 
+                      contentStyle={{ 
+                        backgroundColor: 'hsl(var(--background))', 
+                        border: '1px solid hsl(var(--border))',
+                        borderRadius: '8px'
+                      }}
+                      labelFormatter={(value) => new Date(value).toLocaleDateString()}
+                    />
+                    <Line 
+                      type="monotone" 
+                      dataKey="views" 
+                      stroke="hsl(var(--primary))" 
+                      strokeWidth={2}
+                      name="Page Views"
+                    />
+                    <Line 
+                      type="monotone" 
+                      dataKey="visitors" 
+                      stroke="hsl(var(--secondary))" 
+                      strokeWidth={2}
+                      name="Visitors"
+                    />
+                  </RechartsLineChart>
+                </ResponsiveContainer>
+              </div>
+            </CardContent>
+          </Card>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
             {/* Top Pages */}
             <Card className="card-gradient">
               <CardHeader>
                 <CardTitle className="font-modern">Top Pages</CardTitle>
-                <CardDescription className="font-modern">Most viewed pages in the selected period</CardDescription>
+                <CardDescription className="font-modern">Most viewed pages</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  {stats.topPages.map((page: any, index: number) => (
+                  {stats.topPages.slice(0, 4).map((page: any, index: number) => (
                     <div key={page.page} className="flex items-center justify-between">
                       <div className="flex items-center space-x-3">
-                        <div className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center text-sm font-semibold">
+                        <div className="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-semibold">
                           {index + 1}
                         </div>
-                        <span className="font-medium font-modern">{page.page}</span>
+                        <span className="font-medium font-modern text-sm">{page.page}</span>
                       </div>
                       <div className="text-right">
-                        <div className="font-semibold font-modern">{page.views.toLocaleString()}</div>
+                        <div className="font-semibold font-modern text-sm">{page.views}</div>
                         <div className="text-xs text-muted-foreground">{page.percentage}%</div>
                       </div>
                     </div>
@@ -212,7 +260,7 @@ const Analytics = () => {
             <Card className="card-gradient">
               <CardHeader>
                 <CardTitle className="font-modern">Device Types</CardTitle>
-                <CardDescription className="font-modern">Visitor device breakdown</CardDescription>
+                <CardDescription className="font-modern">Visitor devices</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
@@ -222,14 +270,46 @@ const Analytics = () => {
                         {device.type === "Desktop" && <Monitor className="h-4 w-4 text-muted-foreground" />}
                         {device.type === "Mobile" && <Smartphone className="h-4 w-4 text-muted-foreground" />}
                         {device.type === "Tablet" && <Smartphone className="h-4 w-4 text-muted-foreground" />}
-                        <span className="font-medium font-modern">{device.type}</span>
+                        <span className="font-medium font-modern text-sm">{device.type}</span>
                       </div>
                       <div className="text-right">
-                        <div className="font-semibold font-modern">{device.count.toLocaleString()}</div>
+                        <div className="font-semibold font-modern text-sm">{device.count}</div>
                         <div className="text-xs text-muted-foreground">{device.percentage}%</div>
                       </div>
                     </div>
                   ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Theme Usage */}
+            <Card className="card-gradient">
+              <CardHeader>
+                <CardTitle className="font-modern">Theme Preference</CardTitle>
+                <CardDescription className="font-modern">Dark vs light mode usage</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {stats.themeUsage && stats.themeUsage.length > 0 ? (
+                    stats.themeUsage.map((theme: any) => (
+                      <div key={theme.theme} className="flex items-center justify-between">
+                        <div className="flex items-center space-x-3">
+                          {theme.theme === "Dark" && <Moon className="h-4 w-4 text-muted-foreground" />}
+                          {theme.theme === "Light" && <Sun className="h-4 w-4 text-muted-foreground" />}
+                          <span className="font-medium font-modern text-sm">{theme.theme}</span>
+                        </div>
+                        <div className="text-right">
+                          <div className="font-semibold font-modern text-sm">{theme.count}</div>
+                          <div className="text-xs text-muted-foreground">{theme.percentage}%</div>
+                        </div>
+                      </div>
+                    ))
+                  ) : (
+                    <div className="text-center py-4 text-muted-foreground">
+                      <Sun className="h-6 w-6 mx-auto mb-2 opacity-50" />
+                      <p className="text-xs">No theme data yet</p>
+                    </div>
+                  )}
                 </div>
               </CardContent>
             </Card>

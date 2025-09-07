@@ -43,6 +43,12 @@ const getOperatingSystem = (): string => {
   return 'Other';
 };
 
+// Get current theme
+const getCurrentTheme = (): string => {
+  const root = document.documentElement;
+  return root.classList.contains('dark') ? 'dark' : 'light';
+};
+
 // Track page view
 export const trackPageView = async (pagePath: string, pageTitle: string) => {
   try {
@@ -80,6 +86,9 @@ export const trackPageView = async (pagePath: string, pageTitle: string) => {
         operating_system: getOperatingSystem(),
         session_id: sessionId,
       });
+
+    // Track theme usage as an event
+    await trackEvent('theme_usage', { theme: getCurrentTheme() }, pagePath);
 
   } catch (error) {
     console.error('Error tracking page view:', error);
@@ -127,6 +136,14 @@ export const getAnalyticsStats = async (days: number = 7) => {
 
     if (sessionsError) throw sessionsError;
 
+    // Get events for theme tracking
+    const { data: events, error: eventsError } = await supabase
+      .from('analytics_events')
+      .select('*')
+      .gte('created_at', startDate.toISOString());
+
+    if (eventsError) throw eventsError;
+
     // Calculate stats
     const totalViews = pageViews?.length || 0;
     const uniqueVisitors = sessions?.length || 0;
@@ -173,6 +190,39 @@ export const getAnalyticsStats = async (days: number = 7) => {
       }))
       .sort((a, b) => b.count - a.count);
 
+    // Theme usage stats
+    const themeEvents = events?.filter(event => event.event_type === 'theme_usage') || [];
+    const themeStats = themeEvents.reduce((acc: any, event) => {
+      const theme = (event.event_data as any)?.theme || 'unknown';
+      acc[theme] = (acc[theme] || 0) + 1;
+      return acc;
+    }, {});
+
+    const themeUsage = Object.entries(themeStats)
+      .map(([theme, count]) => ({
+        theme: theme.charAt(0).toUpperCase() + theme.slice(1),
+        count: count as number,
+        percentage: themeEvents.length > 0 ? (((count as number) / themeEvents.length) * 100).toFixed(1) : '0'
+      }))
+      .sort((a, b) => b.count - a.count);
+
+    // Daily traffic data for charts
+    const dailyTraffic = pageViews?.reduce((acc: any, view) => {
+      const date = new Date(view.created_at).toISOString().split('T')[0];
+      acc[date] = (acc[date] || 0) + 1;
+      return acc;
+    }, {}) || {};
+
+    const trafficData = Object.entries(dailyTraffic)
+      .map(([date, views]) => ({
+        date,
+        views: views as number,
+        visitors: sessions?.filter(session => 
+          new Date(session.first_visit_at).toISOString().split('T')[0] === date
+        ).length || 0
+      }))
+      .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+
     // Recent activity
     const recentActivity = pageViews
       ?.slice(-5)
@@ -191,6 +241,8 @@ export const getAnalyticsStats = async (days: number = 7) => {
       avgSessionTime: formatDuration(avgSessionTime),
       topPages,
       deviceTypes,
+      themeUsage,
+      trafficData,
       recentActivity
     };
 
