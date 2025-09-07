@@ -1,4 +1,5 @@
 import { MapPin, Calendar, Building } from "lucide-react";
+import { useState } from "react";
 
 const professionalRoles = [
   {
@@ -13,7 +14,8 @@ const professionalRoles = [
       "Account manager within semiconductors and electronic components",
       "Technical support for new and existing customers",
       "Business development and other related activities"
-    ]
+    ],
+    area: "Sales"
   },
   {
     id: 2,
@@ -27,7 +29,8 @@ const professionalRoles = [
       "Development of prototypes and products for customer applications",
       "Electrical design and rapid prototyping for product development",
       "Technical sales and customer support"
-    ]
+    ],
+    area: "Engineering"
   },
   {
     id: 3,
@@ -41,7 +44,8 @@ const professionalRoles = [
       "R&D and product development/design",
       "Customer relations and business development",
       "Medical device product development (ISO 13485, IEC 60601-1, IEC 62304)"
-    ]
+    ],
+    area: "Engineering"
   },
   {
     id: 4,
@@ -55,7 +59,8 @@ const professionalRoles = [
       "SPC, AOI and development of semiconductor components",
       "Software and hardware development",
       "Development and design of test systems and experiments"
-    ]
+    ],
+    area: "Engineering"
   },
   {
     id: 5,
@@ -69,11 +74,19 @@ const professionalRoles = [
       "Process development and scaling of manufacturing",
       "Process design and analysis",
       "Electrochemistry and materials characterization"
-    ]
+    ],
+    area: "Engineering"
   }
 ];
 
 export function Professional() {
+  const [selectedArea, setSelectedArea] = useState<string>("All");
+  
+  const areas = ["All", "Engineering", "Sales"];
+  const filteredRoles = selectedArea === "All" 
+    ? professionalRoles 
+    : professionalRoles.filter(role => role.area === selectedArea);
+
   return (
     <section id="professional" className="py-24 bg-background">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -87,10 +100,29 @@ export function Professional() {
           </p>
         </div>
 
+        {/* Filter Buttons */}
+        <div className="flex justify-center mb-12">
+          <div className="inline-flex rounded-lg bg-muted p-1">
+            {areas.map((area) => (
+              <button
+                key={area}
+                onClick={() => setSelectedArea(area)}
+                className={`px-4 py-2 text-sm font-medium rounded-md transition-all ${
+                  selectedArea === area
+                    ? "bg-background text-foreground shadow-sm"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {area}
+              </button>
+            ))}
+          </div>
+        </div>
+
         {/* Professional Roles */}
-        <div className="mx-auto max-w-4xl">
-          <div className="space-y-8">
-            {professionalRoles.map((role, index) => (
+        <div className="mx-auto max-w-7xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {filteredRoles.map((role, index) => (
               <div
                 key={role.id}
                 className="card-gradient rounded-2xl p-8 shadow-medium hover-lift"
