@@ -6,8 +6,12 @@ import { Professional } from "@/components/Professional";
 import { Skills } from "@/components/Skills";
 import { Education } from "@/components/Education";
 import { Contact } from "@/components/Contact";
+import { useAnalytics } from "@/hooks/useAnalytics";
 
 const Index = () => {
+  // Track page views automatically
+  useAnalytics();
+
   return (
     <div className="smooth-scroll">
       <Header />

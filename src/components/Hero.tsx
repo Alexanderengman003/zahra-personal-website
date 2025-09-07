@@ -52,12 +52,26 @@ export function Hero() {
                 size="lg" 
                 variant="default" 
                 className="hover-lift font-modern"
-                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => {
+                  import('@/lib/analytics').then(({ trackEvent }) => {
+                    trackEvent('contact_button_click', { source: 'hero' });
+                  });
+                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                }}
               >
                 <Mail className="mr-2 h-4 w-4" />
                 Get In Touch
               </Button>
-              <Button variant="outline" size="lg" className="hover-lift font-modern">
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="hover-lift font-modern"
+                onClick={() => {
+                  import('@/lib/analytics').then(({ trackEvent }) => {
+                    trackEvent('cv_download_click', { source: 'hero' });
+                  });
+                }}
+              >
                 <Download className="mr-2 h-4 w-4" />
                 Download Resume
               </Button>

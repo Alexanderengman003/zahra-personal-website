@@ -14,7 +14,123 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      analytics_events: {
+        Row: {
+          created_at: string
+          event_data: Json | null
+          event_type: string
+          id: string
+          page_path: string | null
+          session_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          event_data?: Json | null
+          event_type: string
+          id?: string
+          page_path?: string | null
+          session_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          event_data?: Json | null
+          event_type?: string
+          id?: string
+          page_path?: string | null
+          session_id?: string | null
+        }
+        Relationships: []
+      }
+      analytics_page_views: {
+        Row: {
+          browser: string | null
+          city: string | null
+          country: string | null
+          created_at: string
+          device_type: string | null
+          id: string
+          ip_address: unknown | null
+          operating_system: string | null
+          page_path: string
+          page_title: string | null
+          referrer: string | null
+          session_id: string | null
+          user_agent: string | null
+        }
+        Insert: {
+          browser?: string | null
+          city?: string | null
+          country?: string | null
+          created_at?: string
+          device_type?: string | null
+          id?: string
+          ip_address?: unknown | null
+          operating_system?: string | null
+          page_path: string
+          page_title?: string | null
+          referrer?: string | null
+          session_id?: string | null
+          user_agent?: string | null
+        }
+        Update: {
+          browser?: string | null
+          city?: string | null
+          country?: string | null
+          created_at?: string
+          device_type?: string | null
+          id?: string
+          ip_address?: unknown | null
+          operating_system?: string | null
+          page_path?: string
+          page_title?: string | null
+          referrer?: string | null
+          session_id?: string | null
+          user_agent?: string | null
+        }
+        Relationships: []
+      }
+      analytics_sessions: {
+        Row: {
+          bounce: boolean | null
+          browser: string | null
+          country: string | null
+          device_type: string | null
+          duration_seconds: number | null
+          first_visit_at: string
+          id: string
+          last_activity_at: string
+          page_views_count: number | null
+          referrer: string | null
+          session_id: string
+        }
+        Insert: {
+          bounce?: boolean | null
+          browser?: string | null
+          country?: string | null
+          device_type?: string | null
+          duration_seconds?: number | null
+          first_visit_at?: string
+          id?: string
+          last_activity_at?: string
+          page_views_count?: number | null
+          referrer?: string | null
+          session_id: string
+        }
+        Update: {
+          bounce?: boolean | null
+          browser?: string | null
+          country?: string | null
+          device_type?: string | null
+          duration_seconds?: number | null
+          first_visit_at?: string
+          id?: string
+          last_activity_at?: string
+          page_views_count?: number | null
+          referrer?: string | null
+          session_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

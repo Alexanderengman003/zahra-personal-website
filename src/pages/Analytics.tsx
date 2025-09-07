@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Header } from "@/components/Header";
+import { useAnalytics } from "@/hooks/useAnalytics";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -17,52 +18,76 @@ import {
   Monitor,
   Calendar,
   ArrowUpRight,
-  ArrowDownRight
+  ArrowDownRight,
+  Loader2
 } from "lucide-react";
+import { getAnalyticsStats } from "@/lib/analytics";
 
 const Analytics = () => {
+  // Track analytics page visits
+  useAnalytics();
+  
   const [timeRange, setTimeRange] = useState("7d");
-
-  // Mock analytics data
-  const stats = {
-    totalViews: 12847,
-    uniqueVisitors: 8293,
-    bounceRate: 32.4,
-    avgSessionTime: "3m 42s",
-    topPages: [
-      { page: "Home", views: 4521, percentage: 35.2 },
-      { page: "Projects", views: 3187, percentage: 24.8 },
-      { page: "Professional", views: 2743, percentage: 21.4 },
-      { page: "About", views: 1892, percentage: 14.7 },
-      { page: "Contact", views: 504, percentage: 3.9 }
-    ],
-    deviceTypes: [
-      { type: "Desktop", count: 7108, percentage: 55.3 },
-      { type: "Mobile", count: 4521, percentage: 35.2 },
-      { type: "Tablet", count: 1218, percentage: 9.5 }
-    ],
-    topCountries: [
-      { country: "Sweden", visits: 4521, flag: "🇸🇪" },
-      { country: "United States", visits: 2743, flag: "🇺🇸" },
-      { country: "Germany", visits: 1892, flag: "🇩🇪" },
-      { country: "United Kingdom", visits: 1504, flag: "🇬🇧" },
-      { country: "Norway", visits: 1187, flag: "🇳🇴" }
-    ],
-    recentActivity: [
-      { action: "Page view", page: "Projects", time: "2 minutes ago", location: "Stockholm, SE" },
-      { action: "Contact form", page: "Contact", time: "15 minutes ago", location: "London, UK" },
-      { action: "Download CV", page: "Home", time: "32 minutes ago", location: "Berlin, DE" },
-      { action: "Page view", page: "Professional", time: "1 hour ago", location: "Oslo, NO" },
-      { action: "Page view", page: "About", time: "2 hours ago", location: "New York, US" }
-    ]
-  };
+  const [stats, setStats] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
 
   const timeRanges = [
-    { value: "1d", label: "24h" },
-    { value: "7d", label: "7 days" },
-    { value: "30d", label: "30 days" },
-    { value: "90d", label: "90 days" }
+    { value: "1d", label: "24h", days: 1 },
+    { value: "7d", label: "7 days", days: 7 },
+    { value: "30d", label: "30 days", days: 30 },
+    { value: "90d", label: "90 days", days: 90 }
   ];
+
+  const fetchAnalytics = async (days: number) => {
+    setLoading(true);
+    try {
+      const data = await getAnalyticsStats(days);
+      setStats(data);
+    } catch (error) {
+      console.error('Error fetching analytics:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    const selectedRange = timeRanges.find(range => range.value === timeRange);
+    fetchAnalytics(selectedRange?.days || 7);
+  }, [timeRange]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Header />
+        <main className="pt-24 pb-16">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8 flex items-center justify-center min-h-[400px]">
+            <div className="flex items-center space-x-2">
+              <Loader2 className="h-6 w-6 animate-spin" />
+              <span className="text-lg font-modern">Loading analytics...</span>
+            </div>
+          </div>
+        </main>
+      </div>
+    );
+  }
+
+  if (!stats) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Header />
+        <main className="pt-24 pb-16">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="text-center py-12">
+              <h1 className="text-2xl font-bold font-modern mb-4">No Analytics Data Available</h1>
+              <p className="text-muted-foreground font-modern">
+                Start browsing the site to generate analytics data.
+              </p>
+            </div>
+          </div>
+        </main>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background">
@@ -83,19 +108,19 @@ const Analytics = () => {
             
             {/* Time Range Selector */}
             <div className="mt-6 sm:mt-0">
-              <div className="inline-flex rounded-lg bg-muted p-1">
-                {timeRanges.map((range) => (
-                  <Button
-                    key={range.value}
-                    onClick={() => setTimeRange(range.value)}
-                    variant={timeRange === range.value ? "default" : "ghost"}
-                    size="sm"
-                    className="font-modern"
-                  >
-                    {range.label}
-                  </Button>
-                ))}
-              </div>
+            <div className="inline-flex rounded-lg bg-muted p-1">
+              {timeRanges.map((range) => (
+                <Button
+                  key={range.value}
+                  onClick={() => setTimeRange(range.value)}
+                  variant={timeRange === range.value ? "default" : "ghost"}
+                  size="sm"
+                  className="font-modern"
+                >
+                  {range.label}
+                </Button>
+              ))}
+            </div>
             </div>
           </div>
 
@@ -110,7 +135,7 @@ const Analytics = () => {
                 <div className="text-2xl font-bold font-modern">{stats.totalViews.toLocaleString()}</div>
                 <div className="flex items-center space-x-1 text-xs text-muted-foreground">
                   <ArrowUpRight className="h-3 w-3 text-green-500" />
-                  <span>+12.3% from last period</span>
+                  <span>Real-time data</span>
                 </div>
               </CardContent>
             </Card>
@@ -124,7 +149,7 @@ const Analytics = () => {
                 <div className="text-2xl font-bold font-modern">{stats.uniqueVisitors.toLocaleString()}</div>
                 <div className="flex items-center space-x-1 text-xs text-muted-foreground">
                   <ArrowUpRight className="h-3 w-3 text-green-500" />
-                  <span>+8.1% from last period</span>
+                  <span>Sessions tracked</span>
                 </div>
               </CardContent>
             </Card>
@@ -137,8 +162,7 @@ const Analytics = () => {
               <CardContent>
                 <div className="text-2xl font-bold font-modern">{stats.bounceRate}%</div>
                 <div className="flex items-center space-x-1 text-xs text-muted-foreground">
-                  <ArrowDownRight className="h-3 w-3 text-green-500" />
-                  <span>-2.4% from last period</span>
+                  <span>Single page visits</span>
                 </div>
               </CardContent>
             </Card>
@@ -151,8 +175,7 @@ const Analytics = () => {
               <CardContent>
                 <div className="text-2xl font-bold font-modern">{stats.avgSessionTime}</div>
                 <div className="flex items-center space-x-1 text-xs text-muted-foreground">
-                  <ArrowUpRight className="h-3 w-3 text-green-500" />
-                  <span>+15.2% from last period</span>
+                  <span>Time on site</span>
                 </div>
               </CardContent>
             </Card>
@@ -167,7 +190,7 @@ const Analytics = () => {
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  {stats.topPages.map((page, index) => (
+                  {stats.topPages.map((page: any, index: number) => (
                     <div key={page.page} className="flex items-center justify-between">
                       <div className="flex items-center space-x-3">
                         <div className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center text-sm font-semibold">
@@ -193,7 +216,7 @@ const Analytics = () => {
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  {stats.deviceTypes.map((device) => (
+                  {stats.deviceTypes.map((device: any) => (
                     <div key={device.type} className="flex items-center justify-between">
                       <div className="flex items-center space-x-3">
                         {device.type === "Desktop" && <Monitor className="h-4 w-4 text-muted-foreground" />}
@@ -213,27 +236,6 @@ const Analytics = () => {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Top Countries */}
-            <Card className="card-gradient">
-              <CardHeader>
-                <CardTitle className="font-modern">Top Countries</CardTitle>
-                <CardDescription className="font-modern">Visitor locations</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  {stats.topCountries.map((country) => (
-                    <div key={country.country} className="flex items-center justify-between">
-                      <div className="flex items-center space-x-3">
-                        <span className="text-xl">{country.flag}</span>
-                        <span className="font-medium font-modern">{country.country}</span>
-                      </div>
-                      <div className="font-semibold font-modern">{country.visits.toLocaleString()}</div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-
             {/* Recent Activity */}
             <Card className="card-gradient">
               <CardHeader>
@@ -242,22 +244,69 @@ const Analytics = () => {
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  {stats.recentActivity.map((activity, index) => (
-                    <div key={index} className="flex items-start space-x-3">
-                      <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center space-x-2">
-                          <Badge variant="secondary" className="text-xs font-modern">
-                            {activity.action}
-                          </Badge>
-                          <span className="text-sm font-medium font-modern">{activity.page}</span>
-                        </div>
-                        <div className="text-xs text-muted-foreground mt-1">
-                          {activity.location} • {activity.time}
+                  {stats.recentActivity && stats.recentActivity.length > 0 ? (
+                    stats.recentActivity.map((activity: any, index: number) => (
+                      <div key={index} className="flex items-start space-x-3">
+                        <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center space-x-2">
+                            <Badge variant="secondary" className="text-xs font-modern">
+                              {activity.action}
+                            </Badge>
+                            <span className="text-sm font-medium font-modern">{activity.page}</span>
+                          </div>
+                          <div className="text-xs text-muted-foreground mt-1">
+                            {activity.location} • {activity.time}
+                          </div>
                         </div>
                       </div>
+                    ))
+                  ) : (
+                    <div className="text-center py-8 text-muted-foreground font-modern">
+                      <Eye className="h-8 w-8 mx-auto mb-2 opacity-50" />
+                      <p>No recent activity</p>
+                      <p className="text-xs mt-1">Activity will appear here once visitors browse your site</p>
                     </div>
-                  ))}
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Analytics Info */}
+            <Card className="card-gradient">
+              <CardHeader>
+                <CardTitle className="font-modern">Analytics Information</CardTitle>
+                <CardDescription className="font-modern">How your analytics data is collected</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0" />
+                    <div>
+                      <div className="font-medium font-modern text-sm">Privacy-First Tracking</div>
+                      <div className="text-xs text-muted-foreground mt-1">
+                        No personal data is collected, only anonymous usage statistics
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0" />
+                    <div>
+                      <div className="font-medium font-modern text-sm">Real-Time Data</div>
+                      <div className="text-xs text-muted-foreground mt-1">
+                        Statistics are updated in real-time as visitors browse your site
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0" />
+                    <div>
+                      <div className="font-medium font-modern text-sm">Session-Based</div>
+                      <div className="text-xs text-muted-foreground mt-1">
+                        Tracks user sessions to provide meaningful engagement metrics
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </CardContent>
             </Card>
