@@ -37,13 +37,6 @@ export function Hero() {
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.4] pb-6 font-modern">
                   <span className="block text-gradient">Alexander Engman</span>
                 </h1>
-              
-                <div className="relative">
-                  <h2 className="text-xl sm:text-2xl lg:text-3xl font-medium text-muted-foreground whitespace-nowrap">
-                    Semiconductor engineering and sales
-                  </h2>
-                  <div className="absolute -bottom-2 left-0 lg:left-0 mx-auto lg:mx-0 w-full h-0.5 bg-gradient-to-r from-primary to-primary/50 rounded-full" />
-                </div>
               </div>
             </div>
 
