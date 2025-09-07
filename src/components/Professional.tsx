@@ -129,7 +129,15 @@ export function Professional() {
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 {/* Role Header */}
-                <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-6">
+                <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6 relative">
+                  {/* Current Role Badge */}
+                  {role.period.includes("Currently ongoing") && (
+                    <div className="absolute top-0 right-0 -mt-2 -mr-2">
+                      <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400">
+                        Currently ongoing
+                      </span>
+                    </div>
+                  )}
                   <div>
                     <h3 className="text-xl font-semibold text-foreground mb-2">
                       {role.title}
