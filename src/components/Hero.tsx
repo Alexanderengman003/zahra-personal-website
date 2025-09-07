@@ -1,5 +1,6 @@
 import { ArrowDown, Download, Linkedin, Mail, Sparkles, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { TypewriterEffect } from "./TypewriterEffect";
 
 export function Hero() {
   return (
@@ -40,8 +41,11 @@ export function Hero() {
                 </div>
                 
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[0.9]">
-                  <span className="block text-foreground text-lg font-medium">Hello, I'm</span>
-                  <span className="block text-gradient mt-2 font-bold">Alexander Engman</span>
+                  <TypewriterEffect 
+                    text="Alexander Engman" 
+                    speed={150}
+                    className="block text-gradient font-handwritten"
+                  />
                 </h1>
               </div>
               
