@@ -66,7 +66,6 @@ export function Hero() {
                   window.open('https://www.linkedin.com/in/alexanderengman', '_blank');
                 }}
               >
-                <Linkedin className="mr-2 h-6 w-6" />
                 LinkedIn
               </Button>
               <Button 
