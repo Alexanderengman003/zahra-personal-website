@@ -8,6 +8,7 @@ const navigation = [
   { name: "About", href: "#about" },
   { name: "Projects", href: "#projects" },
   { name: "Professional", href: "#professional" },
+  { name: "Analytics", href: "/analytics" },
   { name: "Contact", href: "#contact" },
 ];
 
@@ -45,13 +46,23 @@ export function Header() {
         {/* Desktop navigation */}
         <div className="hidden lg:flex lg:gap-x-12">
           {navigation.map((item) => (
-            <a
-              key={item.name}
-              href={item.href}
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-            >
-              {item.name}
-            </a>
+            item.href.startsWith('#') ? (
+              <a
+                key={item.name}
+                href={item.href}
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              >
+                {item.name}
+              </a>
+            ) : (
+              <a
+                key={item.name}
+                href={item.href}
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              >
+                {item.name}
+              </a>
+            )
           ))}
         </div>
 
