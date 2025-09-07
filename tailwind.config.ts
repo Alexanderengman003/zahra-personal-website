@@ -50,7 +50,7 @@ export default {
       },
       fontFamily: {
         sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-        handwritten: ['Kalam', 'cursive'],
+        handwritten: ['Dancing Script', 'cursive'],
         modern: ['Poppins', 'sans-serif'],
       },
       boxShadow: {
