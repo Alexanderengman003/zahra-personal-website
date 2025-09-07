@@ -33,12 +33,12 @@ export function Hero() {
           <div className="flex-1 text-center lg:text-left max-w-2xl">
             {/* Animated greeting */}
             <div className="animate-fade-up space-y-8 mb-8" style={{ animationDelay: "0.2s" }}>
-              <div className="space-y-6">
+              <div className="space-y-2">
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.8] font-modern" style={{ paddingBottom: '0.4em' }}>
                   <span className="block text-gradient">Alexander Engman</span>
                 </h1>
               
-                <div className="relative">
+                <div className="relative -mt-4">
                   <h2 className="text-xl sm:text-2xl lg:text-3xl font-medium text-muted-foreground whitespace-nowrap">
                     Semiconductor engineering and sales
                   </h2>
