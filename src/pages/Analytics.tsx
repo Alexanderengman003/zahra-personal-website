@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Header } from "@/components/Header";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -61,8 +60,7 @@ const Analytics = () => {
   if (loading) {
     return (
       <div className="min-h-screen bg-background">
-        <Header />
-        <main className="pt-24 pb-16">
+        <main className="pt-8 pb-16">
           <div className="mx-auto max-w-7xl px-6 lg:px-8 flex items-center justify-center min-h-[400px]">
             <div className="flex items-center space-x-2">
               <Loader2 className="h-6 w-6 animate-spin" />
@@ -77,8 +75,7 @@ const Analytics = () => {
   if (!stats) {
     return (
       <div className="min-h-screen bg-background">
-        <Header />
-        <main className="pt-24 pb-16">
+        <main className="pt-8 pb-16">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="text-center py-12">
               <h1 className="text-2xl font-bold font-modern mb-4">No Analytics Data Available</h1>
@@ -94,9 +91,7 @@ const Analytics = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
-      
-      <main className="pt-24 pb-16">
+      <main className="pt-8 pb-16">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           {/* Header */}
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8">
@@ -308,6 +303,42 @@ const Analytics = () => {
                     <div className="text-center py-4 text-muted-foreground">
                       <Sun className="h-6 w-6 mx-auto mb-2 opacity-50" />
                       <p className="text-xs">No theme data yet</p>
+                    </div>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Top Countries */}
+          <div className="mb-8">
+            <Card className="card-gradient">
+              <CardHeader>
+                <CardTitle className="font-modern">Top Countries</CardTitle>
+                <CardDescription className="font-modern">Visitors by location</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {stats.topCountries && stats.topCountries.length > 0 ? (
+                    stats.topCountries.map((country: any, index: number) => (
+                      <div key={country.country} className="flex items-center justify-between">
+                        <div className="flex items-center space-x-3">
+                          <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center">
+                            <span className="text-xs font-semibold text-primary">{index + 1}</span>
+                          </div>
+                          <Globe className="h-4 w-4 text-muted-foreground" />
+                          <span className="font-medium font-modern text-sm">{country.country}</span>
+                        </div>
+                        <div className="text-right">
+                          <div className="font-semibold font-modern text-sm">{country.visits}</div>
+                          <div className="text-xs text-muted-foreground">{country.percentage}%</div>
+                        </div>
+                      </div>
+                    ))
+                  ) : (
+                    <div className="text-center py-4 text-muted-foreground">
+                      <Globe className="h-6 w-6 mx-auto mb-2 opacity-50" />
+                      <p className="text-xs">No location data yet</p>
                     </div>
                   )}
                 </div>

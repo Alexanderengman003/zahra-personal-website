@@ -43,6 +43,23 @@ const getOperatingSystem = (): string => {
   return 'Other';
 };
 
+// Get geographical information based on IP
+const getGeolocation = async (): Promise<{ country?: string; city?: string }> => {
+  try {
+    const response = await fetch('https://ipapi.co/json/');
+    if (response.ok) {
+      const data = await response.json();
+      return {
+        country: data.country_name || null,
+        city: data.city || null
+      };
+    }
+  } catch (error) {
+    console.warn('Failed to get geolocation:', error);
+  }
+  return {};
+};
+
 // Get current theme
 const getCurrentTheme = (): string => {
   const root = document.documentElement;
@@ -53,6 +70,9 @@ const getCurrentTheme = (): string => {
 export const trackPageView = async (pagePath: string, pageTitle: string) => {
   try {
     const sessionId = getSessionId();
+    
+    // Get geographical information
+    const { country, city } = await getGeolocation();
     
     // First, ensure session exists or create it
     const { data: existingSession } = await supabase
@@ -70,6 +90,7 @@ export const trackPageView = async (pagePath: string, pageTitle: string) => {
           device_type: getDeviceType(),
           browser: getBrowser(),
           referrer: document.referrer || null,
+          country: country || null,
         });
     }
 
@@ -85,6 +106,8 @@ export const trackPageView = async (pagePath: string, pageTitle: string) => {
         browser: getBrowser(),
         operating_system: getOperatingSystem(),
         session_id: sessionId,
+        country: country || null,
+        city: city || null,
       });
 
     // Track theme usage as an event
@@ -231,8 +254,24 @@ export const getAnalyticsStats = async (days: number = 7) => {
         action: 'Page view',
         page: view.page_path === '/' ? 'Home' : view.page_path,
         time: getTimeAgo(new Date(view.created_at)),
-        location: 'Unknown' // We'd need IP geolocation for this
+        location: view.city && view.country ? `${view.city}, ${view.country}` : view.country || 'Unknown'
       })) || [];
+
+    // Country statistics
+    const countryStats = pageViews?.reduce((acc: any, view) => {
+      const country = view.country || 'Unknown';
+      acc[country] = (acc[country] || 0) + 1;
+      return acc;
+    }, {}) || {};
+
+    const topCountries = Object.entries(countryStats)
+      .map(([country, visits]) => ({
+        country,
+        visits: visits as number,
+        percentage: totalViews > 0 ? (((visits as number) / totalViews) * 100).toFixed(1) : '0'
+      }))
+      .sort((a, b) => b.visits - a.visits)
+      .slice(0, 5);
 
     return {
       totalViews,
@@ -243,7 +282,8 @@ export const getAnalyticsStats = async (days: number = 7) => {
       deviceTypes,
       themeUsage,
       trafficData,
-      recentActivity
+      recentActivity,
+      topCountries
     };
 
   } catch (error) {

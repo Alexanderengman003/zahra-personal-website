@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { LogOut } from "lucide-react";
 import Analytics from "@/pages/Analytics";
 
 export default function ProtectedAnalytics() {
@@ -21,8 +22,25 @@ export default function ProtectedAnalytics() {
     }
   };
 
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    setUsername("");
+    setPassword("");
+    setError("");
+  };
+
   if (isAuthenticated) {
-    return <Analytics />;
+    return (
+      <div className="min-h-screen bg-background">
+        <div className="flex justify-end p-4">
+          <Button onClick={handleLogout} variant="outline" className="flex items-center gap-2">
+            <LogOut className="h-4 w-4" />
+            Logout
+          </Button>
+        </div>
+        <Analytics />
+      </div>
+    );
   }
 
   return (
