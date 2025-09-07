@@ -35,12 +35,7 @@ export function Hero() {
             {/* Animated greeting */}
             <div className="animate-fade-up space-y-6 mb-8" style={{ animationDelay: "0.2s" }}>
               <div className="space-y-4">
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full border border-primary/20">
-                  <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                  <p className="text-sm font-medium text-primary tracking-wide">Available for opportunities</p>
-                </div>
-                
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[0.9]">
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.1]">
                   <TypewriterEffect 
                     text="Alexander Engman" 
                     speed={150}
