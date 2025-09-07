@@ -17,6 +17,18 @@ const projects = [
     date: "Jan 2020 - Jun 2020",
     institution: "KTH Royal Institute of Technology"
   },
+  {
+    id: 2,
+    title: "Optical MEMS Switch",
+    description: "Course project designing and fabricating a mechanical multi-stable optical in-plane switch. Created electrostatic comb drive actuator movable ±15 μm in two directions with locking mechanism using Silicon-on-Insulator wafer fabrication.",
+    image: "/lovable-uploads/5e81c449-7442-4078-b624-b4f8d6a2390b.png",
+    technologies: ["MEMS", "COMSOL Simulation", "Silicon Fabrication", "DRIE", "Photolithography", "SEM Analysis"],
+    githubUrl: null,
+    liveUrl: "#", // Link to project report
+    category: "Research",
+    date: "Jan 2020 - Jun 2020",
+    institution: "KTH Royal Institute of Technology"
+  },
 ];
 
 const categories = ["All", "Research"];
@@ -95,13 +107,18 @@ export function Projects() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="absolute bottom-4 left-4 right-4 flex gap-2">
                     {project.githubUrl && (
-                      <Button size="sm" variant="secondary" className="bg-white/20 text-white hover:bg-white/30">
-                        <Github className="h-4 w-4" />
+                      <Button size="sm" variant="secondary" className="bg-white/20 text-white hover:bg-white/30" asChild>
+                        <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                          <Github className="h-4 w-4" />
+                        </a>
                       </Button>
                     )}
                     {project.liveUrl && (
-                      <Button size="sm" variant="secondary" className="bg-white/20 text-white hover:bg-white/30">
-                        <ExternalLink className="h-4 w-4" />
+                      <Button size="sm" variant="secondary" className="bg-white/20 text-white hover:bg-white/30 flex-1" asChild>
+                        <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="mr-2 h-3 w-3" />
+                          <span className="text-xs">Read {project.id === 1 ? 'Thesis' : 'Report'}</span>
+                        </a>
                       </Button>
                     )}
                   </div>
@@ -128,50 +145,35 @@ export function Projects() {
                 </p>
 
                 {/* Technologies */}
-                <div className="flex flex-wrap gap-1 mb-4">
-                  {(expandedTechs[project.id] ? project.technologies : project.technologies.slice(0, 4)).map((tech) => (
+                <div className="flex flex-wrap gap-1 mb-4 h-12 overflow-hidden">
+                  {(expandedTechs[project.id] ? project.technologies : project.technologies.slice(0, 6)).map((tech) => (
                     <span
                       key={tech}
-                      className="text-xs font-medium text-muted-foreground bg-secondary px-2 py-1 rounded"
+                      className="text-xs font-medium text-muted-foreground bg-secondary px-2 py-1 rounded h-6 flex items-center"
                     >
                       {tech}
                     </span>
                   ))}
-                  {project.technologies.length > 4 && (
+                  {project.technologies.length > 6 && !expandedTechs[project.id] && (
                     <button
                       onClick={() => setExpandedTechs(prev => ({ ...prev, [project.id]: !prev[project.id] }))}
-                      className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded hover:bg-primary/20 transition-colors flex items-center gap-1"
+                      className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded hover:bg-primary/20 transition-colors flex items-center gap-1 h-6"
                     >
-                      {expandedTechs[project.id] ? (
-                        <>
-                          Show less
-                          <ChevronUp className="h-3 w-3" />
-                        </>
-                      ) : (
-                        <>
-                          +{project.technologies.length - 4} more
-                          <ChevronDown className="h-3 w-3" />
-                        </>
-                      )}
+                      +{project.technologies.length - 6} more
+                      <ChevronDown className="h-3 w-3" />
+                    </button>
+                  )}
+                  {expandedTechs[project.id] && project.technologies.length > 6 && (
+                    <button
+                      onClick={() => setExpandedTechs(prev => ({ ...prev, [project.id]: false }))}
+                      className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded hover:bg-primary/20 transition-colors flex items-center gap-1 h-6 w-full justify-center mt-1"
+                    >
+                      Show less
+                      <ChevronUp className="h-3 w-3" />
                     </button>
                   )}
                 </div>
 
-                {/* Action Buttons */}
-                <div className="flex gap-2">
-                  {project.githubUrl && (
-                    <Button size="sm" variant="outline" className="flex-1">
-                      <Github className="mr-2 h-3 w-3" />
-                      Code
-                    </Button>
-                  )}
-                  {project.liveUrl && (
-                    <Button size="sm" variant="default" className="flex-1">
-                      <ExternalLink className="mr-2 h-3 w-3" />
-                      Read Thesis
-                    </Button>
-                  )}
-                </div>
               </div>
             </div>
           ))}
