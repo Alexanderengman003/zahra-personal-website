@@ -41,10 +41,7 @@ export function About() {
           <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
             About Me
           </h2>
-          <p className="mt-6 text-lg leading-8 text-muted-foreground">
-            I'm a materials science engineer with expertise in semiconductor technology and a passion for 
-            developing innovative solutions in hardware and medical device manufacturing.
-          </p>
+
         </div>
 
         <div className="mx-auto mt-16 max-w-5xl">
