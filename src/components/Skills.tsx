@@ -79,10 +79,16 @@ export function Skills() {
                     <span>{trait.right}</span>
                   </div>
                   <div className="relative bg-muted rounded-full h-6 overflow-hidden">
+                    {/* Center line */}
+                    <div className="absolute left-1/2 top-0 w-px h-6 bg-border transform -translate-x-0.5" />
+                    {/* Animated bar from center */}
                     <div 
-                      className={`h-full bg-gradient-to-r from-blue-400 to-blue-500 rounded-full transition-all duration-1000 ease-out`}
+                      className={`absolute h-full bg-gradient-to-r from-blue-400 to-blue-500 transition-all duration-1000 ease-out ${
+                        trait.value >= 50 ? 'rounded-r-full' : 'rounded-l-full'
+                      }`}
                       style={{ 
-                        width: isVisible ? `${trait.value}%` : '0%',
+                        left: isVisible ? (trait.value >= 50 ? '50%' : `${trait.value}%`) : '50%',
+                        width: isVisible ? `${Math.abs(trait.value - 50)}%` : '0%',
                         transitionDelay: `${index * 200}ms`
                       }}
                     />
