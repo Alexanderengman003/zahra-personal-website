@@ -40,14 +40,14 @@ export function Hero() {
                 </div>
                 
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[0.9]">
-                  <span className="block text-foreground font-modern text-lg">Hello, I'm</span>
-                  <span className="block text-gradient font-handwritten mt-2">Alexander Engman</span>
+                  <span className="block text-foreground text-lg font-medium">Hello, I'm</span>
+                  <span className="block text-gradient mt-2 font-bold">Alexander Engman</span>
                 </h1>
               </div>
               
               <div className="relative">
-                <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-muted-foreground leading-relaxed tracking-wide">
-                  Semiconductor Engineering & Sales Professional
+                <h2 className="text-xl sm:text-2xl lg:text-3xl font-medium text-muted-foreground whitespace-nowrap">
+                  Semiconductor engineering and sales
                 </h2>
                 <div className="absolute -bottom-2 left-0 lg:left-0 mx-auto lg:mx-0 w-full h-0.5 bg-gradient-to-r from-primary to-primary/50 rounded-full" />
               </div>
