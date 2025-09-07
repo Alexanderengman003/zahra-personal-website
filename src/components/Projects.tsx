@@ -126,7 +126,7 @@ export function Projects() {
               </div>
 
               {/* Project Content */}
-              <div className="p-6 flex flex-col h-full">
+              <div className="p-6">
                 <div className="flex items-center justify-between mb-3">
                   <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
                     {project.title}
@@ -140,13 +140,13 @@ export function Projects() {
                   <p className="text-xs text-muted-foreground mb-2">{project.date} • {project.institution}</p>
                 )}
                 
-                <p className="text-sm text-muted-foreground leading-relaxed mb-4 flex-grow">
+                <p className="text-sm text-muted-foreground leading-relaxed mb-4">
                   {project.description}
                 </p>
 
                 {/* Technologies */}
-                <div className="flex flex-wrap gap-1 h-12 overflow-hidden mt-auto">
-                  {project.technologies.slice(0, 6).map((tech) => (
+                <div className="flex flex-wrap gap-1 mb-4 h-12 overflow-hidden">
+                  {(expandedTechs[project.id] ? project.technologies : project.technologies.slice(0, 6)).map((tech) => (
                     <span
                       key={tech}
                       className="text-xs font-medium text-muted-foreground bg-secondary px-2 py-1 rounded h-6 flex items-center"
@@ -154,10 +154,23 @@ export function Projects() {
                       {tech}
                     </span>
                   ))}
-                  {project.technologies.length > 6 && (
-                    <span className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded h-6 flex items-center">
+                  {project.technologies.length > 6 && !expandedTechs[project.id] && (
+                    <button
+                      onClick={() => setExpandedTechs(prev => ({ ...prev, [project.id]: !prev[project.id] }))}
+                      className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded hover:bg-primary/20 transition-colors flex items-center gap-1 h-6"
+                    >
                       +{project.technologies.length - 6} more
-                    </span>
+                      <ChevronDown className="h-3 w-3" />
+                    </button>
+                  )}
+                  {expandedTechs[project.id] && project.technologies.length > 6 && (
+                    <button
+                      onClick={() => setExpandedTechs(prev => ({ ...prev, [project.id]: false }))}
+                      className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded hover:bg-primary/20 transition-colors flex items-center gap-1 h-6 w-full justify-center mt-1"
+                    >
+                      Show less
+                      <ChevronUp className="h-3 w-3" />
+                    </button>
                   )}
                 </div>
 
