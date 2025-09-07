@@ -34,7 +34,7 @@ export function Hero() {
             {/* Animated greeting */}
             <div className="animate-fade-up space-y-8 mb-8" style={{ animationDelay: "0.2s" }}>
               <div className="space-y-6">
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.6] font-modern" style={{ paddingBottom: '0.2em' }}>
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.8] font-modern" style={{ paddingBottom: '0.4em' }}>
                   <span className="block text-gradient">Alexander Engman</span>
                 </h1>
               
