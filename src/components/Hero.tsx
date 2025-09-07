@@ -50,9 +50,9 @@ export function Hero() {
             {/* Description */}
             <div className="animate-fade-up mb-8" style={{ animationDelay: "0.4s" }}>
               <p className="text-lg leading-relaxed text-muted-foreground max-w-2xl mx-auto lg:mx-0">
-                Passionate about advancing semiconductor technology and hardware innovation. 
-                I specialize in materials development, device fabrication, and bringing 
-                cutting-edge research from lab to production with precision and creativity.
+Passionate about advancing semiconductor technology, with hands-on experience in hardware development and innovation.
+Specialized in advanced semiconductors, working across design, testing, and implementation of hardware solutions.
+Proven background in sales, bridging technical expertise with customer needs to drive business growth.
               </p>
             </div>
 
