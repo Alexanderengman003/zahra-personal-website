@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ExternalLink, Github, Search } from "lucide-react";
+import { ExternalLink, Github, Search, ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import stretchableImg from "@/assets/stretchable-microsupercapacitors.jpg";
@@ -9,10 +9,10 @@ const projects = [
     id: 1,
     title: "Stretchable Microsupercapacitors",
     description: "Master's thesis research developing novel Direct Ink Writing method for 3D printing intrinsically stretchable energy storage devices. Achieved 80% stretchability with 740 µF cm⁻² capacitance using PEDOT:PSS conductive inks on TPU substrates.",
-    image: stretchableImg,
+    image: "/lovable-uploads/b2cdba2a-95c9-40fa-8794-4965fa31a5bb.png",
     technologies: ["3D Printing", "PEDOT:PSS", "Direct Ink Writing", "Electrochemical Analysis", "Materials Science", "TPU Substrates"],
     githubUrl: null,
-    liveUrl: "#", // Link to thesis
+    liveUrl: "https://www.diva-portal.org/smash/get/diva2:1479859/FULLTEXT01.pdf", // Link to thesis
     category: "Research",
     date: "Jan 2020 - Jun 2020",
     institution: "KTH Royal Institute of Technology"
@@ -24,6 +24,7 @@ const categories = ["All", "Research"];
 export function Projects() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [expandedTechs, setExpandedTechs] = useState<Record<number, boolean>>({});
 
   const filteredProjects = projects.filter(project => {
     const matchesSearch = project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -128,7 +129,7 @@ export function Projects() {
 
                 {/* Technologies */}
                 <div className="flex flex-wrap gap-1 mb-4">
-                  {project.technologies.slice(0, 4).map((tech) => (
+                  {(expandedTechs[project.id] ? project.technologies : project.technologies.slice(0, 4)).map((tech) => (
                     <span
                       key={tech}
                       className="text-xs font-medium text-muted-foreground bg-secondary px-2 py-1 rounded"
@@ -137,9 +138,22 @@ export function Projects() {
                     </span>
                   ))}
                   {project.technologies.length > 4 && (
-                    <span className="text-xs font-medium text-muted-foreground bg-secondary px-2 py-1 rounded">
-                      +{project.technologies.length - 4} more
-                    </span>
+                    <button
+                      onClick={() => setExpandedTechs(prev => ({ ...prev, [project.id]: !prev[project.id] }))}
+                      className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded hover:bg-primary/20 transition-colors flex items-center gap-1"
+                    >
+                      {expandedTechs[project.id] ? (
+                        <>
+                          Show less
+                          <ChevronUp className="h-3 w-3" />
+                        </>
+                      ) : (
+                        <>
+                          +{project.technologies.length - 4} more
+                          <ChevronDown className="h-3 w-3" />
+                        </>
+                      )}
+                    </button>
                   )}
                 </div>
 
