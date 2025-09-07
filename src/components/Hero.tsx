@@ -5,7 +5,7 @@ export function Hero() {
   return (
     <section 
       id="home" 
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-primary/5 to-primary/10"
+      className="relative flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-primary/5 to-primary/10 py-20"
     >
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -14,7 +14,7 @@ export function Hero() {
         <div className="absolute top-1/2 left-1/3 w-48 h-48 bg-primary/8 rounded-full blur-2xl animate-pulse-glow" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 py-24">
+      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 py-16">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
           {/* Profile Image */}
           <div className="relative group">
@@ -26,10 +26,6 @@ export function Hero() {
                 className="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full object-cover shadow-2xl ring-4 ring-white/10 group-hover:scale-105 transition-all duration-500"
               />
               <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent to-primary/10 group-hover:to-primary/20 transition-all duration-500" />
-            </div>
-            {/* Floating elements */}
-            <div className="absolute -top-8 -right-8 animate-float">
-              <Sparkles className="h-8 w-8 text-primary animate-pulse-glow" />
             </div>
           </div>
 
@@ -44,7 +40,7 @@ export function Hero() {
                 </div>
                 
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[0.9]">
-                  <span className="block text-foreground font-modern">Hello, I'm</span>
+                  <span className="block text-foreground font-modern text-lg">Hello, I'm</span>
                   <span className="block text-gradient font-handwritten mt-2">Alexander Engman</span>
                 </h1>
               </div>
@@ -53,7 +49,7 @@ export function Hero() {
                 <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-muted-foreground leading-relaxed tracking-wide">
                   Semiconductor Engineering & Sales Professional
                 </h2>
-                <div className="absolute -bottom-2 left-0 lg:left-0 mx-auto lg:mx-0 w-24 h-1 bg-gradient-to-r from-primary to-primary/50 rounded-full" />
+                <div className="absolute -bottom-2 left-0 lg:left-0 mx-auto lg:mx-0 w-full h-0.5 bg-gradient-to-r from-primary to-primary/50 rounded-full" />
               </div>
             </div>
 
@@ -112,7 +108,6 @@ export function Hero() {
                     <span className="text-white font-bold text-lg">in</span>
                   </div>
                 </div>
-                <div className="absolute -top-1 -right-1 w-4 h-4 bg-primary rounded-full animate-pulse opacity-75" />
               </a>
             </div>
           </div>
