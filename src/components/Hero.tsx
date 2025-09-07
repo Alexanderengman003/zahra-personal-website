@@ -32,18 +32,18 @@ export function Hero() {
           {/* Content */}
           <div className="flex-1 text-center lg:text-left max-w-2xl">
             {/* Animated greeting */}
-            <div className="animate-fade-up space-y-6 mb-8" style={{ animationDelay: "0.2s" }}>
-              <div className="space-y-4">
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.3] pb-4">
-                  <span className="block text-gradient font-handwritten">Alexander Engman</span>
+            <div className="animate-fade-up space-y-8 mb-8" style={{ animationDelay: "0.2s" }}>
+              <div className="space-y-6">
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.4] pb-6 font-modern">
+                  <span className="block text-gradient">Alexander Engman</span>
                 </h1>
-              </div>
               
-              <div className="relative">
-                <h2 className="text-xl sm:text-2xl lg:text-3xl font-medium text-muted-foreground whitespace-nowrap">
-                  Semiconductor engineering and sales
-                </h2>
-                <div className="absolute -bottom-2 left-0 lg:left-0 mx-auto lg:mx-0 w-full h-0.5 bg-gradient-to-r from-primary to-primary/50 rounded-full" />
+                <div className="relative">
+                  <h2 className="text-xl sm:text-2xl lg:text-3xl font-medium text-muted-foreground whitespace-nowrap">
+                    Semiconductor engineering and sales
+                  </h2>
+                  <div className="absolute -bottom-2 left-0 lg:left-0 mx-auto lg:mx-0 w-full h-0.5 bg-gradient-to-r from-primary to-primary/50 rounded-full" />
+                </div>
               </div>
             </div>
 
