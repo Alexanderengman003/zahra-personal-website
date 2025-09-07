@@ -134,7 +134,7 @@ export function Professional() {
                     <h3 className="text-xl font-semibold text-foreground mb-2">
                       {role.title}
                     </h3>
-                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 text-muted-foreground">
+                    <div className="flex flex-col gap-2 text-muted-foreground">
                       <div className="flex items-center gap-2">
                         <Building className="h-4 w-4" />
                         <span className="text-sm font-medium">{role.company}</span>
