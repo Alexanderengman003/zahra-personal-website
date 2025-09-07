@@ -15,7 +15,7 @@ export function Hero() {
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 py-16">
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+        <div className="flex flex-col lg:flex-row items-start gap-12 lg:gap-20">
           {/* Profile Image */}
           <div className="relative group">
             <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-primary/40 rounded-full blur-xl group-hover:blur-2xl transition-all duration-500" />
@@ -38,7 +38,7 @@ export function Hero() {
                   <span className="block text-gradient">Alexander Engman</span>
                 </h1>
               
-                <div className="relative -mt-4">
+                <div className="relative -mt-8">
                   <h2 className="text-xl sm:text-2xl lg:text-3xl font-medium text-muted-foreground whitespace-nowrap">
                     Semiconductor engineering and sales
                   </h2>
