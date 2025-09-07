@@ -1,5 +1,6 @@
 import { Progress } from "@/components/ui/progress";
 import { useEffect, useRef, useState } from "react";
+import { AnimatedCounter } from "./AnimatedCounter";
 
 const personalityTraits = [
   { left: "Introvert", right: "Extrovert", value: 75 }, // 75% extrovert
@@ -33,6 +34,7 @@ const languageSkills = [
 
 export function Skills() {
   const [isVisible, setIsVisible] = useState(false);
+  const [animateValues, setAnimateValues] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -40,6 +42,8 @@ export function Skills() {
       ([entry]) => {
         if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
           setIsVisible(true);
+          // Start number animation slightly after bar animation
+          setTimeout(() => setAnimateValues(true), 300);
         }
       },
       { threshold: 0.3 }
@@ -108,7 +112,9 @@ export function Skills() {
                 <div key={index} className="space-y-3">
                   <div className="flex justify-between items-center">
                     <span className="text-sm font-medium text-foreground">{skill.name}</span>
-                    <span className="text-sm font-semibold text-primary">{skill.value}%</span>
+                    <span className="text-sm font-semibold text-primary">
+                      {animateValues ? <AnimatedCounter end={skill.value} suffix="%" delay={index * 150} /> : '0%'}
+                    </span>
                   </div>
                   <div className="relative bg-muted rounded-full h-3 overflow-hidden">
                     <div 
@@ -134,7 +140,9 @@ export function Skills() {
                 <div key={index} className="space-y-3">
                   <div className="flex justify-between items-center">
                     <span className="text-sm font-medium text-foreground">{language.name}</span>
-                    <span className="text-sm font-semibold text-primary">{language.value}%</span>
+                    <span className="text-sm font-semibold text-primary">
+                      {animateValues ? <AnimatedCounter end={language.value} suffix="%" delay={index * 150} /> : '0%'}
+                    </span>
                   </div>
                   <div className="relative bg-muted rounded-full h-3 overflow-hidden">
                     <div 
