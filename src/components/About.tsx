@@ -37,12 +37,6 @@ export function About() {
   return (
     <section id="about" className="py-24 bg-secondary/50">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            About Me
-          </h2>
-
-        </div>
 
         <div className="mx-auto mt-16 max-w-5xl">
           {/* Journey Card - Full Width */}
