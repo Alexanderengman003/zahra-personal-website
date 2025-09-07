@@ -38,7 +38,7 @@ export function About() {
     <section id="about" className="py-24 bg-secondary/50">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
 
-        <div className="mx-auto mt-16 max-w-5xl">
+        <div className="mx-auto mt-8 max-w-5xl">
           {/* Journey Card - Full Width */}
           <div className="mb-8">
             <div className="card-gradient rounded-2xl p-8 shadow-medium hover-lift">
