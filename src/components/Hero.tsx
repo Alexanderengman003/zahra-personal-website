@@ -60,6 +60,17 @@ export function Hero() {
             <div className="animate-fade-up flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8" style={{ animationDelay: "0.6s" }}>
               <Button 
                 size="lg" 
+                variant="outline"
+                className="hover-lift font-modern group border-2 hover:border-primary/50 bg-[#0A66C2] hover:bg-[#004182] border-[#0A66C2] text-white"
+                onClick={() => {
+                  window.open('https://www.linkedin.com/in/alexanderengman', '_blank');
+                }}
+              >
+                <Linkedin className="mr-2 h-6 w-6" />
+                LinkedIn
+              </Button>
+              <Button 
+                size="lg" 
                 variant="default" 
                 className="hover-lift font-modern group relative overflow-hidden"
                 onClick={() => {
@@ -86,23 +97,6 @@ export function Hero() {
                 <Download className="mr-2 h-4 w-4 group-hover:animate-bounce" />
                 Download Resume
               </Button>
-            </div>
-
-            {/* Social Links */}
-            <div className="animate-fade-up flex justify-center lg:justify-start gap-6" style={{ animationDelay: "0.8s" }}>
-              <a 
-                href="https://www.linkedin.com/in/alexanderengman" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="group relative"
-              >
-                <div className="relative h-14 w-14 bg-[#0A66C2] rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 flex items-center justify-center overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#0A66C2] to-[#004182] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <div className="relative flex items-center justify-center">
-                    <span className="text-white font-bold text-lg">in</span>
-                  </div>
-                </div>
-              </a>
             </div>
           </div>
         </div>
