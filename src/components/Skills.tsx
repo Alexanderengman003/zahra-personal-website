@@ -87,7 +87,8 @@ export function Skills() {
                         trait.value >= 50 ? 'rounded-r-full' : 'rounded-l-full'
                       }`}
                       style={{ 
-                        left: isVisible ? (trait.value >= 50 ? 'calc(50% + 1px)' : `${trait.value}%`) : '50%',
+                        left: trait.value >= 50 ? '50%' : `${100 - trait.value}%`,
+                        right: trait.value >= 50 ? `${100 - trait.value}%` : '50%',
                         width: isVisible ? `${Math.abs(trait.value - 50)}%` : '0%',
                         transitionDelay: `${index * 200}ms`
                       }}
