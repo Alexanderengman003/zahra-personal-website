@@ -53,7 +53,7 @@ export function About() {
             <div className="card-gradient rounded-2xl p-8 shadow-medium hover-lift">
               <h3 className="text-xl font-semibold text-foreground mb-4">My Journey</h3>
               <p className="text-muted-foreground leading-relaxed">
-                With a background in Materials Science and Engineering (B.Sc.) and Nanotechnology (M.Sc.) from KTH Royal Institute of Technology, I have built a strong foundation in materials development, semiconductor fabrication, and hardware/software design. Throughout my career, semiconductors have been the red thread — from research and product development to practical applications in advanced hardware. Today, I have transitioned into a business-oriented role, leveraging my technical expertise to drive growth in sales, connect technology with customer needs, and contribute to advancing semiconductor innovation.
+                With a background in Materials Science and Engineering (B.Sc.) and Nanotechnology (M.Sc.) from KTH Royal Institute of Technology, I have built a strong foundation in materials development, semiconductor fabrication, and hardware/software design. Throughout my career, semiconductors have been the red thread, from research and product development to practical applications in advanced hardware. Over my career which started in engineering, I transition into a business-oriented and customer-facing role, leveraging my technical expertise to drive growth in sales, connect technology with customer needs, and contribute to advancing semiconductor innovation.
               </p>
             </div>
           </div>
