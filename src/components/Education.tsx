@@ -78,9 +78,8 @@ export function Education() {
                           {edu.degree}
                         </h4>
                         <p className="text-primary font-medium">{edu.school}</p>
-                        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-sm text-muted-foreground mt-1">
+                        <div className="flex flex-col gap-1 text-sm text-muted-foreground mt-1">
                           <span>{edu.location}</span>
-                          <span>•</span>
                           <span>{edu.period}</span>
                         </div>
                       </div>
