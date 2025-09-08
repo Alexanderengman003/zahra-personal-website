@@ -6,6 +6,9 @@ const getSessionId = (): string => {
   if (!sessionId) {
     sessionId = crypto.randomUUID();
     localStorage.setItem('portfolio_session_id', sessionId);
+    console.log('Generated new session ID:', sessionId);
+  } else {
+    console.log('Using existing session ID:', sessionId);
   }
   return sessionId;
 };
@@ -77,14 +80,15 @@ export const trackPageView = async (pagePath: string, pageTitle: string) => {
     const { country, city } = await getGeolocation();
     
     // First, ensure session exists or create it
-    const { data: existingSession } = await supabase
+    const { data: existingSession, error: sessionError } = await supabase
       .from('analytics_sessions')
       .select('id')
       .eq('session_id', sessionId)
-      .single();
+      .maybeSingle();
 
-    if (!existingSession) {
-      // Create new session
+    // Only create a new session if none exists and there's no error
+    if (!existingSession && !sessionError) {
+      console.log('Creating new session for sessionId:', sessionId);
       await supabase
         .from('analytics_sessions')
         .insert({
@@ -94,6 +98,8 @@ export const trackPageView = async (pagePath: string, pageTitle: string) => {
           referrer: document.referrer || null,
           country: country || null,
         });
+    } else if (existingSession) {
+      console.log('Using existing session:', sessionId);
     }
 
     // Track the page view
