@@ -26,6 +26,7 @@ import { LineChart as RechartsLineChart, Line, XAxis, YAxis, CartesianGrid, Tool
 import { getAnalyticsStats } from "@/lib/analytics";
 
 const Analytics = () => {
+  console.log("Analytics component rendered");
   // Don't track visits to the analytics page itself
   
   const [timeRange, setTimeRange] = useState("7d");
@@ -40,9 +41,11 @@ const Analytics = () => {
   ];
 
   const fetchAnalytics = async (days: number) => {
+    console.log("Fetching analytics data for", days, "days");
     setLoading(true);
     try {
       const data = await getAnalyticsStats(days);
+      console.log("Analytics data received:", data);
       setStats(data);
     } catch (error) {
       console.error('Error fetching analytics:', error);
