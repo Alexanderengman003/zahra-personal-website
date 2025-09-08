@@ -91,6 +91,12 @@ Proven background in sales, bridging technical expertise with customer needs to 
                   import('@/lib/analytics').then(({ trackEvent }) => {
                     trackEvent('cv_download_click', { source: 'hero' });
                   });
+                  const link = document.createElement('a');
+                  link.href = '/Alexander_Engman_CV.pdf';
+                  link.download = 'Alexander_Engman_CV.pdf';
+                  document.body.appendChild(link);
+                  link.click();
+                  document.body.removeChild(link);
                 }}
               >
                 <Download className="mr-2 h-4 w-4 group-hover:animate-bounce" />
