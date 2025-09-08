@@ -46,7 +46,9 @@ const getOperatingSystem = (): string => {
 // Get geographical information based on IP
 const getGeolocation = async (): Promise<{ country?: string; city?: string }> => {
   try {
+    console.log('Calling Supabase Edge Function for geolocation...');
     const response = await supabase.functions.invoke('get-geolocation');
+    console.log('Geolocation response:', response);
     
     if (response.data) {
       return {
