@@ -19,15 +19,12 @@ export function Header() {
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
         {/* Logo */}
         <div className="flex lg:flex-1">
-          <a href="/" className="-m-1.5 p-1.5 group">
-            <div className="flex items-center gap-2">
-              <div className="relative">
-                <div className="w-8 h-8 bg-gradient-to-br from-primary to-primary-hover rounded-lg shadow-subtle group-hover:shadow-glow transition-all duration-300 flex items-center justify-center">
-                  <span className="text-sm font-bold text-primary-foreground">A</span>
-                </div>
-              </div>
-              <span className="text-xl font-bold text-gradient tracking-tight">Alexander</span>
-            </div>
+          <a href="/#home" className="-m-1.5 p-1.5 group">
+            <img 
+              src="/lovable-uploads/9d377a90-4bd2-4522-87aa-5b444b0f12b9.png" 
+              alt="Alexander Engman"
+              className="h-12 w-auto transition-all duration-300 group-hover:opacity-80 dark:invert dark:brightness-0 dark:contrast-100 filter"
+            />
           </a>
         </div>
 
