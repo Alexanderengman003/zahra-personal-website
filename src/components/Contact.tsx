@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import emailjs from "@emailjs/browser";
+import ReCAPTCHA from "react-google-recaptcha";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -33,11 +34,17 @@ const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || "";
 const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "";
 const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "";
 
+// Get reCAPTCHA site key from environment variables
+const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY || "";
+
 export function Contact() {
   const [isLoading, setIsLoading] = useState(false);
+  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "",
     subject: "",
     message: "",
   });
@@ -45,6 +52,16 @@ export function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!recaptchaToken) {
+      toast({
+        title: "Security check required",
+        description: "Please complete the reCAPTCHA verification.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsLoading(true);
 
     try {
@@ -54,6 +71,7 @@ export function Contact() {
         {
           from_name: formData.name,
           from_email: formData.email,
+          from_phone: formData.phone,
           subject: formData.subject,
           message: formData.message,
           to_email: "alexander@engman.nu",
@@ -66,7 +84,9 @@ export function Contact() {
         description: "Thank you for your message. I'll get back to you soon.",
       });
 
-      setFormData({ name: "", email: "", subject: "", message: "" });
+      setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
+      setRecaptchaToken(null);
+      recaptchaRef.current?.reset();
     } catch (error) {
       console.error("EmailJS error:", error);
       toast({
@@ -165,6 +185,19 @@ export function Contact() {
               </div>
 
               <div>
+                <Label htmlFor="phone">Phone (optional)</Label>
+                <Input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  className="mt-2"
+                  placeholder="+1 (555) 123-4567"
+                />
+              </div>
+
+              <div>
                 <Label htmlFor="subject">Subject</Label>
                 <Input
                   id="subject"
@@ -192,21 +225,30 @@ export function Contact() {
                 />
               </div>
 
-              <Button
-                type="submit"
-                size="lg"
-                disabled={isLoading}
-                className="w-full hover-lift"
-              >
-                {isLoading ? (
-                  "Sending..."
-                ) : (
-                  <>
-                    <Send className="mr-2 h-4 w-4" />
-                    Send Message
-                  </>
-                )}
-              </Button>
+              <div className="flex flex-col gap-4">
+                <ReCAPTCHA
+                  ref={recaptchaRef}
+                  sitekey={RECAPTCHA_SITE_KEY}
+                  onChange={setRecaptchaToken}
+                  theme="light"
+                />
+                
+                <Button
+                  type="submit"
+                  size="lg"
+                  disabled={isLoading || !recaptchaToken}
+                  className="w-full hover-lift"
+                >
+                  {isLoading ? (
+                    "Sending..."
+                  ) : (
+                    <>
+                      <Send className="mr-2 h-4 w-4" />
+                      Send Message
+                    </>
+                  )}
+                </Button>
+              </div>
             </form>
           </div>
         </div>
