@@ -5,7 +5,7 @@ export function Hero() {
   return (
     <section 
       id="home" 
-      className="relative flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-primary/5 to-primary/10 py-20"
+      className="relative flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-primary/5 to-primary/10 py-12"
     >
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -14,7 +14,7 @@ export function Hero() {
         <div className="absolute top-1/2 left-1/3 w-48 h-48 bg-primary/8 rounded-full blur-2xl animate-pulse-glow" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 py-16">
+      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 py-8">
         <div className="flex flex-col lg:flex-row items-start gap-12 lg:gap-20">
           {/* Profile Image */}
           <div className="relative group">
@@ -34,11 +34,12 @@ export function Hero() {
             {/* Animated greeting */}
             <div className="animate-fade-up space-y-8 mb-8" style={{ animationDelay: "0.2s" }}>
               <div className="space-y-2">
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.8] font-modern" style={{ paddingBottom: '0.4em' }}>
-                  <span className="block text-gradient">Alexander Engman</span>
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-tight font-modern mb-4">
+                  <span className="block text-gradient">Alexander</span>
+                  <span className="block text-gradient">Engman</span>
                 </h1>
               
-                <div className="relative -mt-8">
+                <div className="relative">
                   <h2 className="text-xl sm:text-2xl lg:text-3xl font-medium text-muted-foreground">
                     Semiconductor engineering and sales
                   </h2>
@@ -48,16 +49,16 @@ export function Hero() {
             </div>
 
             {/* Description */}
-            <div className="animate-fade-up mb-8" style={{ animationDelay: "0.4s" }}>
-              <p className="text-lg leading-relaxed text-muted-foreground max-w-2xl">
-Passionate about advancing semiconductor technology, with hands-on experience in hardware development and innovation.
-Specialized in advanced semiconductors, working across design, testing, and implementation of hardware solutions.
-Proven background in sales, bridging technical expertise with customer needs to drive business growth.
+            <div className="animate-fade-up mb-6" style={{ animationDelay: "0.4s" }}>
+              <p className="text-lg leading-relaxed text-muted-foreground max-w-2xl text-justify">
+                Passionate about advancing semiconductor technology, with hands-on experience in hardware development and innovation.
+                Specialized in advanced semiconductors, working across design, testing, and implementation of hardware solutions.
+                Proven background in sales, bridging technical expertise with customer needs to drive business growth.
               </p>
             </div>
 
             {/* CTA Buttons */}
-            <div className="animate-fade-up flex flex-col sm:flex-row gap-4 justify-start mb-8" style={{ animationDelay: "0.6s" }}>
+            <div className="animate-fade-up flex flex-col sm:flex-row gap-4 justify-start" style={{ animationDelay: "0.6s" }}>
               <Button 
                 size="lg" 
                 variant="outline"

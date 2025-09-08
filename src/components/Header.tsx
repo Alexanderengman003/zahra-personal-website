@@ -35,10 +35,16 @@ export function Header() {
         <div className="flex lg:hidden">
           <Button
             variant="ghost"
-            onClick={() => setMobileMenuOpen(true)}
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="-m-2.5 p-2.5"
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-menu"
           >
-            <Menu className="h-6 w-6" aria-hidden="true" />
+            {mobileMenuOpen ? (
+              <X className="h-6 w-6" aria-hidden="true" />
+            ) : (
+              <Menu className="h-6 w-6" aria-hidden="true" />
+            )}
           </Button>
         </div>
 
@@ -73,10 +79,16 @@ export function Header() {
 
       {/* Mobile menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden">
-          <div className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm" onClick={() => setMobileMenuOpen(false)} />
-          <div className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-background px-6 py-6 sm:max-w-sm shadow-2xl border-l border-border animate-slide-in-right">
-            <div className="flex items-center justify-between">
+        <>
+          <div 
+            className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm lg:hidden" 
+            onClick={() => setMobileMenuOpen(false)} 
+          />
+          <div 
+            id="mobile-menu"
+            className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-background px-6 py-6 sm:max-w-sm shadow-2xl border-l border-border lg:hidden animate-slide-in-right"
+          >
+            <div className="flex items-center justify-between mb-6">
               <a href="/" className="-m-1.5 p-1.5 group">
                 <div className="flex items-center gap-2">
                   <div className="relative">
@@ -95,7 +107,8 @@ export function Header() {
                 <X className="h-6 w-6" aria-hidden="true" />
               </Button>
             </div>
-            <div className="mt-6 flow-root">
+            
+            <nav className="flow-root">
               <div className="-my-6 divide-y divide-border">
                 <div className="space-y-2 py-6">
                   {navigation.map((item) => (
@@ -103,7 +116,7 @@ export function Header() {
                       key={item.name}
                       href={item.href}
                       onClick={() => setMobileMenuOpen(false)}
-                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-foreground hover:bg-secondary transition-colors"
+                      className="-mx-3 block rounded-lg px-3 py-3 text-base font-semibold text-foreground hover:bg-secondary/80 transition-colors"
                     >
                       {item.name}
                     </a>
@@ -113,9 +126,9 @@ export function Header() {
                   <ThemeToggle />
                 </div>
               </div>
-            </div>
+            </nav>
           </div>
-        </div>
+        </>
       )}
     </header>
   );
