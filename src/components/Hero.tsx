@@ -93,8 +93,8 @@ export function Hero() {
                     trackEvent('cv_download_click', { source: 'hero' });
                   });
                   const link = document.createElement('a');
-                  link.href = '/Alexander_Engman_CV.pdf';
-                  link.download = 'Alexander_Engman_CV.pdf';
+                  link.href = '/CV_Alexander_Engman_2025.pdf';
+                  link.download = 'CV_Alexander_Engman_2025.pdf';
                   document.body.appendChild(link);
                   link.click();
                   document.body.removeChild(link);
