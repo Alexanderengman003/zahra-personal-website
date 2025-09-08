@@ -139,13 +139,16 @@ export function Projects() {
 
               {/* Project Content */}
               <div className="p-6 flex flex-col flex-grow">
-                <div className="flex items-start justify-between mb-3 min-h-[3.5rem]">
+                <div className="flex justify-end mb-2">
+                  <span className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded-full">
+                    {project.category}
+                  </span>
+                </div>
+                
+                <div className="mb-3 min-h-[3.5rem]">
                   <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors leading-tight">
                     {project.title}
                   </h3>
-                  <span className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded-full flex-shrink-0 ml-2">
-                    {project.category}
-                  </span>
                 </div>
                 
                 {project.date && (
