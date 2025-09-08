@@ -66,7 +66,7 @@ export function Header() {
         </div>
 
         {/* Theme toggle */}
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+        <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:pr-4">
           <ThemeToggle />
         </div>
       </nav>
