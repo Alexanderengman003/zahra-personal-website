@@ -26,8 +26,7 @@ import { LineChart as RechartsLineChart, Line, XAxis, YAxis, CartesianGrid, Tool
 import { getAnalyticsStats } from "@/lib/analytics";
 
 const Analytics = () => {
-  // Track analytics page visits
-  useAnalytics();
+  // Don't track analytics page visits to avoid self-referencing data
   
   const [timeRange, setTimeRange] = useState("7d");
   const [stats, setStats] = useState<any>(null);
@@ -400,17 +399,17 @@ const Analytics = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0" />
-                    <div>
-                      <div className="font-medium font-modern text-sm">Real-Time Data</div>
-                      <div className="text-xs text-muted-foreground mt-1">
-                        Statistics are updated in real-time as visitors browse your site
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0" />
+                   <div className="flex items-start space-x-3">
+                     <div className="w-2 h-2 bg-primary/60 rounded-full mt-2 flex-shrink-0" />
+                     <div>
+                       <div className="font-medium font-modern text-sm">Real-Time Data</div>
+                       <div className="text-xs text-muted-foreground mt-1">
+                         Statistics are updated in real-time as visitors browse your site
+                       </div>
+                     </div>
+                   </div>
+                   <div className="flex items-start space-x-3">
+                     <div className="w-2 h-2 bg-accent-foreground/60 rounded-full mt-2 flex-shrink-0" />
                     <div>
                       <div className="font-medium font-modern text-sm">Session-Based</div>
                       <div className="text-xs text-muted-foreground mt-1">
