@@ -11,19 +11,19 @@ const contactInfo = [
   {
     icon: Mail,
     label: "Email",
-    value: "hello@alexander.dev",
-    href: "mailto:hello@alexander.dev",
+    value: "alexander@engman.nu",
+    href: "mailto:alexander@engman.nu",
   },
   {
     icon: Phone,
     label: "Phone",
-    value: "+1 (555) 123-4567",
-    href: "tel:+15551234567",
+    value: "+46 73 322 43 78",
+    href: "tel:+46733224378",
   },
   {
     icon: MapPin,
     label: "Location",
-    value: "San Francisco, CA",
+    value: "Stockholm, Sweden",
     href: "#",
   },
 ];
