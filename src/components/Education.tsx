@@ -44,7 +44,7 @@ const certifications = [
 
 export function Education() {
   return (
-    <section id="education" className="py-24 bg-secondary/30">
+    <section id="education" className="py-16 bg-secondary/30">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Header */}
         <div className="mx-auto max-w-2xl text-center mb-16">

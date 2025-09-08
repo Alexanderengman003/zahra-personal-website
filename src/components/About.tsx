@@ -35,7 +35,7 @@ const features = [
 
 export function About() {
   return (
-    <section id="about" className="py-24 bg-secondary/50">
+    <section id="about" className="py-12 bg-secondary/50">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
 
         <div className="mx-auto mt-8 max-w-5xl">

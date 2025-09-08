@@ -88,7 +88,7 @@ export function Professional() {
     : professionalRoles.filter(role => role.area === selectedArea);
 
   return (
-    <section id="professional" className="py-24 bg-background">
+    <section id="professional" className="py-16 bg-background">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Header */}
         <div className="mx-auto max-w-2xl text-center mb-16">
@@ -132,8 +132,8 @@ export function Professional() {
                 <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6 relative">
                   {/* Current Role Badge */}
                   {role.period.includes("Currently ongoing") && (
-                    <div className="absolute top-0 right-0 -mt-2 -mr-2">
-                      <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400">
+                    <div className="absolute -top-4 -right-4 z-10">
+                      <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400">
                         Currently ongoing
                       </span>
                     </div>

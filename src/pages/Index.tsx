@@ -34,15 +34,7 @@ const Index = () => {
             </p>
             <div className="mt-4 flex justify-center space-x-6">
               <a
-                href="https://github.com/alexander"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                GitHub
-              </a>
-              <a
-                href="https://linkedin.com/in/alexander"
+                href="https://www.linkedin.com/in/alexanderengman"
                 className="text-muted-foreground hover:text-foreground transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -50,7 +42,7 @@ const Index = () => {
                 LinkedIn
               </a>
               <a
-                href="mailto:hello@alexander.dev"
+                href="mailto:alexander@engman.nu"
                 className="text-muted-foreground hover:text-foreground transition-colors"
               >
                 Email

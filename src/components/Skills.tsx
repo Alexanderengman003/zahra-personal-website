@@ -3,12 +3,12 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatedCounter } from "./AnimatedCounter";
 
 const personalityTraits = [
-  { left: "Introvert", right: "Extrovert", value: 75 }, // 75% extrovert
-  { left: "Practical", right: "Creative", value: 60 }, // 60% creative
-  { left: "Independent", right: "Collaborative", value: 70 }, // 70% collaborative
-  { left: "Analytical", right: "Intuitive", value: 20 }, // 20% intuitive
-  { left: "Detail", right: "Big picture", value: 45 }, // 45% big picture
-  { left: "Feeling", right: "Thinking", value: 70 } // 70% thinking
+  { left: "Introvert", right: "Extrovert", value: 70 }, // 70% extrovert
+  { left: "Practical", right: "Creative", value: 40 }, // 40% creative
+  { left: "Independent", right: "Collaborative", value: 45 }, // 45% collaborative
+  { left: "Analytical", right: "Intuitive", value: 30 }, // 30% intuitive
+  { left: "Detail", right: "Big picture", value: 40 }, // 40% big picture
+  { left: "Feeling", right: "Thinking", value: 60 } // 60% thinking
 ];
 
 const itSkills = [
@@ -57,7 +57,7 @@ export function Skills() {
   }, []);
 
   return (
-    <section id="skills" className="py-24 bg-muted/30" ref={sectionRef}>
+    <section id="skills" className="py-16 bg-muted/30" ref={sectionRef}>
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Header */}
         <div className="mx-auto max-w-2xl text-center mb-20">
@@ -83,8 +83,6 @@ export function Skills() {
                     <span>{trait.right}</span>
                   </div>
                   <div className="relative bg-muted rounded-full h-6 overflow-hidden">
-                    {/* Center line */}
-                    <div className="absolute left-1/2 top-0 w-px h-6 bg-border transform -translate-x-0.5" />
                     {/* Animated bar from center */}
                     <div 
                       className={`absolute h-full bg-gradient-to-r from-blue-400 to-blue-500 transition-all duration-1000 ease-out ${
@@ -96,6 +94,8 @@ export function Skills() {
                         transitionDelay: `${index * 200}ms`
                       }}
                     />
+                    {/* Center line - placed after bar to appear on top */}
+                    <div className="absolute left-1/2 top-0 w-px h-6 bg-border transform -translate-x-0.5" />
                   </div>
                 </div>
               ))}

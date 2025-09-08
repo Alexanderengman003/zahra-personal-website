@@ -61,7 +61,7 @@ export function Projects() {
   });
 
   return (
-    <section id="projects" className="py-24 bg-secondary/30">
+    <section id="projects" className="py-16 bg-secondary/30">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
@@ -125,11 +125,11 @@ export function Projects() {
                         </a>
                       </Button>
                     )}
-                    {project.liveUrl && (
+                    {project.liveUrl && project.id === 1 && (
                       <Button size="sm" variant="secondary" className="bg-white/20 text-white hover:bg-white/30 flex-1" asChild>
                         <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
                           <ExternalLink className="mr-2 h-3 w-3" />
-                          <span className="text-xs">Read {project.id === 1 ? 'Thesis' : 'Report'}</span>
+                          <span className="text-xs">Read Thesis</span>
                         </a>
                       </Button>
                     )}
