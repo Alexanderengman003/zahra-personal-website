@@ -193,7 +193,7 @@ export function Contact() {
                   value={formData.phone}
                   onChange={handleChange}
                   className="mt-2"
-                  placeholder="+1 (555) 123-4567"
+                  placeholder="+46 (0) 701234567"
                 />
               </div>
 
