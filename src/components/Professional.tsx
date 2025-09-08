@@ -132,7 +132,7 @@ export function Professional() {
                 <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6 relative">
                   {/* Current Role Badge */}
                   {role.period.includes("Currently ongoing") && (
-                    <div className="absolute -top-6 -right-4 z-10">
+                    <div className="absolute -top-8 -right-2 z-10">
                       <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400">
                         Currently ongoing
                       </span>
