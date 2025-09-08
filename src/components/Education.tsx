@@ -82,8 +82,6 @@ export function Education() {
                           <span>{edu.location}</span>
                           <span>•</span>
                           <span>{edu.period}</span>
-                          <span>•</span>
-                          <span className="font-medium">GPA: {edu.gpa}</span>
                         </div>
                       </div>
                     </div>
