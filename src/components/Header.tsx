@@ -36,8 +36,8 @@ export function Header() {
           ))}
         </div>
 
-        {/* Theme toggle - desktop only */}
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+        {/* Theme toggle */}
+        <div className="flex lg:flex-1 lg:justify-end">
           <ThemeToggle />
         </div>
       </nav>
