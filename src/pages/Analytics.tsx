@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useAnalytics } from "@/hooks/useAnalytics";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -25,7 +26,8 @@ import { LineChart as RechartsLineChart, Line, XAxis, YAxis, CartesianGrid, Tool
 import { getAnalyticsStats } from "@/lib/analytics";
 
 const Analytics = () => {
-  // Don't track analytics page visits to avoid self-referencing data
+  // Track analytics page visits
+  useAnalytics();
   
   const [timeRange, setTimeRange] = useState("7d");
   const [stats, setStats] = useState<any>(null);
@@ -129,10 +131,10 @@ const Analytics = () => {
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold font-modern">{stats.totalViews.toLocaleString()}</div>
-                 <div className="flex items-center space-x-1 text-xs text-muted-foreground">
-                   <ArrowUpRight className="h-3 w-3 text-primary" />
-                   <span>Real-time data</span>
-                 </div>
+                <div className="flex items-center space-x-1 text-xs text-muted-foreground">
+                  <ArrowUpRight className="h-3 w-3 text-green-500" />
+                  <span>Real-time data</span>
+                </div>
               </CardContent>
             </Card>
 
@@ -143,10 +145,10 @@ const Analytics = () => {
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold font-modern">{stats.uniqueVisitors.toLocaleString()}</div>
-                 <div className="flex items-center space-x-1 text-xs text-muted-foreground">
-                   <ArrowUpRight className="h-3 w-3 text-primary" />
-                   <span>Sessions tracked</span>
-                 </div>
+                <div className="flex items-center space-x-1 text-xs text-muted-foreground">
+                  <ArrowUpRight className="h-3 w-3 text-green-500" />
+                  <span>Sessions tracked</span>
+                </div>
               </CardContent>
             </Card>
 
@@ -389,26 +391,26 @@ const Analytics = () => {
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                   <div className="flex items-start space-x-3">
-                     <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
-                     <div>
+                  <div className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0" />
+                    <div>
                       <div className="font-medium font-modern text-sm">Privacy-First Tracking</div>
                       <div className="text-xs text-muted-foreground mt-1">
                         No personal data is collected, only anonymous usage statistics
                       </div>
                     </div>
                   </div>
-                   <div className="flex items-start space-x-3">
-                     <div className="w-2 h-2 bg-primary/60 rounded-full mt-2 flex-shrink-0" />
-                     <div>
-                       <div className="font-medium font-modern text-sm">Real-Time Data</div>
-                       <div className="text-xs text-muted-foreground mt-1">
-                         Statistics are updated in real-time as visitors browse your site
-                       </div>
-                     </div>
-                   </div>
-                   <div className="flex items-start space-x-3">
-                     <div className="w-2 h-2 bg-accent-foreground/60 rounded-full mt-2 flex-shrink-0" />
+                  <div className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0" />
+                    <div>
+                      <div className="font-medium font-modern text-sm">Real-Time Data</div>
+                      <div className="text-xs text-muted-foreground mt-1">
+                        Statistics are updated in real-time as visitors browse your site
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0" />
                     <div>
                       <div className="font-medium font-modern text-sm">Session-Based</div>
                       <div className="text-xs text-muted-foreground mt-1">
