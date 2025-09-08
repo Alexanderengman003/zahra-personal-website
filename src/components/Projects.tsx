@@ -29,6 +29,18 @@ const projects = [
     date: "Jan 2020 - Jun 2020",
     institution: "KTH Royal Institute of Technology"
   },
+  {
+    id: 3,
+    title: "MOSFET Interconnect Deposition and Reactive Ion Etching",
+    description: "Hands-on CMOS fabrication project completing the final step in MOSFET preparation by adding metal contacts for transistor communication. Involved cleanroom work including photolithography, metal deposition via sputtering, and reactive ion etching to achieve 450nm metal layer thickness with 0.8μm resolution.",
+    image: "/lovable-uploads/fc819219-43d3-4817-b8da-08b472acd701.png",
+    technologies: ["MOSFET", "CMOS", "Photolithography", "Metal Deposition", "Reactive Ion Etching", "Sputtering", "Cleanroom Fabrication", "HF Etching"],
+    githubUrl: null,
+    liveUrl: "#", // Link to project report
+    category: "Research",
+    date: "Feb 2019",
+    institution: "KTH Royal Institute of Technology"
+  },
 ];
 
 const categories = ["All", "Research"];
