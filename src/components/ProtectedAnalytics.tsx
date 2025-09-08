@@ -3,11 +3,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { LogOut } from "lucide-react";
+import { LogOut, X } from "lucide-react";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import Analytics from "@/pages/Analytics";
 
-export default function ProtectedAnalytics() {
+interface ProtectedAnalyticsProps {
+  onClose?: () => void;
+}
+
+export default function ProtectedAnalytics({ onClose }: ProtectedAnalyticsProps) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -30,15 +34,24 @@ export default function ProtectedAnalytics() {
     setError("");
   };
 
+  const handleClose = () => {
+    handleLogout();
+    onClose?.();
+  };
+
   if (isAuthenticated) {
     return (
-      <div className="min-h-screen bg-background">
-        <div className="flex justify-end items-center p-6">
+      <div className="min-h-screen bg-background/95 backdrop-blur-sm">
+        <div className="flex justify-between items-center p-6">
+          <h1 className="text-2xl font-bold">Analytics Dashboard</h1>
           <div className="flex items-center gap-4">
             <ThemeToggle />
             <Button onClick={handleLogout} variant="outline" className="flex items-center gap-2">
               <LogOut className="h-4 w-4" />
               Logout
+            </Button>
+            <Button onClick={handleClose} variant="outline" size="icon">
+              <X className="h-4 w-4" />
             </Button>
           </div>
         </div>
@@ -48,9 +61,12 @@ export default function ProtectedAnalytics() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background p-4">
-      <div className="absolute top-6 right-6">
+    <div className="min-h-screen flex items-center justify-center bg-background/95 backdrop-blur-sm p-4">
+      <div className="absolute top-6 right-6 flex items-center gap-4">
         <ThemeToggle />
+        <Button onClick={handleClose} variant="outline" size="icon">
+          <X className="h-4 w-4" />
+        </Button>
       </div>
       <Card className="w-full max-w-md">
         <CardHeader>

@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
@@ -7,10 +8,26 @@ import { Skills } from "@/components/Skills";
 import { Education } from "@/components/Education";
 import { Contact } from "@/components/Contact";
 import { useAnalytics } from "@/hooks/useAnalytics";
+import ProtectedAnalytics from "@/components/ProtectedAnalytics";
 
 const Index = () => {
   // Track page views automatically
   useAnalytics();
+  
+  const [showAnalytics, setShowAnalytics] = useState(false);
+
+  // Secret key combination: Ctrl + Shift + A
+  useEffect(() => {
+    const handleKeyPress = (event: KeyboardEvent) => {
+      if (event.ctrlKey && event.shiftKey && event.key === 'A') {
+        event.preventDefault();
+        setShowAnalytics(true);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, []);
 
   return (
     <div className="smooth-scroll">
@@ -51,6 +68,13 @@ const Index = () => {
           </div>
         </div>
       </footer>
+      
+      {/* Hidden Analytics Modal */}
+      {showAnalytics && (
+        <div className="fixed inset-0 z-50">
+          <ProtectedAnalytics onClose={() => setShowAnalytics(false)} />
+        </div>
+      )}
     </div>
   );
 };
