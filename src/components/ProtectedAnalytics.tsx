@@ -8,7 +8,6 @@ import { ThemeToggle } from "@/components/ui/theme-toggle";
 import Analytics from "@/pages/Analytics";
 
 export default function ProtectedAnalytics() {
-  console.log("ProtectedAnalytics component rendered");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -32,7 +31,6 @@ export default function ProtectedAnalytics() {
   };
 
   if (isAuthenticated) {
-    console.log("User is authenticated, rendering Analytics");
     return (
       <div className="min-h-screen bg-background">
         <div className="flex justify-end items-center p-6">
@@ -49,7 +47,6 @@ export default function ProtectedAnalytics() {
     );
   }
 
-  console.log("User not authenticated, showing login form");
   return (
     <div className="min-h-screen flex items-center justify-center bg-background p-4">
       <div className="absolute top-6 right-6">
