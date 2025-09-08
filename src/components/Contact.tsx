@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
+import { useTrackEvent } from "@/hooks/useTrackEvent";
 
 const contactInfo = [
   {
@@ -49,6 +50,7 @@ export function Contact() {
     message: "",
   });
   const { toast } = useToast();
+  const { track } = useTrackEvent();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -65,6 +67,14 @@ export function Contact() {
     setIsLoading(true);
 
     try {
+      // Track form submission attempt
+      await track('contact_form_submission', {
+        hasPhone: !!formData.phone,
+        subjectLength: formData.subject.length,
+        messageLength: formData.message.length,
+        source: 'contact_form'
+      });
+
       await emailjs.send(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
@@ -79,6 +89,11 @@ export function Contact() {
         EMAILJS_PUBLIC_KEY
       );
 
+      // Track successful submission
+      await track('contact_form_success', {
+        source: 'contact_form'
+      });
+
       toast({
         title: "Message sent!",
         description: "Thank you for your message. I'll get back to you soon.",
@@ -89,6 +104,13 @@ export function Contact() {
       recaptchaRef.current?.reset();
     } catch (error) {
       console.error("EmailJS error:", error);
+      
+      // Track form submission error
+      await track('contact_form_error', {
+        error: error instanceof Error ? error.message : 'Unknown error',
+        source: 'contact_form'
+      });
+
       toast({
         title: "Error",
         description: "Failed to send message. Please try again.",
@@ -133,6 +155,13 @@ export function Contact() {
                     <a
                       href={item.label === "Email" ? "mailto:alexander@engman.nu?subject=Contact from website" : item.href}
                       className="text-foreground hover:text-primary transition-colors"
+                      onClick={() => {
+                        if (item.label === "Email") {
+                          track('contact_info_click', { type: 'email', source: 'contact_section' });
+                        } else if (item.label === "Phone") {
+                          track('contact_info_click', { type: 'phone', source: 'contact_section' });
+                        }
+                      }}
                     >
                       {item.value}
                     </a>

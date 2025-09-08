@@ -1,5 +1,6 @@
 import { MapPin, Calendar, Building } from "lucide-react";
 import { useState } from "react";
+import { useTrackEvent } from "@/hooks/useTrackEvent";
 
 const professionalRoles = [
   {
@@ -81,6 +82,7 @@ const professionalRoles = [
 
 export function Professional() {
   const [selectedArea, setSelectedArea] = useState<string>("All");
+  const { track } = useTrackEvent();
   
   const areas = ["All", "Engineering", "Sales"];
   const filteredRoles = selectedArea === "All" 
@@ -106,7 +108,10 @@ export function Professional() {
             {areas.map((area) => (
               <button
                 key={area}
-                onClick={() => setSelectedArea(area)}
+                onClick={() => {
+                  track('professional_filter_click', { area, source: 'professional_section' });
+                  setSelectedArea(area);
+                }}
                 className={`px-4 py-2 text-sm font-medium rounded-md transition-all ${
                   selectedArea === area
                     ? "bg-background text-foreground shadow-sm"

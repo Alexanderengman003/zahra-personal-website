@@ -1,7 +1,10 @@
 import { ArrowDown, Download, Linkedin, Mail, Sparkles, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useTrackEvent } from "@/hooks/useTrackEvent";
 
 export function Hero() {
+  const { track } = useTrackEvent();
+  
   return (
     <section 
       id="home" 
@@ -64,6 +67,7 @@ export function Hero() {
                 variant="outline"
                 className="hover-lift font-modern group border-2 hover:border-primary/50 bg-[#0A66C2] hover:bg-[#004182] border-[#0A66C2] text-white"
                 onClick={() => {
+                  track('linkedin_click', { source: 'hero' });
                   window.open('https://www.linkedin.com/in/alexanderengman', '_blank');
                 }}
               >
@@ -74,9 +78,7 @@ export function Hero() {
                 variant="default" 
                 className="hover-lift font-modern group relative overflow-hidden"
                 onClick={() => {
-                  import('@/lib/analytics').then(({ trackEvent }) => {
-                    trackEvent('contact_button_click', { source: 'hero' });
-                  });
+                  track('contact_button_click', { source: 'hero' });
                   window.location.href = 'mailto:alexander@engman.nu?subject=Contact from website&body=Hello Alexander,';
                 }}
               >
@@ -89,9 +91,7 @@ export function Hero() {
                 size="lg" 
                 className="hover-lift font-modern group border-2 hover:border-primary/50"
                 onClick={() => {
-                  import('@/lib/analytics').then(({ trackEvent }) => {
-                    trackEvent('cv_download_click', { source: 'hero' });
-                  });
+                  track('cv_download_click', { source: 'hero' });
                   const link = document.createElement('a');
                   link.href = '/CV_Alexander_Engman_2025.pdf';
                   link.download = 'CV_Alexander_Engman_2025.pdf';

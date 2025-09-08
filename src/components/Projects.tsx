@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ExternalLink, Github, Search, ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useTrackEvent } from "@/hooks/useTrackEvent";
 import stretchableImg from "@/assets/stretchable-microsupercapacitors.jpg";
 
 const projects = [
@@ -49,6 +50,7 @@ export function Projects() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [expandedTechs, setExpandedTechs] = useState<Record<number, boolean>>({});
+  const { track } = useTrackEvent();
 
   const filteredProjects = projects.filter(project => {
     const matchesSearch = project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -92,7 +94,10 @@ export function Projects() {
                 key={category}
                 variant={selectedCategory === category ? "default" : "outline"}
                 size="sm"
-                onClick={() => setSelectedCategory(category)}
+                onClick={() => {
+                  track('project_filter_click', { category, source: 'projects_section' });
+                  setSelectedCategory(category);
+                }}
                 className="transition-all duration-300"
               >
                 {category}
@@ -120,14 +125,30 @@ export function Projects() {
                   <div className="absolute bottom-4 left-4 right-4 flex gap-2">
                     {project.githubUrl && (
                       <Button size="sm" variant="secondary" className="bg-white/20 text-white hover:bg-white/30" asChild>
-                        <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                        <a 
+                          href={project.githubUrl} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          onClick={() => track('project_github_click', { 
+                            projectTitle: project.title, 
+                            source: 'projects_section' 
+                          })}
+                        >
                           <Github className="h-4 w-4" />
                         </a>
                       </Button>
                     )}
                     {project.liveUrl && project.id === 1 && (
                       <Button size="sm" variant="secondary" className="bg-white/20 text-white hover:bg-white/30 flex-1" asChild>
-                        <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                        <a 
+                          href={project.liveUrl} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          onClick={() => track('project_thesis_click', { 
+                            projectTitle: project.title, 
+                            source: 'projects_section' 
+                          })}
+                        >
                           <ExternalLink className="mr-2 h-3 w-3" />
                           <span className="text-xs">Read Thesis</span>
                         </a>
@@ -174,7 +195,14 @@ export function Projects() {
                   ))}
                   {project.technologies.length > 6 && !expandedTechs[project.id] && (
                     <button
-                      onClick={() => setExpandedTechs(prev => ({ ...prev, [project.id]: !prev[project.id] }))}
+                      onClick={() => {
+                        track('project_tech_expand', { 
+                          projectTitle: project.title, 
+                          action: 'expand',
+                          source: 'projects_section' 
+                        });
+                        setExpandedTechs(prev => ({ ...prev, [project.id]: !prev[project.id] }));
+                      }}
                       className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded hover:bg-primary/20 transition-colors flex items-center gap-1 h-6"
                     >
                       +{project.technologies.length - 6} more
@@ -183,7 +211,14 @@ export function Projects() {
                   )}
                   {expandedTechs[project.id] && project.technologies.length > 6 && (
                     <button
-                      onClick={() => setExpandedTechs(prev => ({ ...prev, [project.id]: false }))}
+                      onClick={() => {
+                        track('project_tech_expand', { 
+                          projectTitle: project.title, 
+                          action: 'collapse',
+                          source: 'projects_section' 
+                        });
+                        setExpandedTechs(prev => ({ ...prev, [project.id]: false }));
+                      }}
                       className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded hover:bg-primary/20 transition-colors flex items-center gap-1 h-6 w-full justify-center mt-1"
                     >
                       Show less
