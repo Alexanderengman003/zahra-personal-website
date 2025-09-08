@@ -121,6 +121,10 @@
     @apply border-border;
   }
 
+  html {
+    scroll-padding-top: 6rem; /* Account for fixed header height */
+  }
+
   body {
     @apply bg-background text-foreground font-sans antialiased;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
