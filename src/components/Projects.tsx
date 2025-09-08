@@ -106,11 +106,11 @@ export function Projects() {
           {filteredProjects.map((project, index) => (
             <div
               key={project.id}
-              className="card-gradient rounded-xl overflow-hidden shadow-medium hover-lift group"
+              className="card-gradient rounded-xl overflow-hidden shadow-medium hover-lift group h-full flex flex-col"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* Project Image */}
-              <div className="aspect-video bg-muted relative overflow-hidden">
+              <div className="aspect-video bg-muted relative overflow-hidden flex-shrink-0">
                 <img
                   src={project.image}
                   alt={project.title}
@@ -138,26 +138,26 @@ export function Projects() {
               </div>
 
               {/* Project Content */}
-              <div className="p-6">
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
+              <div className="p-6 flex flex-col flex-grow">
+                <div className="flex items-start justify-between mb-3 min-h-[3.5rem]">
+                  <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors leading-tight">
                     {project.title}
                   </h3>
-                  <span className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded-full">
+                  <span className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded-full flex-shrink-0 ml-2">
                     {project.category}
                   </span>
                 </div>
                 
                 {project.date && (
-                  <p className="text-xs text-muted-foreground mb-2">{project.date} • {project.institution}</p>
+                  <p className="text-xs text-muted-foreground mb-3 h-4">{project.date} • {project.institution}</p>
                 )}
                 
-                <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+                <p className="text-sm text-muted-foreground leading-relaxed mb-4 flex-grow min-h-[5rem]">
                   {project.description}
                 </p>
 
                 {/* Technologies */}
-                <div className="flex flex-wrap gap-1 mb-4 h-12 overflow-hidden">
+                <div className="flex flex-wrap gap-1 h-12 overflow-hidden mt-auto">
                   {(expandedTechs[project.id] ? project.technologies : project.technologies.slice(0, 6)).map((tech) => (
                     <span
                       key={tech}
