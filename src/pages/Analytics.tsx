@@ -223,6 +223,33 @@ const Analytics = () => {
             </CardContent>
           </Card>
 
+          {/* User Interactions */}
+          <Card className="card-gradient mb-8">
+            <CardHeader>
+              <CardTitle className="font-modern">User Interactions</CardTitle>
+              <CardDescription className="font-modern">Button clicks, form submissions, and other events ({stats.totalEvents || 0} total)</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+                {stats.topEvents && stats.topEvents.length > 0 ? (
+                  stats.topEvents.map((event: any) => (
+                    <div key={event.event} className="text-center p-4 rounded-lg bg-card border border-border/50">
+                      <div className="font-semibold font-modern text-lg text-primary">{event.count}</div>
+                      <div className="text-xs font-medium text-foreground mt-1">{event.event}</div>
+                      <div className="text-xs text-muted-foreground">{event.percentage}%</div>
+                    </div>
+                  ))
+                ) : (
+                  <div className="col-span-full text-center py-8 text-muted-foreground">
+                    <MousePointer className="h-8 w-8 mx-auto mb-2 opacity-50" />
+                    <p>No user interactions yet</p>
+                    <p className="text-xs mt-1">Button clicks and interactions will appear here</p>
+                  </div>
+                )}
+              </div>
+            </CardContent>
+          </Card>
+
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
             {/* Top Pages */}
             <Card className="card-gradient">
@@ -357,17 +384,27 @@ const Analytics = () => {
                   {stats.recentActivity && stats.recentActivity.length > 0 ? (
                     stats.recentActivity.map((activity: any, index: number) => (
                       <div key={index} className="flex items-start space-x-3">
-                        <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
+                        <div className={`w-2 h-2 rounded-full mt-2 flex-shrink-0 ${
+                          activity.type === 'event' ? 'bg-green-500' : 'bg-primary'
+                        }`} />
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center space-x-2">
-                            <Badge variant="secondary" className="text-xs font-modern">
+                            <Badge 
+                              variant={activity.type === 'event' ? 'default' : 'secondary'} 
+                              className="text-xs font-modern"
+                            >
                               {activity.action}
                             </Badge>
                             <span className="text-sm font-medium font-modern">{activity.page}</span>
                           </div>
                           <div className="text-xs text-muted-foreground mt-1">
-                            {activity.location} • {activity.time}
+                            {activity.type === 'event' ? 'User Interaction' : activity.location} • {activity.time}
                           </div>
+                          {activity.data && (
+                            <div className="text-xs text-muted-foreground mt-1 opacity-75">
+                              {activity.data.source && `Source: ${activity.data.source}`}
+                            </div>
+                          )}
                         </div>
                       </div>
                     ))

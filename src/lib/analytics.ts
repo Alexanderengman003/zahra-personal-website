@@ -254,16 +254,48 @@ export const getAnalyticsStats = async (days: number = 7) => {
       }))
       .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
-    // Recent activity
-    const recentActivity = pageViews
-      ?.slice(-5)
-      .reverse()
+    // Recent activity - include both page views and events
+    const recentPageViews = pageViews
+      ?.slice(-10)
       .map(view => ({
         action: 'Page view',
         page: view.page_path === '/' ? 'Home' : view.page_path,
         time: getTimeAgo(new Date(view.created_at)),
-        location: view.city && view.country ? `${view.city}, ${view.country}` : view.country || 'Unknown'
+        location: view.city && view.country ? `${view.city}, ${view.country}` : view.country || 'Unknown',
+        type: 'page_view'
       })) || [];
+
+    const recentEvents = events
+      ?.slice(-10)
+      .map(event => ({
+        action: event.event_type.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
+        page: event.page_path || 'Unknown',
+        time: getTimeAgo(new Date(event.created_at)),
+        location: 'Event', // Events don't have location data
+        type: 'event',
+        data: event.event_data
+      })) || [];
+
+    // Combine and sort recent activity
+    const combinedActivity = [...recentPageViews, ...recentEvents]
+      .sort((a, b) => new Date(b.time).getTime() - new Date(a.time).getTime())
+      .slice(0, 10);
+
+    // Event statistics
+    const eventStats = events?.reduce((acc: any, event) => {
+      const eventType = event.event_type;
+      acc[eventType] = (acc[eventType] || 0) + 1;
+      return acc;
+    }, {}) || {};
+
+    const topEvents = Object.entries(eventStats)
+      .map(([event, count]) => ({
+        event: event.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
+        count: count as number,
+        percentage: events?.length > 0 ? (((count as number) / events.length) * 100).toFixed(1) : '0'
+      }))
+      .sort((a, b) => b.count - a.count)
+      .slice(0, 8);
 
     // Country statistics
     const countryStats = pageViews?.reduce((acc: any, view) => {
@@ -290,8 +322,10 @@ export const getAnalyticsStats = async (days: number = 7) => {
       deviceTypes,
       themeUsage,
       trafficData,
-      recentActivity,
-      topCountries
+      recentActivity: combinedActivity,
+      topCountries,
+      topEvents,
+      totalEvents: events?.length || 0
     };
 
   } catch (error) {
