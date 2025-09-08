@@ -46,12 +46,12 @@ const getOperatingSystem = (): string => {
 // Get geographical information based on IP
 const getGeolocation = async (): Promise<{ country?: string; city?: string }> => {
   try {
-    const response = await fetch('https://ipapi.co/json/');
-    if (response.ok) {
-      const data = await response.json();
+    const response = await supabase.functions.invoke('get-geolocation');
+    
+    if (response.data) {
       return {
-        country: data.country_name || null,
-        city: data.city || null
+        country: response.data.country || null,
+        city: response.data.city || null
       };
     }
   } catch (error) {
