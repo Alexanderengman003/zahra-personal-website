@@ -30,7 +30,7 @@ export function Hero() {
           </div>
 
           {/* Content */}
-          <div className="flex-1 text-center lg:text-left max-w-2xl">
+          <div className="flex-1 text-left max-w-2xl">
             {/* Animated greeting */}
             <div className="animate-fade-up space-y-8 mb-8" style={{ animationDelay: "0.2s" }}>
               <div className="space-y-2">
@@ -39,17 +39,17 @@ export function Hero() {
                 </h1>
               
                 <div className="relative -mt-8">
-                  <h2 className="text-xl sm:text-2xl lg:text-3xl font-medium text-muted-foreground whitespace-nowrap">
+                  <h2 className="text-xl sm:text-2xl lg:text-3xl font-medium text-muted-foreground">
                     Semiconductor engineering and sales
                   </h2>
-                  <div className="absolute -bottom-2 left-0 lg:left-0 mx-auto lg:mx-0 w-full h-0.5 bg-gradient-to-r from-primary to-primary/50 rounded-full" />
+                  <div className="absolute -bottom-2 left-0 w-full h-0.5 bg-gradient-to-r from-primary to-primary/50 rounded-full" />
                 </div>
               </div>
             </div>
 
             {/* Description */}
             <div className="animate-fade-up mb-8" style={{ animationDelay: "0.4s" }}>
-              <p className="text-lg leading-relaxed text-muted-foreground max-w-2xl mx-auto lg:mx-0">
+              <p className="text-lg leading-relaxed text-muted-foreground max-w-2xl">
 Passionate about advancing semiconductor technology, with hands-on experience in hardware development and innovation.
 Specialized in advanced semiconductors, working across design, testing, and implementation of hardware solutions.
 Proven background in sales, bridging technical expertise with customer needs to drive business growth.
@@ -57,7 +57,7 @@ Proven background in sales, bridging technical expertise with customer needs to 
             </div>
 
             {/* CTA Buttons */}
-            <div className="animate-fade-up flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8" style={{ animationDelay: "0.6s" }}>
+            <div className="animate-fade-up flex flex-col sm:flex-row gap-4 justify-start mb-8" style={{ animationDelay: "0.6s" }}>
               <Button 
                 size="lg" 
                 variant="outline"

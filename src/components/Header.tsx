@@ -75,7 +75,7 @@ export function Header() {
       {mobileMenuOpen && (
         <div className="lg:hidden">
           <div className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm" onClick={() => setMobileMenuOpen(false)} />
-          <div className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-background px-6 py-6 sm:max-w-sm shadow-2xl transform transition-transform duration-300 ease-in-out">
+          <div className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-background px-6 py-6 sm:max-w-sm shadow-2xl border-l border-border animate-slide-in-right">
             <div className="flex items-center justify-between">
               <a href="/" className="-m-1.5 p-1.5 group">
                 <div className="flex items-center gap-2">
@@ -103,7 +103,7 @@ export function Header() {
                       key={item.name}
                       href={item.href}
                       onClick={() => setMobileMenuOpen(false)}
-                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-foreground hover:bg-secondary"
+                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-foreground hover:bg-secondary transition-colors"
                     >
                       {item.name}
                     </a>
