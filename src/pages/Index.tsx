@@ -9,6 +9,7 @@ import { Education } from "@/components/Education";
 import { Contact } from "@/components/Contact";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import ProtectedAnalytics from "@/components/ProtectedAnalytics";
+import { BarChart } from "lucide-react";
 
 const Index = () => {
   // Track page views automatically
@@ -124,9 +125,11 @@ const Index = () => {
                 Email
               </a>
             </div>
-            {/* Hidden mobile instruction - only visible on small screens */}
-            <div className="mt-2 text-xs text-muted-foreground/50 block sm:hidden">
-              Tap 7 times here for analytics
+            {/* Hidden mobile access - small analytics icon */}
+            <div className="mt-3 flex justify-center sm:hidden">
+              <div className="p-2 rounded-full hover:bg-muted/20 transition-colors cursor-pointer">
+                <BarChart className="h-3 w-3 text-muted-foreground/30" />
+              </div>
             </div>
           </div>
         </div>
