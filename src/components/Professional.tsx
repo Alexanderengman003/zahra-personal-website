@@ -139,7 +139,7 @@ export function Professional() {
                     </div>
                   )}
                   <div>
-                    <h3 className="text-xl font-semibold text-foreground mb-2">
+                    <h3 className="text-xl font-semibold text-foreground mb-2 leading-tight">
                       {role.title}
                     </h3>
                     <div className="flex flex-col gap-2 text-muted-foreground">

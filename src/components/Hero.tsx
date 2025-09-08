@@ -76,7 +76,7 @@ Proven background in sales, bridging technical expertise with customer needs to 
                   import('@/lib/analytics').then(({ trackEvent }) => {
                     trackEvent('contact_button_click', { source: 'hero' });
                   });
-                  window.location.href = 'mailto:alexander@engman.nu?subject=Contact from Portfolio&body=Hello Alexander,';
+                  window.location.href = 'mailto:alexander@engman.nu?subject=Contact from website&body=Hello Alexander,';
                 }}
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-primary-hover to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

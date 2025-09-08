@@ -119,7 +119,7 @@ export function Contact() {
                   <div>
                     <p className="text-sm font-medium text-muted-foreground">{item.label}</p>
                     <a
-                      href={item.href}
+                      href={item.label === "Email" ? "mailto:alexander@engman.nu?subject=Contact from website" : item.href}
                       className="text-foreground hover:text-primary transition-colors"
                     >
                       {item.value}
