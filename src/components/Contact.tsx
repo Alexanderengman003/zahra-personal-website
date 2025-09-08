@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
+import ReCAPTCHA from "react-google-recaptcha";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -28,8 +29,13 @@ const contactInfo = [
   },
 ];
 
+// Replace with your actual reCAPTCHA site key from Google
+const RECAPTCHA_SITE_KEY = "6LfYourSiteKeyHere";
+
 export function Contact() {
   const [isLoading, setIsLoading] = useState(false);
+  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -40,11 +46,24 @@ export function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!recaptchaToken) {
+      toast({
+        title: "Security check required",
+        description: "Please complete the reCAPTCHA verification.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsLoading(true);
 
     try {
       const { error } = await supabase.functions.invoke('send-contact-email', {
-        body: formData,
+        body: {
+          ...formData,
+          recaptchaToken,
+        },
       });
 
       if (error) throw error;
@@ -55,6 +74,8 @@ export function Contact() {
       });
 
       setFormData({ name: "", email: "", subject: "", message: "" });
+      setRecaptchaToken(null);
+      recaptchaRef.current?.reset();
     } catch (error) {
       toast({
         title: "Error",
@@ -179,21 +200,30 @@ export function Contact() {
                 />
               </div>
 
-              <Button
-                type="submit"
-                size="lg"
-                disabled={isLoading}
-                className="w-full hover-lift"
-              >
-                {isLoading ? (
-                  "Sending..."
-                ) : (
-                  <>
-                    <Send className="mr-2 h-4 w-4" />
-                    Send Message
-                  </>
-                )}
-              </Button>
+              <div className="flex flex-col gap-4">
+                <ReCAPTCHA
+                  ref={recaptchaRef}
+                  sitekey={RECAPTCHA_SITE_KEY}
+                  onChange={setRecaptchaToken}
+                  theme="light"
+                />
+                
+                <Button
+                  type="submit"
+                  size="lg"
+                  disabled={isLoading || !recaptchaToken}
+                  className="w-full hover-lift"
+                >
+                  {isLoading ? (
+                    "Sending..."
+                  ) : (
+                    <>
+                      <Send className="mr-2 h-4 w-4" />
+                      Send Message
+                    </>
+                  )}
+                </Button>
+              </div>
             </form>
           </div>
         </div>

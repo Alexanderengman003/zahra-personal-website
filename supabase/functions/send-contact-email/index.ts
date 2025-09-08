@@ -13,6 +13,7 @@ interface ContactFormData {
   email: string;
   subject: string;
   message: string;
+  recaptchaToken: string;
 }
 
 serve(async (req) => {
@@ -22,12 +23,12 @@ serve(async (req) => {
   }
 
   try {
-    const { name, email, subject, message }: ContactFormData = await req.json();
+    const { name, email, subject, message, recaptchaToken }: ContactFormData = await req.json();
 
     // Basic validation
-    if (!name || !email || !subject || !message) {
+    if (!name || !email || !subject || !message || !recaptchaToken) {
       return new Response(
-        JSON.stringify({ error: 'All fields are required' }),
+        JSON.stringify({ error: 'All fields including reCAPTCHA are required' }),
         { 
           status: 400,
           headers: { ...corsHeaders, 'Content-Type': 'application/json' }
@@ -40,6 +41,28 @@ serve(async (req) => {
     if (!emailRegex.test(email)) {
       return new Response(
         JSON.stringify({ error: 'Invalid email format' }),
+        { 
+          status: 400,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        }
+      );
+    }
+
+    // Verify reCAPTCHA
+    const recaptchaResponse = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: `secret=${Deno.env.get('RECAPTCHA_SECRET_KEY')}&response=${recaptchaToken}`,
+    });
+
+    const recaptchaResult = await recaptchaResponse.json();
+    
+    if (!recaptchaResult.success) {
+      console.error('reCAPTCHA verification failed:', recaptchaResult);
+      return new Response(
+        JSON.stringify({ error: 'reCAPTCHA verification failed' }),
         { 
           status: 400,
           headers: { ...corsHeaders, 'Content-Type': 'application/json' }
