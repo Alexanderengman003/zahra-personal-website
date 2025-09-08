@@ -149,7 +149,10 @@ export function Projects() {
                 </div>
                 
                 {project.date && (
-                  <p className="text-xs text-muted-foreground mb-3 h-4">{project.date} • {project.institution}</p>
+                  <div className="text-xs text-muted-foreground mb-3 space-y-1">
+                    <p>{project.date}</p>
+                    <p>{project.institution}</p>
+                  </div>
                 )}
                 
                 <p className="text-sm text-muted-foreground leading-relaxed mb-4 flex-grow min-h-[5rem]">
