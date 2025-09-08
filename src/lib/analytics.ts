@@ -69,6 +69,11 @@ const getCurrentTheme = (): string => {
 // Track page view
 export const trackPageView = async (pagePath: string, pageTitle: string) => {
   try {
+    // Don't track analytics page visits
+    if (pagePath === '/analytics' || pagePath.startsWith('/analytics')) {
+      return;
+    }
+    
     const sessionId = getSessionId();
     
     // Get geographical information
