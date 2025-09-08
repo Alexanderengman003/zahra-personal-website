@@ -82,23 +82,23 @@ export function Skills() {
                     <span>{trait.left}</span>
                     <span>{trait.right}</span>
                   </div>
-                  <div className="relative bg-muted rounded-full h-6 overflow-hidden">
-                    {/* Animated bar from center */}
-                    <div 
-                      className="absolute h-full transition-all duration-1000 ease-out"
-                      style={{ 
-                        left: isVisible ? (trait.value >= 50 ? '50%' : `${trait.value}%`) : '50%',
-                        width: isVisible ? `${Math.abs(trait.value - 50)}%` : '0%',
-                        background: trait.value >= 50 
-                          ? 'linear-gradient(to right, rgb(96 165 250), rgb(59 130 246))' 
-                          : 'linear-gradient(to left, rgb(96 165 250), rgb(59 130 246))',
-                        borderRadius: trait.value >= 50 ? '0 9999px 9999px 0' : '9999px 0 0 9999px',
-                        transitionDelay: `${index * 200}ms`
-                      }}
-                    />
-                    {/* Center line - placed after bar to appear on top */}
-                    <div className="absolute left-1/2 top-0 w-px h-6 bg-border transform -translate-x-0.5 z-10" />
-                  </div>
+                   <div className="relative bg-muted rounded-full h-6 overflow-hidden">
+                     {/* Animated bar from center */}
+                     <div 
+                       className="absolute h-full transition-all duration-1000 ease-out"
+                       style={{ 
+                         left: isVisible ? (trait.value >= 50 ? '50%' : `${trait.value}%`) : '50%',
+                         width: isVisible ? `${Math.abs(trait.value - 50)}%` : '0%',
+                         background: trait.value >= 50 
+                           ? 'linear-gradient(to right, rgb(96 165 250), rgb(59 130 246))' 
+                           : 'linear-gradient(to left, rgb(96 165 250), rgb(59 130 246))',
+                         borderRadius: '9999px',
+                         transitionDelay: `${index * 200}ms`
+                       }}
+                     />
+                     {/* Center indicator dot */}
+                     <div className="absolute left-1/2 top-1/2 w-2 h-2 bg-border rounded-full transform -translate-x-1/2 -translate-y-1/2 z-10" />
+                   </div>
                 </div>
               ))}
             </div>
