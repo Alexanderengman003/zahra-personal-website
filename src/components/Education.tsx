@@ -16,7 +16,7 @@ const education = [
     school: "KTH Royal Institute of Technology",
     location: "Stockholm, Sweden",
     period: "2015-2018",
-    description: "Studies focused on material properties at the nanon and microstructure levels.",
+    description: "Studies focused on material properties at the nano and microstructure levels.",
     coursework: ["Mathematics", "Physics", "Material Chemistry", "Polymers", "Ceramics", "Metals"]
   } 
 ];
