@@ -29,8 +29,8 @@ const contactInfo = [
   },
 ];
 
-// Replace with your actual reCAPTCHA site key from Google
-const RECAPTCHA_SITE_KEY = "6Lf11MErAAAAABTnBB9uufPcy24lYpUXtIjGpH5r";
+// Get reCAPTCHA site key from environment variables
+const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY || "6Lf11MErAAAAANjgtauT0Ee0tCYIzUx4JSXwN_bK";
 
 export function Contact() {
   const [isLoading, setIsLoading] = useState(false);
