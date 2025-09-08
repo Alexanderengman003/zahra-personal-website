@@ -26,8 +26,7 @@ import { LineChart as RechartsLineChart, Line, XAxis, YAxis, CartesianGrid, Tool
 import { getAnalyticsStats } from "@/lib/analytics";
 
 const Analytics = () => {
-  // Track analytics page visits
-  useAnalytics();
+  // Don't track visits to the analytics page itself
   
   const [timeRange, setTimeRange] = useState("7d");
   const [stats, setStats] = useState<any>(null);
