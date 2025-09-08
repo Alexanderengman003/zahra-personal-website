@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { LogOut } from "lucide-react";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 import Analytics from "@/pages/Analytics";
 
 export default function ProtectedAnalytics() {
@@ -32,7 +33,8 @@ export default function ProtectedAnalytics() {
   if (isAuthenticated) {
     return (
       <div className="min-h-screen bg-background">
-        <div className="flex justify-end p-4">
+        <div className="flex justify-between items-center p-4">
+          <ThemeToggle />
           <Button onClick={handleLogout} variant="outline" className="flex items-center gap-2">
             <LogOut className="h-4 w-4" />
             Logout
@@ -45,6 +47,9 @@ export default function ProtectedAnalytics() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-background p-4">
+      <div className="absolute top-4 right-4">
+        <ThemeToggle />
+      </div>
       <Card className="w-full max-w-md">
         <CardHeader>
           <CardTitle>Analytics Access</CardTitle>
