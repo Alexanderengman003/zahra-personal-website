@@ -3,24 +3,22 @@ import { GraduationCap, Award, BookOpen } from "lucide-react";
 const education = [
   {
     id: 1,
-    degree: "Master of Science in Computer Science",
-    school: "Stanford University",
-    location: "Stanford, CA",
-    period: "2017 - 2019",
-    gpa: "3.9/4.0",
-    description: "Specialized in Software Engineering and Machine Learning. Completed thesis on distributed systems optimization.",
-    coursework: ["Advanced Algorithms", "Machine Learning", "Distributed Systems", "Software Engineering", "Database Systems"]
+    degree: "Master of Science in Nanotechnology",
+    school: "KTH Royal Institute of Technology",
+    location: "Stockholm, Sweden",
+    period: "2018 - 2020",
+    description: "Engineering studies within the field of Nanotechnology, with a nanoelectronics track. Completed thesis on stretchable microsupercapacitors.",
+    coursework: ["Quantum Physics", "Semiconductor Devices", "Microfabrication", "Microsystem Technology", "Electronics"]
   },
   {
     id: 2,
-    degree: "Bachelor of Science in Computer Engineering",
-    school: "University of California, Berkeley",
-    location: "Berkeley, CA",
-    period: "2013 - 2017",
-    gpa: "3.7/4.0",
-    description: "Graduated Magna Cum Laude with focus on software development and computer systems architecture.",
-    coursework: ["Data Structures", "Computer Architecture", "Operating Systems", "Web Development", "Mathematics"]
-  }
+    degree: "Bachelor of Science in Materials Science and Engineering",
+    school: "KTH Royal Institute of Technology",
+    location: "Stockholm, Sweden",
+    period: "2015-2018",
+    description: "Studies focused on material properties at the nanon and microstructure levels.",
+    coursework: ["Mathematics", "Physics", "Material Chemistry", "Polymers", "Ceramics", "Metals"]
+  } 
 ];
 
 const certifications = [
