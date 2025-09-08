@@ -41,8 +41,8 @@ export default function ProtectedAnalytics({ onClose }: ProtectedAnalyticsProps)
 
   if (isAuthenticated) {
     return (
-      <div className="min-h-screen bg-background/95 backdrop-blur-sm">
-        <div className="flex justify-between items-center p-6">
+      <div className="min-h-screen bg-background border border-border rounded-lg m-4 overflow-hidden">
+        <div className="flex justify-between items-center p-6 border-b border-border bg-card">
           <h1 className="text-2xl font-bold">Analytics Dashboard</h1>
           <div className="flex items-center gap-4">
             <ThemeToggle />
@@ -55,14 +55,16 @@ export default function ProtectedAnalytics({ onClose }: ProtectedAnalyticsProps)
             </Button>
           </div>
         </div>
-        <Analytics />
+        <div className="overflow-auto max-h-[calc(100vh-8rem)]">
+          <Analytics />
+        </div>
       </div>
     );
   }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-background/95 backdrop-blur-sm p-4">
-      <div className="absolute top-6 right-6 flex items-center gap-4">
+      <div className="absolute top-6 right-6 flex items-center gap-4 z-10">
         <ThemeToggle />
         <Button onClick={handleClose} variant="outline" size="icon">
           <X className="h-4 w-4" />

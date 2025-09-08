@@ -29,6 +29,19 @@ const Index = () => {
     return () => window.removeEventListener('keydown', handleKeyPress);
   }, []);
 
+  // Prevent body scroll when analytics is open
+  useEffect(() => {
+    if (showAnalytics) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [showAnalytics]);
+
   return (
     <div className="smooth-scroll">
       <Header />
@@ -71,7 +84,7 @@ const Index = () => {
       
       {/* Hidden Analytics Modal */}
       {showAnalytics && (
-        <div className="fixed inset-0 z-50">
+        <div className="fixed inset-0 z-50 overflow-auto">
           <ProtectedAnalytics onClose={() => setShowAnalytics(false)} />
         </div>
       )}
