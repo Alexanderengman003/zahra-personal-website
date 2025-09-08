@@ -30,7 +30,7 @@ const contactInfo = [
 ];
 
 // Replace with your actual reCAPTCHA site key from Google
-const RECAPTCHA_SITE_KEY = "6LfYourSiteKeyHere";
+const RECAPTCHA_SITE_KEY = "6Lf11MErAAAAABTnBB9uufPcy24lYpUXtIjGpH5r";
 
 export function Contact() {
   const [isLoading, setIsLoading] = useState(false);
