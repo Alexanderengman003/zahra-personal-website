@@ -1,6 +1,8 @@
 import { supabase } from "@/integrations/supabase/client";
 
-// Generate or get session ID from localStorage
+// Generate or get session ID from localStorage with proper session management
+let sessionCreationInProgress = false;
+
 const getSessionId = (): string => {
   let sessionId = localStorage.getItem('portfolio_session_id');
   if (!sessionId) {
@@ -11,6 +13,51 @@ const getSessionId = (): string => {
     console.log('Using existing session ID:', sessionId);
   }
   return sessionId;
+};
+
+// Ensure session exists in database - prevent race conditions
+const ensureSessionExists = async (sessionId: string, geoData: { country?: string; city?: string }) => {
+  // Prevent concurrent session creation
+  if (sessionCreationInProgress) {
+    // Wait a bit for the other creation to complete
+    await new Promise(resolve => setTimeout(resolve, 100));
+    return;
+  }
+
+  try {
+    const { data: existingSession, error: sessionError } = await supabase
+      .from('analytics_sessions')
+      .select('id')
+      .eq('session_id', sessionId)
+      .maybeSingle();
+
+    // Only create session if it doesn't exist and there's no error
+    if (!existingSession && !sessionError) {
+      console.log('Creating new session for sessionId:', sessionId);
+      
+      // Set flag to prevent concurrent creation
+      sessionCreationInProgress = true;
+      
+      try {
+        await supabase
+          .from('analytics_sessions')
+          .insert({
+            session_id: sessionId,
+            device_type: getDeviceType(),
+            browser: getBrowser(),
+            referrer: document.referrer || null,
+            country: geoData.country || null,
+          });
+      } finally {
+        sessionCreationInProgress = false; // Always reset the flag
+      }
+    } else if (existingSession) {
+      console.log('Using existing session:', sessionId);
+    }
+  } catch (error) {
+    sessionCreationInProgress = false; // Reset on error
+    throw error;
+  }
 };
 
 // Detect device type
@@ -79,28 +126,8 @@ export const trackPageView = async (pagePath: string, pageTitle: string) => {
     // Get geographical information
     const { country, city } = await getGeolocation();
     
-    // First, ensure session exists or create it
-    const { data: existingSession, error: sessionError } = await supabase
-      .from('analytics_sessions')
-      .select('id')
-      .eq('session_id', sessionId)
-      .maybeSingle();
-
-    // Only create a new session if none exists and there's no error
-    if (!existingSession && !sessionError) {
-      console.log('Creating new session for sessionId:', sessionId);
-      await supabase
-        .from('analytics_sessions')
-        .insert({
-          session_id: sessionId,
-          device_type: getDeviceType(),
-          browser: getBrowser(),
-          referrer: document.referrer || null,
-          country: country || null,
-        });
-    } else if (existingSession) {
-      console.log('Using existing session:', sessionId);
-    }
+    // Ensure session exists (handles race conditions)
+    await ensureSessionExists(sessionId, { country, city });
 
     // Track the page view
     await supabase
