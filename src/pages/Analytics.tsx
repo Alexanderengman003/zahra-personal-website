@@ -336,8 +336,9 @@ const Analytics = () => {
             </Card>
           </div>
 
-          {/* Top Countries */}
-          <div className="mb-8">
+          {/* Top Countries and Recent Activity Side by Side */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+            {/* Top Countries */}
             <Card className="card-gradient">
               <CardHeader>
                 <CardTitle className="font-modern">Top Countries</CardTitle>
@@ -370,22 +371,19 @@ const Analytics = () => {
                 </div>
               </CardContent>
             </Card>
-          </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Recent Activity */}
-            <Card className="card-gradient lg:col-span-2">
+            <Card className="card-gradient">
               <CardHeader>
                 <CardTitle className="font-modern">Recent Activity</CardTitle>
-                <CardDescription className="font-modern">Latest visitor interactions</CardDescription>
+                <CardDescription className="font-modern">Latest visitor interactions (100 most recent)</CardDescription>
               </CardHeader>
               <CardContent>
                 {stats.recentActivity && stats.recentActivity.length > 0 ? (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {/* First Column */}
-                    <div className="space-y-4">
-                      {stats.recentActivity.slice(0, 10).map((activity: any, index: number) => (
-                        <div key={index} className="flex items-start space-x-3">
+                  <div className="h-[600px] overflow-y-auto pr-2">
+                    <div className="space-y-3">
+                      {stats.recentActivity.slice(0, 100).map((activity: any, index: number) => (
+                        <div key={index} className="flex items-start space-x-3 p-2 rounded-lg hover:bg-muted/50 transition-colors">
                           <div className={`w-2 h-2 rounded-full mt-2 flex-shrink-0 ${
                             activity.type === 'event' ? 'bg-green-500' : 'bg-primary'
                           }`} />
@@ -397,37 +395,7 @@ const Analytics = () => {
                               >
                                 {activity.action}
                               </Badge>
-                              <span className="text-sm font-medium font-modern">{activity.page}</span>
-                            </div>
-                            <div className="text-xs text-muted-foreground mt-1">
-                              {activity.type === 'event' ? 'User Interaction' : activity.location} • {activity.time}
-                            </div>
-                            {activity.data && (
-                              <div className="text-xs text-muted-foreground mt-1 opacity-75">
-                                {activity.data.source && `Source: ${activity.data.source}`}
-                              </div>
-                            )}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                    
-                    {/* Second Column */}
-                    <div className="space-y-4">
-                      {stats.recentActivity.slice(10, 20).map((activity: any, index: number) => (
-                        <div key={index + 10} className="flex items-start space-x-3">
-                          <div className={`w-2 h-2 rounded-full mt-2 flex-shrink-0 ${
-                            activity.type === 'event' ? 'bg-green-500' : 'bg-primary'
-                          }`} />
-                          <div className="flex-1 min-w-0">
-                            <div className="flex items-center space-x-2">
-                              <Badge 
-                                variant={activity.type === 'event' ? 'default' : 'secondary'} 
-                                className="text-xs font-modern"
-                              >
-                                {activity.action}
-                              </Badge>
-                              <span className="text-sm font-medium font-modern">{activity.page}</span>
+                              <span className="text-sm font-medium font-modern truncate">{activity.page}</span>
                             </div>
                             <div className="text-xs text-muted-foreground mt-1">
                               {activity.type === 'event' ? 'User Interaction' : activity.location} • {activity.time}
@@ -443,51 +411,12 @@ const Analytics = () => {
                     </div>
                   </div>
                 ) : (
-                  <div className="text-center py-8 text-muted-foreground font-modern">
-                    <Eye className="h-8 w-8 mx-auto mb-2 opacity-50" />
+                  <div className="text-center py-8 text-muted-foreground">
+                    <Clock className="h-8 w-8 mx-auto mb-2 opacity-50" />
                     <p>No recent activity</p>
-                    <p className="text-xs mt-1">Activity will appear here once visitors browse your site</p>
+                    <p className="text-xs mt-1">Visitor interactions will appear here</p>
                   </div>
                 )}
-              </CardContent>
-            </Card>
-
-            {/* Analytics Info */}
-            <Card className="card-gradient">
-              <CardHeader>
-                <CardTitle className="font-modern">Analytics Information</CardTitle>
-                <CardDescription className="font-modern">How your analytics data is collected</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0" />
-                    <div>
-                      <div className="font-medium font-modern text-sm">Privacy-First Tracking</div>
-                      <div className="text-xs text-muted-foreground mt-1">
-                        No personal data is collected, only anonymous usage statistics
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0" />
-                    <div>
-                      <div className="font-medium font-modern text-sm">Real-Time Data</div>
-                      <div className="text-xs text-muted-foreground mt-1">
-                        Statistics are updated in real-time as visitors browse your site
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0" />
-                    <div>
-                      <div className="font-medium font-modern text-sm">Session-Based</div>
-                      <div className="text-xs text-muted-foreground mt-1">
-                        Tracks user sessions to provide meaningful engagement metrics
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </CardContent>
             </Card>
           </div>
