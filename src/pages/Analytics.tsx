@@ -178,6 +178,44 @@ const Analytics = () => {
             </Card>
           </div>
 
+          {/* Bar Chart - Top Pages */}
+          <Card className="card-gradient mb-8">
+            <CardHeader>
+              <CardTitle className="font-modern">Top Pages</CardTitle>
+              <CardDescription className="font-modern">Most visited pages on your site</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="h-[300px]">
+                <ResponsiveContainer width="100%" height="100%">
+                  <RechartsBarChart data={stats.topPages}>
+                    <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
+                    <XAxis 
+                      dataKey="page" 
+                      className="text-xs fill-muted-foreground"
+                      angle={-45}
+                      textAnchor="end"
+                      height={80}
+                    />
+                    <YAxis className="text-xs fill-muted-foreground" />
+                    <Tooltip 
+                      contentStyle={{ 
+                        backgroundColor: 'hsl(var(--background))', 
+                        border: '1px solid hsl(var(--border))',
+                        borderRadius: '8px'
+                      }}
+                    />
+                    <Bar 
+                      dataKey="views" 
+                      fill="hsl(var(--primary))" 
+                      name="Page Views"
+                      radius={[4, 4, 0, 0]}
+                    />
+                  </RechartsBarChart>
+                </ResponsiveContainer>
+              </div>
+            </CardContent>
+          </Card>
+
           {/* Traffic Chart */}
           <Card className="card-gradient mb-8">
             <CardHeader>
