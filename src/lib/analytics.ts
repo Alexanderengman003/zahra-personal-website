@@ -145,9 +145,6 @@ export const trackPageView = async (pagePath: string, pageTitle: string) => {
         city: city || null,
       });
 
-    // Track theme usage as an event
-    await trackEvent('theme_usage', { theme: getCurrentTheme() }, pagePath);
-
   } catch (error) {
     console.error('Error tracking page view:', error);
   }
