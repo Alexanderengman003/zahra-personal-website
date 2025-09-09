@@ -95,7 +95,7 @@ export function Professional() {
         {/* Header */}
         <div className="mx-auto max-w-2xl text-center mb-16">
           <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            Working Experience
+            Professional Experience
           </h2>
           <p className="mt-6 text-lg leading-8 text-muted-foreground">
             A journey through my professional career in semiconductor engineering and technology development.
