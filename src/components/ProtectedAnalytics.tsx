@@ -5,6 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { LogOut, X } from "lucide-react";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { supabase } from "@/integrations/supabase/client";
 import Analytics from "@/pages/Analytics";
 
 interface ProtectedAnalyticsProps {
@@ -17,13 +18,29 @@ export default function ProtectedAnalytics({ onClose }: ProtectedAnalyticsProps)
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (username === "Alexander" && password === "Alexander123") {
-      setIsAuthenticated(true);
-      setError("");
-    } else {
-      setError("Invalid credentials");
+    setError("");
+    
+    try {
+      const { data, error } = await supabase.functions.invoke('verify-analytics-password', {
+        body: { username, password }
+      });
+      
+      if (error) {
+        console.error('Analytics login error:', error);
+        setError("Authentication failed. Please try again.");
+        return;
+      }
+      
+      if (data?.success) {
+        setIsAuthenticated(true);
+      } else {
+        setError(data?.error || "Invalid credentials");
+      }
+    } catch (error) {
+      console.error('Analytics login error:', error);
+      setError("Authentication failed. Please try again.");
     }
   };
 
