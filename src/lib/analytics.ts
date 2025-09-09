@@ -281,33 +281,31 @@ export const getAnalyticsStats = async (days: number = 7) => {
       }))
       .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
-    // Recent activity - include both page views and events (chronological order)
+    // Recent activity - include both page views and events
     const recentPageViews = pageViews
-      ?.slice(-15)
+      ?.slice(-10)
       .map(view => ({
         action: 'Page view',
         page: view.page_path === '/' ? 'Home' : view.page_path,
         time: getTimeAgo(new Date(view.created_at)),
         location: view.city && view.country ? `${view.city}, ${view.country}` : view.country || 'Unknown',
-        type: 'page_view',
-        timestamp: new Date(view.created_at).getTime()
+        type: 'page_view'
       })) || [];
 
     const recentEvents = events
-      ?.slice(-15)
+      ?.slice(-10)
       .map(event => ({
         action: event.event_type.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
         page: event.page_path || 'Unknown',
         time: getTimeAgo(new Date(event.created_at)),
         location: 'Event', // Events don't have location data
         type: 'event',
-        data: event.event_data,
-        timestamp: new Date(event.created_at).getTime()
+        data: event.event_data
       })) || [];
 
-    // Combine and sort chronologically (newest first, flowing left to right, top to bottom)
+    // Combine and sort recent activity
     const combinedActivity = [...recentPageViews, ...recentEvents]
-      .sort((a, b) => b.timestamp - a.timestamp)
+      .sort((a, b) => new Date(b.time).getTime() - new Date(a.time).getTime())
       .slice(0, 20);
 
     // Event statistics
