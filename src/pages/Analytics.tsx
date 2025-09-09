@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { AnalyticsLogin } from "@/components/AnalyticsLogin";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { 
@@ -20,7 +21,8 @@ import {
   ArrowDownRight,
   Loader2,
   Sun,
-  Moon
+  Moon,
+  LogOut
 } from "lucide-react";
 import { LineChart as RechartsLineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart as RechartsBarChart, Bar } from "recharts";
 import { getAnalyticsStats } from "@/lib/analytics";
@@ -28,6 +30,7 @@ import { getAnalyticsStats } from "@/lib/analytics";
 const Analytics = () => {
   // Don't track visits to the analytics page itself
   
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [timeRange, setTimeRange] = useState("7d");
   const [stats, setStats] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -52,9 +55,31 @@ const Analytics = () => {
   };
 
   useEffect(() => {
-    const selectedRange = timeRanges.find(range => range.value === timeRange);
-    fetchAnalytics(selectedRange?.days || 7);
-  }, [timeRange]);
+    // Check if user is already authenticated
+    const authenticated = sessionStorage.getItem('analytics_authenticated') === 'true';
+    setIsAuthenticated(authenticated);
+  }, []);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      const selectedRange = timeRanges.find(range => range.value === timeRange);
+      fetchAnalytics(selectedRange?.days || 7);
+    }
+  }, [timeRange, isAuthenticated]);
+
+  const handleAuthenticated = () => {
+    setIsAuthenticated(true);
+  };
+
+  const handleLogout = () => {
+    sessionStorage.removeItem('analytics_authenticated');
+    setIsAuthenticated(false);
+  };
+
+  // Show login form if not authenticated
+  if (!isAuthenticated) {
+    return <AnalyticsLogin onAuthenticated={handleAuthenticated} />;
+  }
 
   if (loading) {
     return (
@@ -103,21 +128,32 @@ const Analytics = () => {
               </p>
             </div>
             
-            {/* Time Range Selector */}
-            <div className="mt-6 sm:mt-0">
-            <div className="inline-flex rounded-lg bg-muted p-1">
-              {timeRanges.map((range) => (
-                <Button
-                  key={range.value}
-                  onClick={() => setTimeRange(range.value)}
-                  variant={timeRange === range.value ? "default" : "ghost"}
-                  size="sm"
-                  className="font-modern"
-                >
-                  {range.label}
-                </Button>
-              ))}
-            </div>
+            <div className="flex items-center gap-4 mt-6 sm:mt-0">
+              {/* Time Range Selector */}
+              <div className="inline-flex rounded-lg bg-muted p-1">
+                {timeRanges.map((range) => (
+                  <Button
+                    key={range.value}
+                    onClick={() => setTimeRange(range.value)}
+                    variant={timeRange === range.value ? "default" : "ghost"}
+                    size="sm"
+                    className="font-modern"
+                  >
+                    {range.label}
+                  </Button>
+                ))}
+              </div>
+              
+              {/* Logout Button */}
+              <Button
+                onClick={handleLogout}
+                variant="outline"
+                size="sm"
+                className="font-modern flex items-center gap-2"
+              >
+                <LogOut className="h-4 w-4" />
+                Logout
+              </Button>
             </div>
           </div>
 
