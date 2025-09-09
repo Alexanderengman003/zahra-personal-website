@@ -43,8 +43,8 @@ export default function ProtectedAnalytics({ onClose }: ProtectedAnalyticsProps)
     return (
       <div className="min-h-screen bg-background border border-border rounded-lg m-4 overflow-hidden">
         <div className="flex justify-between items-center p-6 border-b border-border bg-card">
-          <h1 className="text-2xl font-bold">Analytics Dashboard</h1>
-          <div className="flex items-center gap-4">
+          <h1 className="text-2xl font-bold hidden sm:block">Analytics Dashboard</h1>
+          <div className="flex items-center gap-4 sm:ml-auto">
             <ThemeToggle />
             <Button onClick={handleLogout} variant="outline" className="flex items-center gap-2">
               <LogOut className="h-4 w-4" />
