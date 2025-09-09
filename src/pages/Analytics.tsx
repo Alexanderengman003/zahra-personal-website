@@ -381,66 +381,34 @@ const Analytics = () => {
               </CardHeader>
               <CardContent>
                 {stats.recentActivity && stats.recentActivity.length > 0 ? (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {/* First Column */}
-                    <div className="space-y-4">
-                      {stats.recentActivity.slice(0, 10).map((activity: any, index: number) => (
-                        <div key={index} className="flex items-start space-x-3">
-                          <div className={`w-2 h-2 rounded-full mt-2 flex-shrink-0 ${
-                            activity.type === 'event' ? 'bg-green-500' : 'bg-primary'
-                          }`} />
-                          <div className="flex-1 min-w-0">
-                            <div className="flex items-center space-x-2">
-                              <Badge 
-                                variant={activity.type === 'event' ? 'default' : 'secondary'} 
-                                className="text-xs font-modern"
-                              >
-                                {activity.action}
-                              </Badge>
-                              <span className="text-sm font-medium font-modern">{activity.page}</span>
-                            </div>
-                            <div className="text-xs text-muted-foreground mt-1">
-                              {activity.type === 'event' ? 'User Interaction' : activity.location} • {activity.time}
-                            </div>
-                            {activity.data && (
-                              <div className="text-xs text-muted-foreground mt-1 opacity-75">
-                                {activity.data.source && `Source: ${activity.data.source}`}
-                              </div>
-                            )}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                    {stats.recentActivity.map((activity: any, index: number) => (
+                      <div key={index} className="flex items-start space-x-2">
+                        <div className={`w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0 ${
+                          activity.type === 'event' ? 'bg-green-500' : 'bg-primary'
+                        }`} />
+                        <div className="flex-1 min-w-0">
+                          <div className="space-y-1">
+                            <Badge 
+                              variant={activity.type === 'event' ? 'default' : 'secondary'} 
+                              className="text-[10px] font-modern px-1 py-0.5 h-auto"
+                            >
+                              {activity.action}
+                            </Badge>
+                            <p className="text-xs font-medium font-modern truncate">{activity.page}</p>
                           </div>
-                        </div>
-                      ))}
-                    </div>
-                    
-                    {/* Second Column */}
-                    <div className="space-y-4">
-                      {stats.recentActivity.slice(10, 20).map((activity: any, index: number) => (
-                        <div key={index + 10} className="flex items-start space-x-3">
-                          <div className={`w-2 h-2 rounded-full mt-2 flex-shrink-0 ${
-                            activity.type === 'event' ? 'bg-green-500' : 'bg-primary'
-                          }`} />
-                          <div className="flex-1 min-w-0">
-                            <div className="flex items-center space-x-2">
-                              <Badge 
-                                variant={activity.type === 'event' ? 'default' : 'secondary'} 
-                                className="text-xs font-modern"
-                              >
-                                {activity.action}
-                              </Badge>
-                              <span className="text-sm font-medium font-modern">{activity.page}</span>
-                            </div>
-                            <div className="text-xs text-muted-foreground mt-1">
-                              {activity.type === 'event' ? 'User Interaction' : activity.location} • {activity.time}
-                            </div>
-                            {activity.data && (
-                              <div className="text-xs text-muted-foreground mt-1 opacity-75">
-                                {activity.data.source && `Source: ${activity.data.source}`}
-                              </div>
-                            )}
+                          <div className="text-[10px] text-muted-foreground mt-1 leading-tight">
+                            <div className="truncate">{activity.type === 'event' ? 'User Interaction' : activity.location}</div>
+                            <div className="truncate">{activity.time}</div>
                           </div>
+                          {activity.data && (
+                            <div className="text-[10px] text-muted-foreground mt-1 opacity-75 truncate">
+                              {activity.data.source && `Source: ${activity.data.source}`}
+                            </div>
+                          )}
                         </div>
-                      ))}
-                    </div>
+                      </div>
+                    ))}
                   </div>
                 ) : (
                   <div className="text-center py-8 text-muted-foreground font-modern">
