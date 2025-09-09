@@ -374,48 +374,81 @@ const Analytics = () => {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Recent Activity */}
-            <Card className="card-gradient">
+            <Card className="card-gradient lg:col-span-2">
               <CardHeader>
                 <CardTitle className="font-modern">Recent Activity</CardTitle>
                 <CardDescription className="font-modern">Latest visitor interactions</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
-                  {stats.recentActivity && stats.recentActivity.length > 0 ? (
-                    stats.recentActivity.map((activity: any, index: number) => (
-                      <div key={index} className="flex items-start space-x-3">
-                        <div className={`w-2 h-2 rounded-full mt-2 flex-shrink-0 ${
-                          activity.type === 'event' ? 'bg-green-500' : 'bg-primary'
-                        }`} />
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center space-x-2">
-                            <Badge 
-                              variant={activity.type === 'event' ? 'default' : 'secondary'} 
-                              className="text-xs font-modern"
-                            >
-                              {activity.action}
-                            </Badge>
-                            <span className="text-sm font-medium font-modern">{activity.page}</span>
-                          </div>
-                          <div className="text-xs text-muted-foreground mt-1">
-                            {activity.type === 'event' ? 'User Interaction' : activity.location} • {activity.time}
-                          </div>
-                          {activity.data && (
-                            <div className="text-xs text-muted-foreground mt-1 opacity-75">
-                              {activity.data.source && `Source: ${activity.data.source}`}
+                {stats.recentActivity && stats.recentActivity.length > 0 ? (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* First Column */}
+                    <div className="space-y-4">
+                      {stats.recentActivity.slice(0, 10).map((activity: any, index: number) => (
+                        <div key={index} className="flex items-start space-x-3">
+                          <div className={`w-2 h-2 rounded-full mt-2 flex-shrink-0 ${
+                            activity.type === 'event' ? 'bg-green-500' : 'bg-primary'
+                          }`} />
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center space-x-2">
+                              <Badge 
+                                variant={activity.type === 'event' ? 'default' : 'secondary'} 
+                                className="text-xs font-modern"
+                              >
+                                {activity.action}
+                              </Badge>
+                              <span className="text-sm font-medium font-modern">{activity.page}</span>
                             </div>
-                          )}
+                            <div className="text-xs text-muted-foreground mt-1">
+                              {activity.type === 'event' ? 'User Interaction' : activity.location} • {activity.time}
+                            </div>
+                            {activity.data && (
+                              <div className="text-xs text-muted-foreground mt-1 opacity-75">
+                                {activity.data.source && `Source: ${activity.data.source}`}
+                              </div>
+                            )}
+                          </div>
                         </div>
-                      </div>
-                    ))
-                  ) : (
-                    <div className="text-center py-8 text-muted-foreground font-modern">
-                      <Eye className="h-8 w-8 mx-auto mb-2 opacity-50" />
-                      <p>No recent activity</p>
-                      <p className="text-xs mt-1">Activity will appear here once visitors browse your site</p>
+                      ))}
                     </div>
-                  )}
-                </div>
+                    
+                    {/* Second Column */}
+                    <div className="space-y-4">
+                      {stats.recentActivity.slice(10, 20).map((activity: any, index: number) => (
+                        <div key={index + 10} className="flex items-start space-x-3">
+                          <div className={`w-2 h-2 rounded-full mt-2 flex-shrink-0 ${
+                            activity.type === 'event' ? 'bg-green-500' : 'bg-primary'
+                          }`} />
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center space-x-2">
+                              <Badge 
+                                variant={activity.type === 'event' ? 'default' : 'secondary'} 
+                                className="text-xs font-modern"
+                              >
+                                {activity.action}
+                              </Badge>
+                              <span className="text-sm font-medium font-modern">{activity.page}</span>
+                            </div>
+                            <div className="text-xs text-muted-foreground mt-1">
+                              {activity.type === 'event' ? 'User Interaction' : activity.location} • {activity.time}
+                            </div>
+                            {activity.data && (
+                              <div className="text-xs text-muted-foreground mt-1 opacity-75">
+                                {activity.data.source && `Source: ${activity.data.source}`}
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <div className="text-center py-8 text-muted-foreground font-modern">
+                    <Eye className="h-8 w-8 mx-auto mb-2 opacity-50" />
+                    <p>No recent activity</p>
+                    <p className="text-xs mt-1">Activity will appear here once visitors browse your site</p>
+                  </div>
+                )}
               </CardContent>
             </Card>
 

@@ -306,7 +306,7 @@ export const getAnalyticsStats = async (days: number = 7) => {
     // Combine and sort recent activity
     const combinedActivity = [...recentPageViews, ...recentEvents]
       .sort((a, b) => new Date(b.time).getTime() - new Date(a.time).getTime())
-      .slice(0, 10);
+      .slice(0, 20);
 
     // Event statistics
     const eventStats = events?.reduce((acc: any, event) => {
