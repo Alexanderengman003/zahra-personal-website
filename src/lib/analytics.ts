@@ -171,31 +171,37 @@ export const trackEvent = async (eventType: string, eventData?: any, pagePath?: 
 
 // Analytics data fetching functions
 export const getAnalyticsStats = async (days: number = 7) => {
+  const shouldFilterByDate = days > 0;
   const startDate = new Date();
-  startDate.setDate(startDate.getDate() - days);
+  if (shouldFilterByDate) {
+    startDate.setDate(startDate.getDate() - days);
+  }
 
   try {
     // Get total page views
-    const { data: pageViews, error: pvError } = await supabase
-      .from('analytics_page_views')
-      .select('*')
-      .gte('created_at', startDate.toISOString());
+    let pageViewsQuery = supabase.from('analytics_page_views').select('*');
+    if (shouldFilterByDate) {
+      pageViewsQuery = pageViewsQuery.gte('created_at', startDate.toISOString());
+    }
+    const { data: pageViews, error: pvError } = await pageViewsQuery;
 
     if (pvError) throw pvError;
 
     // Get unique sessions
-    const { data: sessions, error: sessionsError } = await supabase
-      .from('analytics_sessions')
-      .select('*')
-      .gte('first_visit_at', startDate.toISOString());
+    let sessionsQuery = supabase.from('analytics_sessions').select('*');
+    if (shouldFilterByDate) {
+      sessionsQuery = sessionsQuery.gte('first_visit_at', startDate.toISOString());
+    }
+    const { data: sessions, error: sessionsError } = await sessionsQuery;
 
     if (sessionsError) throw sessionsError;
 
     // Get events for theme tracking
-    const { data: events, error: eventsError } = await supabase
-      .from('analytics_events')
-      .select('*')
-      .gte('created_at', startDate.toISOString());
+    let eventsQuery = supabase.from('analytics_events').select('*');
+    if (shouldFilterByDate) {
+      eventsQuery = eventsQuery.gte('created_at', startDate.toISOString());
+    }
+    const { data: events, error: eventsError } = await eventsQuery;
 
     if (eventsError) throw eventsError;
 

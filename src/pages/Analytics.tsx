@@ -36,7 +36,8 @@ const Analytics = () => {
     { value: "1d", label: "24h", days: 1 },
     { value: "7d", label: "7 days", days: 7 },
     { value: "30d", label: "30 days", days: 30 },
-    { value: "90d", label: "90 days", days: 90 }
+    { value: "90d", label: "90 days", days: 90 },
+    { value: "all", label: "All data", days: 0 }
   ];
 
   const fetchAnalytics = async (days: number) => {
