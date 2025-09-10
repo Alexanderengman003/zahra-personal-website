@@ -37,6 +37,8 @@ const Analytics = () => {
     { value: "7d", label: "7 days", days: 7 },
     { value: "30d", label: "30 days", days: 30 },
     { value: "90d", label: "90 days", days: 90 },
+    { value: "180d", label: "6 months", days: 180 },
+    { value: "365d", label: "1 year", days: 365 },
     { value: "all", label: "All data", days: 0 }
   ];
 
