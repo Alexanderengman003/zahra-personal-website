@@ -35,7 +35,7 @@ const professionalRoles = [
   },
   {
     id: 3,
-    title: "Technical sales and business development",
+    title: "Application Specialist",
     company: "Ascilion AB",
     location: "Stockholm, SWEDEN",
     period: "January 2024 – October 2024",
@@ -43,7 +43,7 @@ const professionalRoles = [
     technologies: ["R&D", "Medical Devices", "ISO 13485", "IEC 60601-1", "IEC 62304"],
     achievements: [
       "R&D and product development/design",
-      "Customer relations and business development",
+      "Technical sales and business development",
       "Medical device product development (ISO 13485, IEC 60601-1, IEC 62304)"
     ],
     area: "Engineering,Sales"
