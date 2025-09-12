@@ -108,14 +108,14 @@ const Analytics = () => {
             
             {/* Time Range Selector */}
             <div className="mt-6 sm:mt-0">
-            <div className="inline-flex rounded-lg bg-muted p-1">
+            <div className="flex flex-wrap gap-2 sm:inline-flex sm:rounded-lg sm:bg-muted sm:p-1">
               {timeRanges.map((range) => (
                 <Button
                   key={range.value}
                   onClick={() => setTimeRange(range.value)}
                   variant={timeRange === range.value ? "default" : "ghost"}
                   size="sm"
-                  className="font-modern"
+                  className="font-modern text-xs sm:text-sm"
                 >
                   {range.label}
                 </Button>

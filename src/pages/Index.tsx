@@ -95,8 +95,8 @@ const Index = () => {
       <main>
         <Hero />
         <About />
-        <Projects />
         <Professional />
+        <Projects />
         <Skills />
         <Education />
         <Contact />
@@ -107,7 +107,7 @@ const Index = () => {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="text-center">
             <p className="text-sm text-muted-foreground">
-              © 2025 Alexander Engman.
+              © 2025 Alexander Engman
             </p>
             <div className="mt-4 flex justify-center space-x-6">
               <a

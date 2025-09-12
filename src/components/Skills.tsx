@@ -18,8 +18,8 @@ const itSkills = [
   { name: "Arduino", value: 90 },
   { name: "C++", value: 80 },
   { name: "C#/.NET", value: 75 },
-  { name: "Python", value: 70 },
-  { name: "Altium Designer", value: 70 },
+  { name: "Python", value: 50 },
+  { name: "Altium Designer", value: 40 },
   { name: "SolidWorks", value: 25 }
 ];
 

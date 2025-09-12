@@ -31,11 +31,11 @@ const professionalRoles = [
       "Electrical design and rapid prototyping for product development",
       "Technical sales and customer support"
     ],
-    area: "Engineering"
+    area: "Engineering,Sales"
   },
   {
     id: 3,
-    title: "Application Specialist",
+    title: "Technical sales and business development",
     company: "Ascilion AB",
     location: "Stockholm, SWEDEN",
     period: "January 2024 – October 2024",
@@ -46,7 +46,7 @@ const professionalRoles = [
       "Customer relations and business development",
       "Medical device product development (ISO 13485, IEC 60601-1, IEC 62304)"
     ],
-    area: "Engineering"
+    area: "Engineering,Sales"
   },
   {
     id: 4,
@@ -87,7 +87,7 @@ export function Professional() {
   const areas = ["All", "Engineering", "Sales"];
   const filteredRoles = selectedArea === "All" 
     ? professionalRoles 
-    : professionalRoles.filter(role => role.area === selectedArea);
+    : professionalRoles.filter(role => role.area.includes(selectedArea));
 
   return (
     <section id="professional" className="py-16 bg-background">
@@ -171,7 +171,7 @@ export function Professional() {
 
                 {/* Technologies */}
                 <div className="mb-6">
-                  <h4 className="text-sm font-semibold text-foreground mb-3">Technologies Used</h4>
+                  <h4 className="text-sm font-semibold text-foreground mb-3">Skills Used</h4>
                   <div className="flex flex-wrap gap-2">
                     {role.technologies.map((tech) => (
                       <span
