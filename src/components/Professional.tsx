@@ -145,20 +145,19 @@ export function Professional() {
                     </div>
                   )}
                   <div>
-                    <h3 className="text-xl font-semibold text-foreground mb-2 leading-tight">
+                    <h3 className="text-xl font-semibold text-foreground mb-2 leading-tight flex items-center gap-2">
                       {role.title}
+                      {role.company === "Ascilion AB" && (
+                        <img 
+                          src={ascilionLogo} 
+                          alt="Ascilion" 
+                          className="h-5 w-5 rounded-sm"
+                        />
+                      )}
                     </h3>
                     <div className="flex flex-col gap-2 text-muted-foreground">
                       <div className="flex items-center gap-2">
-                        {role.company === "Ascilion AB" ? (
-                          <img 
-                            src={ascilionLogo} 
-                            alt="Ascilion" 
-                            className="h-4 w-4 rounded-sm"
-                          />
-                        ) : (
-                          <Building className="h-4 w-4" />
-                        )}
+                        <Building className="h-4 w-4" />
                         <span className="text-sm font-medium">{role.company}</span>
                       </div>
                       <div className="flex items-center gap-2">
