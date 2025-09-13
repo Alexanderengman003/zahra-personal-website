@@ -90,6 +90,16 @@ export default {
             boxShadow: "0 0 30px hsl(221 83% 53% / 0.6)" 
           }
         },
+        "slide-fade": {
+          "0%": {
+            opacity: "0",
+            transform: "translateX(-20px)"
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateX(0)"
+          }
+        },
         "accordion-down": {
           from: {
             height: "0",
@@ -113,6 +123,7 @@ export default {
         "slide-in-right": "slide-in-right 0.5s ease-out",
         "float": "float 6s ease-in-out infinite",
         "pulse-glow": "pulse-glow 2s ease-in-out infinite",
+        "slide-fade": "slide-fade 0.4s ease-out",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
