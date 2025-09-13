@@ -146,7 +146,6 @@ export function Professional() {
                   )}
                   <div>
                     <h3 className="text-xl font-semibold text-foreground mb-2 leading-tight flex items-center gap-2">
-                      {role.title}
                       {role.company === "Ascilion AB" && (
                         <img 
                           src={ascilionLogo} 
@@ -154,6 +153,7 @@ export function Professional() {
                           className="h-5 w-5 rounded-sm"
                         />
                       )}
+                      {role.title}
                     </h3>
                     <div className="flex flex-col gap-2 text-muted-foreground">
                       <div className="flex items-center gap-2">
