@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useTrackEvent } from "@/hooks/useTrackEvent";
 import ascilionLogo from "@/assets/ascilion-logo.png";
 import brightDayGrapheneLogo from "@/assets/bright-day-graphene-logo.png";
+import exegerLogo from "@/assets/exeger-logo.png";
 
 const professionalRoles = [
   {
@@ -159,6 +160,13 @@ export function Professional() {
                           src={brightDayGrapheneLogo} 
                           alt="Bright Day Graphene" 
                           className="h-5 w-5 rounded-sm"
+                        />
+                      )}
+                      {role.company === "Exeger Operations AB" && (
+                        <img 
+                          src={exegerLogo} 
+                          alt="Exeger" 
+                          className="h-5 w-5 rounded-sm dark:invert"
                         />
                       )}
                       {role.title}
