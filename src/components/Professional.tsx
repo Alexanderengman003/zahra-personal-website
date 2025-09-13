@@ -2,6 +2,7 @@ import { MapPin, Calendar, Building } from "lucide-react";
 import { useState } from "react";
 import { useTrackEvent } from "@/hooks/useTrackEvent";
 import ascilionLogo from "@/assets/ascilion-logo.png";
+import brightDayGrapheneLogo from "@/assets/bright-day-graphene-logo.png";
 
 const professionalRoles = [
   {
@@ -150,6 +151,13 @@ export function Professional() {
                         <img 
                           src={ascilionLogo} 
                           alt="Ascilion" 
+                          className="h-5 w-5 rounded-sm"
+                        />
+                      )}
+                      {role.company === "Bright Day Graphene AB" && (
+                        <img 
+                          src={brightDayGrapheneLogo} 
+                          alt="Bright Day Graphene" 
                           className="h-5 w-5 rounded-sm"
                         />
                       )}
