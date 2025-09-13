@@ -1,6 +1,7 @@
 import { MapPin, Calendar, Building } from "lucide-react";
 import { useState } from "react";
 import { useTrackEvent } from "@/hooks/useTrackEvent";
+import ascilionLogo from "@/assets/ascilion-logo.png";
 
 const professionalRoles = [
   {
@@ -149,7 +150,15 @@ export function Professional() {
                     </h3>
                     <div className="flex flex-col gap-2 text-muted-foreground">
                       <div className="flex items-center gap-2">
-                        <Building className="h-4 w-4" />
+                        {role.company === "Ascilion AB" ? (
+                          <img 
+                            src={ascilionLogo} 
+                            alt="Ascilion" 
+                            className="h-4 w-4 rounded-sm"
+                          />
+                        ) : (
+                          <Building className="h-4 w-4" />
+                        )}
                         <span className="text-sm font-medium">{role.company}</span>
                       </div>
                       <div className="flex items-center gap-2">
