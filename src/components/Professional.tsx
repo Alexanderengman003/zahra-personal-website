@@ -4,6 +4,7 @@ import { useTrackEvent } from "@/hooks/useTrackEvent";
 import ascilionLogo from "@/assets/ascilion-logo.png";
 import brightDayGrapheneLogo from "@/assets/bright-day-graphene-logo.png";
 import exegerLogo from "@/assets/exeger-logo.png";
+import ebvLogo from "@/assets/ebv-logo.png";
 
 const professionalRoles = [
   {
@@ -148,6 +149,13 @@ export function Professional() {
                   )}
                   <div>
                     <h3 className="text-xl font-semibold text-foreground mb-2 leading-tight flex items-center gap-2">
+                      {role.company === "EBV Elektronik" && (
+                        <img 
+                          src={ebvLogo} 
+                          alt="EBV Elektronik" 
+                          className="h-5 w-5 rounded-sm"
+                        />
+                      )}
                       {role.company === "Ascilion AB" && (
                         <img 
                           src={ascilionLogo} 
