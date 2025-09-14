@@ -214,9 +214,6 @@ export function Projects() {
                           {project.title}
                         </h3>
                       </div>
-                      <span className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded-full">
-                        {project.category}
-                      </span>
                     </div>
                     
                     {project.date && (
@@ -294,9 +291,6 @@ export function Projects() {
                           </div>
                         </div>
                       </div>
-                      <span className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded-full self-start">
-                        {project.category}
-                      </span>
                     </div>
                   </>
                 )}
