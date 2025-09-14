@@ -176,10 +176,18 @@ export function Education() {
                           onClick={() => track('institution_name_click', { institution: edu.school, source: 'education_section' })}
                           className="text-sm font-medium hover:text-primary transition-colors cursor-pointer inline-flex items-center gap-1"
                         >
+                          <Building className="h-3 w-3" />
                           {edu.school}
                           <ExternalLinkIcon className="h-3 w-3" />
                         </a>
-                        <span className="text-sm">{edu.period}</span>
+                        <div className="flex items-center gap-1">
+                          <MapPin className="h-3 w-3" />
+                          <span className="text-sm">{edu.location}</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <Calendar className="h-3 w-3" />
+                          <span className="text-sm">{edu.period}</span>
+                        </div>
                       </div>
                     </div>
                   </div>

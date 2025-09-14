@@ -419,10 +419,18 @@ export function Professional() {
                           onClick={() => track('company_name_click', { company: role.company, source: 'professional_section' })}
                           className="text-sm font-medium hover:text-primary transition-colors cursor-pointer inline-flex items-center gap-1"
                         >
+                          <Building className="h-3 w-3" />
                           {role.company}
                           <ExternalLinkIcon className="h-3 w-3" />
                         </a>
-                        <span className="text-sm">{role.period}</span>
+                        <div className="flex items-center gap-1">
+                          <MapPin className="h-3 w-3" />
+                          <span className="text-sm">{role.location}</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <Calendar className="h-3 w-3" />
+                          <span className="text-sm">{role.period}</span>
+                        </div>
                       </div>
                     </div>
                   </div>

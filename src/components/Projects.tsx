@@ -280,10 +280,18 @@ export function Projects() {
                             onClick={() => track('institution_name_click', { institution: project.institution, source: 'projects_section' })}
                             className="text-sm font-medium hover:text-primary transition-colors cursor-pointer inline-flex items-center gap-1"
                           >
+                            <Building className="h-3 w-3" />
                             {project.institution}
                             <ExternalLinkIcon className="h-3 w-3" />
                           </a>
-                          <span className="text-sm">{project.date}</span>
+                          <div className="flex items-center gap-1">
+                            <MapPin className="h-3 w-3" />
+                            <span className="text-sm">{project.location}</span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <Calendar className="h-3 w-3" />
+                            <span className="text-sm">{project.date}</span>
+                          </div>
                         </div>
                       </div>
                       <span className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded-full self-start">
