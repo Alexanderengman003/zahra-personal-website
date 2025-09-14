@@ -81,7 +81,7 @@ export function Education() {
             {education.map((edu, index) => (
               <div
                 key={edu.id}
-                className={`card-gradient ${viewMode === 'card' ? 'rounded-xl p-6' : 'rounded-xl p-6'} shadow-medium hover-lift ${viewMode === 'card' ? 'h-full flex flex-col' : ''}`}
+                className={`card-gradient rounded-xl shadow-medium hover-lift ${viewMode === 'card' ? 'h-full flex flex-col px-8 py-6' : 'p-6'}`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 {viewMode === 'card' ? (
@@ -153,20 +153,7 @@ export function Education() {
                   // List View - Basic Information Only
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between">
                     <div className="flex-1">
-                      <h4 className="text-lg font-semibold text-foreground mb-1 leading-tight flex items-center gap-2">
-                        <a 
-                          href="https://www.kth.se/"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={() => track('institution_logo_click', { institution: 'KTH', source: 'education_section' })}
-                          className="hover:opacity-80 transition-opacity"
-                        >
-                          <img 
-                            src={kthLogo} 
-                            alt="KTH Royal Institute of Technology" 
-                            className="h-4 w-4 rounded-sm"
-                          />
-                        </a>
+                      <h4 className="text-lg font-semibold text-foreground mb-1 leading-tight">
                         {edu.degree}
                       </h4>
                       <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 text-muted-foreground">
