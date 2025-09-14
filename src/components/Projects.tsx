@@ -152,7 +152,7 @@ export function Projects() {
           {filteredProjects.map((project, index) => (
             <div
               key={project.id}
-              className={`card-gradient rounded-xl shadow-medium hover-lift group ${viewMode === 'card' ? 'h-full flex flex-col overflow-hidden px-8 py-6' : 'p-8'}`}
+              className={`card-gradient rounded-xl shadow-medium hover-lift group ${viewMode === 'card' ? 'h-full flex flex-col overflow-hidden px-4 py-6' : 'p-4'}`}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {viewMode === 'card' && (
