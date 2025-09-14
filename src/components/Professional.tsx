@@ -254,35 +254,33 @@ export function Professional() {
                           )}
                           {role.title}
                         </h3>
-                        <div className="flex flex-col gap-2 text-muted-foreground">
-                          <div className="flex items-center gap-2">
-                            <Building className="h-4 w-4" />
-                            <a 
-                              href={
-                                role.company === "EBV Elektronik" ? "https://my.avnet.com/ebv/" :
-                                role.company === "Ascilion AB" ? "https://www.ascilion.com/" :
-                                role.company === "Bright Day Graphene AB" ? "https://www.brightdaygraphene.se/" :
-                                role.company === "Exeger Operations AB" ? "https://www.exeger.com/" :
-                                "#"
-                              }
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              onClick={() => track('company_name_click', { company: role.company, source: 'professional_section' })}
-                              className="text-sm font-medium hover:text-primary transition-colors cursor-pointer inline-flex items-center gap-1"
-                            >
-                              {role.company}
-                              <ExternalLinkIcon className="h-3 w-3" />
-                            </a>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <MapPin className="h-4 w-4" />
-                            <span className="text-sm">{role.location}</span>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <Calendar className="h-4 w-4" />
-                            <span className="text-sm">{role.period}</span>
-                          </div>
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 text-muted-foreground">
+                        <a 
+                          href={
+                            role.company === "EBV Elektronik" ? "https://my.avnet.com/ebv/" :
+                            role.company === "Ascilion AB" ? "https://www.ascilion.com/" :
+                            role.company === "Bright Day Graphene AB" ? "https://www.brightdaygraphene.se/" :
+                            role.company === "Exeger Operations AB" ? "https://www.exeger.com/" :
+                            "#"
+                          }
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={() => track('company_name_click', { company: role.company, source: 'professional_section' })}
+                          className="text-sm font-medium hover:text-primary transition-colors cursor-pointer inline-flex items-center gap-1"
+                        >
+                          <Building className="h-3 w-3" />
+                          {role.company}
+                          <ExternalLinkIcon className="h-3 w-3" />
+                        </a>
+                        <div className="flex items-center gap-1">
+                          <MapPin className="h-3 w-3" />
+                          <span className="text-sm">{role.location}</span>
                         </div>
+                        <div className="flex items-center gap-1">
+                          <Calendar className="h-3 w-3" />
+                          <span className="text-sm">{role.period}</span>
+                        </div>
+                      </div>
                       </div>
                     </div>
 

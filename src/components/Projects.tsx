@@ -80,28 +80,28 @@ export function Projects() {
 
         <div className="mx-auto max-w-7xl">
           <div className="flex items-center justify-between mb-8">
-            <div className="flex items-center gap-3">
-              <div className="flex flex-wrap justify-center gap-2">
-                {categories.map((category) => (
-                  <Button
-                    key={category}
-                    variant={selectedCategory === category ? "default" : "outline"}
-                    size="sm"
-                    onClick={() => {
-                      track('project_filter_click', { 
-                        category, 
-                        source: 'projects_section',
-                        timestamp: Date.now(),
-                        userAgent: navigator.userAgent 
-                      });
-                      setSelectedCategory(category);
-                    }}
-                    className="transition-all duration-300"
-                  >
-                    {category}
-                  </Button>
-                ))}
-              </div>
+            <div className="inline-flex rounded-lg bg-muted p-1">
+              {categories.map((category) => (
+                <button
+                  key={category}
+                  onClick={() => {
+                    track('project_filter_click', { 
+                      category, 
+                      source: 'projects_section',
+                      timestamp: Date.now(),
+                      userAgent: navigator.userAgent 
+                    });
+                    setSelectedCategory(category);
+                  }}
+                  className={`px-4 py-2 text-sm font-medium rounded-md transition-all ${
+                    selectedCategory === category
+                      ? "bg-background text-foreground shadow-sm"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  {category}
+                </button>
+              ))}
             </div>
             
             <div className="inline-flex rounded-lg bg-muted p-1">
