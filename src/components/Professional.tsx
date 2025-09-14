@@ -389,7 +389,7 @@ export function Professional() {
                         )}
                         {role.title}
                       </h3>
-                      <div className="flex flex-col sm:grid sm:grid-cols-3 gap-1 sm:gap-4 text-muted-foreground">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 text-muted-foreground">
                         <a 
                           href={
                             role.company === "EBV Elektronik" ? "https://my.avnet.com/ebv/" :
@@ -401,13 +401,13 @@ export function Professional() {
                           target="_blank"
                           rel="noopener noreferrer"
                           onClick={() => track('company_name_click', { company: role.company, source: 'professional_section' })}
-                          className="text-sm font-medium hover:text-primary transition-colors cursor-pointer inline-flex items-center gap-1 sm:w-48"
+                          className="text-sm font-medium hover:text-primary transition-colors cursor-pointer inline-flex items-center gap-1"
                         >
                           <Building className="h-3 w-3" />
                           {role.company}
                           <ExternalLinkIcon className="h-3 w-3" />
                         </a>
-                        <div className="flex items-center gap-1 sm:w-40">
+                        <div className="flex items-center gap-1">
                           <MapPin className="h-3 w-3" />
                           <span className="text-sm">{role.location}</span>
                         </div>
