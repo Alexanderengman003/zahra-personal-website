@@ -64,12 +64,12 @@ export function Skills() {
           <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
             Skills & Personality
           </h2>
-          <p className="text-lg leading-8 text-muted-foreground">
+          <p className="mt-4 text-lg leading-8 text-muted-foreground">
             A comprehensive overview of my technical abilities, language proficiency, and personality traits.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-16 mt-8">
+        <div className="grid lg:grid-cols-3 gap-16 mt-12">
           {/* Personality Section */}
           <div className="card-gradient rounded-3xl p-8 shadow-large">
             <h3 className="text-2xl font-semibold text-foreground mb-10 text-center">

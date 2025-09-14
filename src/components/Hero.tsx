@@ -109,9 +109,16 @@ export function Hero() {
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <ChevronDown className="h-6 w-6 text-muted-foreground" />
-      </div>
+      <button 
+        onClick={() => {
+          track('scroll_to_bottom_click', { source: 'hero' });
+          document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+        }}
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce hover:scale-110 transition-transform cursor-pointer bg-transparent border-none p-2"
+        aria-label="Scroll to contact section"
+      >
+        <ChevronDown className="h-6 w-6 text-muted-foreground hover:text-primary transition-colors" />
+      </button>
     </section>
   );
 }

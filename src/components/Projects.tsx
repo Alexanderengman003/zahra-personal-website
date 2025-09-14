@@ -72,13 +72,13 @@ export function Projects() {
           <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
             Previous Projects
           </h2>
-          <p className="mt-6 text-lg leading-8 text-muted-foreground">
+          <p className="mt-4 text-lg leading-8 text-muted-foreground">
             Academic research project showcasing expertise in materials science, 
             nanotechnology, and advanced fabrication techniques.
           </p>
         </div>
 
-        <div className="mx-auto max-w-7xl">
+        <div className="mx-auto max-w-7xl mt-12">
           <div className="flex items-center justify-between mb-8">
             <div className="inline-flex rounded-lg bg-muted p-1">
               {categories.map((category) => (
