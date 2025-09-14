@@ -1,4 +1,6 @@
-import { GraduationCap } from "lucide-react";
+import { GraduationCap, Building, MapPin, Calendar } from "lucide-react";
+import { useTrackEvent } from "@/hooks/useTrackEvent";
+import kthLogo from "@/assets/kth-logo.png";
 
 const education = [
   {
@@ -22,6 +24,7 @@ const education = [
 ];
 
 export function Education() {
+  const { track } = useTrackEvent();
   return (
     <section id="education" className="py-16 bg-secondary/30">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -48,15 +51,45 @@ export function Education() {
                 className="card-gradient rounded-xl p-6 shadow-medium hover-lift"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4 relative">
                   <div>
-                    <h4 className="text-lg font-semibold text-foreground mb-1">
+                    <h4 className="text-lg font-semibold text-foreground mb-2 leading-tight flex items-center gap-2">
+                      <a 
+                        href="https://www.kth.se/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() => track('institution_logo_click', { institution: 'KTH', source: 'education_section' })}
+                        className="hover:opacity-80 transition-opacity"
+                      >
+                        <img 
+                          src={kthLogo} 
+                          alt="KTH Royal Institute of Technology" 
+                          className="h-5 w-5 rounded-sm"
+                        />
+                      </a>
                       {edu.degree}
                     </h4>
-                    <p className="text-primary font-medium">{edu.school}</p>
-                    <div className="flex flex-col gap-1 text-sm text-muted-foreground mt-1">
-                      <span>{edu.location}</span>
-                      <span>{edu.period}</span>
+                    <div className="flex flex-col gap-2 text-muted-foreground">
+                      <div className="flex items-center gap-2">
+                        <Building className="h-4 w-4" />
+                        <a 
+                          href="https://www.kth.se/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={() => track('institution_name_click', { institution: edu.school, source: 'education_section' })}
+                          className="text-sm font-medium hover:text-primary transition-colors cursor-pointer"
+                        >
+                          {edu.school}
+                        </a>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <MapPin className="h-4 w-4" />
+                        <span className="text-sm">{edu.location}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Calendar className="h-4 w-4" />
+                        <span className="text-sm">{edu.period}</span>
+                      </div>
                     </div>
                   </div>
                 </div>

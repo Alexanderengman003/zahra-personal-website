@@ -1,4 +1,4 @@
-import { MapPin, Calendar, Building } from "lucide-react";
+import { MapPin, Calendar, Building, Grid, List } from "lucide-react";
 import { useState } from "react";
 import { useTrackEvent } from "@/hooks/useTrackEvent";
 import ascilionLogo from "@/assets/ascilion-logo.png";
@@ -86,6 +86,7 @@ const professionalRoles = [
 
 export function Professional() {
   const [selectedArea, setSelectedArea] = useState<string>("All");
+  const [viewMode, setViewMode] = useState<"card" | "list">("card");
   const { track } = useTrackEvent();
   
   const areas = ["All", "Engineering", "Sales"];
@@ -106,8 +107,8 @@ export function Professional() {
           </p>
         </div>
 
-        {/* Filter Buttons */}
-        <div className="flex justify-center mb-12">
+        {/* Filter and View Toggle */}
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-12">
           <div className="inline-flex rounded-lg bg-muted p-1">
             {areas.map((area) => (
               <button
@@ -126,63 +127,138 @@ export function Professional() {
               </button>
             ))}
           </div>
+          
+          <div className="inline-flex rounded-lg bg-muted p-1">
+            <button
+              onClick={() => {
+                track('professional_view_toggle', { viewMode: 'card', source: 'professional_section' });
+                setViewMode('card');
+              }}
+              className={`px-3 py-2 text-sm font-medium rounded-md transition-all ${
+                viewMode === 'card'
+                  ? "bg-background text-foreground shadow-sm"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              <Grid className="h-4 w-4" />
+            </button>
+            <button
+              onClick={() => {
+                track('professional_view_toggle', { viewMode: 'list', source: 'professional_section' });
+                setViewMode('list');
+              }}
+              className={`px-3 py-2 text-sm font-medium rounded-md transition-all ${
+                viewMode === 'list'
+                  ? "bg-background text-foreground shadow-sm"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              <List className="h-4 w-4" />
+            </button>
+          </div>
         </div>
 
         {/* Professional Roles */}
         <div className="mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className={viewMode === 'card' ? "grid grid-cols-1 lg:grid-cols-2 gap-8" : "space-y-4"}>
             {filteredRoles.map((role, index) => (
               <div
                 key={role.id}
-                className="card-gradient rounded-2xl pt-12 px-8 pb-8 shadow-medium hover-lift"
+                className={`card-gradient ${viewMode === 'card' ? 'rounded-2xl pt-12 px-8 pb-8' : 'rounded-xl p-6'} shadow-medium hover-lift`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 {/* Role Header */}
-                <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6 relative">
+                <div className={`flex flex-col ${viewMode === 'list' ? 'sm:flex-row sm:items-center sm:justify-between' : 'lg:flex-row lg:items-start lg:justify-between'} mb-6 relative`}>
                   {/* Current Role Badge */}
                   {role.period.includes("Currently ongoing") && (
-                    <div className="absolute -top-8 -right-2 z-10">
+                    <div className={`absolute ${viewMode === 'card' ? '-top-8 -right-2' : '-top-4 -right-2'} z-10`}>
                       <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400">
                         Currently ongoing
                       </span>
                     </div>
                   )}
-                  <div>
-                    <h3 className="text-xl font-semibold text-foreground mb-2 leading-tight flex items-center gap-2">
+                  <div className={viewMode === 'list' ? 'flex-1' : ''}>
+                    <h3 className={`${viewMode === 'card' ? 'text-xl' : 'text-lg'} font-semibold text-foreground mb-2 leading-tight flex items-center gap-2`}>
                       {role.company === "EBV Elektronik" && (
-                        <img 
-                          src={ebvLogo} 
-                          alt="EBV Elektronik" 
-                          className="h-5 w-5 rounded-sm"
-                        />
+                        <a 
+                          href="https://my.avnet.com/ebv/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={() => track('company_logo_click', { company: 'EBV Elektronik', source: 'professional_section' })}
+                          className="hover:opacity-80 transition-opacity"
+                        >
+                          <img 
+                            src={ebvLogo} 
+                            alt="EBV Elektronik" 
+                            className="h-5 w-5 rounded-sm"
+                          />
+                        </a>
                       )}
                       {role.company === "Ascilion AB" && (
-                        <img 
-                          src={ascilionLogo} 
-                          alt="Ascilion" 
-                          className="h-5 w-5 rounded-sm"
-                        />
+                        <a 
+                          href="https://www.ascilion.com/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={() => track('company_logo_click', { company: 'Ascilion AB', source: 'professional_section' })}
+                          className="hover:opacity-80 transition-opacity"
+                        >
+                          <img 
+                            src={ascilionLogo} 
+                            alt="Ascilion" 
+                            className="h-5 w-5 rounded-sm"
+                          />
+                        </a>
                       )}
                       {role.company === "Bright Day Graphene AB" && (
-                        <img 
-                          src={brightDayGrapheneLogo} 
-                          alt="Bright Day Graphene" 
-                          className="h-5 w-5 rounded-sm"
-                        />
+                        <a 
+                          href="https://www.brightdaygraphene.se/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={() => track('company_logo_click', { company: 'Bright Day Graphene AB', source: 'professional_section' })}
+                          className="hover:opacity-80 transition-opacity"
+                        >
+                          <img 
+                            src={brightDayGrapheneLogo} 
+                            alt="Bright Day Graphene" 
+                            className="h-5 w-5 rounded-sm"
+                          />
+                        </a>
                       )}
                       {role.company === "Exeger Operations AB" && (
-                        <img 
-                          src={exegerLogo} 
-                          alt="Exeger" 
-                          className="h-5 w-5 rounded-sm dark:invert"
-                        />
+                        <a 
+                          href="https://www.exeger.com/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={() => track('company_logo_click', { company: 'Exeger Operations AB', source: 'professional_section' })}
+                          className="hover:opacity-80 transition-opacity"
+                        >
+                          <img 
+                            src={exegerLogo} 
+                            alt="Exeger" 
+                            className="h-5 w-5 rounded-sm dark:invert"
+                          />
+                        </a>
                       )}
                       {role.title}
                     </h3>
                     <div className="flex flex-col gap-2 text-muted-foreground">
                       <div className="flex items-center gap-2">
                         <Building className="h-4 w-4" />
-                        <span className="text-sm font-medium">{role.company}</span>
+                        <a 
+                          href={
+                            role.company === "EBV Elektronik" ? "https://my.avnet.com/ebv/" :
+                            role.company === "Ascilion AB" ? "https://www.ascilion.com/" :
+                            role.company === "Bright Day Graphene AB" ? "https://www.brightdaygraphene.se/" :
+                            role.company === "Exeger Operations AB" ? "https://www.exeger.com/" :
+                            "#"
+                          }
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={() => track('company_name_click', { company: role.company, source: 'professional_section' })}
+                          className="text-sm font-medium hover:text-primary transition-colors cursor-pointer"
+                        >
+                          {role.company}
+                        </a>
                       </div>
                       <div className="flex items-center gap-2">
                         <MapPin className="h-4 w-4" />

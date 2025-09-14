@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { ExternalLink, Github, Search, ChevronDown, ChevronUp } from "lucide-react";
+import { ExternalLink, Github, Search, ChevronDown, ChevronUp, Grid, List, MapPin, Calendar, Building } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useTrackEvent } from "@/hooks/useTrackEvent";
 import stretchableImg from "@/assets/stretchable-microsupercapacitors.jpg";
+import kthLogo from "@/assets/kth-logo.png";
 
 const projects = [
   {
@@ -49,6 +50,7 @@ const categories = ["All", "Research"];
 export function Projects() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [viewMode, setViewMode] = useState<"card" | "list">("card");
   const [expandedTechs, setExpandedTechs] = useState<Record<number, boolean>>({});
   const { track } = useTrackEvent();
 
@@ -87,35 +89,66 @@ export function Projects() {
             />
           </div>
 
-          {/* Category Filter */}
-          <div className="mt-6 flex flex-wrap justify-center gap-2">
-            {categories.map((category) => (
-              <Button
-                key={category}
-                variant={selectedCategory === category ? "default" : "outline"}
-                size="sm"
+          {/* Category Filter and View Toggle */}
+          <div className="mt-6 flex flex-col sm:flex-row justify-center items-center gap-4">
+            <div className="flex flex-wrap justify-center gap-2">
+              {categories.map((category) => (
+                <Button
+                  key={category}
+                  variant={selectedCategory === category ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => {
+                    track('project_filter_click', { category, source: 'projects_section' });
+                    setSelectedCategory(category);
+                  }}
+                  className="transition-all duration-300"
+                >
+                  {category}
+                </Button>
+              ))}
+            </div>
+            
+            <div className="inline-flex rounded-lg bg-muted p-1">
+              <button
                 onClick={() => {
-                  track('project_filter_click', { category, source: 'projects_section' });
-                  setSelectedCategory(category);
+                  track('project_view_toggle', { viewMode: 'card', source: 'projects_section' });
+                  setViewMode('card');
                 }}
-                className="transition-all duration-300"
+                className={`px-3 py-2 text-sm font-medium rounded-md transition-all ${
+                  viewMode === 'card'
+                    ? "bg-background text-foreground shadow-sm"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
               >
-                {category}
-              </Button>
-            ))}
+                <Grid className="h-4 w-4" />
+              </button>
+              <button
+                onClick={() => {
+                  track('project_view_toggle', { viewMode: 'list', source: 'projects_section' });
+                  setViewMode('list');
+                }}
+                className={`px-3 py-2 text-sm font-medium rounded-md transition-all ${
+                  viewMode === 'list'
+                    ? "bg-background text-foreground shadow-sm"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                <List className="h-4 w-4" />
+              </button>
+            </div>
           </div>
         </div>
 
-        {/* Projects Grid */}
-        <div className="mx-auto mt-16 grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {/* Projects Grid/List */}
+        <div className={`mx-auto mt-16 max-w-6xl ${viewMode === 'card' ? 'grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3' : 'space-y-4'}`}>
           {filteredProjects.map((project, index) => (
             <div
               key={project.id}
-              className="card-gradient rounded-xl overflow-hidden shadow-medium hover-lift group h-full flex flex-col"
+              className={`card-gradient rounded-xl overflow-hidden shadow-medium hover-lift group ${viewMode === 'card' ? 'h-full flex flex-col' : 'flex flex-col sm:flex-row gap-6'}`}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* Project Image */}
-              <div className="aspect-video bg-muted relative overflow-hidden flex-shrink-0">
+              <div className={`${viewMode === 'card' ? 'aspect-video' : 'w-full sm:w-48 aspect-video sm:aspect-square'} bg-muted relative overflow-hidden flex-shrink-0`}>
                 <img
                   src={project.image}
                   alt={project.title}
@@ -159,27 +192,53 @@ export function Projects() {
               </div>
 
               {/* Project Content */}
-              <div className="p-6 flex flex-col flex-grow">
-                <div className="flex justify-end mb-2">
+              <div className={`p-6 ${viewMode === 'card' ? 'flex flex-col flex-grow' : 'flex-1'}`}>
+                <div className="flex justify-between items-start mb-2">
+                  <div className="flex-1">
+                    <h3 className={`${viewMode === 'card' ? 'text-lg' : 'text-xl'} font-semibold text-foreground group-hover:text-primary transition-colors leading-tight flex items-center gap-2 mb-2`}>
+                      <a 
+                        href="https://www.kth.se/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() => track('institution_logo_click', { institution: 'KTH', source: 'projects_section' })}
+                        className="hover:opacity-80 transition-opacity"
+                      >
+                        <img 
+                          src={kthLogo} 
+                          alt="KTH Royal Institute of Technology" 
+                          className="h-5 w-5 rounded-sm"
+                        />
+                      </a>
+                      {project.title}
+                    </h3>
+                  </div>
                   <span className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded-full">
                     {project.category}
                   </span>
                 </div>
                 
-                <div className="mb-3 min-h-[3.5rem]">
-                  <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors leading-tight">
-                    {project.title}
-                  </h3>
-                </div>
-                
                 {project.date && (
-                  <div className="text-xs text-muted-foreground mb-3 space-y-1">
-                    <p>{project.date}</p>
-                    <p>{project.institution}</p>
+                  <div className="flex flex-col gap-2 text-muted-foreground mb-3">
+                    <div className="flex items-center gap-2">
+                      <Building className="h-4 w-4" />
+                      <a 
+                        href="https://www.kth.se/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() => track('institution_name_click', { institution: project.institution, source: 'projects_section' })}
+                        className="text-sm font-medium hover:text-primary transition-colors cursor-pointer"
+                      >
+                        {project.institution}
+                      </a>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Calendar className="h-4 w-4" />
+                      <span className="text-sm">{project.date}</span>
+                    </div>
                   </div>
                 )}
                 
-                <p className="text-sm text-muted-foreground leading-relaxed mb-4 flex-grow min-h-[5rem]">
+                <p className={`text-sm text-muted-foreground leading-relaxed mb-4 ${viewMode === 'card' ? 'flex-grow min-h-[5rem]' : ''}`}>
                   {project.description}
                 </p>
 
