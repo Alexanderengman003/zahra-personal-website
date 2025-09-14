@@ -1,4 +1,4 @@
-import { MapPin, Calendar, Building, Grid, List } from "lucide-react";
+import { MapPin, Calendar, Building, Grid, List, ExternalLinkIcon } from "lucide-react";
 import { useState } from "react";
 import { useTrackEvent } from "@/hooks/useTrackEvent";
 import ascilionLogo from "@/assets/ascilion-logo.png";
@@ -255,9 +255,10 @@ export function Professional() {
                           target="_blank"
                           rel="noopener noreferrer"
                           onClick={() => track('company_name_click', { company: role.company, source: 'professional_section' })}
-                          className="text-sm font-medium hover:text-primary transition-colors cursor-pointer"
+                          className="text-sm font-medium hover:text-primary transition-colors cursor-pointer inline-flex items-center gap-1"
                         >
                           {role.company}
+                          <ExternalLinkIcon className="h-3 w-3" />
                         </a>
                       </div>
                       <div className="flex items-center gap-2">

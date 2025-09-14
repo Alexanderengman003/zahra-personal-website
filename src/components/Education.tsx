@@ -1,4 +1,4 @@
-import { GraduationCap, Building, MapPin, Calendar } from "lucide-react";
+import { GraduationCap, Building, MapPin, Calendar, ExternalLinkIcon } from "lucide-react";
 import { useTrackEvent } from "@/hooks/useTrackEvent";
 import kthLogo from "@/assets/kth-logo.png";
 
@@ -77,9 +77,10 @@ export function Education() {
                           target="_blank"
                           rel="noopener noreferrer"
                           onClick={() => track('institution_name_click', { institution: edu.school, source: 'education_section' })}
-                          className="text-sm font-medium hover:text-primary transition-colors cursor-pointer"
+                          className="text-sm font-medium hover:text-primary transition-colors cursor-pointer inline-flex items-center gap-1"
                         >
                           {edu.school}
+                          <ExternalLinkIcon className="h-3 w-3" />
                         </a>
                       </div>
                       <div className="flex items-center gap-2">

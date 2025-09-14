@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ExternalLink, Github, Search, ChevronDown, ChevronUp, Grid, List, MapPin, Calendar, Building } from "lucide-react";
+import { ExternalLink, Github, Search, ChevronDown, ChevronUp, Grid, List, MapPin, Calendar, Building, ExternalLinkIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useTrackEvent } from "@/hooks/useTrackEvent";
@@ -54,7 +54,6 @@ export function Projects() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [viewMode, setViewMode] = useState<"card" | "list">("card");
-  const [expandedTechs, setExpandedTechs] = useState<Record<number, boolean>>({});
   const { track } = useTrackEvent();
 
   const filteredProjects = projects.filter(project => {
@@ -216,9 +215,10 @@ export function Projects() {
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={() => track('institution_name_click', { institution: project.institution, source: 'projects_section' })}
-                        className="text-sm font-medium hover:text-primary transition-colors cursor-pointer"
+                        className="text-sm font-medium hover:text-primary transition-colors cursor-pointer inline-flex items-center gap-1"
                       >
                         {project.institution}
+                        <ExternalLinkIcon className="h-3 w-3" />
                       </a>
                     </div>
                     <div className="flex items-center gap-2">
@@ -237,47 +237,17 @@ export function Projects() {
                 </p>
 
                 {/* Technologies */}
-                <div className="flex flex-wrap gap-1 h-12 overflow-hidden mt-auto">
-                  {(expandedTechs[project.id] ? project.technologies : project.technologies.slice(0, 6)).map((tech) => (
-                    <span
-                      key={tech}
-                      className="text-xs font-medium text-muted-foreground bg-secondary px-2 py-1 rounded h-6 flex items-center"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                  {project.technologies.length > 6 && !expandedTechs[project.id] && (
-                    <button
-                      onClick={() => {
-                        track('project_tech_expand', { 
-                          projectTitle: project.title, 
-                          action: 'expand',
-                          source: 'projects_section' 
-                        });
-                        setExpandedTechs(prev => ({ ...prev, [project.id]: !prev[project.id] }));
-                      }}
-                      className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded hover:bg-primary/20 transition-colors flex items-center gap-1 h-6"
-                    >
-                      +{project.technologies.length - 6} more
-                      <ChevronDown className="h-3 w-3" />
-                    </button>
-                  )}
-                  {expandedTechs[project.id] && project.technologies.length > 6 && (
-                    <button
-                      onClick={() => {
-                        track('project_tech_expand', { 
-                          projectTitle: project.title, 
-                          action: 'collapse',
-                          source: 'projects_section' 
-                        });
-                        setExpandedTechs(prev => ({ ...prev, [project.id]: false }));
-                      }}
-                      className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded hover:bg-primary/20 transition-colors flex items-center gap-1 h-6 w-full justify-center mt-1"
-                    >
-                      Show less
-                      <ChevronUp className="h-3 w-3" />
-                    </button>
-                  )}
+                <div className={`${viewMode === 'card' ? 'mt-auto' : ''}`}>
+                  <div className="flex flex-wrap gap-1">
+                    {project.technologies.map((tech) => (
+                      <span
+                        key={tech}
+                        className="text-xs font-medium text-muted-foreground bg-secondary px-2 py-1 rounded h-6 flex items-center"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
 
               </div>
