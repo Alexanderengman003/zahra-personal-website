@@ -251,11 +251,12 @@ export function Projects() {
 
                     {/* Technologies */}
                     <div className="mt-auto">
+                      <h4 className="text-sm font-semibold text-foreground mb-3">Technologies used</h4>
                       <div className="flex flex-wrap gap-1">
                         {project.technologies.map((tech) => (
                           <span
                             key={tech}
-                            className="text-xs font-medium text-muted-foreground bg-secondary px-2 py-1 rounded h-6 flex items-center"
+                            className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary"
                           >
                             {tech}
                           </span>

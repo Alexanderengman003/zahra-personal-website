@@ -153,7 +153,7 @@ export function Education() {
                         {edu.coursework.map((course) => (
                           <span
                             key={course}
-                            className="inline-flex items-center px-2 py-1 rounded text-xs bg-primary/10 text-primary"
+                            className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary"
                           >
                             {course}
                           </span>
