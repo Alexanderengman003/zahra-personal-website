@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -17,46 +17,105 @@ export function MobileMenu() {
     setIsOpen(false);
   };
 
+  // Prevent body scroll when menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
+
   return (
     <div className="lg:hidden">
       <Button
         variant="ghost"
         size="icon"
         onClick={() => setIsOpen(!isOpen)}
-        className="relative z-50"
+        className={`relative z-50 transition-all duration-200 hover:bg-secondary ${
+          isOpen ? 'bg-secondary' : ''
+        }`}
         aria-label="Toggle navigation menu"
       >
-        {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        <div className="relative w-6 h-6">
+          <Menu 
+            className={`h-6 w-6 absolute inset-0 transition-all duration-300 ${
+              isOpen ? 'opacity-0 rotate-45' : 'opacity-100 rotate-0'
+            }`} 
+          />
+          <X 
+            className={`h-6 w-6 absolute inset-0 transition-all duration-300 ${
+              isOpen ? 'opacity-100 rotate-0' : 'opacity-0 -rotate-45'
+            }`} 
+          />
+        </div>
       </Button>
 
       {/* Mobile menu overlay */}
-      {isOpen && (
-        <>
-          {/* Backdrop */}
-          <div 
-            className="fixed inset-0 bg-background/80 backdrop-blur-sm z-40"
-            onClick={() => setIsOpen(false)}
-          />
-          
-          {/* Menu panel */}
-          <div className="fixed top-0 right-0 bottom-0 w-64 bg-card border-l border-border z-50 transform transition-transform duration-300 ease-in-out">
-            <div className="flex flex-col h-full pt-20 px-6">
-              <nav className="flex flex-col space-y-6">
-                {navigation.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    onClick={handleNavClick}
-                    className="text-lg font-medium text-muted-foreground hover:text-foreground transition-colors py-2 border-b border-border/50 last:border-b-0"
-                  >
-                    {item.name}
-                  </a>
+      <div className={`fixed inset-0 z-40 lg:hidden ${isOpen ? 'block' : 'hidden'}`}>
+        {/* Backdrop */}
+        <div 
+          className={`fixed inset-0 bg-black/20 backdrop-blur-sm transition-opacity duration-300 ${
+            isOpen ? 'opacity-100' : 'opacity-0'
+          }`}
+          onClick={() => setIsOpen(false)}
+        />
+        
+        {/* Menu panel */}
+        <div className={`fixed top-0 right-0 bottom-0 w-72 max-w-[85vw] glass border-l border-border/50 transform transition-all duration-300 ease-out ${
+          isOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}>
+          <div className="flex flex-col h-full">
+            {/* Header */}
+            <div className="flex items-center justify-between p-6 border-b border-border/50">
+              <h2 className="text-lg font-semibold text-foreground">Navigation</h2>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsOpen(false)}
+                className="h-8 w-8"
+              >
+                <X className="h-4 w-4" />
+              </Button>
+            </div>
+            
+            {/* Navigation */}
+            <nav className="flex-1 px-6 py-8">
+              <ul className="space-y-2">
+                {navigation.map((item, index) => (
+                  <li key={item.name}>
+                    <a
+                      href={item.href}
+                      onClick={handleNavClick}
+                      className={`flex items-center px-4 py-3 rounded-xl text-foreground font-medium hover:bg-secondary/50 transition-all duration-200 transform hover:translate-x-1 group ${
+                        isOpen ? 'animate-fade-in' : ''
+                      }`}
+                      style={{ animationDelay: `${index * 100}ms` }}
+                    >
+                      <span className="text-muted-foreground mr-3 group-hover:text-primary transition-colors">
+                        •
+                      </span>
+                      {item.name}
+                    </a>
+                  </li>
                 ))}
-              </nav>
+              </ul>
+            </nav>
+
+            {/* Footer */}
+            <div className="p-6 border-t border-border/50">
+              <p className="text-xs text-muted-foreground text-center">
+                Alexander Engman Portfolio
+              </p>
             </div>
           </div>
-        </>
-      )}
+        </div>
+      </div>
     </div>
   );
 }
