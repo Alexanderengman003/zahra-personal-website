@@ -115,7 +115,7 @@ export function Hero() {
           track('scroll_to_bottom_click', { source: 'hero' });
           document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
         }}
-        className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-50 animate-bounce hover:scale-110 transition-transform cursor-pointer bg-transparent border-none p-4 rounded-full hover:bg-primary/10"
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-50 animate-bounce hover:scale-110 transition-transform cursor-pointer bg-transparent border-none p-4 rounded-full hover:bg-primary/10"
         aria-label="Scroll to contact section"
         type="button"
       >
