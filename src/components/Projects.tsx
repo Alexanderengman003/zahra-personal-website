@@ -146,68 +146,58 @@ export function Projects() {
           {filteredProjects.map((project, index) => (
             <div
               key={project.id}
-              className={`card-gradient rounded-xl overflow-hidden shadow-medium hover-lift group ${
-                viewMode === 'card' 
-                  ? 'h-full flex flex-col' 
-                  : 'flex flex-col sm:flex-row gap-4 mx-4 sm:mx-0'
-              }`}
+              className={`card-gradient rounded-xl overflow-hidden shadow-medium hover-lift group ${viewMode === 'card' ? 'h-full flex flex-col' : 'flex flex-col sm:flex-row gap-6'}`}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* Project Image */}
-              <div className={`${
-                viewMode === 'card' 
-                  ? 'aspect-video' 
-                  : 'w-full sm:w-32 aspect-video sm:aspect-square'
-              } bg-muted relative overflow-hidden flex-shrink-0`}>
+              <div className={`${viewMode === 'card' ? 'aspect-video' : 'w-full sm:w-48 aspect-video sm:aspect-square'} bg-muted relative overflow-hidden flex-shrink-0`}>
                 <img
                   src={project.image}
                   alt={project.title}
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-                {viewMode === 'card' && (
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="absolute bottom-4 left-4 right-4 flex gap-2">
-                      {project.githubUrl && (
-                        <Button size="sm" variant="secondary" className="bg-white/20 text-white hover:bg-white/30" asChild>
-                          <a 
-                            href={project.githubUrl} 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            onClick={() => track('project_github_click', { 
-                              projectTitle: project.title, 
-                              source: 'projects_section' 
-                            })}
-                          >
-                            <Github className="h-4 w-4" />
-                          </a>
-                        </Button>
-                      )}
-                      {project.liveUrl && project.id === 1 && (
-                        <Button size="sm" variant="secondary" className="bg-white/20 text-white hover:bg-white/30 flex-1" asChild>
-                          <a 
-                            href={project.liveUrl} 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            onClick={() => track('project_thesis_click', { 
-                              projectTitle: project.title, 
-                              source: 'projects_section' 
-                            })}
-                          >
-                            <ExternalLink className="mr-2 h-3 w-3" />
-                            <span className="text-xs">Read Thesis</span>
-                          </a>
-                        </Button>
-                      )}
-                    </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute bottom-4 left-4 right-4 flex gap-2">
+                    {project.githubUrl && (
+                      <Button size="sm" variant="secondary" className="bg-white/20 text-white hover:bg-white/30" asChild>
+                        <a 
+                          href={project.githubUrl} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          onClick={() => track('project_github_click', { 
+                            projectTitle: project.title, 
+                            source: 'projects_section' 
+                          })}
+                        >
+                          <Github className="h-4 w-4" />
+                        </a>
+                      </Button>
+                    )}
+                    {project.liveUrl && project.id === 1 && (
+                      <Button size="sm" variant="secondary" className="bg-white/20 text-white hover:bg-white/30 flex-1" asChild>
+                        <a 
+                          href={project.liveUrl} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          onClick={() => track('project_thesis_click', { 
+                            projectTitle: project.title, 
+                            source: 'projects_section' 
+                          })}
+                        >
+                          <ExternalLink className="mr-2 h-3 w-3" />
+                          <span className="text-xs">Read Thesis</span>
+                        </a>
+                      </Button>
+                    )}
                   </div>
-                )}
+                </div>
               </div>
 
               {/* Project Content */}
-              <div className={`${viewMode === 'card' ? 'p-6 flex flex-col flex-grow' : 'p-4 flex-1'}`}>
+              <div className={`p-6 ${viewMode === 'card' ? 'flex flex-col flex-grow' : 'flex-1'}`}>
                 <div className="flex justify-between items-start mb-2">
                   <div className="flex-1">
-                    <h3 className={`${viewMode === 'card' ? 'text-lg' : 'text-base'} font-semibold text-foreground group-hover:text-primary transition-colors leading-tight ${viewMode === 'list' ? 'mb-1' : 'mb-2'}`}>
+                    <h3 className={`${viewMode === 'card' ? 'text-lg' : 'text-xl'} font-semibold text-foreground group-hover:text-primary transition-colors leading-tight mb-2`}>
                       {project.title}
                     </h3>
                   </div>
@@ -216,7 +206,7 @@ export function Projects() {
                   </span>
                 </div>
                 
-                {viewMode === 'card' && project.date && (
+                {project.date && (
                   <div className="flex flex-col gap-2 text-muted-foreground mb-3">
                     <div className="flex items-center gap-2">
                       <Building className="h-4 w-4" />
@@ -241,46 +231,15 @@ export function Projects() {
                     </div>
                   </div>
                 )}
-
-                {viewMode === 'list' && project.date && (
-                  <div className="flex flex-wrap gap-x-4 gap-y-1 text-muted-foreground mb-2 text-sm">
-                    <div className="flex items-center gap-1">
-                      <Building className="h-3 w-3" />
-                      <a 
-                        href="https://www.kth.se/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={() => track('institution_name_click', { institution: project.institution, source: 'projects_section' })}
-                        className="font-medium hover:text-primary transition-colors cursor-pointer inline-flex items-center gap-1"
-                      >
-                        {project.institution}
-                        <ExternalLinkIcon className="h-2 w-2" />
-                      </a>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Calendar className="h-3 w-3" />
-                      <span>{project.date}</span>
-                    </div>
-                  </div>
-                )}
                 
-                <p className={`text-sm text-muted-foreground leading-relaxed ${
-                  viewMode === 'card' 
-                    ? 'mb-4 flex-grow min-h-[5rem]' 
-                    : 'mb-3 line-clamp-2'
-                }`}>
-                  {viewMode === 'list' 
-                    ? project.description.length > 120 
-                      ? project.description.substring(0, 120) + '...'
-                      : project.description
-                    : project.description
-                  }
+                <p className={`text-sm text-muted-foreground leading-relaxed mb-4 ${viewMode === 'card' ? 'flex-grow min-h-[5rem]' : ''}`}>
+                  {project.description}
                 </p>
 
                 {/* Technologies */}
                 <div className={`${viewMode === 'card' ? 'mt-auto' : ''}`}>
                   <div className="flex flex-wrap gap-1">
-                    {(viewMode === 'list' ? project.technologies.slice(0, 4) : project.technologies).map((tech) => (
+                    {project.technologies.map((tech) => (
                       <span
                         key={tech}
                         className="text-xs font-medium text-muted-foreground bg-secondary px-2 py-1 rounded h-6 flex items-center"
@@ -288,11 +247,6 @@ export function Projects() {
                         {tech}
                       </span>
                     ))}
-                    {viewMode === 'list' && project.technologies.length > 4 && (
-                      <span className="text-xs font-medium text-muted-foreground bg-secondary px-2 py-1 rounded h-6 flex items-center">
-                        +{project.technologies.length - 4} more
-                      </span>
-                    )}
                   </div>
                 </div>
 

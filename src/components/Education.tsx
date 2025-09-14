@@ -44,7 +44,7 @@ export function Education() {
             <h3 className="text-xl font-semibold text-foreground">Academic Education</h3>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mx-4 sm:mx-0">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {education.map((edu, index) => (
               <div
                 key={edu.id}
@@ -52,38 +52,46 @@ export function Education() {
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4 relative">
-                  <div className="flex-1">
-                    <h3 className="text-lg font-semibold text-foreground mb-2 leading-tight">
+                  <div>
+                    <h4 className="text-lg font-semibold text-foreground mb-2 leading-tight flex items-center gap-2">
+                      <a 
+                        href="https://www.kth.se/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() => track('institution_logo_click', { institution: 'KTH', source: 'education_section' })}
+                        className="hover:opacity-80 transition-opacity"
+                      >
+                        <img 
+                          src={kthLogo} 
+                          alt="KTH Royal Institute of Technology" 
+                          className="h-5 w-5 rounded-sm"
+                        />
+                      </a>
                       {edu.degree}
-                    </h3>
-                    <a 
-                      href="https://www.kth.se/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={() => track('institution_name_click', { institution: edu.school, source: 'education_section' })}
-                      className="text-primary font-medium hover:text-primary/80 transition-colors cursor-pointer inline-flex items-center gap-1"
-                    >
-                      {edu.school}
-                      <ExternalLinkIcon className="h-3 w-3" />
-                    </a>
-                  </div>
-                  <span className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded-full mt-2 sm:mt-0">
-                    Master's/Bachelor's
-                  </span>
-                </div>
-                
-                <div className="flex flex-col gap-2 text-muted-foreground mb-4">
-                  <div className="flex items-center gap-2">
-                    <MapPin className="h-4 w-4" />
-                    <span className="text-sm">{edu.location}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Calendar className="h-4 w-4" />
-                    <span className="text-sm">{edu.period}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <GraduationCap className="h-4 w-4" />
-                    <span className="text-sm">Completed</span>
+                    </h4>
+                    <div className="flex flex-col gap-2 text-muted-foreground">
+                      <div className="flex items-center gap-2">
+                        <Building className="h-4 w-4" />
+                        <a 
+                          href="https://www.kth.se/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={() => track('institution_name_click', { institution: edu.school, source: 'education_section' })}
+                          className="text-sm font-medium hover:text-primary transition-colors cursor-pointer inline-flex items-center gap-1"
+                        >
+                          {edu.school}
+                          <ExternalLinkIcon className="h-3 w-3" />
+                        </a>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <MapPin className="h-4 w-4" />
+                        <span className="text-sm">{edu.location}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Calendar className="h-4 w-4" />
+                        <span className="text-sm">{edu.period}</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 
@@ -97,7 +105,7 @@ export function Education() {
                     {edu.coursework.map((course) => (
                       <span
                         key={course}
-                        className="text-xs font-medium text-muted-foreground bg-secondary px-2 py-1 rounded h-6 flex items-center"
+                        className="inline-flex items-center px-2 py-1 rounded text-xs bg-accent text-accent-foreground"
                       >
                         {course}
                       </span>
