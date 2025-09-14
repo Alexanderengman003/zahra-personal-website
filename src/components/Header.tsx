@@ -1,4 +1,5 @@
 import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { MobileMenu } from "@/components/MobileMenu";
 
 const navigation = [
   { name: "Home", href: "/#home" },
@@ -36,9 +37,10 @@ export function Header() {
           ))}
         </div>
 
-        {/* Theme toggle */}
-        <div className="flex lg:flex-1 lg:justify-end">
+        {/* Mobile menu and theme toggle */}
+        <div className="flex items-center space-x-2 lg:flex-1 lg:justify-end">
           <ThemeToggle />
+          <MobileMenu />
         </div>
       </nav>
     </header>

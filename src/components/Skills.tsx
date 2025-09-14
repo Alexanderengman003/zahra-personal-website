@@ -69,10 +69,10 @@ export function Skills() {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 lg:gap-16">
           {/* Personality Section */}
-          <div className="card-gradient rounded-3xl p-8 shadow-large">
-            <h3 className="text-2xl font-semibold text-foreground mb-10 text-center">
+          <div className="card-gradient rounded-3xl p-6 md:p-8 shadow-large md:col-span-2 lg:col-span-1">
+            <h3 className="text-xl md:text-2xl font-semibold text-foreground mb-8 md:mb-10 text-center">
               Personality
             </h3>
             <div className="space-y-8">
@@ -105,8 +105,8 @@ export function Skills() {
           </div>
 
           {/* IT Skills Section */}
-          <div className="card-gradient rounded-3xl p-8 shadow-large">
-            <h3 className="text-2xl font-semibold text-foreground mb-10 text-center">
+          <div className="card-gradient rounded-3xl p-6 md:p-8 shadow-large">
+            <h3 className="text-xl md:text-2xl font-semibold text-foreground mb-8 md:mb-10 text-center">
               IT Skills
             </h3>
             <div className="space-y-6">
@@ -133,8 +133,8 @@ export function Skills() {
           </div>
 
           {/* Language Skills Section */}
-          <div className="card-gradient rounded-3xl p-8 shadow-large">
-            <h3 className="text-2xl font-semibold text-foreground mb-10 text-center">
+          <div className="card-gradient rounded-3xl p-6 md:p-8 shadow-large">
+            <h3 className="text-xl md:text-2xl font-semibold text-foreground mb-8 md:mb-10 text-center">
               Language Skills
             </h3>
             <div className="space-y-6">
