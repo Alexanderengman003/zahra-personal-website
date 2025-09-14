@@ -69,7 +69,7 @@ export function Skills() {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-16 mt-12">
+        <div className="grid lg:grid-cols-3 gap-16 mt-8">
           {/* Personality Section */}
           <div className="card-gradient rounded-3xl p-8 shadow-large">
             <h3 className="text-2xl font-semibold text-foreground mb-10 text-center">
