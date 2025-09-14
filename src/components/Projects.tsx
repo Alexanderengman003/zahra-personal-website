@@ -2,7 +2,6 @@ import { useState } from "react";
 import { ExternalLink, Github, ChevronDown, ChevronUp, Grid, List, MapPin, Calendar, Building, ExternalLinkIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTrackEvent } from "@/hooks/useTrackEvent";
-import stretchableImg from "@/assets/stretchable-microsupercapacitors.jpg";
 
 
 const projects = [
@@ -156,51 +155,7 @@ export function Projects() {
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {viewMode === 'card' && (
-                <>
-                  {/* Project Image */}
-                  <div className="aspect-video bg-muted relative overflow-hidden flex-shrink-0 mb-6">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <div className="absolute bottom-4 left-4 right-4 flex gap-2">
-                        {project.githubUrl && (
-                          <Button size="sm" variant="secondary" className="bg-white/20 text-white hover:bg-white/30" asChild>
-                            <a 
-                              href={project.githubUrl} 
-                              target="_blank" 
-                              rel="noopener noreferrer"
-                              onClick={() => track('project_github_click', { 
-                                projectTitle: project.title, 
-                                source: 'projects_section' 
-                              })}
-                            >
-                              <Github className="h-4 w-4" />
-                            </a>
-                          </Button>
-                        )}
-                        {project.liveUrl && project.id === 1 && (
-                          <Button size="sm" variant="secondary" className="bg-white/20 text-white hover:bg-white/30 flex-1" asChild>
-                            <a 
-                              href={project.liveUrl} 
-                              target="_blank" 
-                              rel="noopener noreferrer"
-                              onClick={() => track('project_thesis_click', { 
-                                projectTitle: project.title, 
-                                source: 'projects_section' 
-                              })}
-                            >
-                              <ExternalLink className="mr-2 h-3 w-3" />
-                              <span className="text-xs">Read Thesis</span>
-                            </a>
-                          </Button>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </>
+                <></>
               )}
 
               {/* Project Content */}
