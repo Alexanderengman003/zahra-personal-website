@@ -1,4 +1,4 @@
-import { GraduationCap, Building, MapPin, Calendar, ExternalLinkIcon, Grid, List } from "lucide-react";
+import { Building, MapPin, Calendar, ExternalLinkIcon, Grid, List } from "lucide-react";
 import { useState } from "react";
 import { useTrackEvent } from "@/hooks/useTrackEvent";
 
@@ -41,12 +41,7 @@ export function Education() {
         </div>
 
         <div className="mx-auto max-w-7xl">
-          <div className="flex items-center justify-between mb-8">
-            <div className="flex items-center gap-3">
-              <GraduationCap className="h-6 w-6 text-primary" />
-              <h3 className="text-xl font-semibold text-foreground">Academic Education</h3>
-            </div>
-            
+          <div className="flex items-center justify-end mb-8">
             <div className="inline-flex rounded-lg bg-muted p-1">
               <button
                 onClick={() => {
@@ -93,7 +88,7 @@ export function Education() {
             {education.map((edu, index) => (
               <div
                 key={edu.id}
-                className={`card-gradient rounded-xl shadow-medium hover-lift ${viewMode === 'card' ? 'h-full flex flex-col px-2 py-6' : 'p-2'}`}
+                className={`card-gradient rounded-xl shadow-medium hover-lift ${viewMode === 'card' ? 'h-full flex flex-col px-2 py-4' : 'p-2'}`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 {viewMode === 'card' ? (
