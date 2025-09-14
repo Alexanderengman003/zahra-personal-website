@@ -17,6 +17,7 @@ const projects = [
     liveUrl: "https://www.diva-portal.org/smash/get/diva2:1479859/FULLTEXT01.pdf", // Link to thesis
     category: "Research",
     date: "Jan 2020 - Jun 2020",
+    location: "Stockholm, Sweden",
     institution: "KTH Royal Institute of Technology"
   },
   {
@@ -29,6 +30,7 @@ const projects = [
     liveUrl: "#", // Link to project report
     category: "Research",
     date: "Jan 2020 - Jun 2020",
+    location: "Stockholm, Sweden",
     institution: "KTH Royal Institute of Technology"
   },
   {
@@ -41,6 +43,7 @@ const projects = [
     liveUrl: "#", // Link to project report
     category: "Research",
     date: "Feb 2019",
+    location: "Stockholm, Sweden",
     institution: "KTH Royal Institute of Technology"
   },
 ];
@@ -195,20 +198,7 @@ export function Projects() {
               <div className={`p-6 ${viewMode === 'card' ? 'flex flex-col flex-grow' : 'flex-1'}`}>
                 <div className="flex justify-between items-start mb-2">
                   <div className="flex-1">
-                    <h3 className={`${viewMode === 'card' ? 'text-lg' : 'text-xl'} font-semibold text-foreground group-hover:text-primary transition-colors leading-tight flex items-center gap-2 mb-2`}>
-                      <a 
-                        href="https://www.kth.se/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={() => track('institution_logo_click', { institution: 'KTH', source: 'projects_section' })}
-                        className="hover:opacity-80 transition-opacity"
-                      >
-                        <img 
-                          src={kthLogo} 
-                          alt="KTH Royal Institute of Technology" 
-                          className="h-5 w-5 rounded-sm"
-                        />
-                      </a>
+                    <h3 className={`${viewMode === 'card' ? 'text-lg' : 'text-xl'} font-semibold text-foreground group-hover:text-primary transition-colors leading-tight mb-2`}>
                       {project.title}
                     </h3>
                   </div>
@@ -230,6 +220,10 @@ export function Projects() {
                       >
                         {project.institution}
                       </a>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <MapPin className="h-4 w-4" />
+                      <span className="text-sm">{project.location}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Calendar className="h-4 w-4" />
