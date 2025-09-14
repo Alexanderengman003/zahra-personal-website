@@ -195,61 +195,92 @@ export function Projects() {
 
               {/* Project Content */}
               <div className={`p-6 ${viewMode === 'card' ? 'flex flex-col flex-grow' : 'flex-1'}`}>
-                <div className="flex justify-between items-start mb-2">
-                  <div className="flex-1">
-                    <h3 className={`${viewMode === 'card' ? 'text-lg' : 'text-xl'} font-semibold text-foreground group-hover:text-primary transition-colors leading-tight mb-2`}>
-                      {project.title}
-                    </h3>
-                  </div>
-                  <span className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded-full">
-                    {project.category}
-                  </span>
-                </div>
-                
-                {project.date && (
-                  <div className="flex flex-col gap-2 text-muted-foreground mb-3">
-                    <div className="flex items-center gap-2">
-                      <Building className="h-4 w-4" />
-                      <a 
-                        href="https://www.kth.se/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={() => track('institution_name_click', { institution: project.institution, source: 'projects_section' })}
-                        className="text-sm font-medium hover:text-primary transition-colors cursor-pointer inline-flex items-center gap-1"
-                      >
-                        {project.institution}
-                        <ExternalLinkIcon className="h-3 w-3" />
-                      </a>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <MapPin className="h-4 w-4" />
-                      <span className="text-sm">{project.location}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Calendar className="h-4 w-4" />
-                      <span className="text-sm">{project.date}</span>
-                    </div>
-                  </div>
-                )}
-                
-                <p className={`text-sm text-muted-foreground leading-relaxed mb-4 ${viewMode === 'card' ? 'flex-grow min-h-[5rem]' : ''}`}>
-                  {project.description}
-                </p>
-
-                {/* Technologies */}
-                <div className={`${viewMode === 'card' ? 'mt-auto' : ''}`}>
-                  <div className="flex flex-wrap gap-1">
-                    {project.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="text-xs font-medium text-muted-foreground bg-secondary px-2 py-1 rounded h-6 flex items-center"
-                      >
-                        {tech}
+                {viewMode === 'card' ? (
+                  // Card View - Full Information
+                  <>
+                    <div className="flex justify-between items-start mb-2">
+                      <div className="flex-1">
+                        <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors leading-tight mb-2">
+                          {project.title}
+                        </h3>
+                      </div>
+                      <span className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded-full">
+                        {project.category}
                       </span>
-                    ))}
-                  </div>
-                </div>
+                    </div>
+                    
+                    {project.date && (
+                      <div className="flex flex-col gap-2 text-muted-foreground mb-3">
+                        <div className="flex items-center gap-2">
+                          <Building className="h-4 w-4" />
+                          <a 
+                            href="https://www.kth.se/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={() => track('institution_name_click', { institution: project.institution, source: 'projects_section' })}
+                            className="text-sm font-medium hover:text-primary transition-colors cursor-pointer inline-flex items-center gap-1"
+                          >
+                            {project.institution}
+                            <ExternalLinkIcon className="h-3 w-3" />
+                          </a>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <MapPin className="h-4 w-4" />
+                          <span className="text-sm">{project.location}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Calendar className="h-4 w-4" />
+                          <span className="text-sm">{project.date}</span>
+                        </div>
+                      </div>
+                    )}
+                    
+                    <p className="text-sm text-muted-foreground leading-relaxed mb-4 flex-grow min-h-[5rem]">
+                      {project.description}
+                    </p>
 
+                    {/* Technologies */}
+                    <div className="mt-auto">
+                      <div className="flex flex-wrap gap-1">
+                        {project.technologies.map((tech) => (
+                          <span
+                            key={tech}
+                            className="text-xs font-medium text-muted-foreground bg-secondary px-2 py-1 rounded h-6 flex items-center"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  // List View - Basic Information Only
+                  <>
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-2">
+                      <div className="flex-1">
+                        <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors leading-tight mb-1">
+                          {project.title}
+                        </h3>
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 text-muted-foreground">
+                          <a 
+                            href="https://www.kth.se/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={() => track('institution_name_click', { institution: project.institution, source: 'projects_section' })}
+                            className="text-sm font-medium hover:text-primary transition-colors cursor-pointer inline-flex items-center gap-1"
+                          >
+                            {project.institution}
+                            <ExternalLinkIcon className="h-3 w-3" />
+                          </a>
+                          <span className="text-sm">{project.date}</span>
+                        </div>
+                      </div>
+                      <span className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded-full self-start">
+                        {project.category}
+                      </span>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           ))}

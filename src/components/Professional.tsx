@@ -167,83 +167,227 @@ export function Professional() {
                 className={`card-gradient ${viewMode === 'card' ? 'rounded-2xl pt-12 px-8 pb-8' : 'rounded-xl p-6'} shadow-medium hover-lift`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                {/* Role Header */}
-                <div className={`flex flex-col ${viewMode === 'list' ? 'sm:flex-row sm:items-center sm:justify-between' : 'lg:flex-row lg:items-start lg:justify-between'} mb-6 relative`}>
-                  {/* Current Role Badge */}
-                  {role.period.includes("Currently ongoing") && (
-                    <div className={`absolute ${viewMode === 'card' ? '-top-8 -right-2' : '-top-4 -right-2'} z-10`}>
-                      <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400">
-                        Currently ongoing
-                      </span>
+                {viewMode === 'card' ? (
+                  // Card View - Full Information
+                  <>
+                    {/* Role Header */}
+                    <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6 relative">
+                      {/* Current Role Badge */}
+                      {role.period.includes("Currently ongoing") && (
+                        <div className="absolute -top-8 -right-2 z-10">
+                          <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400">
+                            Currently ongoing
+                          </span>
+                        </div>
+                      )}
+                      <div>
+                        <h3 className="text-xl font-semibold text-foreground mb-2 leading-tight flex items-center gap-2">
+                          {role.company === "EBV Elektronik" && (
+                            <a 
+                              href="https://my.avnet.com/ebv/"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={() => track('company_logo_click', { company: 'EBV Elektronik', source: 'professional_section' })}
+                              className="hover:opacity-80 transition-opacity"
+                            >
+                              <img 
+                                src={ebvLogo} 
+                                alt="EBV Elektronik" 
+                                className="h-5 w-5 rounded-sm"
+                              />
+                            </a>
+                          )}
+                          {role.company === "Ascilion AB" && (
+                            <a 
+                              href="https://www.ascilion.com/"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={() => track('company_logo_click', { company: 'Ascilion AB', source: 'professional_section' })}
+                              className="hover:opacity-80 transition-opacity"
+                            >
+                              <img 
+                                src={ascilionLogo} 
+                                alt="Ascilion" 
+                                className="h-5 w-5 rounded-sm"
+                              />
+                            </a>
+                          )}
+                          {role.company === "Bright Day Graphene AB" && (
+                            <a 
+                              href="https://www.brightdaygraphene.se/"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={() => track('company_logo_click', { company: 'Bright Day Graphene AB', source: 'professional_section' })}
+                              className="hover:opacity-80 transition-opacity"
+                            >
+                              <img 
+                                src={brightDayGrapheneLogo} 
+                                alt="Bright Day Graphene" 
+                                className="h-5 w-5 rounded-sm"
+                              />
+                            </a>
+                          )}
+                          {role.company === "Exeger Operations AB" && (
+                            <a 
+                              href="https://www.exeger.com/"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={() => track('company_logo_click', { company: 'Exeger Operations AB', source: 'professional_section' })}
+                              className="hover:opacity-80 transition-opacity"
+                            >
+                              <img 
+                                src={exegerLogo} 
+                                alt="Exeger" 
+                                className="h-5 w-5 rounded-sm dark:invert"
+                              />
+                            </a>
+                          )}
+                          {role.title}
+                        </h3>
+                        <div className="flex flex-col gap-2 text-muted-foreground">
+                          <div className="flex items-center gap-2">
+                            <Building className="h-4 w-4" />
+                            <a 
+                              href={
+                                role.company === "EBV Elektronik" ? "https://my.avnet.com/ebv/" :
+                                role.company === "Ascilion AB" ? "https://www.ascilion.com/" :
+                                role.company === "Bright Day Graphene AB" ? "https://www.brightdaygraphene.se/" :
+                                role.company === "Exeger Operations AB" ? "https://www.exeger.com/" :
+                                "#"
+                              }
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={() => track('company_name_click', { company: role.company, source: 'professional_section' })}
+                              className="text-sm font-medium hover:text-primary transition-colors cursor-pointer inline-flex items-center gap-1"
+                            >
+                              {role.company}
+                              <ExternalLinkIcon className="h-3 w-3" />
+                            </a>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <MapPin className="h-4 w-4" />
+                            <span className="text-sm">{role.location}</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <Calendar className="h-4 w-4" />
+                            <span className="text-sm">{role.period}</span>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                  )}
-                  <div className={viewMode === 'list' ? 'flex-1' : ''}>
-                    <h3 className={`${viewMode === 'card' ? 'text-xl' : 'text-lg'} font-semibold text-foreground mb-2 leading-tight flex items-center gap-2`}>
-                      {role.company === "EBV Elektronik" && (
-                        <a 
-                          href="https://my.avnet.com/ebv/"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={() => track('company_logo_click', { company: 'EBV Elektronik', source: 'professional_section' })}
-                          className="hover:opacity-80 transition-opacity"
-                        >
-                          <img 
-                            src={ebvLogo} 
-                            alt="EBV Elektronik" 
-                            className="h-5 w-5 rounded-sm"
-                          />
-                        </a>
-                      )}
-                      {role.company === "Ascilion AB" && (
-                        <a 
-                          href="https://www.ascilion.com/"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={() => track('company_logo_click', { company: 'Ascilion AB', source: 'professional_section' })}
-                          className="hover:opacity-80 transition-opacity"
-                        >
-                          <img 
-                            src={ascilionLogo} 
-                            alt="Ascilion" 
-                            className="h-5 w-5 rounded-sm"
-                          />
-                        </a>
-                      )}
-                      {role.company === "Bright Day Graphene AB" && (
-                        <a 
-                          href="https://www.brightdaygraphene.se/"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={() => track('company_logo_click', { company: 'Bright Day Graphene AB', source: 'professional_section' })}
-                          className="hover:opacity-80 transition-opacity"
-                        >
-                          <img 
-                            src={brightDayGrapheneLogo} 
-                            alt="Bright Day Graphene" 
-                            className="h-5 w-5 rounded-sm"
-                          />
-                        </a>
-                      )}
-                      {role.company === "Exeger Operations AB" && (
-                        <a 
-                          href="https://www.exeger.com/"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={() => track('company_logo_click', { company: 'Exeger Operations AB', source: 'professional_section' })}
-                          className="hover:opacity-80 transition-opacity"
-                        >
-                          <img 
-                            src={exegerLogo} 
-                            alt="Exeger" 
-                            className="h-5 w-5 rounded-sm dark:invert"
-                          />
-                        </a>
-                      )}
-                      {role.title}
-                    </h3>
-                    <div className="flex flex-col gap-2 text-muted-foreground">
-                      <div className="flex items-center gap-2">
-                        <Building className="h-4 w-4" />
+
+                    {/* Description */}
+                    <p className="text-muted-foreground leading-relaxed mb-6">
+                      {role.description}
+                    </p>
+
+                    {/* Technologies */}
+                    <div className="mb-6">
+                      <h4 className="text-sm font-semibold text-foreground mb-3">Skills Used</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {role.technologies.map((tech) => (
+                          <span
+                            key={tech}
+                            className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Achievements */}
+                    <div>
+                      <h4 className="text-sm font-semibold text-foreground mb-3">Key Achievements</h4>
+                      <ul className="space-y-2">
+                        {role.achievements.map((achievement, achievementIndex) => (
+                          <li
+                            key={achievementIndex}
+                            className="flex items-start gap-3 text-sm text-muted-foreground"
+                          >
+                            <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
+                            <span>{achievement}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </>
+                ) : (
+                  // List View - Basic Information Only
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between relative">
+                    {/* Current Role Badge */}
+                    {role.period.includes("Currently ongoing") && (
+                      <div className="absolute -top-2 -right-2 z-10">
+                        <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400">
+                          Currently ongoing
+                        </span>
+                      </div>
+                    )}
+                    <div className="flex-1">
+                      <h3 className="text-lg font-semibold text-foreground mb-1 leading-tight flex items-center gap-2">
+                        {role.company === "EBV Elektronik" && (
+                          <a 
+                            href="https://my.avnet.com/ebv/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={() => track('company_logo_click', { company: 'EBV Elektronik', source: 'professional_section' })}
+                            className="hover:opacity-80 transition-opacity"
+                          >
+                            <img 
+                              src={ebvLogo} 
+                              alt="EBV Elektronik" 
+                              className="h-4 w-4 rounded-sm"
+                            />
+                          </a>
+                        )}
+                        {role.company === "Ascilion AB" && (
+                          <a 
+                            href="https://www.ascilion.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={() => track('company_logo_click', { company: 'Ascilion AB', source: 'professional_section' })}
+                            className="hover:opacity-80 transition-opacity"
+                          >
+                            <img 
+                              src={ascilionLogo} 
+                              alt="Ascilion" 
+                              className="h-4 w-4 rounded-sm"
+                            />
+                          </a>
+                        )}
+                        {role.company === "Bright Day Graphene AB" && (
+                          <a 
+                            href="https://www.brightdaygraphene.se/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={() => track('company_logo_click', { company: 'Bright Day Graphene AB', source: 'professional_section' })}
+                            className="hover:opacity-80 transition-opacity"
+                          >
+                            <img 
+                              src={brightDayGrapheneLogo} 
+                              alt="Bright Day Graphene" 
+                              className="h-4 w-4 rounded-sm"
+                            />
+                          </a>
+                        )}
+                        {role.company === "Exeger Operations AB" && (
+                          <a 
+                            href="https://www.exeger.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={() => track('company_logo_click', { company: 'Exeger Operations AB', source: 'professional_section' })}
+                            className="hover:opacity-80 transition-opacity"
+                          >
+                            <img 
+                              src={exegerLogo} 
+                              alt="Exeger" 
+                              className="h-4 w-4 rounded-sm dark:invert"
+                            />
+                          </a>
+                        )}
+                        {role.title}
+                      </h3>
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 text-muted-foreground">
                         <a 
                           href={
                             role.company === "EBV Elektronik" ? "https://my.avnet.com/ebv/" :
@@ -260,54 +404,11 @@ export function Professional() {
                           {role.company}
                           <ExternalLinkIcon className="h-3 w-3" />
                         </a>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <MapPin className="h-4 w-4" />
-                        <span className="text-sm">{role.location}</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Calendar className="h-4 w-4" />
                         <span className="text-sm">{role.period}</span>
                       </div>
                     </div>
                   </div>
-                </div>
-
-                {/* Description */}
-                <p className="text-muted-foreground leading-relaxed mb-6">
-                  {role.description}
-                </p>
-
-                {/* Technologies */}
-                <div className="mb-6">
-                  <h4 className="text-sm font-semibold text-foreground mb-3">Skills Used</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {role.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Achievements */}
-                <div>
-                  <h4 className="text-sm font-semibold text-foreground mb-3">Key Achievements</h4>
-                  <ul className="space-y-2">
-                    {role.achievements.map((achievement, achievementIndex) => (
-                      <li
-                        key={achievementIndex}
-                        className="flex items-start gap-3 text-sm text-muted-foreground"
-                      >
-                        <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
-                        <span>{achievement}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                )}
               </div>
             ))}
           </div>
