@@ -389,7 +389,7 @@ export function Professional() {
                         )}
                         {role.title}
                       </h3>
-                      <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 text-muted-foreground">
+                      <div className="flex flex-col gap-1 text-muted-foreground">
                         <a 
                           href={
                             role.company === "EBV Elektronik" ? "https://my.avnet.com/ebv/" :
