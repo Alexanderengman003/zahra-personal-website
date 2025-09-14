@@ -88,7 +88,7 @@ export function Education() {
             {education.map((edu, index) => (
               <div
                 key={edu.id}
-                className={`card-gradient rounded-xl shadow-medium hover-lift ${viewMode === 'card' ? 'h-full flex flex-col px-2 py-4' : 'p-2'}`}
+                className={`card-gradient rounded-xl shadow-medium hover-lift ${viewMode === 'card' ? 'h-full flex flex-col px-2 py-6' : 'p-2'}`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 {viewMode === 'card' ? (

@@ -182,7 +182,7 @@ export function Professional() {
             {filteredRoles.map((role, index) => (
               <div
                 key={role.id}
-                className={`card-gradient ${viewMode === 'card' ? `rounded-2xl ${role.period.includes("Currently ongoing") ? 'pt-12' : 'pt-6'} px-2 pb-6` : 'rounded-xl p-2'} shadow-medium hover-lift`}
+                className={`card-gradient ${viewMode === 'card' ? 'rounded-2xl pt-6 px-2 pb-6' : 'rounded-xl p-2'} shadow-medium hover-lift`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 {viewMode === 'card' ? (
@@ -190,14 +190,6 @@ export function Professional() {
                   <>
                     {/* Role Header */}
                     <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6 relative">
-                      {/* Current Role Badge */}
-                      {role.period.includes("Currently ongoing") && (
-                        <div className="absolute -top-8 -right-2 z-10">
-                          <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400">
-                            Currently ongoing
-                          </span>
-                        </div>
-                      )}
                       <div>
                         <h3 className="text-xl font-semibold text-foreground mb-2 leading-tight flex items-center gap-2">
                           {role.company === "EBV Elektronik" && (
@@ -333,14 +325,6 @@ export function Professional() {
                 ) : (
                   // List View - Basic Information Only
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between relative">
-                    {/* Current Role Badge */}
-                    {role.period.includes("Currently ongoing") && (
-                      <div className="absolute -top-2 -right-2 z-10">
-                        <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400">
-                          Currently ongoing
-                        </span>
-                      </div>
-                    )}
                     <div className="flex-1">
                       <h3 className="text-lg font-semibold text-foreground mb-1 leading-tight flex items-center gap-2">
                         {role.company === "EBV Elektronik" && (
