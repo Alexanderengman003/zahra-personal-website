@@ -38,17 +38,17 @@ export function Education() {
           </p>
         </div>
 
-        <div className="mx-auto max-w-4xl">
+        <div className="mx-auto max-w-7xl">
           <div className="flex items-center gap-3 mb-8">
             <GraduationCap className="h-6 w-6 text-primary" />
             <h3 className="text-xl font-semibold text-foreground">Academic Education</h3>
           </div>
           
-          <div className="space-y-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {education.map((edu, index) => (
               <div
                 key={edu.id}
-                className="card-gradient rounded-xl p-6 shadow-medium hover-lift"
+                className="card-gradient rounded-xl p-6 shadow-medium hover-lift h-full flex flex-col"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4 relative">
@@ -95,11 +95,11 @@ export function Education() {
                   </div>
                 </div>
                 
-                <p className="text-muted-foreground mb-4 leading-relaxed">
+                <p className="text-muted-foreground mb-4 leading-relaxed flex-grow">
                   {edu.description}
                 </p>
                 
-                <div>
+                <div className="mt-auto">
                   <h5 className="text-sm font-semibold text-foreground mb-2">Key Coursework</h5>
                   <div className="flex flex-wrap gap-2">
                     {edu.coursework.map((course) => (

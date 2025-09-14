@@ -142,7 +142,7 @@ export function Projects() {
         </div>
 
         {/* Projects Grid/List */}
-        <div className={`mx-auto mt-16 max-w-6xl ${viewMode === 'card' ? 'grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3' : 'space-y-4'}`}>
+        <div className={`mx-auto mt-16 max-w-7xl ${viewMode === 'card' ? 'grid grid-cols-1 gap-8 lg:grid-cols-2' : 'space-y-4'}`}>
           {filteredProjects.map((project, index) => (
             <div
               key={project.id}
