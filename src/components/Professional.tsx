@@ -182,7 +182,7 @@ export function Professional() {
             {filteredRoles.map((role, index) => (
               <div
                 key={role.id}
-                className={`card-gradient ${viewMode === 'card' ? 'rounded-2xl pt-12 px-4 pb-8' : 'rounded-xl p-4'} shadow-medium hover-lift`}
+                className={`card-gradient ${viewMode === 'card' ? 'rounded-2xl pt-12 px-8 pb-8' : 'rounded-xl p-8'} shadow-medium hover-lift`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 {viewMode === 'card' ? (
@@ -199,19 +199,19 @@ export function Professional() {
                         </div>
                       )}
                       <div>
-                        <h3 className="text-xl font-semibold text-foreground mb-2 leading-tight flex items-start gap-2">
+                        <h3 className="text-xl font-semibold text-foreground mb-2 leading-tight flex items-center gap-2">
                           {role.company === "EBV Elektronik" && (
                             <a 
                               href="https://my.avnet.com/ebv/"
                               target="_blank"
                               rel="noopener noreferrer"
                               onClick={() => track('company_logo_click', { company: 'EBV Elektronik', source: 'professional_section' })}
-                              className="hover:opacity-80 transition-opacity flex-shrink-0"
+                              className="hover:opacity-80 transition-opacity"
                             >
                               <img 
                                 src={ebvLogo} 
                                 alt="EBV Elektronik" 
-                                className="h-5 w-5 rounded-sm flex-shrink-0"
+                                className="h-5 w-5 rounded-sm"
                               />
                             </a>
                           )}
@@ -221,12 +221,12 @@ export function Professional() {
                               target="_blank"
                               rel="noopener noreferrer"
                               onClick={() => track('company_logo_click', { company: 'Ascilion AB', source: 'professional_section' })}
-                              className="hover:opacity-80 transition-opacity flex-shrink-0"
+                              className="hover:opacity-80 transition-opacity"
                             >
                               <img 
                                 src={ascilionLogo} 
                                 alt="Ascilion" 
-                                className="h-5 w-5 rounded-sm flex-shrink-0"
+                                className="h-5 w-5 rounded-sm"
                               />
                             </a>
                           )}
@@ -236,12 +236,12 @@ export function Professional() {
                               target="_blank"
                               rel="noopener noreferrer"
                               onClick={() => track('company_logo_click', { company: 'Bright Day Graphene AB', source: 'professional_section' })}
-                              className="hover:opacity-80 transition-opacity flex-shrink-0"
+                              className="hover:opacity-80 transition-opacity"
                             >
                               <img 
                                 src={brightDayGrapheneLogo} 
                                 alt="Bright Day Graphene" 
-                                className="h-5 w-5 rounded-sm flex-shrink-0"
+                                className="h-5 w-5 rounded-sm"
                               />
                             </a>
                           )}
@@ -251,16 +251,16 @@ export function Professional() {
                               target="_blank"
                               rel="noopener noreferrer"
                               onClick={() => track('company_logo_click', { company: 'Exeger Operations AB', source: 'professional_section' })}
-                              className="hover:opacity-80 transition-opacity flex-shrink-0"
+                              className="hover:opacity-80 transition-opacity"
                             >
                               <img 
                                 src={exegerLogo} 
                                 alt="Exeger" 
-                                className="h-5 w-5 rounded-sm dark:invert flex-shrink-0"
+                                className="h-5 w-5 rounded-sm dark:invert"
                               />
                             </a>
                           )}
-                          <span className="flex-1">{role.title}</span>
+                          {role.title}
                         </h3>
                         <div className="flex flex-col gap-2 text-muted-foreground">
                           <div className="flex items-center gap-2">
@@ -342,19 +342,19 @@ export function Professional() {
                       </div>
                     )}
                     <div className="flex-1">
-                      <h3 className="text-lg font-semibold text-foreground mb-1 leading-tight flex items-start gap-2">
+                      <h3 className="text-lg font-semibold text-foreground mb-1 leading-tight flex items-center gap-2">
                         {role.company === "EBV Elektronik" && (
                           <a 
                             href="https://my.avnet.com/ebv/"
                             target="_blank"
                             rel="noopener noreferrer"
                             onClick={() => track('company_logo_click', { company: 'EBV Elektronik', source: 'professional_section' })}
-                            className="hover:opacity-80 transition-opacity flex-shrink-0"
+                            className="hover:opacity-80 transition-opacity"
                           >
                             <img 
                               src={ebvLogo} 
                               alt="EBV Elektronik" 
-                              className="h-4 w-4 rounded-sm flex-shrink-0"
+                              className="h-4 w-4 rounded-sm"
                             />
                           </a>
                         )}
@@ -364,12 +364,12 @@ export function Professional() {
                             target="_blank"
                             rel="noopener noreferrer"
                             onClick={() => track('company_logo_click', { company: 'Ascilion AB', source: 'professional_section' })}
-                            className="hover:opacity-80 transition-opacity flex-shrink-0"
+                            className="hover:opacity-80 transition-opacity"
                           >
                             <img 
                               src={ascilionLogo} 
                               alt="Ascilion" 
-                              className="h-4 w-4 rounded-sm flex-shrink-0"
+                              className="h-4 w-4 rounded-sm"
                             />
                           </a>
                         )}
@@ -379,12 +379,12 @@ export function Professional() {
                             target="_blank"
                             rel="noopener noreferrer"
                             onClick={() => track('company_logo_click', { company: 'Bright Day Graphene AB', source: 'professional_section' })}
-                            className="hover:opacity-80 transition-opacity flex-shrink-0"
+                            className="hover:opacity-80 transition-opacity"
                           >
                             <img 
                               src={brightDayGrapheneLogo} 
                               alt="Bright Day Graphene" 
-                              className="h-4 w-4 rounded-sm flex-shrink-0"
+                              className="h-4 w-4 rounded-sm"
                             />
                           </a>
                         )}
@@ -394,16 +394,16 @@ export function Professional() {
                             target="_blank"
                             rel="noopener noreferrer"
                             onClick={() => track('company_logo_click', { company: 'Exeger Operations AB', source: 'professional_section' })}
-                            className="hover:opacity-80 transition-opacity flex-shrink-0"
+                            className="hover:opacity-80 transition-opacity"
                           >
                             <img 
                               src={exegerLogo} 
                               alt="Exeger" 
-                              className="h-4 w-4 rounded-sm dark:invert flex-shrink-0"
+                              className="h-4 w-4 rounded-sm dark:invert"
                             />
                           </a>
                         )}
-                        <span className="flex-1">{role.title}</span>
+                        {role.title}
                       </h3>
                       <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 text-muted-foreground">
                         <a 
