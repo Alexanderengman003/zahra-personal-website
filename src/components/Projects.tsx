@@ -77,7 +77,7 @@ export function Projects() {
           </p>
         </div>
 
-        <div className="mx-auto max-w-7xl mt-12">
+        <div className="mx-auto max-w-7xl mt-8">
           <div className="flex items-center justify-between mb-8">
             <div className="inline-flex rounded-lg bg-muted p-1">
               {categories.map((category) => (
