@@ -132,43 +132,7 @@
 }
 
 @layer components {
-  /* Typography Hierarchy */
-  .section-header {
-    @apply text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-foreground;
-    line-height: 1.1;
-  }
-  
-  .section-subheader {
-    @apply text-base sm:text-lg lg:text-xl leading-7 sm:leading-8 text-muted-foreground mt-4 sm:mt-6;
-  }
-  
-  .card-title {
-    @apply text-lg sm:text-xl font-semibold text-foreground leading-tight;
-  }
-  
-  .card-subtitle {
-    @apply text-sm sm:text-base font-medium text-primary;
-  }
-  
-  .card-description {
-    @apply text-sm sm:text-base text-muted-foreground leading-relaxed;
-  }
-  
-  /* Hero specific typography */
-  .hero-title {
-    @apply text-3xl sm:text-4xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-foreground;
-    line-height: 1.1;
-  }
-  
-  .hero-subtitle {
-    @apply text-lg sm:text-xl lg:text-2xl font-medium text-primary;
-  }
-  
-  .hero-description {
-    @apply text-base sm:text-lg lg:text-xl leading-7 sm:leading-8 text-muted-foreground max-w-2xl mx-auto;
-  }
-
-  /* Visual hierarchy animations */
+  /* Hero animations */
   .hero-gradient {
     background: var(--gradient-hero);
   }
@@ -191,13 +155,13 @@
     scroll-behavior: smooth;
   }
   
-  /* Enhanced hover effects */
+  /* Hover effects */
   .hover-lift {
     transition: var(--transition-smooth);
   }
   
   .hover-lift:hover {
-    transform: translateY(-2px);
+    transform: translateY(-4px);
     box-shadow: var(--shadow-large);
   }
   
@@ -216,18 +180,5 @@
     background: rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-  
-  /* Consistent spacing system */
-  .section-spacing {
-    @apply py-12 sm:py-16 lg:py-20;
-  }
-  
-  .content-spacing {
-    @apply space-y-6 sm:space-y-8;
-  }
-  
-  .card-spacing {
-    @apply p-6 sm:p-8;
   }
 }

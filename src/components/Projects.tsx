@@ -63,18 +63,20 @@ export function Projects() {
   });
 
   return (
-    <section id="projects" className="section-spacing bg-secondary/30">
+    <section id="projects" className="py-16 bg-secondary/30">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="section-header">Previous Projects</h2>
-          <p className="section-subheader">
-            Academic research projects showcasing expertise in materials science, 
+          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+            Previous Projects
+          </h2>
+          <p className="mt-6 text-lg leading-8 text-muted-foreground">
+            Academic research project showcasing expertise in materials science, 
             nanotechnology, and advanced fabrication techniques.
           </p>
         </div>
 
         {/* Search and Filter */}
-        <div className="mx-auto mt-8 sm:mt-12 max-w-2xl">
+        <div className="mx-auto mt-12 max-w-2xl">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <Input
@@ -105,7 +107,7 @@ export function Projects() {
         </div>
 
         {/* Projects Grid */}
-        <div className="mx-auto mt-12 sm:mt-16 grid max-w-6xl grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mx-auto mt-16 grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {filteredProjects.map((project, index) => (
             <div
               key={project.id}
@@ -157,27 +159,27 @@ export function Projects() {
               </div>
 
               {/* Project Content */}
-              <div className="card-spacing flex flex-col flex-grow">
-                <div className="flex justify-end mb-3 sm:mb-4">
+              <div className="p-6 flex flex-col flex-grow">
+                <div className="flex justify-end mb-2">
                   <span className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded-full">
                     {project.category}
                   </span>
                 </div>
                 
-                <div className="mb-3 sm:mb-4">
-                  <h3 className="card-title group-hover:text-primary transition-colors">
+                <div className="mb-3 min-h-[3.5rem]">
+                  <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors leading-tight">
                     {project.title}
                   </h3>
                 </div>
                 
                 {project.date && (
-                  <div className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-4 space-y-1">
+                  <div className="text-xs text-muted-foreground mb-3 space-y-1">
                     <p>{project.date}</p>
-                    <p className="text-primary font-medium">{project.institution}</p>
+                    <p>{project.institution}</p>
                   </div>
                 )}
                 
-                <p className="card-description mb-4 sm:mb-6 flex-grow">
+                <p className="text-sm text-muted-foreground leading-relaxed mb-4 flex-grow min-h-[5rem]">
                   {project.description}
                 </p>
 
