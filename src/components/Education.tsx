@@ -1,7 +1,7 @@
 import { GraduationCap, Building, MapPin, Calendar, ExternalLinkIcon, Grid, List } from "lucide-react";
 import { useState } from "react";
 import { useTrackEvent } from "@/hooks/useTrackEvent";
-import kthLogo from "@/assets/kth-logo.png";
+
 
 const education = [
   {
@@ -93,7 +93,7 @@ export function Education() {
             {education.map((edu, index) => (
               <div
                 key={edu.id}
-                className={`card-gradient rounded-xl shadow-medium hover-lift ${viewMode === 'card' ? 'h-full flex flex-col px-8 py-6' : 'p-8'}`}
+                className={`card-gradient rounded-xl shadow-medium hover-lift ${viewMode === 'card' ? 'h-full flex flex-col px-2 py-6' : 'p-2'}`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 {viewMode === 'card' ? (
@@ -101,20 +101,7 @@ export function Education() {
                   <>
                     <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4 relative">
                       <div>
-                        <h4 className="text-lg font-semibold text-foreground mb-2 leading-tight flex items-center gap-2">
-                          <a 
-                            href="https://www.kth.se/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={() => track('institution_logo_click', { institution: 'KTH', source: 'education_section' })}
-                            className="hover:opacity-80 transition-opacity"
-                          >
-                            <img 
-                              src={kthLogo} 
-                              alt="KTH Royal Institute of Technology" 
-                              className="h-5 w-5 rounded-sm"
-                            />
-                          </a>
+                        <h4 className="text-lg font-semibold text-foreground mb-2 leading-tight">
                           {edu.degree}
                         </h4>
                         <div className="flex flex-col gap-2 text-muted-foreground">
