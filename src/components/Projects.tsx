@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { ExternalLink, Github, Search, ChevronDown, ChevronUp, Grid, List, MapPin, Calendar, Building, ExternalLinkIcon } from "lucide-react";
+import { ExternalLink, Github, ChevronDown, ChevronUp, Grid, List, MapPin, Calendar, Building, ExternalLinkIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { useTrackEvent } from "@/hooks/useTrackEvent";
 import stretchableImg from "@/assets/stretchable-microsupercapacitors.jpg";
 import kthLogo from "@/assets/kth-logo.png";
@@ -79,41 +78,42 @@ export function Projects() {
           </p>
         </div>
 
-        {/* Search and Filter */}
-        <div className="mx-auto mt-12 max-w-2xl">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-            <Input
-              placeholder="Search projects, technologies..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10"
-            />
-          </div>
-
-          {/* Category Filter and View Toggle */}
-          <div className="mt-6 flex flex-col sm:flex-row justify-center items-center gap-4">
-            <div className="flex flex-wrap justify-center gap-2">
-              {categories.map((category) => (
-                <Button
-                  key={category}
-                  variant={selectedCategory === category ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => {
-                    track('project_filter_click', { category, source: 'projects_section' });
-                    setSelectedCategory(category);
-                  }}
-                  className="transition-all duration-300"
-                >
-                  {category}
-                </Button>
-              ))}
+        <div className="mx-auto max-w-7xl">
+          <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center gap-3">
+              <div className="flex flex-wrap justify-center gap-2">
+                {categories.map((category) => (
+                  <Button
+                    key={category}
+                    variant={selectedCategory === category ? "default" : "outline"}
+                    size="sm"
+                    onClick={() => {
+                      track('project_filter_click', { 
+                        category, 
+                        source: 'projects_section',
+                        timestamp: Date.now(),
+                        userAgent: navigator.userAgent 
+                      });
+                      setSelectedCategory(category);
+                    }}
+                    className="transition-all duration-300"
+                  >
+                    {category}
+                  </Button>
+                ))}
+              </div>
             </div>
             
             <div className="inline-flex rounded-lg bg-muted p-1">
               <button
                 onClick={() => {
-                  track('project_view_toggle', { viewMode: 'card', source: 'projects_section' });
+                  track('project_view_toggle', { 
+                    viewMode: 'card', 
+                    previousMode: viewMode,
+                    source: 'projects_section',
+                    timestamp: Date.now(),
+                    sessionDuration: performance.now()
+                  });
                   setViewMode('card');
                 }}
                 className={`px-3 py-2 text-sm font-medium rounded-md transition-all ${
@@ -126,7 +126,13 @@ export function Projects() {
               </button>
               <button
                 onClick={() => {
-                  track('project_view_toggle', { viewMode: 'list', source: 'projects_section' });
+                  track('project_view_toggle', { 
+                    viewMode: 'list', 
+                    previousMode: viewMode,
+                    source: 'projects_section',
+                    timestamp: Date.now(),
+                    sessionDuration: performance.now()
+                  });
                   setViewMode('list');
                 }}
                 className={`px-3 py-2 text-sm font-medium rounded-md transition-all ${
@@ -142,7 +148,7 @@ export function Projects() {
         </div>
 
         {/* Projects Grid/List */}
-        <div className={`mx-auto mt-16 max-w-7xl ${viewMode === 'card' ? 'grid grid-cols-1 gap-8 lg:grid-cols-2' : 'space-y-4'}`}>
+        <div className={`mx-auto mt-8 max-w-7xl ${viewMode === 'card' ? 'grid grid-cols-1 gap-8 lg:grid-cols-2' : 'space-y-4'}`}>
           {filteredProjects.map((project, index) => (
             <div
               key={project.id}

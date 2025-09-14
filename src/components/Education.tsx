@@ -50,7 +50,13 @@ export function Education() {
             <div className="inline-flex rounded-lg bg-muted p-1">
               <button
                 onClick={() => {
-                  track('education_view_toggle', { viewMode: 'card', source: 'education_section' });
+                  track('education_view_toggle', { 
+                    viewMode: 'card', 
+                    previousMode: viewMode,
+                    source: 'education_section',
+                    timestamp: Date.now(),
+                    sessionDuration: performance.now()
+                  });
                   setViewMode('card');
                 }}
                 className={`px-3 py-2 text-sm font-medium rounded-md transition-all ${
@@ -63,7 +69,13 @@ export function Education() {
               </button>
               <button
                 onClick={() => {
-                  track('education_view_toggle', { viewMode: 'list', source: 'education_section' });
+                  track('education_view_toggle', { 
+                    viewMode: 'list', 
+                    previousMode: viewMode,
+                    source: 'education_section',
+                    timestamp: Date.now(),
+                    sessionDuration: performance.now()
+                  });
                   setViewMode('list');
                 }}
                 className={`px-3 py-2 text-sm font-medium rounded-md transition-all ${
@@ -141,7 +153,7 @@ export function Education() {
                         {edu.coursework.map((course) => (
                           <span
                             key={course}
-                            className="inline-flex items-center px-2 py-1 rounded text-xs bg-accent text-accent-foreground"
+                            className="inline-flex items-center px-2 py-1 rounded text-xs bg-primary/10 text-primary"
                           >
                             {course}
                           </span>
