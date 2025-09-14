@@ -129,21 +129,19 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="py-16 bg-background">
+    <section id="contact" className="section-spacing bg-background">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            Let's Work Together
-          </h2>
-          <p className="mt-6 text-lg leading-8 text-muted-foreground">
+          <h2 className="section-header">Let's Work Together</h2>
+          <p className="section-subheader">
             Have a project in mind or just want to chat? I'd love to hear from you.
           </p>
         </div>
 
-        <div className="mx-auto mt-16 grid max-w-5xl grid-cols-1 gap-16 lg:grid-cols-2">
+        <div className="mx-auto mt-12 sm:mt-16 grid max-w-5xl grid-cols-1 gap-12 sm:gap-16 lg:grid-cols-2">
           {/* Contact Information */}
           <div>
-            <h3 className="text-xl font-semibold text-foreground mb-8">Get in touch</h3>
+            <h3 className="card-title mb-6 sm:mb-8">Get in touch</h3>
             <div className="space-y-6">
               {contactInfo.map((item) => (
                 <div key={item.label} className="flex items-center space-x-4">
@@ -170,11 +168,11 @@ export function Contact() {
               ))}
             </div>
 
-            <div className="mt-8 card-gradient rounded-2xl p-6">
-              <h4 className="text-base font-semibold text-foreground mb-3">
+            <div className="mt-6 sm:mt-8 card-gradient rounded-2xl card-spacing">
+              <h4 className="card-subtitle mb-3 sm:mb-4">
                 Response Time
               </h4>
-              <p className="text-sm text-muted-foreground">
+              <p className="card-description">
                 I typically respond to messages within 24 hours. For urgent matters, 
                 feel free to reach out via phone or LinkedIn.
               </p>
@@ -182,7 +180,7 @@ export function Contact() {
           </div>
 
           {/* Contact Form */}
-          <div className="card-gradient rounded-2xl p-8 shadow-medium">
+          <div className="card-gradient rounded-2xl card-spacing shadow-medium">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                 <div>

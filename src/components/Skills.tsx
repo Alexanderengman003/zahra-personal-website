@@ -57,22 +57,20 @@ export function Skills() {
   }, []);
 
   return (
-    <section id="skills" className="py-16 bg-muted/30" ref={sectionRef}>
+    <section id="skills" className="section-spacing bg-muted/30" ref={sectionRef}>
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Header */}
-        <div className="mx-auto max-w-2xl text-center mb-20">
-          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl mb-6">
-            Skills & Personality
-          </h2>
-          <p className="text-lg leading-8 text-muted-foreground">
+        <div className="mx-auto max-w-2xl text-center mb-12 sm:mb-16 lg:mb-20">
+          <h2 className="section-header">Skills & Personality</h2>
+          <p className="section-subheader">
             A comprehensive overview of my technical abilities, language proficiency, and personality traits.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-16">
+        <div className="grid lg:grid-cols-3 gap-8 sm:gap-12 lg:gap-16">
           {/* Personality Section */}
-          <div className="card-gradient rounded-3xl p-8 shadow-large">
-            <h3 className="text-2xl font-semibold text-foreground mb-10 text-center">
+          <div className="card-gradient rounded-2xl sm:rounded-3xl card-spacing shadow-large">
+            <h3 className="card-title text-center mb-6 sm:mb-8 lg:mb-10">
               Personality
             </h3>
             <div className="space-y-8">
@@ -105,8 +103,8 @@ export function Skills() {
           </div>
 
           {/* IT Skills Section */}
-          <div className="card-gradient rounded-3xl p-8 shadow-large">
-            <h3 className="text-2xl font-semibold text-foreground mb-10 text-center">
+          <div className="card-gradient rounded-2xl sm:rounded-3xl card-spacing shadow-large">
+            <h3 className="card-title text-center mb-6 sm:mb-8 lg:mb-10">
               IT Skills
             </h3>
             <div className="space-y-6">
@@ -133,8 +131,8 @@ export function Skills() {
           </div>
 
           {/* Language Skills Section */}
-          <div className="card-gradient rounded-3xl p-8 shadow-large">
-            <h3 className="text-2xl font-semibold text-foreground mb-10 text-center">
+          <div className="card-gradient rounded-2xl sm:rounded-3xl card-spacing shadow-large">
+            <h3 className="card-title text-center mb-6 sm:mb-8 lg:mb-10">
               Language Skills
             </h3>
             <div className="space-y-6">

@@ -23,55 +23,53 @@ const education = [
 
 export function Education() {
   return (
-    <section id="education" className="py-16 bg-secondary/30">
+    <section id="education" className="section-spacing bg-secondary/30">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Header */}
-        <div className="mx-auto max-w-2xl text-center mb-16">
-          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            Education
-          </h2>
-          <p className="mt-6 text-lg leading-8 text-muted-foreground">
+        <div className="mx-auto max-w-2xl text-center mb-12 sm:mb-16">
+          <h2 className="section-header">Education</h2>
+          <p className="section-subheader">
             My academic background that shaped my technical expertise.
           </p>
         </div>
 
         <div className="mx-auto max-w-4xl">
-          <div className="flex items-center gap-3 mb-8">
+          <div className="flex items-center gap-3 mb-6 sm:mb-8">
             <GraduationCap className="h-6 w-6 text-primary" />
-            <h3 className="text-xl font-semibold text-foreground">Academic Education</h3>
+            <h3 className="card-title">Academic Education</h3>
           </div>
           
-          <div className="space-y-6">
+          <div className="space-y-6 sm:space-y-8">
             {education.map((edu, index) => (
               <div
                 key={edu.id}
-                className="card-gradient rounded-xl p-6 shadow-medium hover-lift"
+                className="card-gradient rounded-xl card-spacing shadow-medium hover-lift"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
-                  <div>
-                    <h4 className="text-lg font-semibold text-foreground mb-1">
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4 sm:mb-6">
+                  <div className="flex-1">
+                    <h4 className="card-title mb-2">
                       {edu.degree}
                     </h4>
-                    <p className="text-primary font-medium">{edu.school}</p>
-                    <div className="flex flex-col gap-1 text-sm text-muted-foreground mt-1">
+                    <p className="card-subtitle mb-2">{edu.school}</p>
+                    <div className="flex flex-col gap-1 text-sm text-muted-foreground">
                       <span>{edu.location}</span>
-                      <span>{edu.period}</span>
+                      <span className="text-primary font-medium">{edu.period}</span>
                     </div>
                   </div>
                 </div>
                 
-                <p className="text-muted-foreground mb-4 leading-relaxed">
+                <p className="card-description mb-4 sm:mb-6">
                   {edu.description}
                 </p>
                 
                 <div>
-                  <h5 className="text-sm font-semibold text-foreground mb-2">Key Coursework</h5>
+                  <h5 className="text-sm sm:text-base font-semibold text-foreground mb-3 sm:mb-4">Key Coursework</h5>
                   <div className="flex flex-wrap gap-2">
                     {edu.coursework.map((course) => (
                       <span
                         key={course}
-                        className="inline-flex items-center px-2 py-1 rounded text-xs bg-accent text-accent-foreground"
+                        className="inline-flex items-center px-2 py-1 rounded text-xs sm:text-sm bg-accent text-accent-foreground"
                       >
                         {course}
                       </span>
