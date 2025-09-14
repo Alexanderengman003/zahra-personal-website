@@ -158,159 +158,230 @@ export function Professional() {
           </div>
         </div>
 
-        {/* Professional Roles */}
-        <div className="mx-auto max-w-7xl">
-          <div className={viewMode === 'card' ? "grid grid-cols-1 lg:grid-cols-2 gap-8" : "space-y-4"}>
-            {filteredRoles.map((role, index) => (
-              <div
-                key={role.id}
-                className={`card-gradient ${viewMode === 'card' ? 'rounded-2xl pt-12 px-8 pb-8' : 'rounded-xl p-6'} shadow-medium hover-lift`}
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                {/* Role Header */}
-                <div className={`flex flex-col ${viewMode === 'list' ? 'sm:flex-row sm:items-center sm:justify-between' : 'lg:flex-row lg:items-start lg:justify-between'} mb-6 relative`}>
-                  {/* Current Role Badge */}
-                  {role.period.includes("Currently ongoing") && (
-                    <div className={`absolute ${viewMode === 'card' ? '-top-8 -right-2' : '-top-4 -right-2'} z-10`}>
-                      <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400">
-                        Currently ongoing
-                      </span>
-                    </div>
-                  )}
-                  <div className={viewMode === 'list' ? 'flex-1' : ''}>
-                    <h3 className={`${viewMode === 'card' ? 'text-xl' : 'text-lg'} font-semibold text-foreground mb-2 leading-tight flex items-center gap-2`}>
-                      {role.company === "EBV Elektronik" && (
-                        <a 
-                          href="https://my.avnet.com/ebv/"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={() => track('company_logo_click', { company: 'EBV Elektronik', source: 'professional_section' })}
-                          className="hover:opacity-80 transition-opacity"
-                        >
-                          <img 
-                            src={ebvLogo} 
-                            alt="EBV Elektronik" 
-                            className="h-5 w-5 rounded-sm"
-                          />
-                        </a>
-                      )}
-                      {role.company === "Ascilion AB" && (
-                        <a 
-                          href="https://www.ascilion.com/"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={() => track('company_logo_click', { company: 'Ascilion AB', source: 'professional_section' })}
-                          className="hover:opacity-80 transition-opacity"
-                        >
-                          <img 
-                            src={ascilionLogo} 
-                            alt="Ascilion" 
-                            className="h-5 w-5 rounded-sm"
-                          />
-                        </a>
-                      )}
-                      {role.company === "Bright Day Graphene AB" && (
-                        <a 
-                          href="https://www.brightdaygraphene.se/"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={() => track('company_logo_click', { company: 'Bright Day Graphene AB', source: 'professional_section' })}
-                          className="hover:opacity-80 transition-opacity"
-                        >
-                          <img 
-                            src={brightDayGrapheneLogo} 
-                            alt="Bright Day Graphene" 
-                            className="h-5 w-5 rounded-sm"
-                          />
-                        </a>
-                      )}
-                      {role.company === "Exeger Operations AB" && (
-                        <a 
-                          href="https://www.exeger.com/"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={() => track('company_logo_click', { company: 'Exeger Operations AB', source: 'professional_section' })}
-                          className="hover:opacity-80 transition-opacity"
-                        >
-                          <img 
-                            src={exegerLogo} 
-                            alt="Exeger" 
-                            className="h-5 w-5 rounded-sm dark:invert"
-                          />
-                        </a>
-                      )}
+        {/* Professional Roles Grid/List */}
+        <div className={`mx-auto mt-16 max-w-7xl ${viewMode === 'card' ? 'grid grid-cols-1 gap-8 lg:grid-cols-2' : 'space-y-4'}`}>
+          {filteredRoles.map((role, index) => (
+            <div
+              key={role.id}
+              className={`card-gradient rounded-xl overflow-hidden shadow-medium hover-lift group ${
+                viewMode === 'card' 
+                  ? 'h-full flex flex-col p-6' 
+                  : 'flex flex-col sm:flex-row gap-4 p-4 mx-4 sm:mx-0'
+              }`}
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
+              {/* Current Role Badge */}
+              {role.period.includes("Currently ongoing") && (
+                <div className={`absolute ${viewMode === 'card' ? '-top-2 -right-2' : '-top-2 -right-2'} z-10`}>
+                  <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400">
+                    Currently ongoing
+                  </span>
+                </div>
+              )}
+
+              {/* Company Logo */}
+              <div className={`${
+                viewMode === 'card' 
+                  ? 'aspect-video mb-4' 
+                  : 'w-full sm:w-16 aspect-video sm:aspect-square'
+              } bg-muted relative overflow-hidden flex-shrink-0 flex items-center justify-center p-2 rounded-lg`}>
+                {role.company === "EBV Elektronik" && (
+                  <a 
+                    href="https://my.avnet.com/ebv/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => track('company_logo_click', { company: 'EBV Elektronik', source: 'professional_section' })}
+                    className="hover:opacity-80 transition-opacity h-full w-full flex items-center justify-center"
+                  >
+                    <img 
+                      src={ebvLogo} 
+                      alt="EBV Elektronik" 
+                      className="max-h-full max-w-full object-contain"
+                    />
+                  </a>
+                )}
+                {role.company === "Ascilion AB" && (
+                  <a 
+                    href="https://www.ascilion.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => track('company_logo_click', { company: 'Ascilion AB', source: 'professional_section' })}
+                    className="hover:opacity-80 transition-opacity h-full w-full flex items-center justify-center"
+                  >
+                    <img 
+                      src={ascilionLogo} 
+                      alt="Ascilion" 
+                      className="max-h-full max-w-full object-contain"
+                    />
+                  </a>
+                )}
+                {role.company === "Bright Day Graphene AB" && (
+                  <a 
+                    href="https://www.brightdaygraphene.se/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => track('company_logo_click', { company: 'Bright Day Graphene AB', source: 'professional_section' })}
+                    className="hover:opacity-80 transition-opacity h-full w-full flex items-center justify-center"
+                  >
+                    <img 
+                      src={brightDayGrapheneLogo} 
+                      alt="Bright Day Graphene" 
+                      className="max-h-full max-w-full object-contain"
+                    />
+                  </a>
+                )}
+                {role.company === "Exeger Operations AB" && (
+                  <a 
+                    href="https://www.exeger.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => track('company_logo_click', { company: 'Exeger Operations AB', source: 'professional_section' })}
+                    className="hover:opacity-80 transition-opacity h-full w-full flex items-center justify-center"
+                  >
+                    <img 
+                      src={exegerLogo} 
+                      alt="Exeger" 
+                      className="max-h-full max-w-full object-contain dark:invert"
+                    />
+                  </a>
+                )}
+              </div>
+
+              {/* Role Content */}
+              <div className="flex-1">
+                <div className="flex justify-between items-start mb-2">
+                  <div className="flex-1">
+                    <h3 className={`${viewMode === 'card' ? 'text-lg' : 'text-base'} font-semibold text-foreground group-hover:text-primary transition-colors leading-tight ${viewMode === 'list' ? 'mb-1' : 'mb-2'}`}>
                       {role.title}
                     </h3>
-                    <div className="flex flex-col gap-2 text-muted-foreground">
-                      <div className="flex items-center gap-2">
-                        <Building className="h-4 w-4" />
-                        <a 
-                          href={
-                            role.company === "EBV Elektronik" ? "https://my.avnet.com/ebv/" :
-                            role.company === "Ascilion AB" ? "https://www.ascilion.com/" :
-                            role.company === "Bright Day Graphene AB" ? "https://www.brightdaygraphene.se/" :
-                            role.company === "Exeger Operations AB" ? "https://www.exeger.com/" :
-                            "#"
-                          }
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={() => track('company_name_click', { company: role.company, source: 'professional_section' })}
-                          className="text-sm font-medium hover:text-primary transition-colors cursor-pointer inline-flex items-center gap-1"
-                        >
-                          {role.company}
-                          <ExternalLinkIcon className="h-3 w-3" />
-                        </a>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <MapPin className="h-4 w-4" />
-                        <span className="text-sm">{role.location}</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Calendar className="h-4 w-4" />
-                        <span className="text-sm">{role.period}</span>
-                      </div>
+                    <a 
+                      href={
+                        role.company === "EBV Elektronik" ? "https://my.avnet.com/ebv/" :
+                        role.company === "Ascilion AB" ? "https://www.ascilion.com/" :
+                        role.company === "Bright Day Graphene AB" ? "https://www.brightdaygraphene.se/" :
+                        role.company === "Exeger Operations AB" ? "https://www.exeger.com/" :
+                        "#"
+                      }
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => track('company_name_click', { company: role.company, source: 'professional_section' })}
+                      className="text-primary font-medium hover:text-primary/80 transition-colors cursor-pointer inline-flex items-center gap-1"
+                    >
+                      {role.company}
+                      <ExternalLinkIcon className="h-3 w-3" />
+                    </a>
+                  </div>
+                  <span className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded-full">
+                    {role.area}
+                  </span>
+                </div>
+                
+                {viewMode === 'card' && (
+                  <div className="flex flex-col gap-2 text-muted-foreground mb-3">
+                    <div className="flex items-center gap-2">
+                      <MapPin className="h-4 w-4" />
+                      <span className="text-sm">{role.location}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Calendar className="h-4 w-4" />
+                      <span className="text-sm">{role.period}</span>
                     </div>
                   </div>
-                </div>
+                )}
 
-                {/* Description */}
-                <p className="text-muted-foreground leading-relaxed mb-6">
-                  {role.description}
+                {viewMode === 'list' && (
+                  <div className="flex flex-wrap gap-x-4 gap-y-1 text-muted-foreground mb-2 text-sm">
+                    <div className="flex items-center gap-1">
+                      <Calendar className="h-3 w-3" />
+                      <span>{role.period}</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <MapPin className="h-3 w-3" />
+                      <span>{role.location}</span>
+                    </div>
+                  </div>
+                )}
+                
+                <p className={`text-sm text-muted-foreground leading-relaxed ${
+                  viewMode === 'card' 
+                    ? 'mb-4 flex-grow min-h-[5rem]' 
+                    : 'mb-3 line-clamp-2'
+                }`}>
+                  {viewMode === 'list' 
+                    ? role.description.length > 120 
+                      ? role.description.substring(0, 120) + '...'
+                      : role.description
+                    : role.description
+                  }
                 </p>
 
                 {/* Technologies */}
-                <div className="mb-6">
-                  <h4 className="text-sm font-semibold text-foreground mb-3">Skills Used</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {role.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary"
-                      >
-                        {tech}
-                      </span>
-                    ))}
+                {viewMode === 'card' && (
+                  <div className="mb-4">
+                    <h5 className="text-sm font-semibold text-foreground mb-2">Technologies</h5>
+                    <div className="flex flex-wrap gap-1">
+                      {role.technologies.map((tech) => (
+                        <span
+                          key={tech}
+                          className="text-xs font-medium text-muted-foreground bg-secondary px-2 py-1 rounded h-6 flex items-center"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                )}
+
+                {viewMode === 'list' && (
+                  <div className="mb-3">
+                    <div className="flex flex-wrap gap-1">
+                      {role.technologies.slice(0, 3).map((tech) => (
+                        <span
+                          key={tech}
+                          className="text-xs font-medium text-muted-foreground bg-secondary px-2 py-1 rounded h-6 flex items-center"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                      {role.technologies.length > 3 && (
+                        <span className="text-xs font-medium text-muted-foreground bg-secondary px-2 py-1 rounded h-6 flex items-center">
+                          +{role.technologies.length - 3} more
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                )}
 
                 {/* Achievements */}
-                <div>
-                  <h4 className="text-sm font-semibold text-foreground mb-3">Key Achievements</h4>
-                  <ul className="space-y-2">
-                    {role.achievements.map((achievement, achievementIndex) => (
-                      <li
-                        key={achievementIndex}
-                        className="flex items-start gap-3 text-sm text-muted-foreground"
-                      >
-                        <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
-                        <span>{achievement}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                {viewMode === 'card' && (
+                  <div className="mt-auto">
+                    <h5 className="text-sm font-semibold text-foreground mb-2">Key Achievements</h5>
+                    <ul className="space-y-1">
+                      {role.achievements.map((achievement, idx) => (
+                        <li key={idx} className="text-sm text-muted-foreground flex items-start gap-2">
+                          <span className="text-primary mt-1.5 flex-shrink-0">•</span>
+                          <span>{achievement}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {viewMode === 'list' && (
+                  <div>
+                    <ul className="space-y-1">
+                      {role.achievements.slice(0, 1).map((achievement, idx) => (
+                        <li key={idx} className="text-sm text-muted-foreground flex items-start gap-2">
+                          <span className="text-primary mt-1.5 flex-shrink-0">•</span>
+                          <span>{achievement}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
