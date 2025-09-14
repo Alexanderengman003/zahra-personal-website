@@ -57,10 +57,12 @@ export function About() {
                 className="card-gradient rounded-xl p-6 shadow-subtle hover-lift"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
-                  <feature.icon className="h-5 w-5 text-primary" aria-hidden="true" />
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
+                    <feature.icon className="h-5 w-5 text-primary" aria-hidden="true" />
+                  </div>
+                  <h3 className="text-base font-semibold text-foreground">{feature.title}</h3>
                 </div>
-                <h3 className="mt-4 text-base font-semibold text-foreground">{feature.title}</h3>
                 <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
                   {feature.description}
                 </p>
