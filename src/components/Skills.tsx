@@ -60,8 +60,8 @@ export function Skills() {
     <section id="skills" className="py-16 bg-muted/30" ref={sectionRef}>
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Header */}
-        <div className="mx-auto max-w-2xl text-center mb-20">
-          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl mb-6">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
             Skills & Personality
           </h2>
           <p className="text-lg leading-8 text-muted-foreground">
@@ -69,7 +69,7 @@ export function Skills() {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-16">
+        <div className="grid lg:grid-cols-3 gap-16 mt-8">
           {/* Personality Section */}
           <div className="card-gradient rounded-3xl p-8 shadow-large">
             <h3 className="text-2xl font-semibold text-foreground mb-10 text-center">

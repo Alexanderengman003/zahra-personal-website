@@ -269,7 +269,7 @@ export function Projects() {
                         <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors leading-tight mb-1">
                           {project.title}
                         </h3>
-                        <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 text-muted-foreground">
+                        <div className="flex flex-col gap-1 text-muted-foreground">
                           <a 
                             href="https://www.kth.se/"
                             target="_blank"

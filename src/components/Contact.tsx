@@ -140,7 +140,7 @@ export function Contact() {
           </p>
         </div>
 
-        <div className="mx-auto mt-16 grid max-w-5xl grid-cols-1 gap-16 lg:grid-cols-2">
+        <div className="mx-auto mt-8 grid max-w-5xl grid-cols-1 gap-16 lg:grid-cols-2">
           {/* Contact Information */}
           <div>
             <h3 className="text-xl font-semibold text-foreground mb-8">Get in touch</h3>

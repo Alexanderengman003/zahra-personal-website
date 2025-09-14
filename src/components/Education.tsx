@@ -31,7 +31,7 @@ export function Education() {
     <section id="education" className="py-16 bg-secondary/30">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Header */}
-        <div className="mx-auto max-w-2xl text-center mb-16">
+        <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
             Education
           </h2>
@@ -150,7 +150,7 @@ export function Education() {
                       <h4 className="text-lg font-semibold text-foreground mb-1 leading-tight">
                         {edu.degree}
                       </h4>
-                      <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 text-muted-foreground">
+                      <div className="flex flex-col gap-1 text-muted-foreground">
                         <a 
                           href="https://www.kth.se/"
                           target="_blank"
