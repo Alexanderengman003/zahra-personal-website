@@ -481,107 +481,11 @@ export function Professional() {
             </div>
           </div>
           
-          {/* Filter Dropdowns Row - Mobile Only */}
-          <div className="sm:hidden mb-4">
-            <div className="flex flex-row gap-2">
-              {/* Technology Dropdown */}
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <button className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg bg-muted text-muted-foreground hover:text-foreground transition-all h-10">
-                    <Filter className="h-4 w-4" />
-                    Skills {selectedTechnologies.length > 0 && `(${selectedTechnologies.length})`}
-                    <ChevronDown className="h-4 w-4" />
-                  </button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="start" className="w-56 bg-background border shadow-md z-50">
-                  <DropdownMenuItem
-                    onClick={(e) => {
-                      e.preventDefault();
-                      clearAllTechnologies();
-                    }}
-                    className="cursor-pointer text-muted-foreground hover:text-foreground"
-                  >
-                    Clear All
-                  </DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  {uniqueTechnologies.map((tech) => (
-                    <DropdownMenuCheckboxItem
-                      key={tech}
-                      checked={selectedTechnologies.includes(tech)}
-                      onSelect={(e) => {
-                        e.preventDefault();
-                      }}
-                      onCheckedChange={(checked) => {
-                        track('professional_tech_filter_click', { 
-                          technology: tech, 
-                          source: 'professional_section',
-                          timestamp: Date.now(),
-                          userAgent: navigator.userAgent
-                        });
-                        handleTechnologyToggle(tech);
-                      }}
-                      className="cursor-pointer"
-                    >
-                      {tech}
-                    </DropdownMenuCheckboxItem>
-                  ))}
-                </DropdownMenuContent>
-              </DropdownMenu>
-
-              {/* Software Dropdown */}
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <button className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg bg-muted text-muted-foreground hover:text-foreground transition-all h-10">
-                    <Filter className="h-4 w-4" />
-                    Software {selectedSoftware.length > 0 && `(${selectedSoftware.length})`}
-                    <ChevronDown className="h-4 w-4" />
-                  </button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="start" className="w-56 bg-background border shadow-md z-50">
-                  <DropdownMenuItem
-                    onClick={(e) => {
-                      e.preventDefault();
-                      clearAllSoftware();
-                    }}
-                    className="cursor-pointer text-muted-foreground hover:text-foreground"
-                  >
-                    Clear All
-                  </DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  {uniqueSoftware.map((software) => (
-                    <DropdownMenuCheckboxItem
-                      key={software}
-                      checked={selectedSoftware.includes(software)}
-                      onSelect={(e) => {
-                        e.preventDefault();
-                      }}
-                      onCheckedChange={(checked) => {
-                        track('professional_software_filter_click', { 
-                          software: software, 
-                          source: 'professional_section',
-                          timestamp: Date.now(),
-                          userAgent: navigator.userAgent
-                        });
-                        handleSoftwareToggle(software);
-                      }}
-                      className="cursor-pointer"
-                    >
-                      {software}
-                    </DropdownMenuCheckboxItem>
-                  ))}
-                </DropdownMenuContent>
-                </DropdownMenu>
-            </div>
-          </div>
-        </div>
-
-        {/* Professional Roles */}
-        <div className="mx-auto max-w-7xl">
           <div className={viewMode === 'card' ? "grid grid-cols-1 lg:grid-cols-2 gap-8" : "space-y-4"}>
             {filteredRoles.map((role, index) => (
               <div
                 key={role.id}
-                className={`card-gradient rounded-xl shadow-medium hover-lift ${viewMode === 'card' ? 'h-full flex flex-col overflow-hidden px-2 py-6' : 'p-2'}`}
+                className={`card-gradient rounded-xl shadow-medium hover-lift ${viewMode === 'card' ? 'h-full flex flex-col p-6' : 'p-4'}`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 {viewMode === 'card' ? (
@@ -602,111 +506,48 @@ export function Professional() {
                           )}
                           {role.title}
                         </h3>
-                          {role.company === "EBV Elektronik" && (
+                        <div className="flex flex-col gap-2 text-muted-foreground">
+                          <div className="flex items-center gap-2">
+                            <Building className="h-4 w-4" />
                             <a 
-                              href="https://my.avnet.com/ebv/"
+                              href={
+                                role.company === "PayPal" ? "https://www.paypal.com/" :
+                                role.company === "Klarna" ? "https://www.klarna.com/" :
+                                role.company === "Antler" ? "https://www.antler.co/" :
+                                role.company === "H&M" ? "https://www2.hm.com/" :
+                                role.company === "Bamilo" ? "#" :
+                                role.company === "Solico Group" ? "#" :
+                                role.company === "Puls Health Research" ? "#" :
+                                "#"
+                              }
                               target="_blank"
                               rel="noopener noreferrer"
-                              onClick={() => track('company_logo_click', { company: 'EBV Elektronik', source: 'professional_section' })}
-                              className="hover:opacity-80 transition-opacity"
+                              onClick={() => track('company_name_click', { company: role.company, source: 'professional_section' })}
+                              className="text-sm font-medium hover:text-primary transition-colors cursor-pointer inline-flex items-center gap-1"
                             >
-                              <img 
-                                src={ebvLogo} 
-                                alt="EBV Elektronik" 
-                                className="h-5 w-5 rounded-sm"
-                              />
+                              {role.company}
+                              <ExternalLinkIcon className="h-3 w-3" />
                             </a>
-                          )}
-                          {role.company === "Ascilion AB" && (
-                            <a 
-                              href="https://www.ascilion.com/"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              onClick={() => track('company_logo_click', { company: 'Ascilion AB', source: 'professional_section' })}
-                              className="hover:opacity-80 transition-opacity"
-                            >
-                              <img 
-                                src={ascilionLogo} 
-                                alt="Ascilion" 
-                                className="h-5 w-5 rounded-sm"
-                              />
-                            </a>
-                          )}
-                          {role.company === "Bright Day Graphene AB" && (
-                            <a 
-                              href="https://www.brightdaygraphene.se/"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              onClick={() => track('company_logo_click', { company: 'Bright Day Graphene AB', source: 'professional_section' })}
-                              className="hover:opacity-80 transition-opacity"
-                            >
-                              <img 
-                                src={brightDayGrapheneLogo} 
-                                alt="Bright Day Graphene" 
-                                className="h-5 w-5 rounded-sm"
-                              />
-                            </a>
-                          )}
-                          {role.company === "Exeger Operations AB" && (
-                            <a 
-                              href="https://www.exeger.com/"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              onClick={() => track('company_logo_click', { company: 'Exeger Operations AB', source: 'professional_section' })}
-                              className="hover:opacity-80 transition-opacity"
-                            >
-                              <img 
-                                src={exegerLogo} 
-                                alt="Exeger" 
-                                className="h-5 w-5 rounded-sm dark:invert"
-                              />
-                            </a>
-                          )}
-                          {role.title}
-                        </h3>
-                      <div className="flex flex-col gap-2 text-muted-foreground">
-                        <div className="flex items-center gap-2">
-                          <Building className="h-4 w-4" />
-                          <a 
-                            href={
-                              role.company === "PayPal" ? "https://www.paypal.com/" :
-                              role.company === "Klarna" ? "https://www.klarna.com/" :
-                              role.company === "Antler" ? "https://www.antler.co/" :
-                              role.company === "H&M" ? "https://www2.hm.com/" :
-                              role.company === "Bamilo" ? "#" :
-                              role.company === "Solico Group" ? "#" :
-                              role.company === "Puls Health Research" ? "#" :
-                              "#"
-                            }
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={() => track('company_name_click', { company: role.company, source: 'professional_section' })}
-                            className="text-sm font-medium hover:text-primary transition-colors cursor-pointer inline-flex items-center gap-1"
-                          >
-                            {role.company}
-                            <ExternalLinkIcon className="h-3 w-3" />
-                          </a>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <MapPin className="h-4 w-4" />
+                            <span className="text-sm">{role.location}</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <Calendar className="h-4 w-4" />
+                            <span className="text-sm">{role.period}</span>
+                          </div>
                         </div>
-                        <div className="flex items-center gap-2">
-                          <MapPin className="h-4 w-4" />
-                          <span className="text-sm">{role.location}</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <Calendar className="h-4 w-4" />
-                          <span className="text-sm">{role.period}</span>
-                        </div>
-                      </div>
                       </div>
                     </div>
-
-                    {/* Description */}
-                    <p className="text-muted-foreground leading-relaxed mb-6">
+                    
+                    <p className="text-muted-foreground mb-6 leading-relaxed flex-grow">
                       {role.description}
                     </p>
-
+                    
                     {/* Technologies */}
                     <div className="mb-6">
-                      <h4 className="text-sm font-semibold text-foreground mb-3">Skills Used</h4>
+                      <h4 className="text-sm font-semibold text-foreground mb-3">Technologies & Skills</h4>
                       <div className="flex flex-wrap gap-2">
                         {role.technologies.map((tech) => (
                           <span
@@ -718,16 +559,16 @@ export function Professional() {
                         ))}
                       </div>
                     </div>
-
+                    
                     {/* Software */}
                     {role.software.length > 0 && (
                       <div className="mb-6">
-                        <h4 className="text-sm font-semibold text-foreground mb-3">Software Used</h4>
+                        <h4 className="text-sm font-semibold text-foreground mb-3">Software & Tools</h4>
                         <div className="flex flex-wrap gap-2">
                           {role.software.map((software) => (
                             <span
                               key={software}
-                              className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary"
+                              className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-secondary/50 text-secondary-foreground"
                             >
                               {software}
                             </span>
@@ -735,18 +576,15 @@ export function Professional() {
                         </div>
                       </div>
                     )}
-
+                    
                     {/* Achievements */}
-                    <div>
+                    <div className="mt-auto">
                       <h4 className="text-sm font-semibold text-foreground mb-3">Key Achievements</h4>
                       <ul className="space-y-2">
-                        {role.achievements.map((achievement, achievementIndex) => (
-                          <li
-                            key={achievementIndex}
-                            className="flex items-start gap-3 text-sm text-muted-foreground"
-                          >
-                            <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
-                            <span>{achievement}</span>
+                        {role.achievements.map((achievement, idx) => (
+                          <li key={idx} className="text-sm text-muted-foreground flex items-start gap-2">
+                            <span className="text-primary text-xs mt-1 flex-shrink-0">•</span>
+                            <span className="leading-relaxed">{achievement}</span>
                           </li>
                         ))}
                       </ul>
@@ -757,65 +595,14 @@ export function Professional() {
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between relative">
                     <div className="flex-1">
                       <h3 className="text-lg font-semibold text-foreground mb-1 leading-tight flex items-center gap-2">
-                        {role.company === "EBV Elektronik" && (
-                          <a 
-                            href="https://my.avnet.com/ebv/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={() => track('company_logo_click', { company: 'EBV Elektronik', source: 'professional_section' })}
-                            className="hover:opacity-80 transition-opacity"
-                          >
+                        {role.logo && (
+                          <div className="flex-shrink-0">
                             <img 
-                              src={ebvLogo} 
-                              alt="EBV Elektronik" 
-                              className="h-4 w-4 rounded-sm"
+                              src={role.logo} 
+                              alt={role.company}
+                              className="h-6 w-6 rounded-md object-contain bg-white/10 p-1"
                             />
-                          </a>
-                        )}
-                        {role.company === "Ascilion AB" && (
-                          <a 
-                            href="https://www.ascilion.com/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={() => track('company_logo_click', { company: 'Ascilion AB', source: 'professional_section' })}
-                            className="hover:opacity-80 transition-opacity"
-                          >
-                            <img 
-                              src={ascilionLogo} 
-                              alt="Ascilion" 
-                              className="h-4 w-4 rounded-sm"
-                            />
-                          </a>
-                        )}
-                        {role.company === "Bright Day Graphene AB" && (
-                          <a 
-                            href="https://www.brightdaygraphene.se/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={() => track('company_logo_click', { company: 'Bright Day Graphene AB', source: 'professional_section' })}
-                            className="hover:opacity-80 transition-opacity"
-                          >
-                            <img 
-                              src={brightDayGrapheneLogo} 
-                              alt="Bright Day Graphene" 
-                              className="h-4 w-4 rounded-sm"
-                            />
-                          </a>
-                        )}
-                        {role.company === "Exeger Operations AB" && (
-                          <a 
-                            href="https://www.exeger.com/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={() => track('company_logo_click', { company: 'Exeger Operations AB', source: 'professional_section' })}
-                            className="hover:opacity-80 transition-opacity"
-                          >
-                            <img 
-                              src={exegerLogo} 
-                              alt="Exeger" 
-                              className="h-4 w-4 rounded-sm dark:invert"
-                            />
-                          </a>
+                          </div>
                         )}
                         {role.title}
                       </h3>
