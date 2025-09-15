@@ -56,7 +56,7 @@ export function Hero() {
               <p className="text-lg leading-relaxed text-muted-foreground max-w-2xl text-justify">
                 Passionate about advancing semiconductor technology, with hands-on experience in hardware development and innovation.
                 Specialized in advanced semiconductors, working across design, testing, and implementation of hardware solutions.
-                Proven background in sales, bridging technical expertise with customer needs to drive business growth.
+                Bridging technical expertise with customer needs to drive business growth.
               </p>
             </div>
 
