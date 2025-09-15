@@ -38,7 +38,7 @@ export function About() {
     <section id="about" className="py-12 bg-secondary/50">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
 
-        <div className="mx-auto mt-8 max-w-6xl">
+        <div className="mx-auto mt-8 max-w-7xl">
           {/* Journey Card - Full Width */}
           <div className="mb-8">
             <div className="card-gradient rounded-2xl p-8 shadow-medium hover-lift">
@@ -50,11 +50,11 @@ export function About() {
           </div>
 
           {/* Skills/Expertise Grid - 2 rows, 3 columns */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             {features.map((feature, index) => (
               <div
                 key={feature.title}
-                className="card-gradient rounded-xl p-6 shadow-subtle hover-lift"
+                className="card-gradient rounded-xl p-5 shadow-subtle hover-lift"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="flex items-center gap-3 mb-3">
