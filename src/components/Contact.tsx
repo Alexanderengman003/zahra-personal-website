@@ -69,6 +69,13 @@ export function Contact() {
         source: 'contact_form'
       });
 
+      // Debug: Log EmailJS configuration (remove in production)
+      console.log("EmailJS Config:", {
+        serviceId: EMAILJS_SERVICE_ID ? "SET" : "MISSING",
+        templateId: EMAILJS_TEMPLATE_ID ? "SET" : "MISSING", 
+        publicKey: EMAILJS_PUBLIC_KEY ? "SET" : "MISSING"
+      });
+
       // Send email using EmailJS
       await emailjs.send(
         EMAILJS_SERVICE_ID,
