@@ -18,19 +18,8 @@ serve(async (req) => {
     console.log('Analytics login attempt for username:', username);
     
     // Get stored credentials from environment
-    const validUsername = 'Alexander';
-    const validPassword = Deno.env.get('ANALYTICS_PASSWORD');
-    
-    if (!validPassword) {
-      console.error('ANALYTICS_PASSWORD environment variable not set');
-      return new Response(
-        JSON.stringify({ success: false, error: 'Server configuration error' }),
-        { 
-          status: 500, 
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
-        }
-      );
-    }
+    const validUsername = 'Zahra';
+    const validPassword = 'ZF15092025Pw?';
     
     // Verify credentials
     const isValidCredentials = username === validUsername && password === validPassword;

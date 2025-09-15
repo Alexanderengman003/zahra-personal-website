@@ -46,7 +46,7 @@ const projects = [
   },
 ];
 
-const categories = ["All", "Research"];
+const categories = ["All"];
 
 export function Projects() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -72,8 +72,8 @@ export function Projects() {
             Previous Projects
           </h2>
           <p className="mt-4 text-lg leading-8 text-muted-foreground">
-            Academic research project showcasing expertise in materials science, 
-            nanotechnology, and advanced fabrication techniques.
+            Product management and business development projects showcasing strategic thinking, 
+            innovation, and leadership in fintech and health tech industries.
           </p>
         </div>
 
