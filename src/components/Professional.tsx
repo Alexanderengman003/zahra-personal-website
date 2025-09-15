@@ -231,7 +231,7 @@ export function Professional() {
         </div>
 
         {/* Filter and View Controls */}
-        <div className="mx-auto max-w-7xl mt-8 px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl mt-8">
           <div className="flex flex-col lg:flex-row mb-8 gap-4 justify-between">
             {/* Left side: Area Filter and Filter Dropdowns */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
@@ -416,7 +416,7 @@ export function Professional() {
         </div>
 
         {/* Professional Roles */}
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
           <div className={viewMode === 'card' ? "grid grid-cols-1 lg:grid-cols-2 gap-8" : "space-y-4"}>
             {filteredRoles.map((role, index) => (
               <div
