@@ -96,8 +96,6 @@ export function Skills() {
                          transitionDelay: `${index * 200}ms`
                        }}
                      />
-                     {/* Center line - placed after bar to appear on top */}
-                     <div className="absolute left-1/2 top-0 w-px h-6 bg-border transform -translate-x-0.5 z-10" />
                    </div>
                 </div>
               ))}
