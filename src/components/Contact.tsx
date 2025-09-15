@@ -30,10 +30,10 @@ const contactInfo = [
   },
 ];
 
-// Get EmailJS configuration from environment variables
-const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || "";
-const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "";
-const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "";
+// EmailJS configuration - these are public keys safe for frontend use
+const EMAILJS_SERVICE_ID = "service_7tx6e9l";
+const EMAILJS_TEMPLATE_ID = "template_nh4zyyu";
+const EMAILJS_PUBLIC_KEY = "WagP-Y3HRCNyL4Gj2";
 
 // Get reCAPTCHA site key from environment variables
 const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY || "";

@@ -58,41 +58,38 @@ export function Hero() {
               </p>
             </div>
 
-            {/* CTA Buttons */}
             <div className="animate-fade-up flex flex-col sm:flex-row gap-4 justify-start" style={{ animationDelay: "0.6s" }}>
-              <Button 
+              <Button
                 size="lg" 
-                variant="outline"
-                className="hover-lift font-modern group border-2 hover:border-primary/50 bg-primary hover:bg-primary-hover border-primary text-primary-foreground"
+                className="hover-lift font-modern group bg-purple-800 hover:bg-purple-900 border-purple-800 text-white"
                 onClick={() => {
                   track('linkedin_click', { source: 'hero' });
                   window.open('https://www.linkedin.com/in/zahra-farimani/', '_blank');
                 }}
               >
+                <Linkedin className="mr-2 h-4 w-4" />
                 LinkedIn
               </Button>
               <Button 
                 size="lg" 
-                variant="default" 
-                className="hover-lift font-modern group relative overflow-hidden"
+                className="hover-lift font-modern group bg-purple-600 hover:bg-purple-700 text-white"
                 onClick={() => {
                   track('contact_button_click', { source: 'hero' });
                   window.location.href = 'mailto:zahra.farimani@gmail.com?subject=Contact from website&body=Hello Zahra,';
                 }}
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-primary-hover to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-700 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <Mail className="relative mr-2 h-4 w-4" />
                 <span className="relative">Get In Touch</span>
               </Button>
               <Button 
-                variant="outline" 
                 size="lg" 
-                className="hover-lift font-modern group border-2 hover:border-primary/50"
+                className="hover-lift font-modern group bg-purple-400 hover:bg-purple-500 text-white"
                 onClick={() => {
                   track('cv_download_click', { source: 'hero' });
                   const link = document.createElement('a');
                   link.href = '/CV_Alexander_Engman_2025.pdf';
-                  link.download = 'CV_Alexander_Engman_2025.pdf';
+                  link.download = 'Zahra_Farimani_Resume.pdf';
                   document.body.appendChild(link);
                   link.click();
                   document.body.removeChild(link);

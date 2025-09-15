@@ -500,7 +500,9 @@ export function Professional() {
                               <img 
                                 src={role.logo} 
                                 alt={role.company}
-                                className="h-8 w-8 rounded-lg object-contain bg-white/10 p-1"
+                                className={`h-6 w-6 rounded-md object-contain p-1 ${
+                                  role.company === "H&M" ? "bg-white" : "bg-white/10"
+                                }`}
                               />
                             </div>
                           )}
@@ -600,7 +602,9 @@ export function Professional() {
                             <img 
                               src={role.logo} 
                               alt={role.company}
-                              className="h-6 w-6 rounded-md object-contain bg-white/10 p-1"
+                              className={`h-5 w-5 rounded-md object-contain p-0.5 ${
+                                role.company === "H&M" ? "bg-white" : "bg-white/10"
+                              }`}
                             />
                           </div>
                         )}
