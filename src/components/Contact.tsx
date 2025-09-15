@@ -1,6 +1,5 @@
 import { useState, useRef } from "react";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
-import emailjs from "@emailjs/browser";
 import ReCAPTCHA from "react-google-recaptcha";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { useTrackEvent } from "@/hooks/useTrackEvent";
+import { supabase } from "@/integrations/supabase/client";
 
 const contactInfo = [
   {
@@ -24,13 +24,13 @@ const contactInfo = [
   },
 ];
 
-// EmailJS configuration - these are public keys safe for frontend use
-const EMAILJS_SERVICE_ID = "service_7tx6e9l";
-const EMAILJS_TEMPLATE_ID = "template_nh4zyyu";
-const EMAILJS_PUBLIC_KEY = "WagP-Y3HRCNyL4Gj2";
+// EmailJS configuration from environment variables
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
 // reCAPTCHA configuration
-const RECAPTCHA_SITE_KEY = "6LeWYcorAAAAADxQD7qKatEs8nbRLKqPuxwz2CFG";
+const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
 
 export function Contact() {
   const [isLoading, setIsLoading] = useState(false);
@@ -69,19 +69,21 @@ export function Contact() {
         source: 'contact_form'
       });
 
-      await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        {
-          from_name: formData.name,
-          from_email: formData.email,
-          from_phone: formData.phone,
+      // Use Supabase edge function for more reliable email sending
+      const { data, error } = await supabase.functions.invoke('send-contact-email', {
+        body: {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
           subject: formData.subject,
           message: formData.message,
-          to_email: "zahra.farimani@gmail.com",
-        },
-        EMAILJS_PUBLIC_KEY
-      );
+          recaptchaToken
+        }
+      });
+
+      if (error) {
+        throw new Error(error.message || 'Failed to send email');
+      }
 
       // Track successful submission
       await track('contact_form_success', {

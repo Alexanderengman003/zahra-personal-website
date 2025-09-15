@@ -11,6 +11,7 @@ const corsHeaders = {
 interface ContactFormData {
   name: string;
   email: string;
+  phone?: string;
   subject: string;
   message: string;
   recaptchaToken: string;
@@ -23,7 +24,7 @@ serve(async (req) => {
   }
 
   try {
-    const { name, email, subject, message, recaptchaToken }: ContactFormData = await req.json();
+    const { name, email, phone, subject, message, recaptchaToken }: ContactFormData = await req.json();
 
     // Basic validation
     if (!name || !email || !subject || !message || !recaptchaToken) {
@@ -80,13 +81,14 @@ serve(async (req) => {
 
     // Send email using Resend
     const emailResponse = await resend.emails.send({
-      from: 'Portfolio Contact <onboarding@resend.dev>',
-      to: ['alexander@engman.nu'],
+      from: 'Zahra Portfolio Contact <onboarding@resend.dev>',
+      to: ['zahra.farimani@gmail.com'],
       subject: `Portfolio Contact: ${subject}`,
       html: `
         <h2>New Contact Form Submission</h2>
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Email:</strong> ${email}</p>
+        ${phone ? `<p><strong>Phone:</strong> ${phone}</p>` : ''}
         <p><strong>Subject:</strong> ${subject}</p>
         <p><strong>Message:</strong></p>
         <p>${message.replace(/\n/g, '<br>')}</p>
