@@ -1,10 +1,1 @@
-project_id = "oyzfmzaarffmsqxdszmj"
-
-[functions.send-contact-email]
-verify_jwt = false
-
-[functions.clear-analytics-data]
-verify_jwt = false
-
-[functions.verify-analytics-password]
-verify_jwt = false
+project_id = "xmscmlzivpbqcnoswihq"
