@@ -272,21 +272,23 @@ const Analytics = () => {
                 <CardDescription className="font-modern">Most viewed pages</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
-                  {stats.topPages.slice(0, 4).map((page: any, index: number) => (
-                    <div key={page.page} className="flex items-center justify-between">
-                      <div className="flex items-center space-x-3">
-                        <div className="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-semibold">
-                          {index + 1}
+                <div className="h-[200px] overflow-y-auto">
+                  <div className="space-y-4">
+                    {stats.topPages.slice(0, 10).map((page: any, index: number) => (
+                      <div key={page.page} className="flex items-center justify-between">
+                        <div className="flex items-center space-x-3">
+                          <div className="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-semibold">
+                            {index + 1}
+                          </div>
+                          <span className="font-medium font-modern text-sm">{page.page}</span>
                         </div>
-                        <span className="font-medium font-modern text-sm">{page.page}</span>
+                        <div className="text-right">
+                          <div className="font-semibold font-modern text-sm">{page.views}</div>
+                          <div className="text-xs text-muted-foreground">{page.percentage}%</div>
+                        </div>
                       </div>
-                      <div className="text-right">
-                        <div className="font-semibold font-modern text-sm">{page.views}</div>
-                        <div className="text-xs text-muted-foreground">{page.percentage}%</div>
-                      </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -324,28 +326,30 @@ const Analytics = () => {
                 <CardDescription className="font-modern">Most applied professional experience filters</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
-                  {stats.filterUsage && stats.filterUsage.length > 0 ? (
-                    stats.filterUsage.map((filterItem: any) => (
-                      <div key={filterItem.filter} className="flex items-center justify-between">
-                        <div className="flex items-center space-x-3">
-                          {filterItem.filter.startsWith("Area:") && <Settings className="h-4 w-4 text-muted-foreground" />}
-                          {filterItem.filter.startsWith("Skill:") && <Filter className="h-4 w-4 text-muted-foreground" />}
-                          {filterItem.filter.startsWith("Software:") && <Monitor className="h-4 w-4 text-muted-foreground" />}
-                          <span className="font-medium font-modern text-sm">{filterItem.filter}</span>
+                <div className="h-[200px] overflow-y-auto">
+                  <div className="space-y-4">
+                    {stats.filterUsage && stats.filterUsage.length > 0 ? (
+                      stats.filterUsage.slice(0, 10).map((filterItem: any) => (
+                        <div key={filterItem.filter} className="flex items-center justify-between">
+                          <div className="flex items-center space-x-3">
+                            {filterItem.filter.startsWith("Area:") && <Settings className="h-4 w-4 text-muted-foreground" />}
+                            {filterItem.filter.startsWith("Skill:") && <Filter className="h-4 w-4 text-muted-foreground" />}
+                            {filterItem.filter.startsWith("Software:") && <Monitor className="h-4 w-4 text-muted-foreground" />}
+                            <span className="font-medium font-modern text-sm">{filterItem.filter}</span>
+                          </div>
+                          <div className="text-right">
+                            <div className="font-semibold font-modern text-sm">{filterItem.count}</div>
+                            <div className="text-xs text-muted-foreground">{filterItem.percentage}%</div>
+                          </div>
                         </div>
-                        <div className="text-right">
-                          <div className="font-semibold font-modern text-sm">{filterItem.count}</div>
-                          <div className="text-xs text-muted-foreground">{filterItem.percentage}%</div>
-                        </div>
+                      ))
+                    ) : (
+                      <div className="text-center py-4 text-muted-foreground">
+                        <Filter className="h-6 w-6 mx-auto mb-2 opacity-50" />
+                        <p className="text-xs">No filter usage data yet</p>
                       </div>
-                    ))
-                  ) : (
-                    <div className="text-center py-4 text-muted-foreground">
-                      <Filter className="h-6 w-6 mx-auto mb-2 opacity-50" />
-                      <p className="text-xs">No filter usage data yet</p>
-                    </div>
-                  )}
+                    )}
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -360,29 +364,31 @@ const Analytics = () => {
                 <CardDescription className="font-modern">Visitors by location</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
-                  {stats.topCountries && stats.topCountries.length > 0 ? (
-                    stats.topCountries.map((country: any, index: number) => (
-                      <div key={country.country} className="flex items-center justify-between">
-                        <div className="flex items-center space-x-3">
-                          <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center">
-                            <span className="text-xs font-semibold text-primary">{index + 1}</span>
+                <div className="h-[200px] overflow-y-auto">
+                  <div className="space-y-4">
+                    {stats.topCountries && stats.topCountries.length > 0 ? (
+                      stats.topCountries.slice(0, 10).map((country: any, index: number) => (
+                        <div key={country.country} className="flex items-center justify-between">
+                          <div className="flex items-center space-x-3">
+                            <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center">
+                              <span className="text-xs font-semibold text-primary">{index + 1}</span>
+                            </div>
+                            <Globe className="h-4 w-4 text-muted-foreground" />
+                            <span className="font-medium font-modern text-sm">{country.country}</span>
                           </div>
-                          <Globe className="h-4 w-4 text-muted-foreground" />
-                          <span className="font-medium font-modern text-sm">{country.country}</span>
+                          <div className="text-right">
+                            <div className="font-semibold font-modern text-sm">{country.visits}</div>
+                            <div className="text-xs text-muted-foreground">{country.percentage}%</div>
+                          </div>
                         </div>
-                        <div className="text-right">
-                          <div className="font-semibold font-modern text-sm">{country.visits}</div>
-                          <div className="text-xs text-muted-foreground">{country.percentage}%</div>
-                        </div>
+                      ))
+                    ) : (
+                      <div className="text-center py-4 text-muted-foreground">
+                        <Globe className="h-6 w-6 mx-auto mb-2 opacity-50" />
+                        <p className="text-xs">No location data yet</p>
                       </div>
-                    ))
-                  ) : (
-                    <div className="text-center py-4 text-muted-foreground">
-                      <Globe className="h-6 w-6 mx-auto mb-2 opacity-50" />
-                      <p className="text-xs">No location data yet</p>
-                    </div>
-                  )}
+                    )}
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -395,7 +401,7 @@ const Analytics = () => {
               </CardHeader>
               <CardContent>
                 {stats.recentActivity && stats.recentActivity.length > 0 ? (
-                  <div className="h-[600px] overflow-y-auto pr-2">
+                  <div className="h-[200px] overflow-y-auto pr-2">
                     <div className="space-y-3">
                       {stats.recentActivity.slice(0, 100).map((activity: any, index: number) => (
                         <div key={index} className="flex items-start space-x-3 p-2 rounded-lg hover:bg-muted/50 transition-colors">
