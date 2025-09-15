@@ -23,7 +23,7 @@ const professionalRoles = [
     period: "June 2025 – Currently ongoing",
     description: "Account manager within semiconductors and electronic components providing technical support for new and existing customers.",
     technologies: ["Electronic Components", "Customer Relations", "Technical Support", "Sales"],
-    software: ["Salesforce", "SAP"],
+    software: ["Salesforce", "SAP", "PowerBI"],
     achievements: [
       "Account manager within semiconductors and electronic components",
       "Technical support for new and existing customers",
