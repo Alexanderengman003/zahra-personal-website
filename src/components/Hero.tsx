@@ -24,7 +24,7 @@ export function Hero() {
             <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-primary/40 rounded-full blur-xl group-hover:blur-2xl transition-all duration-500" />
             <div className="relative">
               <img
-                src="/lovable-uploads/fc819219-43d3-4817-b8da-08b472acd701.png"
+                src="/zahra-profile.jpg"
                 alt="Zahra - Professional Headshot"
                 className="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full object-cover shadow-2xl ring-4 ring-white/10 group-hover:scale-105 transition-all duration-500"
               />

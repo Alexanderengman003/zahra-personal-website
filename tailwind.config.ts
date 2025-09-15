@@ -84,10 +84,10 @@ export default {
         },
         "pulse-glow": {
           "0%, 100%": { 
-            boxShadow: "0 0 20px hsl(221 83% 53% / 0.3)" 
+            boxShadow: "0 0 20px hsl(270 75% 50% / 0.3)" 
           },
           "50%": { 
-            boxShadow: "0 0 30px hsl(221 83% 53% / 0.6)" 
+            boxShadow: "0 0 30px hsl(270 75% 50% / 0.6)" 
           }
         },
         "accordion-down": {

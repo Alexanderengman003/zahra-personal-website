@@ -107,11 +107,11 @@ const Index = () => {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="text-center">
             <p className="text-sm text-muted-foreground">
-              © 2025 Alexander Engman
+              © 2025 Zahra Farimani
             </p>
             <div className="mt-4 flex justify-center space-x-6">
               <a
-                href="https://www.linkedin.com/in/alexanderengman"
+                href="https://www.linkedin.com/in/zahra-farimani/"
                 className="text-muted-foreground hover:text-foreground transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -119,7 +119,7 @@ const Index = () => {
                 LinkedIn
               </a>
               <a
-                href="mailto:alexander@engman.nu?subject=Contact from website"
+                href="mailto:zahra.farimani@gmail.com?subject=Contact from website"
                 className="text-muted-foreground hover:text-foreground transition-colors"
               >
                 Email

@@ -17,9 +17,9 @@ export function Header() {
         <div className="flex lg:flex-1">
           <a href="/#home" className="-m-1.5 p-1.5 group">
             <img 
-              src="/lovable-uploads/9d377a90-4bd2-4522-87aa-5b444b0f12b9.png" 
-              alt="Alexander Engman"
-              className="h-12 w-auto transition-all duration-300 group-hover:opacity-80 dark:invert dark:brightness-0 dark:contrast-100 filter"
+              src="/zahra-logo.png" 
+              alt="Zahra Farimani"
+              className="h-12 w-auto transition-all duration-300 group-hover:opacity-80"
             />
           </a>
         </div>
