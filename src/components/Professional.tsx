@@ -232,52 +232,53 @@ export function Professional() {
 
         {/* Filter and View Controls */}
         <div className="mx-auto max-w-7xl mt-8">
-          <div className="flex flex-col sm:flex-row mb-8 gap-4 items-start sm:items-center">
-            {/* Area Filter */}
-            <div className="inline-flex rounded-lg bg-muted p-1">
-              {areas.map((area) => (
-                <button
-                  key={area}
-                  onClick={() => {
-                    track('professional_filter_click', { 
-                      area, 
-                      source: 'professional_section',
-                      timestamp: Date.now(),
-                      userAgent: navigator.userAgent
-                    });
-                    setSelectedArea(area);
-                    
-                    // Track comprehensive filter state
-                    track('professional_filters_applied', {
-                      area: area,
-                      technologies: selectedTechnologies,
-                      software: selectedSoftware,
-                      totalResults: professionalRoles.filter(role => {
-                        const areaMatch = area === "All" || role.area.includes(area);
-                        const techMatch = selectedTechnologies.length === 0 || 
-                          selectedTechnologies.every(tech => role.technologies.includes(tech));
-                        const softwareMatch = selectedSoftware.length === 0 || 
-                          selectedSoftware.every(software => role.software.includes(software));
-                        return areaMatch && techMatch && softwareMatch;
-                      }).length,
-                      source: 'professional_section',
-                      timestamp: Date.now(),
-                      userAgent: navigator.userAgent
-                    });
-                  }}
-                  className={`px-4 py-2 text-sm font-medium rounded-md transition-all ${
-                    selectedArea === area
-                      ? "bg-background text-foreground shadow-sm"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  {area}
-                </button>
-              ))}
-            </div>
-            
-            {/* Filter Dropdowns */}
-            <div className="flex flex-row gap-2">
+          <div className="flex flex-col sm:flex-row mb-8 gap-2 sm:gap-4 items-start sm:items-center justify-between">
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 items-start sm:items-center">
+              {/* Area Filter */}
+              <div className="inline-flex rounded-lg bg-muted p-1">
+                {areas.map((area) => (
+                  <button
+                    key={area}
+                    onClick={() => {
+                      track('professional_filter_click', { 
+                        area, 
+                        source: 'professional_section',
+                        timestamp: Date.now(),
+                        userAgent: navigator.userAgent
+                      });
+                      setSelectedArea(area);
+                      
+                      // Track comprehensive filter state
+                      track('professional_filters_applied', {
+                        area: area,
+                        technologies: selectedTechnologies,
+                        software: selectedSoftware,
+                        totalResults: professionalRoles.filter(role => {
+                          const areaMatch = area === "All" || role.area.includes(area);
+                          const techMatch = selectedTechnologies.length === 0 || 
+                            selectedTechnologies.every(tech => role.technologies.includes(tech));
+                          const softwareMatch = selectedSoftware.length === 0 || 
+                            selectedSoftware.every(software => role.software.includes(software));
+                          return areaMatch && techMatch && softwareMatch;
+                        }).length,
+                        source: 'professional_section',
+                        timestamp: Date.now(),
+                        userAgent: navigator.userAgent
+                      });
+                    }}
+                    className={`px-4 py-2 text-sm font-medium rounded-md transition-all ${
+                      selectedArea === area
+                        ? "bg-background text-foreground shadow-sm"
+                        : "text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    {area}
+                  </button>
+                ))}
+              </div>
+              
+              {/* Filter Dropdowns */}
+              <div className="flex flex-row gap-2">
                 {/* Technology Dropdown */}
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
@@ -366,6 +367,7 @@ export function Professional() {
                   </DropdownMenuContent>
                 </DropdownMenu>
               </div>
+            </div>
             
             {/* View Mode Toggle */}
             <div className="inline-flex rounded-lg bg-muted p-1">
