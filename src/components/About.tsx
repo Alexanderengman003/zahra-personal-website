@@ -44,7 +44,7 @@ export function About() {
             <div className="card-gradient rounded-2xl p-5 shadow-medium hover-lift">
               <h3 className="text-xl font-semibold text-foreground mb-4">My Journey</h3>
               <p className="text-muted-foreground leading-relaxed text-justify">
-                My career journey spans product management, entrepreneurship, and business development across fintech and health tech industries. From my early days as a business analyst at Klarna to leading cross-functional teams at PayPal, I've consistently focused on building innovative products that deliver real value to users. My international business education from CEMS and Stockholm School of Economics, combined with my entrepreneurial experience as co-founder of Puls Health Research, has shaped my strategic thinking and global perspective on business challenges.
+                My career journey spans product management, entrepreneurship, and business development across fintech and health tech industries. From my early days as a business analyst at Klarna to leading cross-functional teams at PayPal, I've consistently focused on building innovative products that deliver real value to users. Combined with my entrepreneurial experience as co-founder of Puls Health Research, my strategic thinking and global perspective on business challenges have become my greatest assets.
               </p>
             </div>
           </div>
