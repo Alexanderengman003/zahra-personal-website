@@ -111,7 +111,7 @@ export function VoluntaryWork() {
             </div>
           </div>
           
-          <div className={viewMode === 'card' ? "grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8" : "space-y-4"}>
+          <div className={viewMode === 'card' ? "grid grid-cols-1 lg:grid-cols-2 gap-8" : "space-y-4"}>
             {voluntaryRoles.map((role, index) => (
               <div
                 key={role.id}
