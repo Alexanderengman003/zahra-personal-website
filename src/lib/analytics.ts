@@ -325,6 +325,10 @@ export const getAnalyticsStats = async (days: number = 7) => {
     .filter(item => item.views > 0 || item.visitors > 0) // Only include days with activity
     .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
+    // Debug logging to check data structure
+    console.log('Traffic data sample:', trafficData.slice(0, 5));
+    console.log('Total traffic data points:', trafficData.length);
+
     // Recent activity - include both page views and events (no sorting, chronological order)
     const recentPageViews = pageViews
       ?.slice(-50)

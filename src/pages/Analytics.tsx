@@ -208,24 +208,28 @@ const Analytics = () => {
                       }}
                       labelFormatter={(value) => new Date(value).toLocaleDateString()}
                     />
-                    <Legend />
+                    <Legend 
+                      wrapperStyle={{ paddingTop: '20px' }}
+                    />
                     <Line 
                       type="monotone" 
                       dataKey="views" 
                       stroke="hsl(var(--primary))" 
-                      strokeWidth={2}
+                      strokeWidth={3}
                       name="Page Views"
                       connectNulls={true}
-                      dot={{ r: 4 }}
+                      dot={{ fill: 'hsl(var(--primary))', r: 4 }}
+                      activeDot={{ r: 6 }}
                     />
                     <Line 
                       type="monotone" 
                       dataKey="visitors" 
-                      stroke="hsl(var(--secondary))" 
-                      strokeWidth={2}
+                      stroke="#ef4444" 
+                      strokeWidth={3}
                       name="Unique Visitors"
                       connectNulls={true}
-                      dot={{ r: 4 }}
+                      dot={{ fill: '#ef4444', r: 4 }}
+                      activeDot={{ r: 6 }}
                     />
                   </RechartsLineChart>
                 </ResponsiveContainer>
