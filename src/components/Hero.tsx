@@ -87,8 +87,8 @@ export function Hero() {
                 onClick={() => {
                   track('cv_download_click', { source: 'hero' });
                   const link = document.createElement('a');
-                  link.href = '/CV_Alexander_Engman_2025.pdf';
-                  link.download = 'Zahra_Farimani_Resume.pdf';
+                  link.href = '/CV_Zahra_Farimani_2025.pdf';
+                  link.download = 'Zahra_Farimani_CV_2025.pdf';
                   document.body.appendChild(link);
                   link.click();
                   document.body.removeChild(link);

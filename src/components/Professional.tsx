@@ -491,54 +491,56 @@ export function Professional() {
                 {viewMode === 'card' ? (
                   // Card View - Full Information
                   <>
-                    {/* Role Header */}
-                    <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6 relative">
-                      <div>
-                        <h3 className="text-xl font-semibold text-foreground mb-2 leading-tight flex items-center gap-3">
-                          {role.logo && (
-                            <div className="flex-shrink-0">
-                              <img 
-                                src={role.logo} 
-                                alt={role.company}
-                                className={`h-6 w-6 rounded-md object-contain p-1 ${
-                                  role.company === "H&M" ? "bg-white" : "bg-white/10"
-                                }`}
-                              />
-                            </div>
-                          )}
-                          {role.title}
-                        </h3>
-                        <div className="flex flex-col gap-2 text-muted-foreground">
-                          <div className="flex items-center gap-2">
-                            <Building className="h-4 w-4" />
-                            <a 
-                              href={
-                                role.company === "PayPal" ? "https://www.paypal.com/" :
-                                role.company === "Klarna" ? "https://www.klarna.com/" :
-                                role.company === "Antler" ? "https://www.antler.co/" :
-                                role.company === "H&M" ? "https://www2.hm.com/" :
-                                role.company === "Bamilo" ? "#" :
-                                role.company === "Solico Group" ? "#" :
-                                role.company === "Puls Health Research" ? "#" :
-                                "#"
-                              }
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              onClick={() => track('company_name_click', { company: role.company, source: 'professional_section' })}
-                              className="text-sm font-medium hover:text-primary transition-colors cursor-pointer inline-flex items-center gap-1"
-                            >
-                              {role.company}
-                              <ExternalLinkIcon className="h-3 w-3" />
-                            </a>
+                     {/* Role Header */}
+                    <div className="mb-6">
+                      <div className="flex items-start gap-3 mb-4">
+                        {role.logo && (
+                          <div className="flex-shrink-0">
+                            <img 
+                              src={role.logo} 
+                              alt={role.company}
+                              className={`h-6 w-6 rounded-md object-contain p-1 ${
+                                role.company === "H&M" ? "bg-white" : "bg-white/10"
+                              }`}
+                            />
                           </div>
-                          <div className="flex items-center gap-2">
-                            <MapPin className="h-4 w-4" />
-                            <span className="text-sm">{role.location}</span>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <Calendar className="h-4 w-4" />
-                            <span className="text-sm">{role.period}</span>
-                          </div>
+                        )}
+                        <div className="min-w-0 flex-1">
+                          <h3 className="text-xl font-semibold text-foreground mb-2 leading-tight">
+                            {role.title}
+                          </h3>
+                        </div>
+                      </div>
+                      <div className="flex flex-col gap-2 text-muted-foreground">
+                        <div className="flex items-center gap-2">
+                          <Building className="h-4 w-4 flex-shrink-0" />
+                          <a 
+                            href={
+                              role.company === "PayPal" ? "https://www.paypal.com/" :
+                              role.company === "Klarna" ? "https://www.klarna.com/" :
+                              role.company === "Antler" ? "https://www.antler.co/" :
+                              role.company === "H&M" ? "https://www2.hm.com/" :
+                              role.company === "Bamilo" ? "#" :
+                              role.company === "Solico Group" ? "#" :
+                              role.company === "Puls Health Research" ? "#" :
+                              "#"
+                            }
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={() => track('company_name_click', { company: role.company, source: 'professional_section' })}
+                            className="text-sm font-medium hover:text-primary transition-colors cursor-pointer inline-flex items-center gap-1"
+                          >
+                            {role.company}
+                            <ExternalLinkIcon className="h-3 w-3" />
+                          </a>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <MapPin className="h-4 w-4 flex-shrink-0" />
+                          <span className="text-sm">{role.location}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Calendar className="h-4 w-4 flex-shrink-0" />
+                          <span className="text-sm">{role.period}</span>
                         </div>
                       </div>
                     </div>
