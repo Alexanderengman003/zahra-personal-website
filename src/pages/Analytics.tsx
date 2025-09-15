@@ -3,6 +3,7 @@ import { useAnalytics } from "@/hooks/useAnalytics";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { ClearAnalyticsButton } from "@/components/ClearAnalyticsButton";
 import { 
   BarChart, 
   LineChart, 
@@ -54,6 +55,11 @@ const Analytics = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleDataCleared = () => {
+    // Refresh analytics data after clearing
+    fetchAnalytics(timeRange === "all" ? 0 : timeRanges.find(r => r.value === timeRange)?.days || 7);
   };
 
   useEffect(() => {
@@ -108,9 +114,10 @@ const Analytics = () => {
               </p>
             </div>
             
-            {/* Time Range Selector */}
-            <div className="mt-6 sm:mt-0">
-            <div className="flex flex-wrap gap-2 sm:inline-flex sm:rounded-lg sm:bg-muted sm:p-1">
+            {/* Controls */}
+            <div className="mt-6 sm:mt-0 flex items-center gap-4">
+              <ClearAnalyticsButton onDataCleared={handleDataCleared} />
+              <div className="flex flex-wrap gap-2 sm:inline-flex sm:rounded-lg sm:bg-muted sm:p-1">
               {timeRanges.map((range) => (
                 <Button
                   key={range.value}
@@ -122,7 +129,7 @@ const Analytics = () => {
                   {range.label}
                 </Button>
               ))}
-            </div>
+              </div>
             </div>
           </div>
 
