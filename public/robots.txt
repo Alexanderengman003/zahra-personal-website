@@ -12,3 +12,9 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+# Sitemap
+Sitemap: https://zahra-farimani.lovable.app/sitemap.xml
+
+# Crawl-delay for all bots
+Crawl-delay: 1

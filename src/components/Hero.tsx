@@ -25,7 +25,7 @@ export function Hero() {
             <div className="relative transform group-hover:scale-105 transition-transform duration-500 ease-out">
               <img
                 src="/zahra-profile.jpg"
-                alt="Zahra - Professional Headshot"
+                alt="Zahra Farimani - Senior Product Manager at PayPal, Fintech and Health Tech Expert based in Stockholm, Sweden"
                 className="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full object-cover shadow-2xl ring-4 ring-white/10 group-hover:ring-primary/30 group-hover:shadow-3xl transition-all duration-500"
               />
               <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent to-primary/10 group-hover:to-primary/25 transition-all duration-500" />
@@ -38,13 +38,12 @@ export function Hero() {
             <div className="animate-fade-up space-y-8 mb-8" style={{ animationDelay: "0.2s" }}>
               <div className="space-y-2">
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-tight font-modern mb-4">
-                  <span className="block text-gradient">Zahra</span>
-                  <span className="block text-gradient">Farimani</span>
+                  <span className="block text-gradient">Zahra Farimani</span>
                 </h1>
               
                 <div className="relative">
                   <h2 className="text-xl sm:text-2xl lg:text-3xl font-medium text-muted-foreground">
-                    Product Manager & Entrepreneur
+                    Senior Product Manager | Fintech & Health Tech Expert | Stockholm
                   </h2>
                   <div className="absolute -bottom-2 left-0 w-full h-0.5 bg-gradient-to-r from-primary to-primary/50 rounded-full" />
                 </div>

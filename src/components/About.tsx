@@ -37,12 +37,18 @@ export function About() {
   return (
     <section id="about" className="py-12 bg-secondary/50">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">About Me</h2>
+          <p className="mt-4 text-lg text-muted-foreground">
+            Product management expertise across fintech and health tech industries
+          </p>
+        </div>
 
         <div className="mx-auto mt-8 max-w-7xl">
           {/* Journey Card - Full Width */}
           <div className="mb-8">
             <div className="card-gradient rounded-2xl p-5 shadow-medium hover-lift">
-              <h3 className="text-xl font-semibold text-foreground mb-4">My Journey</h3>
+              <h3 className="text-xl font-semibold text-foreground mb-4">Professional Journey</h3>
               <p className="text-muted-foreground leading-relaxed text-justify">
                 My career journey spans product management, entrepreneurship, and business development across fintech and health tech industries. From my early days as a business analyst at Klarna to leading cross-functional teams at PayPal, I've consistently focused on building innovative products that deliver real value to users. Combined with my entrepreneurial experience as co-founder of Puls Health Research, my strategic thinking and global perspective on business challenges have become my greatest assets.
               </p>

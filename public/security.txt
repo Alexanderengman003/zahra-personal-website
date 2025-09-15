@@ -1,0 +1,4 @@
+Contact: mailto:zahra.farimani@gmail.com
+Expires: 2026-12-31T23:59:59.000Z
+Preferred-Languages: en, sv
+Canonical: https://zahra-farimani.lovable.app/.well-known/security.txt
