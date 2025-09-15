@@ -17,83 +17,147 @@ import ebvLogo from "@/assets/ebv-logo.png";
 const professionalRoles = [
   {
     id: 1,
-    title: "Technical Account Manager",
-    company: "EBV Elektronik",
-    location: "Stockholm, SWEDEN",
-    period: "June 2025 – Currently ongoing",
-    description: "Account manager within semiconductors and electronic components providing technical support for new and existing customers.",
-    technologies: ["Electronic Components", "Customer Relations", "Technical Support", "Sales"],
-    software: ["Salesforce", "SAP", "PowerBI"],
+    title: "Senior Product Manager",
+    company: "PayPal",
+    location: "Stockholm, Sweden",
+    period: "October 2024 – Current",
+    description: "Led a team of 20+ cross-functionally to unify PayPal and Zettle back-office experience across all markets.",
+    technologies: ["Product Management", "Finance", "Product Vision", "Team Leadership", "Cross-functional Collaboration"],
+    software: ["Salesforce", "Jira", "Confluence", "Analytics Tools"],
     achievements: [
-      "Account manager within semiconductors and electronic components",
-      "Technical support for new and existing customers",
-      "Business development and other related activities"
+      "Led team of 20+ professionals across multiple functions",
+      "Unified PayPal and Zettle back-office experience",
+      "Managed cross-market implementation strategy"
     ],
-    area: "Sales"
+    area: "Product Management"
   },
   {
     id: 2,
-    title: "Application Engineer",
-    company: "Exeger Operations AB",
-    location: "Stockholm, SWEDEN",
-    period: "October 2024 – June 2025",
-    description: "Development of prototypes and products for customer applications with focus on electrical design and rapid prototyping.",
-    technologies: ["Electronic Components", "R&D", "Rapid Prototyping", "Electrical Design", "CAD", "Sales", "HW Development", "SW Development"],
-    software: ["Altium Designer", "SolidWorks", "Arduino", "Visual Studio", "Raspberry PI"],
+    title: "Co-Founder",
+    company: "Puls Health Research",
+    location: "Sweden",
+    period: "May 2024 – April 2025",
+    description: "Empowering patient-centric health research through innovative SaaS solutions.",
+    technologies: ["Entrepreneurship", "Health Tech", "Product Development", "Business Strategy"],
+    software: ["SaaS Platforms", "Product Design Tools"],
     achievements: [
-      "Development of prototypes and products for customer applications",
-      "Electrical design and rapid prototyping for product development",
-      "Technical sales and customer support"
+      "Co-founded health research platform",
+      "Developed patient-centric research solutions",
+      "Built SaaS product from ground up"
     ],
-    area: "Engineering,Sales"
+    area: "Entrepreneurship"
   },
   {
     id: 3,
-    title: "Application Specialist",
-    company: "Ascilion AB",
-    location: "Stockholm, SWEDEN",
-    period: "January 2024 – October 2024",
-    description: "R&D and product development with focus on medical device development following ISO standards.",
-    technologies: ["R&D", "Medical Devices", "MDR", "Technical Support", "Sales", "Rapid Prototyping", "HW Development", "SW Development"],
-    software: ["KiCad", "Visual Studio", "SolidWorks"],
+    title: "Entrepreneur in Residence",
+    company: "Antler",
+    location: "Sweden",
+    period: "February 2024 – June 2024",
+    description: "Venture development and startup incubation focused on business strategy and product management.",
+    technologies: ["Business Strategy", "Product Management", "Venture Development", "Startup Incubation"],
+    software: ["Business Planning Tools", "Market Research Platforms"],
     achievements: [
-      "R&D and product development/design",
-      "Technical sales and business development",
-      "Medical device product development (ISO 13485, IEC 60601-1, IEC 62304)"
+      "Developed venture strategies for early-stage startups",
+      "Mentored entrepreneurs in product development",
+      "Conducted market analysis and business planning"
     ],
-    area: "Engineering,Sales"
+    area: "Entrepreneurship"
   },
   {
     id: 4,
-    title: "Development Engineer",
-    company: "Ascilion AB",
-    location: "Stockholm, SWEDEN",
-    period: "February 2021 – January 2024",
-    description: "SPC, AOI and development of semiconductor components with focus on software and hardware development.",
-    technologies: ["Rapid Prototyping", "R&D", "Microfluidics", "SW Development", "HW Development", "Electrical Design", "CAD"],
-    software: ["Visual Studio", "Python", "SolidWorks", "EAGLE", "AutoCAD", "Arduino"],
+    title: "Product Manager and Team Lead",
+    company: "Klarna",
+    location: "Stockholm, Sweden",
+    period: "March 2022 – February 2024",
+    description: "Led the Personal Finance Insight team, driving development and execution of innovative financial products that empowered users to make informed personal finance decisions.",
+    technologies: ["Product Management", "Finance", "Product Launch", "Stakeholder Management", "Product Strategy", "Product Vision", "Performance Metrics", "KPIs", "Market Analysis", "Agile Methodologies"],
+    software: ["Analytics Platforms", "A/B Testing Tools", "Product Management Software", "Data Visualization Tools"],
     achievements: [
-      "SPC, AOI and development of semiconductor components",
-      "Software and hardware development",
-      "Development and design of test systems and experiments"
+      "Led Personal Finance Insight team to successful product launches",
+      "Developed innovative financial products and insights",
+      "Drove user engagement through data-driven product decisions"
     ],
-    area: "Engineering"
+    area: "Product Management"
   },
   {
     id: 5,
-    title: "Process Engineer",
-    company: "Bright Day Graphene AB",
-    location: "Stockholm, SWEDEN",
-    period: "June 2020 – January 2021",
-    description: "Process development and scaling of manufacturing with focus on electrochemistry and materials characterization.",
-    technologies: ["Process Development", "R&D", "Materials Engineering"],
-    software: [],
+    title: "Senior Product Analyst",
+    company: "Klarna",
+    location: "Stockholm, Sweden", 
+    period: "November 2020 – March 2022",
+    description: "Analyzed personal finance products performance and provided strategic insights for product development.",
+    technologies: ["Product Analysis", "Stakeholder Management", "Analytical Skills", "Performance Metrics", "KPIs", "Agile Methodologies"],
+    software: ["SQL", "Python", "Tableau", "Analytics Tools", "A/B Testing Platforms"],
     achievements: [
-      "Process development and scaling of manufacturing",
-      "Process design and analysis",
-      "Electrochemistry and materials characterization"
+      "Improved personal finance product performance through data analysis",
+      "Provided strategic insights for product roadmap decisions",
+      "Collaborated with cross-functional teams on product optimization"
     ],
-    area: "Engineering"
+    area: "Product Management"
+  },
+  {
+    id: 6,
+    title: "Business Analyst", 
+    company: "Klarna",
+    location: "Stockholm, Sweden",
+    period: "July 2019 – November 2020",
+    description: "Supported business control and co-marketing teams with data analysis and performance insights.",
+    technologies: ["Data Analysis", "Marketing Analytics", "Analytical Skills", "Performance Metrics", "Business Intelligence"],
+    software: ["SQL", "Excel", "PowerBI", "Marketing Analytics Tools"],
+    achievements: [
+      "Enhanced business control processes through data analysis",
+      "Supported co-marketing initiatives with performance insights", 
+      "Developed reporting frameworks for business metrics"
+    ],
+    area: "Analytics"
+  },
+  {
+    id: 7,
+    title: "Business Controller",
+    company: "H&M",
+    location: "Sweden",
+    period: "June 2018 – August 2018",
+    description: "Reviewed, mapped, and evaluated 50+ high-level activities and processes in stores through creating a Power BI dashboard.",
+    technologies: ["Business Control", "Process Analysis", "Product Analysis", "Data Visualization"],
+    software: ["Power BI", "Excel", "Data Analysis Tools"],
+    achievements: [
+      "Mapped and evaluated 50+ store processes",
+      "Created comprehensive Power BI dashboard",
+      "Improved operational efficiency through process analysis"
+    ],
+    area: "Analytics"
+  },
+  {
+    id: 8,
+    title: "Project Manager",
+    company: "Bamilo",
+    location: "Tehran, Iran",
+    period: "September 2016 – July 2017", 
+    description: "Regional group for Rocket Internet. Responsible for defining, planning and executing strategic projects.",
+    technologies: ["Project Management", "SaaS", "Stakeholder Management", "Analytical Skills", "Strategic Planning"],
+    software: ["Project Management Tools", "SaaS Platforms"],
+    achievements: [
+      "Defined and executed strategic projects for Rocket Internet portfolio",
+      "Managed stakeholder relationships across regional markets",
+      "Delivered projects on time and within budget"
+    ],
+    area: "Project Management"
+  },
+  {
+    id: 9,
+    title: "Category Manager",
+    company: "Solico Group", 
+    location: "Tehran, Iran",
+    period: "September 2015 – August 2016",
+    description: "Frozen Kebabs and Vegetables Category Manager responsible for product strategy and market analysis.",
+    technologies: ["Category Management", "Marketing Analytics", "Competitive Analysis", "Product Launch", "Analytical Skills"],
+    software: ["Marketing Analytics Tools", "Competitive Intelligence Platforms"],
+    achievements: [
+      "Managed frozen kebabs and vegetables product category",
+      "Conducted competitive analysis and market research",
+      "Successfully launched new products in the category"
+    ],
+    area: "Marketing"
   }
 ];
 
@@ -104,7 +168,7 @@ export function Professional() {
   const [viewMode, setViewMode] = useState<"card" | "list">("card");
   const { track } = useTrackEvent();
   
-  const areas = ["All", "Engineering", "Sales"];
+  const areas = ["All", "Product Management", "Entrepreneurship", "Analytics", "Project Management", "Marketing"];
   
   // Extract all unique technologies and software from all roles
   const allTechnologies = professionalRoles.flatMap(role => role.technologies);
@@ -226,7 +290,7 @@ export function Professional() {
             Professional Experience
           </h2>
           <p className="mt-4 text-lg leading-8 text-muted-foreground">
-            A journey through my professional career in semiconductor engineering and technology development.
+            A journey through my professional career in product management, entrepreneurship, and business development.
           </p>
         </div>
 
