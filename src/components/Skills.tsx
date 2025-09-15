@@ -8,7 +8,7 @@ const personalityTraits = [
   { left: "Independent", right: "Collaborative", value: 45 }, // 45% collaborative
   { left: "Analytical", right: "Intuitive", value: 30 }, // 30% intuitive
   { left: "Detail", right: "Big picture", value: 40 }, // 40% big picture
-  { left: "Feeling", right: "Thinking", value: 60 } // 60% thinking
+  { left: "Feeling", right: "Thinking", value: 40 } // 40% thinking
 ];
 
 const itSkills = [
