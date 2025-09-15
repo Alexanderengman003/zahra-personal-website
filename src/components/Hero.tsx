@@ -57,7 +57,7 @@ export function Hero() {
             {/* Description */}
             <div className="animate-fade-up mb-6" style={{ animationDelay: "0.4s" }}>
               <p className="text-lg leading-relaxed text-muted-foreground max-w-2xl text-justify">
-                Senior Product Manager at PayPal with expertise in leading cross-functional teams, driving product strategy, and building innovative solutions in fintech and health tech. Passionate about creating products that make a meaningful impact on users' lives.
+                Senior Product Manager within Fintech with expertise in leading cross-functional teams, driving product strategy, and building innovative solutions in fintech and health tech. Passionate about creating products that make a meaningful impact on users' lives.
               </p>
             </div>
 
