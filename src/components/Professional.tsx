@@ -69,7 +69,7 @@ const professionalRoles = [
     logo: "/company-logos/klarna-logo.png",
     location: "Stockholm, Sweden",
     period: "March 2022 – February 2024",
-    description: "Led the Personal Finance Insight team, driving development and execution of innovative financial products that empowered users to make informed personal finance decisions.",
+    description: "Led the Personal Finance Insight team, driving development and execution of innovative financial products that empowered users.",
     technologies: ["Product Management", "Finance", "Product Launch", "Stakeholder Management", "Product Strategy", "Product Vision", "Software Product Management"],
     software: ["Analytics Platforms", "A/B Testing Tools", "Product Management Software", "Data Visualization Tools", "SQL", "Microsoft Excel", "Microsoft Power BI"],
     achievements: [
