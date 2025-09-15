@@ -267,22 +267,36 @@ export const getAnalyticsStats = async (days: number = 7) => {
       }))
       .sort((a, b) => b.count - a.count);
 
-    // Daily traffic data for charts
+    // Daily traffic data for charts - ensure all days in range are included
     const dailyTraffic = pageViews?.reduce((acc: any, view) => {
       const date = new Date(view.created_at).toISOString().split('T')[0];
       acc[date] = (acc[date] || 0) + 1;
       return acc;
     }, {}) || {};
 
-    const trafficData = Object.entries(dailyTraffic)
-      .map(([date, views]) => ({
-        date,
-        views: views as number,
-        visitors: sessions?.filter(session => 
-          new Date(session.first_visit_at).toISOString().split('T')[0] === date
-        ).length || 0
-      }))
-      .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+    // Get daily unique visitors
+    const dailyVisitors = sessions?.reduce((acc: any, session) => {
+      const date = new Date(session.first_visit_at).toISOString().split('T')[0];
+      acc[date] = (acc[date] || 0) + 1;
+      return acc;
+    }, {}) || {};
+
+    // Create complete date range and fill missing days with 0
+    const dateRange: string[] = [];
+    const endDate = new Date();
+    const start = shouldFilterByDate ? new Date(startDate) : new Date('2024-01-01'); // Start from a reasonable date
+    
+    for (let d = new Date(start); d <= endDate; d.setDate(d.getDate() + 1)) {
+      dateRange.push(d.toISOString().split('T')[0]);
+    }
+
+    const trafficData = dateRange.map(date => ({
+      date,
+      views: dailyTraffic[date] || 0,
+      visitors: dailyVisitors[date] || 0
+    }))
+    .filter(item => item.views > 0 || item.visitors > 0) // Only include days with activity
+    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
     // Recent activity - include both page views and events (no sorting, chronological order)
     const recentPageViews = pageViews

@@ -212,13 +212,17 @@ const Analytics = () => {
                       stroke="hsl(var(--primary))" 
                       strokeWidth={2}
                       name="Page Views"
+                      connectNulls={true}
+                      dot={{ r: 4 }}
                     />
                     <Line 
                       type="monotone" 
                       dataKey="visitors" 
                       stroke="hsl(var(--secondary))" 
                       strokeWidth={2}
-                      name="Visitors"
+                      name="Unique Visitors"
+                      connectNulls={true}
+                      dot={{ r: 4 }}
                     />
                   </RechartsLineChart>
                 </ResponsiveContainer>
