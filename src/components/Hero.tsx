@@ -44,7 +44,7 @@ export function Hero() {
               
                 <div className="relative">
                   <h2 className="text-xl sm:text-2xl lg:text-3xl font-medium text-muted-foreground">
-                    Semiconductor engineering and sales
+                    Product Manager & Entrepreneur
                   </h2>
                   <div className="absolute -bottom-2 left-0 w-full h-0.5 bg-gradient-to-r from-primary to-primary/50 rounded-full" />
                 </div>
@@ -54,9 +54,7 @@ export function Hero() {
             {/* Description */}
             <div className="animate-fade-up mb-6" style={{ animationDelay: "0.4s" }}>
               <p className="text-lg leading-relaxed text-muted-foreground max-w-2xl text-justify">
-                Passionate about advancing semiconductor technology, with hands-on experience in hardware development and innovation.
-                Specialized in advanced semiconductors, working across design, testing, and implementation of hardware solutions.
-                Bridging technical expertise with customer needs to drive business growth.
+                Senior Product Manager at PayPal with expertise in leading cross-functional teams, driving product strategy, and building innovative solutions in fintech and health tech. Passionate about creating products that make a meaningful impact on users' lives.
               </p>
             </div>
 

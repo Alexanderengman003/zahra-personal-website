@@ -1,35 +1,35 @@
-import { Code, Cpu, Heart, Users, TrendingUp, DollarSign } from "lucide-react";
+import { TrendingUp, Users, Target, Lightbulb, BarChart3, Globe } from "lucide-react";
 
 const features = [
   {
-    icon: Cpu,
-    title: "Semiconductors",
-    description: "Experience in MEMS, CMOS design, semiconductor physics, and cleanroom fabrication processes."
-  },
-  {
-    icon: Heart,
-    title: "Medical technology",
-    description: "Developing medical devices from concept to market, ensuring ISO 13485 and MDR compliance."
-  },
-  {
-    icon: Users,
-    title: "Project management",
-    description: "Leading cross-functional teams using AGILE methodology to deliver innovative products on time."
+    icon: Target,
+    title: "Product Management",
+    description: "Leading product strategy and vision, driving cross-functional teams to deliver innovative solutions that meet customer needs and business objectives."
   },
   {
     icon: TrendingUp,
-    title: "Business development",
-    description: "Engaging with customers, forging strategic partnerships, and expanding market reach for growth."
+    title: "Business Strategy",
+    description: "Developing strategic plans, conducting market analysis, and identifying growth opportunities in fintech and health tech sectors."
   },
   {
-    icon: Code,
-    title: "Software development",
-    description: "Programming experience in multiple languages for standalone projects and hardware interfacing."
+    icon: Users,
+    title: "Team Leadership",
+    description: "Managing and mentoring teams of 20+ professionals, fostering collaboration and driving results through effective leadership."
   },
   {
-    icon: DollarSign,
-    title: "Sales",
-    description: "Building customer relationships, identifying market opportunities, and driving revenue through strategic sales initiatives."
+    icon: Lightbulb,
+    title: "Entrepreneurship",
+    description: "Co-founding startups, developing innovative business models, and bringing patient-centric health research solutions to market."
+  },
+  {
+    icon: BarChart3,
+    title: "Data Analytics",
+    description: "Leveraging data-driven insights for product decisions, utilizing SQL, Power BI, and advanced analytics to optimize performance."
+  },
+  {
+    icon: Globe,
+    title: "International Business",
+    description: "Expertise in global markets, cross-cultural business practices, and international management through CEMS education and experience."
   }
 ];
 
@@ -44,7 +44,7 @@ export function About() {
             <div className="card-gradient rounded-2xl p-5 shadow-medium hover-lift">
               <h3 className="text-xl font-semibold text-foreground mb-4">My Journey</h3>
               <p className="text-muted-foreground leading-relaxed text-justify">
-                Throughout my career, semiconductors have been the red thread, from research and product development to practical applications in advanced hardware. Over time, I have transitioned into a business-oriented and customer-facing role, leveraging my technical expertise to drive growth in sales, connect technology with customer needs, and contribute to advancing semiconductor innovation.
+                My career journey spans product management, entrepreneurship, and business development across fintech and health tech industries. From my early days as a business analyst at Klarna to leading cross-functional teams at PayPal, I've consistently focused on building innovative products that deliver real value to users. My international business education from CEMS and Stockholm School of Economics, combined with my entrepreneurial experience as co-founder of Puls Health Research, has shaped my strategic thinking and global perspective on business challenges.
               </p>
             </div>
           </div>

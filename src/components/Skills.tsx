@@ -3,33 +3,30 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatedCounter } from "./AnimatedCounter";
 
 const personalityTraits = [
-  { left: "Introvert", right: "Extrovert", value: 70 }, // 70% extrovert
-  { left: "Practical", right: "Creative", value: 30 }, // 30% creative
-  { left: "Independent", right: "Collaborative", value: 45 }, // 45% collaborative
-  { left: "Analytical", right: "Intuitive", value: 30 }, // 30% intuitive
-  { left: "Detail", right: "Big picture", value: 40 }, // 40% big picture
-  { left: "Feeling", right: "Thinking", value: 40 } // 40% thinking
+  { left: "Introvert", right: "Extrovert", value: 75 }, // 75% extrovert - leadership roles
+  { left: "Practical", right: "Creative", value: 70 }, // 70% creative - product innovation
+  { left: "Independent", right: "Collaborative", value: 80 }, // 80% collaborative - team leadership
+  { left: "Analytical", right: "Intuitive", value: 65 }, // 65% intuitive - product vision
+  { left: "Detail", right: "Big picture", value: 75 }, // 75% big picture - strategic thinking
+  { left: "Feeling", right: "Thinking", value: 70 } // 70% thinking - data-driven decisions
 ];
 
 const itSkills = [
-  { name: "MatLab", value: 100 },
-  { name: "LaTeX", value: 100 },
-  { name: "MS Office", value: 100 },
-  { name: "Arduino", value: 90 },
-  { name: "C++", value: 80 },
-  { name: "C#/.NET", value: 75 },
-  { name: "Python", value: 50 },
-  { name: "Altium Designer", value: 40 },
-  { name: "SolidWorks", value: 25 }
+  { name: "SQL", value: 90 },
+  { name: "Microsoft Power BI", value: 85 },
+  { name: "Microsoft Excel", value: 95 },
+  { name: "Python", value: 70 },
+  { name: "Tableau", value: 80 },
+  { name: "Jira", value: 85 },
+  { name: "Confluence", value: 80 },
+  { name: "Analytics Tools", value: 90 },
+  { name: "A/B Testing", value: 85 }
 ];
 
 const languageSkills = [
-  { name: "Swedish", value: 100 },
-  { name: "English", value: 100 },
-  { name: "Norwegian", value: 80 },
-  { name: "French", value: 40 },
-  { name: "Spanish", value: 20 },
-  { name: "Farsi", value: 10 }
+  { name: "Persian", value: 100 },
+  { name: "English", value: 95 },
+  { name: "Swedish", value: 70 },
 ];
 
 export function Skills() {
