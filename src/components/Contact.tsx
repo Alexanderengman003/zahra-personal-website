@@ -13,14 +13,14 @@ const contactInfo = [
   {
     icon: Mail,
     label: "Email",
-    value: "alexander@engman.nu",
-    href: "mailto:alexander@engman.nu",
+    value: "zahra.farimani@gmail.com",
+    href: "mailto:zahra.farimani@gmail.com",
   },
   {
     icon: Phone,
     label: "Phone",
-    value: "+46 73 322 43 78",
-    href: "tel:+46733224378",
+    value: "+46 70 404 44 92",
+    href: "tel:+46704044492",
   },
   {
     icon: MapPin,
@@ -84,7 +84,7 @@ export function Contact() {
           from_phone: formData.phone,
           subject: formData.subject,
           message: formData.message,
-          to_email: "alexander@engman.nu",
+          to_email: "zahra.farimani@gmail.com",
         },
         EMAILJS_PUBLIC_KEY
       );
@@ -153,7 +153,7 @@ export function Contact() {
                   <div>
                     <p className="text-sm font-medium text-muted-foreground">{item.label}</p>
                     <a
-                      href={item.label === "Email" ? "mailto:alexander@engman.nu?subject=Contact from website" : item.href}
+                      href={item.label === "Email" ? "mailto:zahra.farimani@gmail.com?subject=Contact from website" : item.href}
                       className="text-foreground hover:text-primary transition-colors"
                       onClick={() => {
                         if (item.label === "Email") {

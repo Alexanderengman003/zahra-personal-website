@@ -25,7 +25,7 @@ export function Hero() {
             <div className="relative">
               <img
                 src="/lovable-uploads/fc819219-43d3-4817-b8da-08b472acd701.png"
-                alt="Alexander - Professional Headshot"
+                alt="Zahra - Professional Headshot"
                 className="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full object-cover shadow-2xl ring-4 ring-white/10 group-hover:scale-105 transition-all duration-500"
               />
               <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent to-primary/10 group-hover:to-primary/20 transition-all duration-500" />
@@ -38,8 +38,8 @@ export function Hero() {
             <div className="animate-fade-up space-y-8 mb-8" style={{ animationDelay: "0.2s" }}>
               <div className="space-y-2">
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-tight font-modern mb-4">
-                  <span className="block text-gradient">Alexander</span>
-                  <span className="block text-gradient">Engman</span>
+                  <span className="block text-gradient">Zahra</span>
+                  <span className="block text-gradient">Farimani</span>
                 </h1>
               
                 <div className="relative">
@@ -68,7 +68,7 @@ export function Hero() {
                 className="hover-lift font-modern group border-2 hover:border-primary/50 bg-[#0A66C2] hover:bg-[#004182] border-[#0A66C2] text-white"
                 onClick={() => {
                   track('linkedin_click', { source: 'hero' });
-                  window.open('https://www.linkedin.com/in/alexanderengman', '_blank');
+                  window.open('https://www.linkedin.com/in/zahra-farimani/', '_blank');
                 }}
               >
                 LinkedIn
@@ -79,7 +79,7 @@ export function Hero() {
                 className="hover-lift font-modern group relative overflow-hidden"
                 onClick={() => {
                   track('contact_button_click', { source: 'hero' });
-                  window.location.href = 'mailto:alexander@engman.nu?subject=Contact from website&body=Hello Alexander,';
+                  window.location.href = 'mailto:zahra.farimani@gmail.com?subject=Contact from website&body=Hello Zahra,';
                 }}
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-primary-hover to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
