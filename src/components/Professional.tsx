@@ -70,7 +70,7 @@ const professionalRoles = [
     location: "Stockholm, Sweden",
     period: "March 2022 – February 2024",
     description: "Led the Personal Finance Insight team, driving development and execution of innovative financial products that empowered users to make informed personal finance decisions.",
-    technologies: ["Product Management", "Finance", "Product Launch", "Stakeholder Management", "Product Strategy", "Product Vision", "Software Product Management", "Performance Metrics", "Key Performance Indicators", "Market Analysis", "Agile Methodologies", "Leadership"],
+    technologies: ["Product Management", "Finance", "Product Launch", "Stakeholder Management", "Product Strategy", "Product Vision", "Software Product Management"],
     software: ["Analytics Platforms", "A/B Testing Tools", "Product Management Software", "Data Visualization Tools", "SQL", "Microsoft Excel", "Microsoft Power BI"],
     achievements: [
       "Led Personal Finance Insight team to successful product launches",
@@ -87,7 +87,7 @@ const professionalRoles = [
     location: "Stockholm, Sweden", 
     period: "November 2020 – March 2022",
     description: "Analyzed personal finance products performance and provided strategic insights for product development.",
-    technologies: ["Product Analysis", "Stakeholder Management", "Analytical Skills", "Performance Metrics", "Key Performance Indicators", "Agile Methodologies", "Data Analytics"],
+    technologies: ["Product Analysis", "Stakeholder Management", "Performance Metrics", "Key Performance Indicators", "Agile Methodologies", "Data Analytics"],
     software: ["SQL", "Python", "Tableau", "Analytics Tools", "A/B Testing Platforms", "Microsoft Excel", "Business Intelligence (BI)"],
     achievements: [
       "Improved personal finance product performance through data analysis",
@@ -549,7 +549,7 @@ export function Professional() {
                     
                     {/* Technologies */}
                     <div className="mb-6">
-                      <h4 className="text-sm font-semibold text-foreground mb-3">Technologies & Skills</h4>
+                      <h4 className="text-sm font-semibold text-foreground mb-3">Skills used</h4>
                       <div className="flex flex-wrap gap-2">
                         {role.technologies.map((tech) => (
                           <span
@@ -565,12 +565,12 @@ export function Professional() {
                     {/* Software */}
                     {role.software.length > 0 && (
                       <div className="mb-6">
-                        <h4 className="text-sm font-semibold text-foreground mb-3">Software & Tools</h4>
+                        <h4 className="text-sm font-semibold text-foreground mb-3">Tools used</h4>
                         <div className="flex flex-wrap gap-2">
-                          {role.software.map((software) => (
+                           {role.software.map((software) => (
                             <span
                               key={software}
-                              className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-secondary/50 text-secondary-foreground"
+                              className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary"
                             >
                               {software}
                             </span>
