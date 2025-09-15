@@ -17,12 +17,6 @@ const contactInfo = [
     href: "mailto:zahra.farimani@gmail.com",
   },
   {
-    icon: Phone,
-    label: "Phone",
-    value: "+46 70 404 44 92",
-    href: "tel:+46704044492",
-  },
-  {
     icon: MapPin,
     label: "Location",
     value: "Stockholm, Sweden",
