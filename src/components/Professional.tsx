@@ -19,6 +19,7 @@ const professionalRoles = [
     id: 1,
     title: "Senior Product Manager",
     company: "PayPal",
+    logo: "/company-logos/paypal-logo.png",
     location: "Stockholm, Sweden",
     period: "October 2024 – Current",
     description: "Led a team of 20+ cross-functionally to unify PayPal and Zettle back-office experience across all markets.",
@@ -29,12 +30,13 @@ const professionalRoles = [
       "Unified PayPal and Zettle back-office experience",
       "Managed cross-market implementation strategy"
     ],
-    area: "Product Management"
+    area: "Product & Strategy"
   },
   {
     id: 2,
     title: "Co-Founder",
     company: "Puls Health Research",
+    logo: "/company-logos/puls-health-research.jpg",
     location: "Sweden",
     period: "May 2024 – April 2025",
     description: "Empowering patient-centric health research through innovative SaaS solutions.",
@@ -45,12 +47,13 @@ const professionalRoles = [
       "Developed patient-centric research solutions",
       "Built SaaS product from ground up"
     ],
-    area: "Entrepreneurship"
+    area: "Product & Strategy"
   },
   {
     id: 3,
     title: "Entrepreneur in Residence",
     company: "Antler",
+    logo: "/company-logos/antler-logo.png",
     location: "Sweden",
     period: "February 2024 – June 2024",
     description: "Venture development and startup incubation focused on business strategy and product management.",
@@ -61,12 +64,13 @@ const professionalRoles = [
       "Mentored entrepreneurs in product development",
       "Conducted market analysis and business planning"
     ],
-    area: "Entrepreneurship"
+    area: "Product & Strategy"
   },
   {
     id: 4,
     title: "Product Manager and Team Lead",
     company: "Klarna",
+    logo: "/company-logos/klarna-logo.png",
     location: "Stockholm, Sweden",
     period: "March 2022 – February 2024",
     description: "Led the Personal Finance Insight team, driving development and execution of innovative financial products that empowered users to make informed personal finance decisions.",
@@ -77,12 +81,13 @@ const professionalRoles = [
       "Developed innovative financial products and insights",
       "Drove user engagement through data-driven product decisions"
     ],
-    area: "Product Management"
+    area: "Product & Strategy"
   },
   {
     id: 5,
     title: "Senior Product Analyst",
     company: "Klarna",
+    logo: "/company-logos/klarna-logo.png",
     location: "Stockholm, Sweden", 
     period: "November 2020 – March 2022",
     description: "Analyzed personal finance products performance and provided strategic insights for product development.",
@@ -93,12 +98,13 @@ const professionalRoles = [
       "Provided strategic insights for product roadmap decisions",
       "Collaborated with cross-functional teams on product optimization"
     ],
-    area: "Product Management"
+    area: "Product & Strategy"
   },
   {
     id: 6,
     title: "Business Analyst", 
     company: "Klarna",
+    logo: "/company-logos/klarna-logo.png",
     location: "Stockholm, Sweden",
     period: "July 2019 – November 2020",
     description: "Supported business control and co-marketing teams with data analysis and performance insights.",
@@ -109,12 +115,13 @@ const professionalRoles = [
       "Supported co-marketing initiatives with performance insights", 
       "Developed reporting frameworks for business metrics"
     ],
-    area: "Analytics"
+    area: "Analytics & Data"
   },
   {
     id: 7,
     title: "Business Controller",
     company: "H&M",
+    logo: "/company-logos/hm-logo.png",
     location: "Sweden",
     period: "June 2018 – August 2018",
     description: "Reviewed, mapped, and evaluated 50+ high-level activities and processes in stores through creating a Power BI dashboard.",
@@ -125,12 +132,13 @@ const professionalRoles = [
       "Created comprehensive Power BI dashboard",
       "Improved operational efficiency through process analysis"
     ],
-    area: "Analytics"
+    area: "Analytics & Data"
   },
   {
     id: 8,
     title: "Project Manager",
     company: "Bamilo",
+    logo: null,
     location: "Tehran, Iran",
     period: "September 2016 – July 2017", 
     description: "Regional group for Rocket Internet. Responsible for defining, planning and executing strategic projects.",
@@ -141,12 +149,13 @@ const professionalRoles = [
       "Managed stakeholder relationships across regional markets",
       "Delivered projects on time and within budget"
     ],
-    area: "Project Management"
+    area: "Product & Strategy"
   },
   {
     id: 9,
     title: "Category Manager",
     company: "Solico Group", 
+    logo: null,
     location: "Tehran, Iran",
     period: "September 2015 – August 2016",
     description: "Frozen Kebabs and Vegetables Category Manager responsible for product strategy and market analysis.",
@@ -157,7 +166,7 @@ const professionalRoles = [
       "Conducted competitive analysis and market research",
       "Successfully launched new products in the category"
     ],
-    area: "Marketing"
+    area: "Analytics & Data"
   }
 ];
 
@@ -168,7 +177,7 @@ export function Professional() {
   const [viewMode, setViewMode] = useState<"card" | "list">("card");
   const { track } = useTrackEvent();
   
-  const areas = ["All", "Product Management", "Entrepreneurship", "Analytics", "Project Management", "Marketing"];
+  const areas = ["All", "Product & Strategy", "Analytics & Data"];
   
   // Extract all unique technologies and software from all roles
   const allTechnologies = professionalRoles.flatMap(role => role.technologies);
@@ -653,10 +662,13 @@ export function Professional() {
                           <Building className="h-4 w-4" />
                           <a 
                             href={
-                              role.company === "EBV Elektronik" ? "https://my.avnet.com/ebv/" :
-                              role.company === "Ascilion AB" ? "https://www.ascilion.com/" :
-                              role.company === "Bright Day Graphene AB" ? "https://www.brightdaygraphene.se/" :
-                              role.company === "Exeger Operations AB" ? "https://www.exeger.com/" :
+                              role.company === "PayPal" ? "https://www.paypal.com/" :
+                              role.company === "Klarna" ? "https://www.klarna.com/" :
+                              role.company === "Antler" ? "https://www.antler.co/" :
+                              role.company === "H&M" ? "https://www2.hm.com/" :
+                              role.company === "Bamilo" ? "#" :
+                              role.company === "Solico Group" ? "#" :
+                              role.company === "Puls Health Research" ? "#" :
                               "#"
                             }
                             target="_blank"
@@ -803,10 +815,13 @@ export function Professional() {
                       <div className="flex flex-col gap-1 text-muted-foreground">
                         <a 
                           href={
-                            role.company === "EBV Elektronik" ? "https://my.avnet.com/ebv/" :
-                            role.company === "Ascilion AB" ? "https://www.ascilion.com/" :
-                            role.company === "Bright Day Graphene AB" ? "https://www.brightdaygraphene.se/" :
-                            role.company === "Exeger Operations AB" ? "https://www.exeger.com/" :
+                            role.company === "PayPal" ? "https://www.paypal.com/" :
+                            role.company === "Klarna" ? "https://www.klarna.com/" :
+                            role.company === "Antler" ? "https://www.antler.co/" :
+                            role.company === "H&M" ? "https://www2.hm.com/" :
+                            role.company === "Bamilo" ? "#" :
+                            role.company === "Solico Group" ? "#" :
+                            role.company === "Puls Health Research" ? "#" :
                             "#"
                           }
                           target="_blank"

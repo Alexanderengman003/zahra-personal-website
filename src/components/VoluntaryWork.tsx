@@ -122,14 +122,6 @@ export function VoluntaryWork() {
                   // Card View - Full Information
                   <>
                     <div className="flex flex-col mb-4">
-                      <div className="flex items-start justify-between mb-2">
-                        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary">
-                          {role.type}
-                        </span>
-                        <span className="text-xs text-muted-foreground">
-                          {role.duration}
-                        </span>
-                      </div>
                       <h4 className="text-lg font-semibold text-foreground mb-2 leading-tight">
                         {role.title}
                       </h4>
@@ -180,14 +172,9 @@ export function VoluntaryWork() {
                   // List View - Basic Information Only
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between">
                     <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <h4 className="text-lg font-semibold text-foreground leading-tight">
-                          {role.title}
-                        </h4>
-                        <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary">
-                          {role.type}
-                        </span>
-                      </div>
+                      <h4 className="text-lg font-semibold text-foreground leading-tight mb-1">
+                        {role.title}
+                      </h4>
                       <div className="flex flex-col gap-1 text-muted-foreground">
                         <a 
                           href={role.organization.includes('CEMS') ? 'https://www.cems.org/' : role.organization.includes('Sharif') ? 'https://www.sharif.edu/' : '#'}

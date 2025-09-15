@@ -37,14 +37,8 @@ const education = [
     school: "Sharif University of Technology",
     location: "Tehran, Iran",
     period: "2009 - 2013",
-    description: "Industrial Engineering with active involvement in university organizations and student activities.",
-    coursework: ["Operations Research", "Systems Engineering", "Production Planning", "Quality Control", "Statistics", "Management"],
-    activities: [
-      "Chief Cultural Deputy at Industrial Engineering Department Scientific Council",
-      "Member of High Council - Sharif University Industrial Engineering Department Magazine", 
-      "Member - Sharif University Environmental Students Group",
-      "Member - Sharif University Art Group"
-    ]
+    description: "Industrial Engineering with strong foundation in operations research, systems engineering, and management.",
+    coursework: ["Operations Research", "Systems Engineering", "Production Planning", "Quality Control", "Statistics", "Management"]
   }
 ];
 
