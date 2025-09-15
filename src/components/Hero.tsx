@@ -1,4 +1,4 @@
-import { ArrowDown, Download, Linkedin, Mail, Sparkles } from "lucide-react";
+import { ArrowDown, Download, Linkedin, Mail, Sparkles, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTrackEvent } from "@/hooks/useTrackEvent";
 
@@ -43,8 +43,12 @@ export function Hero() {
               
                 <div className="relative">
                   <h2 className="text-lg sm:text-xl lg:text-2xl font-medium text-muted-foreground">
-                    Senior Product Manager | Fintech & Health Tech Expert | Stockholm
+                    Senior Product Manager | Fintech & Health Tech Expert
                   </h2>
+                  <div className="flex items-center gap-2 mt-2">
+                    <MapPin className="h-4 w-4 text-muted-foreground" />
+                    <span className="text-base text-muted-foreground">Stockholm</span>
+                  </div>
                   <div className="absolute -bottom-2 left-0 w-full h-0.5 bg-gradient-to-r from-primary to-primary/50 rounded-full" />
                 </div>
               </div>
