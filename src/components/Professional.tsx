@@ -22,7 +22,7 @@ const professionalRoles = [
     location: "Stockholm, Sweden",
     period: "October 2024 – Current",
     description: "Led a team of 20+ cross-functionally to unify PayPal and Zettle back-office experience across all markets.",
-    technologies: ["Product Management", "Finance", "Product Vision", "Team Leadership", "Cross-functional Collaboration"],
+    technologies: ["Product Management", "Finance", "Product Vision", "Team Leadership", "Cross-functional Collaboration", "Stakeholder Management", "Business Strategy"],
     software: ["Salesforce", "Jira", "Confluence", "Analytics Tools"],
     achievements: [
       "Led team of 20+ professionals across multiple functions",
@@ -38,7 +38,7 @@ const professionalRoles = [
     location: "Sweden",
     period: "May 2024 – April 2025",
     description: "Empowering patient-centric health research through innovative SaaS solutions.",
-    technologies: ["Entrepreneurship", "Health Tech", "Product Development", "Business Strategy"],
+    technologies: ["Entrepreneurship", "Health Tech", "Product Development", "Business Strategy", "Software as a Service (SaaS)", "Business Planning"],
     software: ["SaaS Platforms", "Product Design Tools"],
     achievements: [
       "Co-founded health research platform",
@@ -54,7 +54,7 @@ const professionalRoles = [
     location: "Sweden",
     period: "February 2024 – June 2024",
     description: "Venture development and startup incubation focused on business strategy and product management.",
-    technologies: ["Business Strategy", "Product Management", "Venture Development", "Startup Incubation"],
+    technologies: ["Business Strategy", "Product Management", "Venture Development", "Startup Incubation", "Strategic Planning"],
     software: ["Business Planning Tools", "Market Research Platforms"],
     achievements: [
       "Developed venture strategies for early-stage startups",
@@ -70,8 +70,8 @@ const professionalRoles = [
     location: "Stockholm, Sweden",
     period: "March 2022 – February 2024",
     description: "Led the Personal Finance Insight team, driving development and execution of innovative financial products that empowered users to make informed personal finance decisions.",
-    technologies: ["Product Management", "Finance", "Product Launch", "Stakeholder Management", "Product Strategy", "Product Vision", "Performance Metrics", "KPIs", "Market Analysis", "Agile Methodologies"],
-    software: ["Analytics Platforms", "A/B Testing Tools", "Product Management Software", "Data Visualization Tools"],
+    technologies: ["Product Management", "Finance", "Product Launch", "Stakeholder Management", "Product Strategy", "Product Vision", "Software Product Management", "Performance Metrics", "Key Performance Indicators", "Market Analysis", "Agile Methodologies", "Leadership"],
+    software: ["Analytics Platforms", "A/B Testing Tools", "Product Management Software", "Data Visualization Tools", "SQL", "Microsoft Excel", "Microsoft Power BI"],
     achievements: [
       "Led Personal Finance Insight team to successful product launches",
       "Developed innovative financial products and insights",
@@ -86,8 +86,8 @@ const professionalRoles = [
     location: "Stockholm, Sweden", 
     period: "November 2020 – March 2022",
     description: "Analyzed personal finance products performance and provided strategic insights for product development.",
-    technologies: ["Product Analysis", "Stakeholder Management", "Analytical Skills", "Performance Metrics", "KPIs", "Agile Methodologies"],
-    software: ["SQL", "Python", "Tableau", "Analytics Tools", "A/B Testing Platforms"],
+    technologies: ["Product Analysis", "Stakeholder Management", "Analytical Skills", "Performance Metrics", "Key Performance Indicators", "Agile Methodologies", "Data Analytics"],
+    software: ["SQL", "Python", "Tableau", "Analytics Tools", "A/B Testing Platforms", "Microsoft Excel", "Business Intelligence (BI)"],
     achievements: [
       "Improved personal finance product performance through data analysis",
       "Provided strategic insights for product roadmap decisions",
@@ -102,8 +102,8 @@ const professionalRoles = [
     location: "Stockholm, Sweden",
     period: "July 2019 – November 2020",
     description: "Supported business control and co-marketing teams with data analysis and performance insights.",
-    technologies: ["Data Analysis", "Marketing Analytics", "Analytical Skills", "Performance Metrics", "Business Intelligence"],
-    software: ["SQL", "Excel", "PowerBI", "Marketing Analytics Tools"],
+    technologies: ["Data Analysis", "Marketing Analytics", "Analytical Skills", "Performance Metrics", "Business Intelligence", "Marketing", "Digital Marketing"],
+    software: ["SQL", "Excel", "Microsoft Power BI", "Marketing Analytics Tools", "Microsoft Office"],
     achievements: [
       "Enhanced business control processes through data analysis",
       "Supported co-marketing initiatives with performance insights", 
@@ -118,8 +118,8 @@ const professionalRoles = [
     location: "Sweden",
     period: "June 2018 – August 2018",
     description: "Reviewed, mapped, and evaluated 50+ high-level activities and processes in stores through creating a Power BI dashboard.",
-    technologies: ["Business Control", "Process Analysis", "Product Analysis", "Data Visualization"],
-    software: ["Power BI", "Excel", "Data Analysis Tools"],
+    technologies: ["Business Analysis", "Process Analysis", "Product Analysis", "Data Visualization", "Business Intelligence", "Process Improvement"],
+    software: ["Microsoft Power BI", "Microsoft Excel", "Data Analysis Tools", "Microsoft Office"],
     achievements: [
       "Mapped and evaluated 50+ store processes",
       "Created comprehensive Power BI dashboard",
@@ -134,8 +134,8 @@ const professionalRoles = [
     location: "Tehran, Iran",
     period: "September 2016 – July 2017", 
     description: "Regional group for Rocket Internet. Responsible for defining, planning and executing strategic projects.",
-    technologies: ["Project Management", "SaaS", "Stakeholder Management", "Analytical Skills", "Strategic Planning"],
-    software: ["Project Management Tools", "SaaS Platforms"],
+    technologies: ["Project Management", "Software as a Service (SaaS)", "Stakeholder Management", "Analytical Skills", "Strategic Planning", "Business Development", "E-commerce"],
+    software: ["Project Management Tools", "SaaS Platforms", "Microsoft Office"],
     achievements: [
       "Defined and executed strategic projects for Rocket Internet portfolio",
       "Managed stakeholder relationships across regional markets",
@@ -150,8 +150,8 @@ const professionalRoles = [
     location: "Tehran, Iran",
     period: "September 2015 – August 2016",
     description: "Frozen Kebabs and Vegetables Category Manager responsible for product strategy and market analysis.",
-    technologies: ["Category Management", "Marketing Analytics", "Competitive Analysis", "Product Launch", "Analytical Skills"],
-    software: ["Marketing Analytics Tools", "Competitive Intelligence Platforms"],
+    technologies: ["Category Management", "Marketing Analytics", "Competitive Analysis", "Product Launch", "Analytical Skills", "Marketing Strategy", "Business Analytics"],
+    software: ["Marketing Analytics Tools", "Competitive Intelligence Platforms", "Microsoft Excel", "Microsoft Office"],
     achievements: [
       "Managed frozen kebabs and vegetables product category",
       "Conducted competitive analysis and market research",
