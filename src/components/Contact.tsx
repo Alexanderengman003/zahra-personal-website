@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+// Updated: Trigger deployment for EmailJS secrets
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import emailjs from "@emailjs/browser";
 import ReCAPTCHA from "react-google-recaptcha";
