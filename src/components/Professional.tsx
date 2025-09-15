@@ -124,27 +124,97 @@ export function Professional() {
   });
 
   const handleTechnologyToggle = (tech: string) => {
-    setSelectedTechnologies(prev => 
-      prev.includes(tech) 
-        ? prev.filter(t => t !== tech)
-        : [...prev, tech]
-    );
+    const newTechnologies = selectedTechnologies.includes(tech) 
+      ? selectedTechnologies.filter(t => t !== tech)
+      : [...selectedTechnologies, tech];
+    
+    setSelectedTechnologies(newTechnologies);
+    
+    // Track filter state
+    track('professional_filters_applied', {
+      area: selectedArea,
+      technologies: newTechnologies,
+      software: selectedSoftware,
+      totalResults: professionalRoles.filter(role => {
+        const areaMatch = selectedArea === "All" || role.area.includes(selectedArea);
+        const techMatch = newTechnologies.length === 0 || 
+          newTechnologies.every(tech => role.technologies.includes(tech));
+        const softwareMatch = selectedSoftware.length === 0 || 
+          selectedSoftware.every(software => role.software.includes(software));
+        return areaMatch && techMatch && softwareMatch;
+      }).length,
+      source: 'professional_section',
+      timestamp: Date.now(),
+      userAgent: navigator.userAgent
+    });
   };
 
   const clearAllTechnologies = () => {
     setSelectedTechnologies([]);
+    
+    // Track filter clear
+    track('professional_filters_applied', {
+      area: selectedArea,
+      technologies: [],
+      software: selectedSoftware,
+      totalResults: professionalRoles.filter(role => {
+        const areaMatch = selectedArea === "All" || role.area.includes(selectedArea);
+        const softwareMatch = selectedSoftware.length === 0 || 
+          selectedSoftware.every(software => role.software.includes(software));
+        return areaMatch && softwareMatch;
+      }).length,
+      source: 'professional_section',
+      action: 'clear_technologies',
+      timestamp: Date.now(),
+      userAgent: navigator.userAgent
+    });
   };
 
   const handleSoftwareToggle = (software: string) => {
-    setSelectedSoftware(prev => 
-      prev.includes(software) 
-        ? prev.filter(s => s !== software)
-        : [...prev, software]
-    );
+    const newSoftware = selectedSoftware.includes(software) 
+      ? selectedSoftware.filter(s => s !== software)
+      : [...selectedSoftware, software];
+    
+    setSelectedSoftware(newSoftware);
+    
+    // Track filter state
+    track('professional_filters_applied', {
+      area: selectedArea,
+      technologies: selectedTechnologies,
+      software: newSoftware,
+      totalResults: professionalRoles.filter(role => {
+        const areaMatch = selectedArea === "All" || role.area.includes(selectedArea);
+        const techMatch = selectedTechnologies.length === 0 || 
+          selectedTechnologies.every(tech => role.technologies.includes(tech));
+        const softwareMatch = newSoftware.length === 0 || 
+          newSoftware.every(software => role.software.includes(software));
+        return areaMatch && techMatch && softwareMatch;
+      }).length,
+      source: 'professional_section',
+      timestamp: Date.now(),
+      userAgent: navigator.userAgent
+    });
   };
 
   const clearAllSoftware = () => {
     setSelectedSoftware([]);
+    
+    // Track filter clear
+    track('professional_filters_applied', {
+      area: selectedArea,
+      technologies: selectedTechnologies,
+      software: [],
+      totalResults: professionalRoles.filter(role => {
+        const areaMatch = selectedArea === "All" || role.area.includes(selectedArea);
+        const techMatch = selectedTechnologies.length === 0 || 
+          selectedTechnologies.every(tech => role.technologies.includes(tech));
+        return areaMatch && techMatch;
+      }).length,
+      source: 'professional_section',
+      action: 'clear_software',
+      timestamp: Date.now(),
+      userAgent: navigator.userAgent
+    });
   };
 
   return (
@@ -177,6 +247,24 @@ export function Professional() {
                           userAgent: navigator.userAgent
                         });
                         setSelectedArea(area);
+                        
+                        // Track comprehensive filter state
+                        track('professional_filters_applied', {
+                          area: area,
+                          technologies: selectedTechnologies,
+                          software: selectedSoftware,
+                          totalResults: professionalRoles.filter(role => {
+                            const areaMatch = area === "All" || role.area.includes(area);
+                            const techMatch = selectedTechnologies.length === 0 || 
+                              selectedTechnologies.every(tech => role.technologies.includes(tech));
+                            const softwareMatch = selectedSoftware.length === 0 || 
+                              selectedSoftware.every(software => role.software.includes(software));
+                            return areaMatch && techMatch && softwareMatch;
+                          }).length,
+                          source: 'professional_section',
+                          timestamp: Date.now(),
+                          userAgent: navigator.userAgent
+                        });
                       }}
                       className={`px-4 py-2 text-sm font-medium rounded-md transition-all ${
                         selectedArea === area
