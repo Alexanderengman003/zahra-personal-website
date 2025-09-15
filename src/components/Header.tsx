@@ -4,6 +4,7 @@ const navigation = [
   { name: "Home", href: "/#home" },
   { name: "About", href: "/#about" },
   { name: "Professional", href: "/#professional" },
+  { name: "Voluntary", href: "/#voluntary" },
   { name: "Projects", href: "/#projects" },
   { name: "Education", href: "/#education" },
   { name: "Contact", href: "/#contact" },
