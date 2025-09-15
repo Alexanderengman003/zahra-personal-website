@@ -232,229 +232,185 @@ export function Professional() {
 
         {/* Filter and View Controls */}
         <div className="mx-auto max-w-7xl mt-8 px-6 lg:px-8">
-          <div className="flex flex-col gap-4 mb-8">
-            {/* Top row: Area Filter and View Mode Toggle */}
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-              <div className="flex items-center justify-between w-full sm:w-auto">
-                <div className="inline-flex rounded-lg bg-muted p-1">
-                  {areas.map((area) => (
-                    <button
-                      key={area}
-                      onClick={() => {
-                        track('professional_filter_click', { 
-                          area, 
-                          source: 'professional_section',
-                          timestamp: Date.now(),
-                          userAgent: navigator.userAgent
-                        });
-                        setSelectedArea(area);
-                        
-                        // Track comprehensive filter state
-                        track('professional_filters_applied', {
-                          area: area,
-                          technologies: selectedTechnologies,
-                          software: selectedSoftware,
-                          totalResults: professionalRoles.filter(role => {
-                            const areaMatch = area === "All" || role.area.includes(area);
-                            const techMatch = selectedTechnologies.length === 0 || 
-                              selectedTechnologies.every(tech => role.technologies.includes(tech));
-                            const softwareMatch = selectedSoftware.length === 0 || 
-                              selectedSoftware.every(software => role.software.includes(software));
-                            return areaMatch && techMatch && softwareMatch;
-                          }).length,
-                          source: 'professional_section',
-                          timestamp: Date.now(),
-                          userAgent: navigator.userAgent
-                        });
-                      }}
-                      className={`px-4 py-2 text-sm font-medium rounded-md transition-all ${
-                        selectedArea === area
-                          ? "bg-background text-foreground shadow-sm"
-                          : "text-muted-foreground hover:text-foreground"
-                      }`}
-                    >
-                      {area}
-                    </button>
-                  ))}
-                </div>
-                
-                {/* View Mode Toggle - shown on mobile next to area filter */}
-                <div className="inline-flex rounded-lg bg-muted p-1 sm:hidden">
+          <div className="flex flex-col lg:flex-row mb-8 gap-4 justify-between">
+            {/* Left side: Area Filter and Filter Dropdowns */}
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+              <div className="inline-flex rounded-lg bg-muted p-1">
+                {areas.map((area) => (
                   <button
+                    key={area}
                     onClick={() => {
-                      track('professional_view_toggle', { 
-                        viewMode: 'card', 
-                        previousMode: viewMode,
+                      track('professional_filter_click', { 
+                        area, 
                         source: 'professional_section',
                         timestamp: Date.now(),
-                        sessionDuration: performance.now()
+                        userAgent: navigator.userAgent
                       });
-                      setViewMode('card');
+                      setSelectedArea(area);
+                      
+                      // Track comprehensive filter state
+                      track('professional_filters_applied', {
+                        area: area,
+                        technologies: selectedTechnologies,
+                        software: selectedSoftware,
+                        totalResults: professionalRoles.filter(role => {
+                          const areaMatch = area === "All" || role.area.includes(area);
+                          const techMatch = selectedTechnologies.length === 0 || 
+                            selectedTechnologies.every(tech => role.technologies.includes(tech));
+                          const softwareMatch = selectedSoftware.length === 0 || 
+                            selectedSoftware.every(software => role.software.includes(software));
+                          return areaMatch && techMatch && softwareMatch;
+                        }).length,
+                        source: 'professional_section',
+                        timestamp: Date.now(),
+                        userAgent: navigator.userAgent
+                      });
                     }}
-                    className={`px-3 py-2 text-sm font-medium rounded-md transition-all ${
-                      viewMode === 'card'
+                    className={`px-4 py-2 text-sm font-medium rounded-md transition-all ${
+                      selectedArea === area
                         ? "bg-background text-foreground shadow-sm"
                         : "text-muted-foreground hover:text-foreground"
                     }`}
                   >
-                    <Grid className="h-4 w-4" />
+                    {area}
                   </button>
-                  <button
-                    onClick={() => {
-                      track('professional_view_toggle', { 
-                        viewMode: 'list', 
-                        previousMode: viewMode,
-                        source: 'professional_section',
-                        timestamp: Date.now(),
-                        sessionDuration: performance.now()
-                      });
-                      setViewMode('list');
-                    }}
-                    className={`px-3 py-2 text-sm font-medium rounded-md transition-all ${
-                      viewMode === 'list'
-                        ? "bg-background text-foreground shadow-sm"
-                        : "text-muted-foreground hover:text-foreground"
-                    }`}
-                  >
-                    <List className="h-4 w-4" />
-                  </button>
-                </div>
+                ))}
               </div>
               
-              {/* View Mode Toggle - shown on desktop */}
-              <div className="hidden sm:flex">
-                <div className="inline-flex rounded-lg bg-muted p-1">
-                  <button
-                    onClick={() => {
-                      track('professional_view_toggle', { 
-                        viewMode: 'card', 
-                        previousMode: viewMode,
-                        source: 'professional_section',
-                        timestamp: Date.now(),
-                        sessionDuration: performance.now()
-                      });
-                      setViewMode('card');
-                    }}
-                    className={`px-3 py-2 text-sm font-medium rounded-md transition-all ${
-                      viewMode === 'card'
-                        ? "bg-background text-foreground shadow-sm"
-                        : "text-muted-foreground hover:text-foreground"
-                    }`}
-                  >
-                    <Grid className="h-4 w-4" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      track('professional_view_toggle', { 
-                        viewMode: 'list', 
-                        previousMode: viewMode,
-                        source: 'professional_section',
-                        timestamp: Date.now(),
-                        sessionDuration: performance.now()
-                      });
-                      setViewMode('list');
-                    }}
-                    className={`px-3 py-2 text-sm font-medium rounded-md transition-all ${
-                      viewMode === 'list'
-                        ? "bg-background text-foreground shadow-sm"
-                        : "text-muted-foreground hover:text-foreground"
-                    }`}
-                  >
-                    <List className="h-4 w-4" />
-                  </button>
-                </div>
+              {/* Filter Dropdowns */}
+              <div className="flex flex-row gap-2">
+                {/* Technology Dropdown */}
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <button className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg bg-muted text-muted-foreground hover:text-foreground transition-all h-10">
+                      <Filter className="h-4 w-4" />
+                      Skills {selectedTechnologies.length > 0 && `(${selectedTechnologies.length})`}
+                      <ChevronDown className="h-4 w-4" />
+                    </button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="start" className="w-56 bg-background border shadow-md z-50">
+                    <DropdownMenuItem
+                      onClick={(e) => {
+                        e.preventDefault();
+                        clearAllTechnologies();
+                      }}
+                      className="cursor-pointer text-muted-foreground hover:text-foreground"
+                    >
+                      Clear All
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    {uniqueTechnologies.map((tech) => (
+                      <DropdownMenuCheckboxItem
+                        key={tech}
+                        checked={selectedTechnologies.includes(tech)}
+                        onSelect={(e) => {
+                          e.preventDefault();
+                        }}
+                        onCheckedChange={(checked) => {
+                          track('professional_tech_filter_click', { 
+                            technology: tech, 
+                            source: 'professional_section',
+                            timestamp: Date.now(),
+                            userAgent: navigator.userAgent
+                          });
+                          handleTechnologyToggle(tech);
+                        }}
+                        className="cursor-pointer"
+                      >
+                        {tech}
+                      </DropdownMenuCheckboxItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+
+                {/* Software Dropdown */}
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <button className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg bg-muted text-muted-foreground hover:text-foreground transition-all h-10">
+                      <Filter className="h-4 w-4" />
+                      Software {selectedSoftware.length > 0 && `(${selectedSoftware.length})`}
+                      <ChevronDown className="h-4 w-4" />
+                    </button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="start" className="w-56 bg-background border shadow-md z-50">
+                    <DropdownMenuItem
+                      onClick={(e) => {
+                        e.preventDefault();
+                        clearAllSoftware();
+                      }}
+                      className="cursor-pointer text-muted-foreground hover:text-foreground"
+                    >
+                      Clear All
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    {uniqueSoftware.map((software) => (
+                      <DropdownMenuCheckboxItem
+                        key={software}
+                        checked={selectedSoftware.includes(software)}
+                        onSelect={(e) => {
+                          e.preventDefault();
+                        }}
+                        onCheckedChange={(checked) => {
+                          track('professional_software_filter_click', { 
+                            software: software, 
+                            source: 'professional_section',
+                            timestamp: Date.now(),
+                            userAgent: navigator.userAgent
+                          });
+                          handleSoftwareToggle(software);
+                        }}
+                        className="cursor-pointer"
+                      >
+                        {software}
+                      </DropdownMenuCheckboxItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </div>
             </div>
             
-            {/* Bottom row: Filter Dropdowns */}
-            <div className="flex flex-row gap-2">
-              {/* Technology Dropdown */}
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <button className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg bg-muted text-muted-foreground hover:text-foreground transition-all h-10">
-                    <Filter className="h-4 w-4" />
-                    Skills {selectedTechnologies.length > 0 && `(${selectedTechnologies.length})`}
-                    <ChevronDown className="h-4 w-4" />
-                  </button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="start" className="w-56 bg-background border shadow-md z-50">
-                  <DropdownMenuItem
-                    onClick={(e) => {
-                      e.preventDefault();
-                      clearAllTechnologies();
-                    }}
-                    className="cursor-pointer text-muted-foreground hover:text-foreground"
-                  >
-                    Clear All
-                  </DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  {uniqueTechnologies.map((tech) => (
-                    <DropdownMenuCheckboxItem
-                      key={tech}
-                      checked={selectedTechnologies.includes(tech)}
-                      onSelect={(e) => {
-                        e.preventDefault();
-                      }}
-                      onCheckedChange={(checked) => {
-                        track('professional_tech_filter_click', { 
-                          technology: tech, 
-                          source: 'professional_section',
-                          timestamp: Date.now(),
-                          userAgent: navigator.userAgent
-                        });
-                        handleTechnologyToggle(tech);
-                      }}
-                      className="cursor-pointer"
-                    >
-                      {tech}
-                    </DropdownMenuCheckboxItem>
-                  ))}
-                </DropdownMenuContent>
-              </DropdownMenu>
-
-              {/* Software Dropdown */}
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <button className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg bg-muted text-muted-foreground hover:text-foreground transition-all h-10">
-                    <Filter className="h-4 w-4" />
-                    Software {selectedSoftware.length > 0 && `(${selectedSoftware.length})`}
-                    <ChevronDown className="h-4 w-4" />
-                  </button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="start" className="w-56 bg-background border shadow-md z-50">
-                  <DropdownMenuItem
-                    onClick={(e) => {
-                      e.preventDefault();
-                      clearAllSoftware();
-                    }}
-                    className="cursor-pointer text-muted-foreground hover:text-foreground"
-                  >
-                    Clear All
-                  </DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  {uniqueSoftware.map((software) => (
-                    <DropdownMenuCheckboxItem
-                      key={software}
-                      checked={selectedSoftware.includes(software)}
-                      onSelect={(e) => {
-                        e.preventDefault();
-                      }}
-                      onCheckedChange={(checked) => {
-                        track('professional_software_filter_click', { 
-                          software: software, 
-                          source: 'professional_section',
-                          timestamp: Date.now(),
-                          userAgent: navigator.userAgent
-                        });
-                        handleSoftwareToggle(software);
-                      }}
-                      className="cursor-pointer"
-                    >
-                      {software}
-                    </DropdownMenuCheckboxItem>
-                  ))}
-                </DropdownMenuContent>
-              </DropdownMenu>
+            {/* Right side: View Mode Toggle */}
+            <div className="flex justify-end">
+              <div className="inline-flex rounded-lg bg-muted p-1">
+                <button
+                  onClick={() => {
+                    track('professional_view_toggle', { 
+                      viewMode: 'card', 
+                      previousMode: viewMode,
+                      source: 'professional_section',
+                      timestamp: Date.now(),
+                      sessionDuration: performance.now()
+                    });
+                    setViewMode('card');
+                  }}
+                  className={`px-3 py-2 text-sm font-medium rounded-md transition-all ${
+                    viewMode === 'card'
+                      ? "bg-background text-foreground shadow-sm"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  <Grid className="h-4 w-4" />
+                </button>
+                <button
+                  onClick={() => {
+                    track('professional_view_toggle', { 
+                      viewMode: 'list', 
+                      previousMode: viewMode,
+                      source: 'professional_section',
+                      timestamp: Date.now(),
+                      sessionDuration: performance.now()
+                    });
+                    setViewMode('list');
+                  }}
+                  className={`px-3 py-2 text-sm font-medium rounded-md transition-all ${
+                    viewMode === 'list'
+                      ? "bg-background text-foreground shadow-sm"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  <List className="h-4 w-4" />
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -462,152 +418,19 @@ export function Professional() {
         {/* Professional Roles */}
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className={viewMode === 'card' ? "grid grid-cols-1 lg:grid-cols-2 gap-8" : "space-y-4"}>
-            {filteredRoles.map((role) => (
-              <div key={role.id} className="group relative">
+            {filteredRoles.map((role, index) => (
+              <div
+                key={role.id}
+                className={`card-gradient ${viewMode === 'card' ? 'rounded-2xl pt-6 px-2 pb-6' : 'rounded-xl p-2'} shadow-medium hover-lift`}
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
                 {viewMode === 'card' ? (
-                  <div className="bg-card border border-border rounded-lg p-6 hover:shadow-lg transition-all duration-300">
-                    <div className="flex flex-col h-full">
-                      <div className="flex items-start justify-between mb-4">
-                        <div className="flex-1">
-                          <h3 className="text-lg font-semibold text-foreground mb-2 flex items-center gap-2">
-                            {role.company === "EBV Elektronik" && (
-                              <a 
-                                href="https://my.avnet.com/ebv/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                onClick={() => track('company_logo_click', { company: 'EBV Elektronik', source: 'professional_section' })}
-                                className="hover:opacity-80 transition-opacity"
-                              >
-                                <img 
-                                  src={ebvLogo} 
-                                  alt="EBV Elektronik" 
-                                  className="h-4 w-4 rounded-sm"
-                                />
-                              </a>
-                            )}
-                            {role.company === "Ascilion AB" && (
-                              <a 
-                                href="https://www.ascilion.com/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                onClick={() => track('company_logo_click', { company: 'Ascilion AB', source: 'professional_section' })}
-                                className="hover:opacity-80 transition-opacity"
-                              >
-                                <img 
-                                  src={ascilionLogo} 
-                                  alt="Ascilion" 
-                                  className="h-4 w-4 rounded-sm"
-                                />
-                              </a>
-                            )}
-                            {role.company === "Bright Day Graphene AB" && (
-                              <a 
-                                href="https://www.brightdaygraphene.se/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                onClick={() => track('company_logo_click', { company: 'Bright Day Graphene AB', source: 'professional_section' })}
-                                className="hover:opacity-80 transition-opacity"
-                              >
-                                <img 
-                                  src={brightDayGrapheneLogo} 
-                                  alt="Bright Day Graphene" 
-                                  className="h-4 w-4 rounded-sm"
-                                />
-                              </a>
-                            )}
-                            {role.company === "Exeger Operations AB" && (
-                              <a 
-                                href="https://www.exeger.com/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                onClick={() => track('company_logo_click', { company: 'Exeger Operations AB', source: 'professional_section' })}
-                                className="hover:opacity-80 transition-opacity"
-                              >
-                                <img 
-                                  src={exegerLogo} 
-                                  alt="Exeger" 
-                                  className="h-4 w-4 rounded-sm dark:invert"
-                                />
-                              </a>
-                            )}
-                            {role.title}
-                          </h3>
-                          <div className="flex flex-col gap-1 text-muted-foreground mb-3">
-                            <a 
-                              href={
-                                role.company === "EBV Elektronik" ? "https://my.avnet.com/ebv/" :
-                                role.company === "Ascilion AB" ? "https://www.ascilion.com/" :
-                                role.company === "Bright Day Graphene AB" ? "https://www.brightdaygraphene.se/" :
-                                role.company === "Exeger Operations AB" ? "https://www.exeger.com/" :
-                                "#"
-                              }
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              onClick={() => track('company_name_click', { company: role.company, source: 'professional_section' })}
-                              className="text-sm font-medium hover:text-primary transition-colors cursor-pointer inline-flex items-center gap-1"
-                            >
-                              <Building className="h-3 w-3" />
-                              {role.company}
-                              <ExternalLinkIcon className="h-3 w-3" />
-                            </a>
-                            <div className="flex items-center gap-1">
-                              <MapPin className="h-3 w-3" />
-                              <span className="text-sm">{role.location}</span>
-                            </div>
-                            <div className="flex items-center gap-1">
-                              <Calendar className="h-3 w-3" />
-                              <span className="text-sm">{role.period}</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
-                        {role.description}
-                      </p>
-                      <div className="space-y-4 flex-grow">
-                        {role.achievements.length > 0 && (
-                          <div>
-                            <h4 className="text-sm font-medium text-foreground mb-2">Key Achievements</h4>
-                            <ul className="text-sm text-muted-foreground space-y-1">
-                              {role.achievements.map((achievement, index) => (
-                                <li key={index} className="flex items-start gap-2">
-                                  <span className="w-1 h-1 bg-primary rounded-full mt-2 flex-shrink-0"></span>
-                                  <span>{achievement}</span>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        )}
-                        <div className="flex flex-wrap gap-2">
-                          {role.technologies.map((tech) => (
-                            <span
-                              key={tech}
-                              className="px-2 py-1 bg-secondary text-secondary-foreground text-xs rounded-md"
-                            >
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-                        {role.software.length > 0 && (
-                          <div className="flex flex-wrap gap-2">
-                            {role.software.map((software) => (
-                              <span
-                                key={software}
-                                className="px-2 py-1 bg-accent text-accent-foreground text-xs rounded-md"
-                              >
-                                {software}
-                              </span>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="bg-card border border-border rounded-lg p-4 hover:shadow-md transition-all duration-300">
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                      <div className="flex-1">
-                        <h3 className="text-lg font-semibold text-foreground mb-1 flex items-center gap-2">
+                  // Card View - Full Information
+                  <>
+                    {/* Role Header */}
+                    <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6 relative">
+                      <div>
+                        <h3 className="text-xl font-semibold text-foreground mb-2 leading-tight flex items-center gap-2">
                           {role.company === "EBV Elektronik" && (
                             <a 
                               href="https://my.avnet.com/ebv/"
@@ -619,7 +442,7 @@ export function Professional() {
                               <img 
                                 src={ebvLogo} 
                                 alt="EBV Elektronik" 
-                                className="h-4 w-4 rounded-sm"
+                                className="h-5 w-5 rounded-sm"
                               />
                             </a>
                           )}
@@ -634,7 +457,7 @@ export function Professional() {
                               <img 
                                 src={ascilionLogo} 
                                 alt="Ascilion" 
-                                className="h-4 w-4 rounded-sm"
+                                className="h-5 w-5 rounded-sm"
                               />
                             </a>
                           )}
@@ -649,7 +472,7 @@ export function Professional() {
                               <img 
                                 src={brightDayGrapheneLogo} 
                                 alt="Bright Day Graphene" 
-                                className="h-4 w-4 rounded-sm"
+                                className="h-5 w-5 rounded-sm"
                               />
                             </a>
                           )}
@@ -664,13 +487,15 @@ export function Professional() {
                               <img 
                                 src={exegerLogo} 
                                 alt="Exeger" 
-                                className="h-4 w-4 rounded-sm dark:invert"
+                                className="h-5 w-5 rounded-sm dark:invert"
                               />
                             </a>
                           )}
                           {role.title}
                         </h3>
-                        <div className="flex flex-col gap-1 text-muted-foreground">
+                      <div className="flex flex-col gap-2 text-muted-foreground">
+                        <div className="flex items-center gap-2">
+                          <Building className="h-4 w-4" />
                           <a 
                             href={
                               role.company === "EBV Elektronik" ? "https://my.avnet.com/ebv/" :
@@ -684,18 +509,167 @@ export function Professional() {
                             onClick={() => track('company_name_click', { company: role.company, source: 'professional_section' })}
                             className="text-sm font-medium hover:text-primary transition-colors cursor-pointer inline-flex items-center gap-1"
                           >
-                            <Building className="h-3 w-3" />
                             {role.company}
                             <ExternalLinkIcon className="h-3 w-3" />
                           </a>
-                          <div className="flex items-center gap-1">
-                            <MapPin className="h-3 w-3" />
-                            <span className="text-sm">{role.location}</span>
-                          </div>
-                          <div className="flex items-center gap-1">
-                            <Calendar className="h-3 w-3" />
-                            <span className="text-sm">{role.period}</span>
-                          </div>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <MapPin className="h-4 w-4" />
+                          <span className="text-sm">{role.location}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Calendar className="h-4 w-4" />
+                          <span className="text-sm">{role.period}</span>
+                        </div>
+                      </div>
+                      </div>
+                    </div>
+
+                    {/* Description */}
+                    <p className="text-muted-foreground leading-relaxed mb-6">
+                      {role.description}
+                    </p>
+
+                    {/* Technologies */}
+                    <div className="mb-6">
+                      <h4 className="text-sm font-semibold text-foreground mb-3">Skills Used</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {role.technologies.map((tech) => (
+                          <span
+                            key={tech}
+                            className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Software */}
+                    {role.software.length > 0 && (
+                      <div className="mb-6">
+                        <h4 className="text-sm font-semibold text-foreground mb-3">Software Used</h4>
+                        <div className="flex flex-wrap gap-2">
+                          {role.software.map((software) => (
+                            <span
+                              key={software}
+                              className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary"
+                            >
+                              {software}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Achievements */}
+                    <div>
+                      <h4 className="text-sm font-semibold text-foreground mb-3">Key Achievements</h4>
+                      <ul className="space-y-2">
+                        {role.achievements.map((achievement, achievementIndex) => (
+                          <li
+                            key={achievementIndex}
+                            className="flex items-start gap-3 text-sm text-muted-foreground"
+                          >
+                            <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
+                            <span>{achievement}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </>
+                ) : (
+                  // List View - Basic Information Only
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between relative">
+                    <div className="flex-1">
+                      <h3 className="text-lg font-semibold text-foreground mb-1 leading-tight flex items-center gap-2">
+                        {role.company === "EBV Elektronik" && (
+                          <a 
+                            href="https://my.avnet.com/ebv/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={() => track('company_logo_click', { company: 'EBV Elektronik', source: 'professional_section' })}
+                            className="hover:opacity-80 transition-opacity"
+                          >
+                            <img 
+                              src={ebvLogo} 
+                              alt="EBV Elektronik" 
+                              className="h-4 w-4 rounded-sm"
+                            />
+                          </a>
+                        )}
+                        {role.company === "Ascilion AB" && (
+                          <a 
+                            href="https://www.ascilion.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={() => track('company_logo_click', { company: 'Ascilion AB', source: 'professional_section' })}
+                            className="hover:opacity-80 transition-opacity"
+                          >
+                            <img 
+                              src={ascilionLogo} 
+                              alt="Ascilion" 
+                              className="h-4 w-4 rounded-sm"
+                            />
+                          </a>
+                        )}
+                        {role.company === "Bright Day Graphene AB" && (
+                          <a 
+                            href="https://www.brightdaygraphene.se/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={() => track('company_logo_click', { company: 'Bright Day Graphene AB', source: 'professional_section' })}
+                            className="hover:opacity-80 transition-opacity"
+                          >
+                            <img 
+                              src={brightDayGrapheneLogo} 
+                              alt="Bright Day Graphene" 
+                              className="h-4 w-4 rounded-sm"
+                            />
+                          </a>
+                        )}
+                        {role.company === "Exeger Operations AB" && (
+                          <a 
+                            href="https://www.exeger.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={() => track('company_logo_click', { company: 'Exeger Operations AB', source: 'professional_section' })}
+                            className="hover:opacity-80 transition-opacity"
+                          >
+                            <img 
+                              src={exegerLogo} 
+                              alt="Exeger" 
+                              className="h-4 w-4 rounded-sm dark:invert"
+                            />
+                          </a>
+                        )}
+                        {role.title}
+                      </h3>
+                      <div className="flex flex-col gap-1 text-muted-foreground">
+                        <a 
+                          href={
+                            role.company === "EBV Elektronik" ? "https://my.avnet.com/ebv/" :
+                            role.company === "Ascilion AB" ? "https://www.ascilion.com/" :
+                            role.company === "Bright Day Graphene AB" ? "https://www.brightdaygraphene.se/" :
+                            role.company === "Exeger Operations AB" ? "https://www.exeger.com/" :
+                            "#"
+                          }
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={() => track('company_name_click', { company: role.company, source: 'professional_section' })}
+                          className="text-sm font-medium hover:text-primary transition-colors cursor-pointer inline-flex items-center gap-1"
+                        >
+                          <Building className="h-3 w-3" />
+                          {role.company}
+                          <ExternalLinkIcon className="h-3 w-3" />
+                        </a>
+                        <div className="flex items-center gap-1">
+                          <MapPin className="h-3 w-3" />
+                          <span className="text-sm">{role.location}</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <Calendar className="h-3 w-3" />
+                          <span className="text-sm">{role.period}</span>
                         </div>
                       </div>
                     </div>
@@ -707,5 +681,5 @@ export function Professional() {
         </div>
       </div>
     </section>
-  );
-}
+    );
+  }
