@@ -25,7 +25,7 @@ const itSkills = [
 
 const languageSkills = [
   { name: "Persian", value: 100 },
-  { name: "English", value: 95 },
+  { name: "English", value: 100 },
   { name: "Swedish", value: 70 },
 ];
 

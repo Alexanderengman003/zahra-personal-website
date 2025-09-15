@@ -9,10 +9,6 @@ import {
   DropdownMenuCheckboxItem,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
-import ascilionLogo from "@/assets/ascilion-logo.png";
-import brightDayGrapheneLogo from "@/assets/bright-day-graphene-logo.png";
-import exegerLogo from "@/assets/exeger-logo.png";
-import ebvLogo from "@/assets/ebv-logo.png";
 
 const professionalRoles = [
   {
@@ -30,7 +26,7 @@ const professionalRoles = [
       "Unified PayPal and Zettle back-office experience",
       "Managed cross-market implementation strategy"
     ],
-    area: "Product & Strategy"
+    area: "Product"
   },
   {
     id: 2,
@@ -47,7 +43,7 @@ const professionalRoles = [
       "Developed patient-centric research solutions",
       "Built SaaS product from ground up"
     ],
-    area: "Product & Strategy"
+    area: "Product"
   },
   {
     id: 3,
@@ -64,7 +60,7 @@ const professionalRoles = [
       "Mentored entrepreneurs in product development",
       "Conducted market analysis and business planning"
     ],
-    area: "Product & Strategy"
+    area: "Product"
   },
   {
     id: 4,
@@ -81,7 +77,7 @@ const professionalRoles = [
       "Developed innovative financial products and insights",
       "Drove user engagement through data-driven product decisions"
     ],
-    area: "Product & Strategy"
+    area: "Product"
   },
   {
     id: 5,
@@ -98,7 +94,7 @@ const professionalRoles = [
       "Provided strategic insights for product roadmap decisions",
       "Collaborated with cross-functional teams on product optimization"
     ],
-    area: "Product & Strategy"
+    area: "Product"
   },
   {
     id: 6,
@@ -115,7 +111,7 @@ const professionalRoles = [
       "Supported co-marketing initiatives with performance insights", 
       "Developed reporting frameworks for business metrics"
     ],
-    area: "Analytics & Data"
+    area: "Analytics"
   },
   {
     id: 7,
@@ -132,7 +128,7 @@ const professionalRoles = [
       "Created comprehensive Power BI dashboard",
       "Improved operational efficiency through process analysis"
     ],
-    area: "Analytics & Data"
+    area: "Analytics"
   },
   {
     id: 8,
@@ -149,7 +145,7 @@ const professionalRoles = [
       "Managed stakeholder relationships across regional markets",
       "Delivered projects on time and within budget"
     ],
-    area: "Product & Strategy"
+    area: "Product"
   },
   {
     id: 9,
@@ -166,7 +162,7 @@ const professionalRoles = [
       "Conducted competitive analysis and market research",
       "Successfully launched new products in the category"
     ],
-    area: "Analytics & Data"
+    area: "Analytics"
   }
 ];
 
@@ -177,7 +173,7 @@ export function Professional() {
   const [viewMode, setViewMode] = useState<"card" | "list">("card");
   const { track } = useTrackEvent();
   
-  const areas = ["All", "Product & Strategy", "Analytics & Data"];
+  const areas = ["All", "Product", "Analytics"];
   
   // Extract all unique technologies and software from all roles
   const allTechnologies = professionalRoles.flatMap(role => role.technologies);
@@ -594,7 +590,18 @@ export function Professional() {
                     {/* Role Header */}
                     <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6 relative">
                       <div>
-                        <h3 className="text-xl font-semibold text-foreground mb-2 leading-tight flex items-center gap-2">
+                        <h3 className="text-xl font-semibold text-foreground mb-2 leading-tight flex items-center gap-3">
+                          {role.logo && (
+                            <div className="flex-shrink-0">
+                              <img 
+                                src={role.logo} 
+                                alt={role.company}
+                                className="h-8 w-8 rounded-lg object-contain bg-white/10 p-1"
+                              />
+                            </div>
+                          )}
+                          {role.title}
+                        </h3>
                           {role.company === "EBV Elektronik" && (
                             <a 
                               href="https://my.avnet.com/ebv/"
