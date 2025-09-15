@@ -65,7 +65,7 @@ export function Hero() {
               <Button 
                 size="lg" 
                 variant="outline"
-                className="hover-lift font-modern group border-2 hover:border-primary/50 bg-[#0A66C2] hover:bg-[#004182] border-[#0A66C2] text-white"
+                className="hover-lift font-modern group border-2 hover:border-primary/50 bg-primary hover:bg-primary-hover border-primary text-primary-foreground"
                 onClick={() => {
                   track('linkedin_click', { source: 'hero' });
                   window.open('https://www.linkedin.com/in/zahra-farimani/', '_blank');

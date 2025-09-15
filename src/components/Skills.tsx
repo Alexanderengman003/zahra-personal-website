@@ -89,9 +89,9 @@ export function Skills() {
                        style={{ 
                          left: isVisible ? (trait.value >= 50 ? '50%' : `${trait.value}%`) : '50%',
                          width: isVisible ? `${Math.abs(trait.value - 50)}%` : '0%',
-                         background: trait.value >= 50 
-                           ? 'linear-gradient(to right, rgb(96 165 250), rgb(59 130 246))' 
-                           : 'linear-gradient(to left, rgb(96 165 250), rgb(59 130 246))',
+                          background: trait.value >= 50 
+                            ? 'linear-gradient(to right, hsl(270 75% 55%), hsl(270 75% 65%))' 
+                            : 'linear-gradient(to left, hsl(270 75% 55%), hsl(270 75% 65%))',
                          borderRadius: trait.value >= 50 ? '0 9999px 9999px 0' : '9999px 0 0 9999px',
                          transitionDelay: `${index * 200}ms`
                        }}
@@ -118,7 +118,7 @@ export function Skills() {
                   </div>
                   <div className="relative bg-muted rounded-full h-3 overflow-hidden">
                     <div 
-                      className={`h-full bg-gradient-to-r from-blue-400 to-blue-500 rounded-full transition-all duration-1000 ease-out`}
+                      className={`h-full bg-gradient-to-r from-purple-400 to-purple-500 rounded-full transition-all duration-1000 ease-out`}
                       style={{ 
                         width: isVisible ? `${skill.value}%` : '0%',
                         transitionDelay: `${index * 150}ms`
@@ -146,7 +146,7 @@ export function Skills() {
                   </div>
                   <div className="relative bg-muted rounded-full h-3 overflow-hidden">
                     <div 
-                      className={`h-full bg-gradient-to-r from-blue-400 to-blue-500 rounded-full transition-all duration-1000 ease-out`}
+                      className={`h-full bg-gradient-to-r from-purple-400 to-purple-500 rounded-full transition-all duration-1000 ease-out`}
                       style={{ 
                         width: isVisible ? `${language.value}%` : '0%',
                         transitionDelay: `${index * 150}ms`

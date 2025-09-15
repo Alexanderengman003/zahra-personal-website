@@ -6,22 +6,46 @@ import { useTrackEvent } from "@/hooks/useTrackEvent";
 const education = [
   {
     id: 1,
-    degree: "Master of Science in Nanotechnology",
-    school: "KTH Royal Institute of Technology",
+    degree: "Master of Science - MS, International Management",
+    school: "CEMS - The Global Alliance in Management Education",
     location: "Stockholm, Sweden",
-    period: "2018 - 2020",
-    description: "Engineering studies within the field of Nanotechnology, with a nanoelectronics track. Completed thesis on stretchable microsupercapacitors.",
-    coursework: ["Quantum Physics", "Semiconductor Devices", "Microfabrication", "Microsystem Technology", "Electronics"]
+    period: "2017 - 2019",
+    description: "Part of the CEMS global alliance, focusing on international management and cross-cultural business practices.",
+    coursework: ["International Management", "Cross-Cultural Business", "Global Strategy", "Leadership", "Corporate Finance"]
   },
   {
     id: 2,
-    degree: "Bachelor of Science in Materials Science and Engineering",
-    school: "KTH Royal Institute of Technology",
-    location: "Stockholm, Sweden",
-    period: "2015-2018",
-    description: "Studies focused on material properties at the nano and microstructure levels.",
-    coursework: ["Mathematics", "Physics", "Material Chemistry", "Polymers", "Ceramics", "Metals"]
-  } 
+    degree: "Master of Science - MS, International Business",
+    school: "Handelshögskolan i Stockholm (Stockholm School of Economics)",
+    location: "Stockholm, Sweden", 
+    period: "2017 - 2019",
+    description: "Comprehensive business education focusing on international markets and global business strategies.",
+    coursework: ["International Business", "Global Markets", "Strategic Management", "Business Analytics", "Marketing"]
+  },
+  {
+    id: 3,
+    degree: "Master of Business Administration (M.B.A.)",
+    school: "Sharif University of Technology",
+    location: "Tehran, Iran",
+    period: "2013 - 2016",
+    description: "MBA with focus on business administration and entrepreneurship. Served as Teachers' Assistant for Entrepreneurship for 6 semesters.",
+    coursework: ["Entrepreneurship", "Business Strategy", "Operations Management", "Finance", "Marketing", "Leadership"]
+  },
+  {
+    id: 4,
+    degree: "Bachelor's Degree, Industrial Engineering",
+    school: "Sharif University of Technology",
+    location: "Tehran, Iran",
+    period: "2009 - 2013",
+    description: "Industrial Engineering with active involvement in university organizations and student activities.",
+    coursework: ["Operations Research", "Systems Engineering", "Production Planning", "Quality Control", "Statistics", "Management"],
+    activities: [
+      "Chief Cultural Deputy at Industrial Engineering Department Scientific Council",
+      "Member of High Council - Sharif University Industrial Engineering Department Magazine", 
+      "Member - Sharif University Environmental Students Group",
+      "Member - Sharif University Art Group"
+    ]
+  }
 ];
 
 export function Education() {
@@ -36,7 +60,7 @@ export function Education() {
             Education
           </h2>
           <p className="mt-4 text-lg leading-8 text-muted-foreground">
-            My academic background that shaped my technical expertise.
+            My academic journey across international business and engineering disciplines.
           </p>
         </div>
 
@@ -84,7 +108,7 @@ export function Education() {
             </div>
           </div>
           
-          <div className={viewMode === 'card' ? "grid grid-cols-1 lg:grid-cols-2 gap-8" : "space-y-4"}>
+          <div className={viewMode === 'card' ? "grid grid-cols-1 xl:grid-cols-2 gap-8" : "space-y-4"}>
             {education.map((edu, index) => (
               <div
                 key={edu.id}
@@ -100,10 +124,10 @@ export function Education() {
                           {edu.degree}
                         </h4>
                         <div className="flex flex-col gap-2 text-muted-foreground">
-                          <div className="flex items-center gap-2">
+                           <div className="flex items-center gap-2">
                             <Building className="h-4 w-4" />
                             <a 
-                              href="https://www.kth.se/"
+                              href={edu.school.includes('CEMS') ? 'https://www.cems.org/' : edu.school.includes('Handelshögskolan') ? 'https://www.hhs.se/' : 'https://www.sharif.edu/'}
                               target="_blank"
                               rel="noopener noreferrer"
                               onClick={() => track('institution_name_click', { institution: edu.school, source: 'education_section' })}
@@ -141,6 +165,16 @@ export function Education() {
                           </span>
                         ))}
                       </div>
+                      {(edu as any).activities && (
+                        <div className="mt-4">
+                          <h5 className="text-sm font-semibold text-foreground mb-2">Activities & Organizations</h5>
+                          <ul className="text-xs text-muted-foreground space-y-1">
+                            {(edu as any).activities.map((activity: string, idx: number) => (
+                              <li key={idx} className="leading-relaxed">• {activity}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
                     </div>
                   </>
                 ) : (
@@ -152,7 +186,7 @@ export function Education() {
                       </h4>
                       <div className="flex flex-col gap-1 text-muted-foreground">
                         <a 
-                          href="https://www.kth.se/"
+                          href={edu.school.includes('CEMS') ? 'https://www.cems.org/' : edu.school.includes('Handelshögskolan') ? 'https://www.hhs.se/' : 'https://www.sharif.edu/'}
                           target="_blank"
                           rel="noopener noreferrer"
                           onClick={() => track('institution_name_click', { institution: edu.school, source: 'education_section' })}
