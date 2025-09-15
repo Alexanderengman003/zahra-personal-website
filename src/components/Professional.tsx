@@ -86,13 +86,22 @@ const professionalRoles = [
 
 export function Professional() {
   const [selectedArea, setSelectedArea] = useState<string>("All");
+  const [selectedTechnology, setSelectedTechnology] = useState<string>("All");
   const [viewMode, setViewMode] = useState<"card" | "list">("card");
   const { track } = useTrackEvent();
   
   const areas = ["All", "Engineering", "Sales"];
-  const filteredRoles = selectedArea === "All" 
-    ? professionalRoles 
-    : professionalRoles.filter(role => role.area.includes(selectedArea));
+  
+  // Extract all unique technologies from all roles
+  const allTechnologies = professionalRoles.flatMap(role => role.technologies);
+  const uniqueTechnologies = ["All", ...Array.from(new Set(allTechnologies))];
+  
+  // Filter by both area and technology
+  const filteredRoles = professionalRoles.filter(role => {
+    const areaMatch = selectedArea === "All" || role.area.includes(selectedArea);
+    const techMatch = selectedTechnology === "All" || role.technologies.includes(selectedTechnology);
+    return areaMatch && techMatch;
+  });
 
   return (
     <section id="professional" className="py-16 bg-background">
@@ -108,70 +117,98 @@ export function Professional() {
         </div>
 
         <div className="mx-auto max-w-7xl mt-8">
-          <div className="flex items-center justify-between mb-8">
-            <div className="inline-flex rounded-lg bg-muted p-1">
-              {areas.map((area) => (
+          <div className="flex flex-col gap-4 mb-8">
+            {/* Area Filter */}
+            <div className="flex items-center justify-between">
+              <div className="inline-flex rounded-lg bg-muted p-1">
+                {areas.map((area) => (
+                  <button
+                    key={area}
+                    onClick={() => {
+                      track('professional_filter_click', { 
+                        area, 
+                        source: 'professional_section',
+                        timestamp: Date.now(),
+                        userAgent: navigator.userAgent
+                      });
+                      setSelectedArea(area);
+                    }}
+                    className={`px-4 py-2 text-sm font-medium rounded-md transition-all ${
+                      selectedArea === area
+                        ? "bg-background text-foreground shadow-sm"
+                        : "text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    {area}
+                  </button>
+                ))}
+              </div>
+              
+              <div className="inline-flex rounded-lg bg-muted p-1">
                 <button
-                  key={area}
                   onClick={() => {
-                    track('professional_filter_click', { 
-                      area, 
+                    track('professional_view_toggle', { 
+                      viewMode: 'card', 
+                      previousMode: viewMode,
                       source: 'professional_section',
                       timestamp: Date.now(),
-                      userAgent: navigator.userAgent
+                      sessionDuration: performance.now()
                     });
-                    setSelectedArea(area);
+                    setViewMode('card');
                   }}
-                  className={`px-4 py-2 text-sm font-medium rounded-md transition-all ${
-                    selectedArea === area
+                  className={`px-3 py-2 text-sm font-medium rounded-md transition-all ${
+                    viewMode === 'card'
                       ? "bg-background text-foreground shadow-sm"
                       : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
-                  {area}
+                  <Grid className="h-4 w-4" />
                 </button>
-              ))}
+                <button
+                  onClick={() => {
+                    track('professional_view_toggle', { 
+                      viewMode: 'list', 
+                      previousMode: viewMode,
+                      source: 'professional_section',
+                      timestamp: Date.now(),
+                      sessionDuration: performance.now()
+                    });
+                    setViewMode('list');
+                  }}
+                  className={`px-3 py-2 text-sm font-medium rounded-md transition-all ${
+                    viewMode === 'list'
+                      ? "bg-background text-foreground shadow-sm"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  <List className="h-4 w-4" />
+                </button>
+              </div>
             </div>
             
-            <div className="inline-flex rounded-lg bg-muted p-1">
-              <button
-                onClick={() => {
-                  track('professional_view_toggle', { 
-                    viewMode: 'card', 
-                    previousMode: viewMode,
-                    source: 'professional_section',
-                    timestamp: Date.now(),
-                    sessionDuration: performance.now()
-                  });
-                  setViewMode('card');
-                }}
-                className={`px-3 py-2 text-sm font-medium rounded-md transition-all ${
-                  viewMode === 'card'
-                    ? "bg-background text-foreground shadow-sm"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                <Grid className="h-4 w-4" />
-              </button>
-              <button
-                onClick={() => {
-                  track('professional_view_toggle', { 
-                    viewMode: 'list', 
-                    previousMode: viewMode,
-                    source: 'professional_section',
-                    timestamp: Date.now(),
-                    sessionDuration: performance.now()
-                  });
-                  setViewMode('list');
-                }}
-                className={`px-3 py-2 text-sm font-medium rounded-md transition-all ${
-                  viewMode === 'list'
-                    ? "bg-background text-foreground shadow-sm"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                <List className="h-4 w-4" />
-              </button>
+            {/* Technology Filter */}
+            <div className="flex flex-wrap gap-2">
+              {uniqueTechnologies.map((tech) => (
+                <button
+                  key={tech}
+                  onClick={() => {
+                    track('professional_tech_filter_click', { 
+                      technology: tech, 
+                      source: 'professional_section',
+                      timestamp: Date.now(),
+                      userAgent: navigator.userAgent
+                    });
+                    setSelectedTechnology(tech);
+                  }}
+                  className={`px-3 py-1 text-xs font-medium rounded-full transition-all ${
+                    selectedTechnology === tech
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-primary/10 text-primary hover:bg-primary/20"
+                  }`}
+                >
+                  {tech}
+                </button>
+              ))}
             </div>
           </div>
         </div>
