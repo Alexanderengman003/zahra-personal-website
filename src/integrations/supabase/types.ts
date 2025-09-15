@@ -14,7 +14,142 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      analytics_events: {
+        Row: {
+          created_at: string
+          event_data: Json | null
+          event_type: string
+          id: string
+          page_path: string | null
+          session_id: string
+        }
+        Insert: {
+          created_at?: string
+          event_data?: Json | null
+          event_type: string
+          id?: string
+          page_path?: string | null
+          session_id: string
+        }
+        Update: {
+          created_at?: string
+          event_data?: Json | null
+          event_type?: string
+          id?: string
+          page_path?: string | null
+          session_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "analytics_events_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "analytics_sessions"
+            referencedColumns: ["session_id"]
+          },
+        ]
+      }
+      analytics_page_views: {
+        Row: {
+          browser: string | null
+          city: string | null
+          country: string | null
+          created_at: string
+          device_type: string | null
+          id: string
+          operating_system: string | null
+          page_path: string
+          page_title: string | null
+          referrer: string | null
+          session_id: string
+          user_agent: string | null
+        }
+        Insert: {
+          browser?: string | null
+          city?: string | null
+          country?: string | null
+          created_at?: string
+          device_type?: string | null
+          id?: string
+          operating_system?: string | null
+          page_path: string
+          page_title?: string | null
+          referrer?: string | null
+          session_id: string
+          user_agent?: string | null
+        }
+        Update: {
+          browser?: string | null
+          city?: string | null
+          country?: string | null
+          created_at?: string
+          device_type?: string | null
+          id?: string
+          operating_system?: string | null
+          page_path?: string
+          page_title?: string | null
+          referrer?: string | null
+          session_id?: string
+          user_agent?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "analytics_page_views_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "analytics_sessions"
+            referencedColumns: ["session_id"]
+          },
+        ]
+      }
+      analytics_sessions: {
+        Row: {
+          browser: string | null
+          city: string | null
+          country: string | null
+          created_at: string
+          device_type: string | null
+          first_visit_at: string
+          id: string
+          last_activity_at: string
+          operating_system: string | null
+          page_views_count: number | null
+          referrer: string | null
+          session_id: string
+          updated_at: string
+        }
+        Insert: {
+          browser?: string | null
+          city?: string | null
+          country?: string | null
+          created_at?: string
+          device_type?: string | null
+          first_visit_at?: string
+          id?: string
+          last_activity_at?: string
+          operating_system?: string | null
+          page_views_count?: number | null
+          referrer?: string | null
+          session_id: string
+          updated_at?: string
+        }
+        Update: {
+          browser?: string | null
+          city?: string | null
+          country?: string | null
+          created_at?: string
+          device_type?: string | null
+          first_visit_at?: string
+          id?: string
+          last_activity_at?: string
+          operating_system?: string | null
+          page_views_count?: number | null
+          referrer?: string | null
+          session_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
