@@ -43,7 +43,7 @@ export function Hero() {
               
                 <div className="relative">
                   <h2 className="text-lg sm:text-xl lg:text-2xl font-medium text-muted-foreground">
-                    Senior Product Manager | Fintech & Health Tech Expert
+                    Senior Product Manager | Fintech Expert
                   </h2>
                   <div className="flex items-center gap-2 mt-2">
                     <MapPin className="h-4 w-4 text-muted-foreground" />
