@@ -22,7 +22,7 @@ const professionalRoles = [
     location: "Stockholm, SWEDEN",
     period: "June 2025 – Currently ongoing",
     description: "Account manager within semiconductors and electronic components providing technical support for new and existing customers.",
-    technologies: ["Semiconductors", "Electronic Components", "Customer Relations"],
+    technologies: ["Electronic Components", "Customer Relations", "Technical Support", "Sales"],
     achievements: [
       "Account manager within semiconductors and electronic components",
       "Technical support for new and existing customers",
@@ -37,7 +37,7 @@ const professionalRoles = [
     location: "Stockholm, SWEDEN",
     period: "October 2024 – June 2025",
     description: "Development of prototypes and products for customer applications with focus on electrical design and rapid prototyping.",
-    technologies: ["Product Development", "Electrical Design", "Rapid Prototyping"],
+    technologies: ["Electronic Components", "R&D", "Rapid Prototyping", "Electrical Design", "CAD", "Sales"],
     achievements: [
       "Development of prototypes and products for customer applications",
       "Electrical design and rapid prototyping for product development",
@@ -52,7 +52,7 @@ const professionalRoles = [
     location: "Stockholm, SWEDEN",
     period: "January 2024 – October 2024",
     description: "R&D and product development with focus on medical device development following ISO standards.",
-    technologies: ["R&D", "Medical Devices", "ISO 13485", "IEC 60601-1", "IEC 62304"],
+    technologies: ["R&D", "Medical Devices", "ISO", "IEC", "Technical Support", "Sales", "Rapid Prototyping"],
     achievements: [
       "R&D and product development/design",
       "Technical sales and business development",
@@ -67,7 +67,7 @@ const professionalRoles = [
     location: "Stockholm, SWEDEN",
     period: "February 2021 – January 2024",
     description: "SPC, AOI and development of semiconductor components with focus on software and hardware development.",
-    technologies: ["SPC", "AOI", "Semiconductors", "Software Development", "Hardware Development"],
+    technologies: ["Rapid Prototyping", "R&D", "Microfluidics", "SW Development", "HW Development", "Electrical Design", "CAD"],
     achievements: [
       "SPC, AOI and development of semiconductor components",
       "Software and hardware development",
@@ -82,7 +82,7 @@ const professionalRoles = [
     location: "Stockholm, SWEDEN",
     period: "June 2020 – January 2021",
     description: "Process development and scaling of manufacturing with focus on electrochemistry and materials characterization.",
-    technologies: ["Process Development", "Manufacturing", "Electrochemistry", "Materials Characterization"],
+    technologies: ["Process Development", "R&D", "Materials Engineering"],
     achievements: [
       "Process development and scaling of manufacturing",
       "Process design and analysis",
