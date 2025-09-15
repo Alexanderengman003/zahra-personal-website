@@ -1,5 +1,6 @@
 import "https://deno.land/x/xhr@0.1.0/mod.ts";
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -17,12 +18,31 @@ serve(async (req) => {
     
     console.log('Analytics login attempt for username:', username);
     
-    // Get stored credentials from environment
-    const validUsername = 'Zahra';
-    const validPassword = 'ZF15092025Pw?';
+    // Initialize Supabase client
+    const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
+    const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
+    const supabase = createClient(supabaseUrl, supabaseKey);
     
-    // Verify credentials
-    const isValidCredentials = username === validUsername && password === validPassword;
+    // Verify credentials against database
+    const { data: adminUser, error } = await supabase
+      .from('admin_users')
+      .select('username, password_hash')
+      .eq('username', username)
+      .eq('password_hash', password)
+      .maybeSingle();
+    
+    if (error) {
+      console.error('Database error during login:', error);
+      return new Response(
+        JSON.stringify({ success: false, error: 'Authentication failed' }),
+        { 
+          status: 500,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
+        }
+      );
+    }
+    
+    const isValidCredentials = adminUser !== null;
     
     if (isValidCredentials) {
       console.log('Analytics login successful for:', username);
