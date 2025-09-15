@@ -39,7 +39,7 @@ const professionalRoles = [
     period: "October 2024 – June 2025",
     description: "Development of prototypes and products for customer applications with focus on electrical design and rapid prototyping.",
     technologies: ["Electronic Components", "R&D", "Rapid Prototyping", "Electrical Design", "CAD", "Sales", "HW Development", "SW Development"],
-    software: ["Altium Designer", "SolidWorks", "Arduino", "Visual Studio"],
+    software: ["Altium Designer", "SolidWorks", "Arduino", "Visual Studio", "Raspberry PI"],
     achievements: [
       "Development of prototypes and products for customer applications",
       "Electrical design and rapid prototyping for product development",
@@ -71,7 +71,7 @@ const professionalRoles = [
     period: "February 2021 – January 2024",
     description: "SPC, AOI and development of semiconductor components with focus on software and hardware development.",
     technologies: ["Rapid Prototyping", "R&D", "Microfluidics", "SW Development", "HW Development", "Electrical Design", "CAD"],
-    software: ["Visual Studio", "Python", "SolidWorks", "EAGLE", "AutoCAD"],
+    software: ["Visual Studio", "Python", "SolidWorks", "EAGLE", "AutoCAD", "Arduino"],
     achievements: [
       "SPC, AOI and development of semiconductor components",
       "Software and hardware development",
@@ -161,9 +161,9 @@ export function Professional() {
         </div>
 
         <div className="mx-auto max-w-7xl mt-8">
-          <div className="flex items-center justify-between mb-8">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8 gap-4">
             {/* Left side: Area Filter, Technology Dropdown, and Software Dropdown */}
-            <div className="flex items-center gap-4">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
               <div className="inline-flex rounded-lg bg-muted p-1">
                 {areas.map((area) => (
                   <button
@@ -188,97 +188,99 @@ export function Professional() {
                 ))}
               </div>
               
-              {/* Technology Dropdown */}
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <button className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg bg-muted text-muted-foreground hover:text-foreground transition-all h-10">
-                    <Filter className="h-4 w-4" />
-                    Skills {selectedTechnologies.length > 0 && `(${selectedTechnologies.length})`}
-                    <ChevronDown className="h-4 w-4" />
-                  </button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="start" className="w-56 bg-background border shadow-md z-50">
-                  <DropdownMenuItem
-                    onClick={(e) => {
-                      e.preventDefault();
-                      clearAllTechnologies();
-                    }}
-                    className="cursor-pointer text-muted-foreground hover:text-foreground"
-                  >
-                    Clear All
-                  </DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  {uniqueTechnologies.map((tech) => (
-                    <DropdownMenuCheckboxItem
-                      key={tech}
-                      checked={selectedTechnologies.includes(tech)}
-                      onSelect={(e) => {
+              <div className="flex flex-col xs:flex-row gap-2">
+                {/* Technology Dropdown */}
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <button className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg bg-muted text-muted-foreground hover:text-foreground transition-all h-10">
+                      <Filter className="h-4 w-4" />
+                      Skills {selectedTechnologies.length > 0 && `(${selectedTechnologies.length})`}
+                      <ChevronDown className="h-4 w-4" />
+                    </button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="start" className="w-56 bg-background border shadow-md z-50">
+                    <DropdownMenuItem
+                      onClick={(e) => {
                         e.preventDefault();
+                        clearAllTechnologies();
                       }}
-                      onCheckedChange={(checked) => {
-                        track('professional_tech_filter_click', { 
-                          technology: tech, 
-                          source: 'professional_section',
-                          timestamp: Date.now(),
-                          userAgent: navigator.userAgent
-                        });
-                        handleTechnologyToggle(tech);
-                      }}
-                      className="cursor-pointer"
+                      className="cursor-pointer text-muted-foreground hover:text-foreground"
                     >
-                      {tech}
-                    </DropdownMenuCheckboxItem>
-                  ))}
-                </DropdownMenuContent>
-              </DropdownMenu>
+                      Clear All
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    {uniqueTechnologies.map((tech) => (
+                      <DropdownMenuCheckboxItem
+                        key={tech}
+                        checked={selectedTechnologies.includes(tech)}
+                        onSelect={(e) => {
+                          e.preventDefault();
+                        }}
+                        onCheckedChange={(checked) => {
+                          track('professional_tech_filter_click', { 
+                            technology: tech, 
+                            source: 'professional_section',
+                            timestamp: Date.now(),
+                            userAgent: navigator.userAgent
+                          });
+                          handleTechnologyToggle(tech);
+                        }}
+                        className="cursor-pointer"
+                      >
+                        {tech}
+                      </DropdownMenuCheckboxItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
 
-              {/* Software Dropdown */}
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <button className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg bg-muted text-muted-foreground hover:text-foreground transition-all h-10">
-                    <Filter className="h-4 w-4" />
-                    Software {selectedSoftware.length > 0 && `(${selectedSoftware.length})`}
-                    <ChevronDown className="h-4 w-4" />
-                  </button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="start" className="w-56 bg-background border shadow-md z-50">
-                  <DropdownMenuItem
-                    onClick={(e) => {
-                      e.preventDefault();
-                      clearAllSoftware();
-                    }}
-                    className="cursor-pointer text-muted-foreground hover:text-foreground"
-                  >
-                    Clear All
-                  </DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  {uniqueSoftware.map((software) => (
-                    <DropdownMenuCheckboxItem
-                      key={software}
-                      checked={selectedSoftware.includes(software)}
-                      onSelect={(e) => {
+                {/* Software Dropdown */}
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <button className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg bg-muted text-muted-foreground hover:text-foreground transition-all h-10">
+                      <Filter className="h-4 w-4" />
+                      Software {selectedSoftware.length > 0 && `(${selectedSoftware.length})`}
+                      <ChevronDown className="h-4 w-4" />
+                    </button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="start" className="w-56 bg-background border shadow-md z-50">
+                    <DropdownMenuItem
+                      onClick={(e) => {
                         e.preventDefault();
+                        clearAllSoftware();
                       }}
-                      onCheckedChange={(checked) => {
-                        track('professional_software_filter_click', { 
-                          software: software, 
-                          source: 'professional_section',
-                          timestamp: Date.now(),
-                          userAgent: navigator.userAgent
-                        });
-                        handleSoftwareToggle(software);
-                      }}
-                      className="cursor-pointer"
+                      className="cursor-pointer text-muted-foreground hover:text-foreground"
                     >
-                      {software}
-                    </DropdownMenuCheckboxItem>
-                  ))}
-                </DropdownMenuContent>
-              </DropdownMenu>
+                      Clear All
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    {uniqueSoftware.map((software) => (
+                      <DropdownMenuCheckboxItem
+                        key={software}
+                        checked={selectedSoftware.includes(software)}
+                        onSelect={(e) => {
+                          e.preventDefault();
+                        }}
+                        onCheckedChange={(checked) => {
+                          track('professional_software_filter_click', { 
+                            software: software, 
+                            source: 'professional_section',
+                            timestamp: Date.now(),
+                            userAgent: navigator.userAgent
+                          });
+                          handleSoftwareToggle(software);
+                        }}
+                        className="cursor-pointer"
+                      >
+                        {software}
+                      </DropdownMenuCheckboxItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
             </div>
             
             {/* Right side: View Mode Toggle */}
-            <div className="inline-flex rounded-lg bg-muted p-1">
+            <div className="inline-flex rounded-lg bg-muted p-1 self-start sm:self-center">
               <button
                 onClick={() => {
                   track('professional_view_toggle', { 
