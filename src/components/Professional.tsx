@@ -1,4 +1,4 @@
-import { MapPin, Calendar, Building, Grid, List, ExternalLinkIcon, ChevronDown } from "lucide-react";
+import { MapPin, Calendar, Building, Grid, List, ExternalLinkIcon, ChevronDown, Filter } from "lucide-react";
 import { useState } from "react";
 import { useTrackEvent } from "@/hooks/useTrackEvent";
 import {
@@ -6,6 +6,8 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuCheckboxItem,
+  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import ascilionLogo from "@/assets/ascilion-logo.png";
 import brightDayGrapheneLogo from "@/assets/bright-day-graphene-logo.png";
@@ -92,7 +94,7 @@ const professionalRoles = [
 
 export function Professional() {
   const [selectedArea, setSelectedArea] = useState<string>("All");
-  const [selectedTechnology, setSelectedTechnology] = useState<string>("All");
+  const [selectedTechnologies, setSelectedTechnologies] = useState<string[]>([]);
   const [viewMode, setViewMode] = useState<"card" | "list">("card");
   const { track } = useTrackEvent();
   
@@ -100,14 +102,27 @@ export function Professional() {
   
   // Extract all unique technologies from all roles
   const allTechnologies = professionalRoles.flatMap(role => role.technologies);
-  const uniqueTechnologies = ["All", ...Array.from(new Set(allTechnologies))];
+  const uniqueTechnologies = Array.from(new Set(allTechnologies));
   
-  // Filter by both area and technology
+  // Filter by both area and technologies
   const filteredRoles = professionalRoles.filter(role => {
     const areaMatch = selectedArea === "All" || role.area.includes(selectedArea);
-    const techMatch = selectedTechnology === "All" || role.technologies.includes(selectedTechnology);
+    const techMatch = selectedTechnologies.length === 0 || 
+      selectedTechnologies.some(tech => role.technologies.includes(tech));
     return areaMatch && techMatch;
   });
+
+  const handleTechnologyToggle = (tech: string) => {
+    setSelectedTechnologies(prev => 
+      prev.includes(tech) 
+        ? prev.filter(t => t !== tech)
+        : [...prev, tech]
+    );
+  };
+
+  const clearAllTechnologies = () => {
+    setSelectedTechnologies([]);
+  };
 
   return (
     <section id="professional" className="py-16 bg-background">
@@ -154,31 +169,36 @@ export function Professional() {
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <button className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg bg-muted text-muted-foreground hover:text-foreground transition-all">
-                    {selectedTechnology}
+                    <Filter className="h-4 w-4" />
+                    Skills {selectedTechnologies.length > 0 && `(${selectedTechnologies.length})`}
                     <ChevronDown className="h-4 w-4" />
                   </button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="start" className="w-48 bg-popover">
+                <DropdownMenuContent align="start" className="w-56 bg-popover border shadow-md">
+                  <DropdownMenuItem
+                    onClick={clearAllTechnologies}
+                    className="cursor-pointer text-muted-foreground hover:text-foreground"
+                  >
+                    Clear All
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
                   {uniqueTechnologies.map((tech) => (
-                    <DropdownMenuItem
+                    <DropdownMenuCheckboxItem
                       key={tech}
-                      onClick={() => {
+                      checked={selectedTechnologies.includes(tech)}
+                      onCheckedChange={() => {
                         track('professional_tech_filter_click', { 
                           technology: tech, 
                           source: 'professional_section',
                           timestamp: Date.now(),
                           userAgent: navigator.userAgent
                         });
-                        setSelectedTechnology(tech);
+                        handleTechnologyToggle(tech);
                       }}
-                      className={`cursor-pointer ${
-                        selectedTechnology === tech
-                          ? "bg-primary/10 text-primary font-medium"
-                          : ""
-                      }`}
+                      className="cursor-pointer"
                     >
                       {tech}
-                    </DropdownMenuItem>
+                    </DropdownMenuCheckboxItem>
                   ))}
                 </DropdownMenuContent>
               </DropdownMenu>
