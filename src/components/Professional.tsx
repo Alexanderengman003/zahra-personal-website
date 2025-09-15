@@ -37,7 +37,7 @@ const professionalRoles = [
     location: "Stockholm, SWEDEN",
     period: "October 2024 – June 2025",
     description: "Development of prototypes and products for customer applications with focus on electrical design and rapid prototyping.",
-    technologies: ["Electronic Components", "R&D", "Rapid Prototyping", "Electrical Design", "CAD", "Sales"],
+    technologies: ["Electronic Components", "R&D", "Rapid Prototyping", "Electrical Design", "CAD", "Sales", "HW Development", "SW Development"],
     achievements: [
       "Development of prototypes and products for customer applications",
       "Electrical design and rapid prototyping for product development",
@@ -52,7 +52,7 @@ const professionalRoles = [
     location: "Stockholm, SWEDEN",
     period: "January 2024 – October 2024",
     description: "R&D and product development with focus on medical device development following ISO standards.",
-    technologies: ["R&D", "Medical Devices", "ISO", "IEC", "Technical Support", "Sales", "Rapid Prototyping"],
+    technologies: ["R&D", "Medical Devices", "MDR", "Technical Support", "Sales", "Rapid Prototyping", "HW Development", "SW Development"],
     achievements: [
       "R&D and product development/design",
       "Technical sales and business development",
