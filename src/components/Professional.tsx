@@ -71,7 +71,7 @@ const professionalRoles = [
     period: "March 2022 – February 2024",
     description: "Led the Personal Finance Insight team, driving development and execution of innovative financial products that empowered users.",
     technologies: ["Product Management", "Finance", "Product Launch", "Stakeholder Management", "Product Strategy", "Product Vision", "Software Product Management"],
-    software: ["Analytics Platforms", "A/B Testing Tools", "Product Management Software", "Data Visualization Tools", "SQL", "Microsoft Excel", "Microsoft Power BI"],
+    software: ["Analytics Platforms", "A/B Testing Tools", "SQL"],
     achievements: [
       "Led Personal Finance Insight team to successful product launches",
       "Developed innovative financial products and insights",
@@ -88,7 +88,7 @@ const professionalRoles = [
     period: "November 2020 – March 2022",
     description: "Analyzed personal finance products performance and provided strategic insights for product development.",
     technologies: ["Product Analysis", "Stakeholder Management", "Performance Metrics", "Key Performance Indicators", "Agile Methodologies", "Data Analytics"],
-    software: ["SQL", "Python", "Tableau", "Analytics Tools", "A/B Testing Platforms", "Microsoft Excel", "Business Intelligence (BI)"],
+    software: ["SQL", "Python", "Tableau", "Analytics Tools", "A/B Testing Platforms"],
     achievements: [
       "Improved personal finance product performance through data analysis",
       "Provided strategic insights for product roadmap decisions",
@@ -105,7 +105,7 @@ const professionalRoles = [
     period: "July 2019 – November 2020",
     description: "Supported business control and co-marketing teams with data analysis and performance insights.",
     technologies: ["Data Analysis", "Marketing Analytics", "Analytical Skills", "Performance Metrics", "Business Intelligence", "Marketing", "Digital Marketing"],
-    software: ["SQL", "Excel", "Microsoft Power BI", "Marketing Analytics Tools", "Microsoft Office"],
+    software: ["SQL", "Marketing Analytics Tools"],
     achievements: [
       "Enhanced business control processes through data analysis",
       "Supported co-marketing initiatives with performance insights", 
