@@ -191,7 +191,7 @@ export function Professional() {
               {/* Technology Dropdown */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <button className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg bg-muted text-muted-foreground hover:text-foreground transition-all">
+                  <button className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg bg-muted text-muted-foreground hover:text-foreground transition-all h-10">
                     <Filter className="h-4 w-4" />
                     Skills {selectedTechnologies.length > 0 && `(${selectedTechnologies.length})`}
                     <ChevronDown className="h-4 w-4" />
@@ -235,7 +235,7 @@ export function Professional() {
               {/* Software Dropdown */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <button className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg bg-muted text-muted-foreground hover:text-foreground transition-all">
+                  <button className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg bg-muted text-muted-foreground hover:text-foreground transition-all h-10">
                     <Filter className="h-4 w-4" />
                     Software {selectedSoftware.length > 0 && `(${selectedSoftware.length})`}
                     <ChevronDown className="h-4 w-4" />
@@ -459,7 +459,7 @@ export function Professional() {
                           {role.software.map((software) => (
                             <span
                               key={software}
-                              className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-secondary/10 text-secondary"
+                              className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-accent text-accent-foreground"
                             >
                               {software}
                             </span>
