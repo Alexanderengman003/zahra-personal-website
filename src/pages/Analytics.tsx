@@ -224,11 +224,11 @@ const Analytics = () => {
                     <Line 
                       type="monotone" 
                       dataKey="visitors" 
-                      stroke="#ef4444" 
+                      stroke="#3b82f6" 
                       strokeWidth={3}
                       name="Unique Visitors"
                       connectNulls={true}
-                      dot={{ fill: '#ef4444', r: 4 }}
+                      dot={{ fill: '#3b82f6', r: 4 }}
                       activeDot={{ r: 6 }}
                     />
                   </RechartsLineChart>
