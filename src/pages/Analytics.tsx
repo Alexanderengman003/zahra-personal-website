@@ -84,7 +84,7 @@ const Analytics = () => {
             <div className="text-center py-12">
               <h1 className="text-2xl font-bold font-modern mb-4">No Analytics Data Available</h1>
               <p className="text-muted-foreground font-modern">
-                Start browsing the site to generate analytics data.
+                Start browsing Zahra's portfolio to generate analytics data.
               </p>
             </div>
           </div>
@@ -101,10 +101,10 @@ const Analytics = () => {
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8">
             <div>
               <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl font-modern">
-                Analytics Dashboard
+                Zahra's Portfolio Analytics
               </h1>
               <p className="mt-2 text-lg text-muted-foreground font-modern">
-                Track portfolio performance and visitor insights
+                Track visitor insights and engagement with Zahra's portfolio
               </p>
             </div>
             
