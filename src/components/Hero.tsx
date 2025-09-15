@@ -20,15 +20,15 @@ export function Hero() {
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 py-8">
         <div className="flex flex-col lg:flex-row items-start gap-12 lg:gap-20">
           {/* Profile Image */}
-          <div className="relative group">
-            <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-primary/40 rounded-full blur-xl group-hover:blur-2xl transition-all duration-500" />
-            <div className="relative">
+          <div className="relative group cursor-pointer">
+            <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-primary/40 rounded-full blur-xl group-hover:blur-2xl group-hover:scale-110 transition-all duration-700" />
+            <div className="relative transform group-hover:scale-105 transition-transform duration-500 ease-out">
               <img
                 src="/zahra-profile.jpg"
                 alt="Zahra - Professional Headshot"
-                className="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full object-cover shadow-2xl ring-4 ring-white/10 group-hover:scale-105 transition-all duration-500"
+                className="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full object-cover shadow-2xl ring-4 ring-white/10 group-hover:ring-primary/30 group-hover:shadow-3xl transition-all duration-500"
               />
-              <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent to-primary/10 group-hover:to-primary/20 transition-all duration-500" />
+              <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent to-primary/10 group-hover:to-primary/25 transition-all duration-500" />
             </div>
           </div>
 
@@ -71,13 +71,13 @@ export function Hero() {
               </Button>
               <Button 
                 size="lg" 
-                className="hover-lift font-modern group bg-purple-600 hover:bg-purple-700 text-white"
+                className="hover-lift font-modern group bg-purple-600 hover:bg-purple-700 text-white relative overflow-hidden rounded-md"
                 onClick={() => {
                   track('contact_button_click', { source: 'hero' });
                   window.location.href = 'mailto:zahra.farimani@gmail.com?subject=Contact from website&body=Hello Zahra,';
                 }}
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-purple-700 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-700 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-md" />
                 <Mail className="relative mr-2 h-4 w-4" />
                 <span className="relative">Get In Touch</span>
               </Button>
