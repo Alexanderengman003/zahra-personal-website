@@ -4,7 +4,7 @@ import { AnimatedCounter } from "./AnimatedCounter";
 
 const personalityTraits = [
   { left: "Introvert", right: "Extrovert", value: 70 }, // 70% extrovert
-  { left: "Practical", right: "Creative", value: 40 }, // 40% creative
+  { left: "Practical", right: "Creative", value: 30 }, // 30% creative
   { left: "Independent", right: "Collaborative", value: 45 }, // 45% collaborative
   { left: "Analytical", right: "Intuitive", value: 30 }, // 30% intuitive
   { left: "Detail", right: "Big picture", value: 40 }, // 40% big picture
