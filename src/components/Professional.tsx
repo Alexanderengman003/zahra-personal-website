@@ -1,6 +1,12 @@
-import { MapPin, Calendar, Building, Grid, List, ExternalLinkIcon } from "lucide-react";
+import { MapPin, Calendar, Building, Grid, List, ExternalLinkIcon, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { useTrackEvent } from "@/hooks/useTrackEvent";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import ascilionLogo from "@/assets/ascilion-logo.png";
 import brightDayGrapheneLogo from "@/assets/bright-day-graphene-logo.png";
 import exegerLogo from "@/assets/exeger-logo.png";
@@ -117,9 +123,9 @@ export function Professional() {
         </div>
 
         <div className="mx-auto max-w-7xl mt-8">
-          <div className="flex flex-col gap-4 mb-8">
-            {/* Area Filter */}
-            <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between mb-8">
+            {/* Left side: Area Filter and Technology Dropdown */}
+            <div className="flex items-center gap-4">
               <div className="inline-flex rounded-lg bg-muted p-1">
                 {areas.map((area) => (
                   <button
@@ -144,71 +150,80 @@ export function Professional() {
                 ))}
               </div>
               
-              <div className="inline-flex rounded-lg bg-muted p-1">
-                <button
-                  onClick={() => {
-                    track('professional_view_toggle', { 
-                      viewMode: 'card', 
-                      previousMode: viewMode,
-                      source: 'professional_section',
-                      timestamp: Date.now(),
-                      sessionDuration: performance.now()
-                    });
-                    setViewMode('card');
-                  }}
-                  className={`px-3 py-2 text-sm font-medium rounded-md transition-all ${
-                    viewMode === 'card'
-                      ? "bg-background text-foreground shadow-sm"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  <Grid className="h-4 w-4" />
-                </button>
-                <button
-                  onClick={() => {
-                    track('professional_view_toggle', { 
-                      viewMode: 'list', 
-                      previousMode: viewMode,
-                      source: 'professional_section',
-                      timestamp: Date.now(),
-                      sessionDuration: performance.now()
-                    });
-                    setViewMode('list');
-                  }}
-                  className={`px-3 py-2 text-sm font-medium rounded-md transition-all ${
-                    viewMode === 'list'
-                      ? "bg-background text-foreground shadow-sm"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  <List className="h-4 w-4" />
-                </button>
-              </div>
+              {/* Technology Dropdown */}
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <button className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg bg-muted text-muted-foreground hover:text-foreground transition-all">
+                    {selectedTechnology}
+                    <ChevronDown className="h-4 w-4" />
+                  </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="start" className="w-48 bg-popover">
+                  {uniqueTechnologies.map((tech) => (
+                    <DropdownMenuItem
+                      key={tech}
+                      onClick={() => {
+                        track('professional_tech_filter_click', { 
+                          technology: tech, 
+                          source: 'professional_section',
+                          timestamp: Date.now(),
+                          userAgent: navigator.userAgent
+                        });
+                        setSelectedTechnology(tech);
+                      }}
+                      className={`cursor-pointer ${
+                        selectedTechnology === tech
+                          ? "bg-primary/10 text-primary font-medium"
+                          : ""
+                      }`}
+                    >
+                      {tech}
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
             
-            {/* Technology Filter */}
-            <div className="flex flex-wrap gap-2">
-              {uniqueTechnologies.map((tech) => (
-                <button
-                  key={tech}
-                  onClick={() => {
-                    track('professional_tech_filter_click', { 
-                      technology: tech, 
-                      source: 'professional_section',
-                      timestamp: Date.now(),
-                      userAgent: navigator.userAgent
-                    });
-                    setSelectedTechnology(tech);
-                  }}
-                  className={`px-3 py-1 text-xs font-medium rounded-full transition-all ${
-                    selectedTechnology === tech
-                      ? "bg-primary text-primary-foreground"
-                      : "bg-primary/10 text-primary hover:bg-primary/20"
-                  }`}
-                >
-                  {tech}
-                </button>
-              ))}
+            {/* Right side: View Mode Toggle */}
+            <div className="inline-flex rounded-lg bg-muted p-1">
+              <button
+                onClick={() => {
+                  track('professional_view_toggle', { 
+                    viewMode: 'card', 
+                    previousMode: viewMode,
+                    source: 'professional_section',
+                    timestamp: Date.now(),
+                    sessionDuration: performance.now()
+                  });
+                  setViewMode('card');
+                }}
+                className={`px-3 py-2 text-sm font-medium rounded-md transition-all ${
+                  viewMode === 'card'
+                    ? "bg-background text-foreground shadow-sm"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                <Grid className="h-4 w-4" />
+              </button>
+              <button
+                onClick={() => {
+                  track('professional_view_toggle', { 
+                    viewMode: 'list', 
+                    previousMode: viewMode,
+                    source: 'professional_section',
+                    timestamp: Date.now(),
+                    sessionDuration: performance.now()
+                  });
+                  setViewMode('list');
+                }}
+                className={`px-3 py-2 text-sm font-medium rounded-md transition-all ${
+                  viewMode === 'list'
+                    ? "bg-background text-foreground shadow-sm"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                <List className="h-4 w-4" />
+              </button>
             </div>
           </div>
         </div>
