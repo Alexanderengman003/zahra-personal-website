@@ -108,7 +108,7 @@ export function Professional() {
   const filteredRoles = professionalRoles.filter(role => {
     const areaMatch = selectedArea === "All" || role.area.includes(selectedArea);
     const techMatch = selectedTechnologies.length === 0 || 
-      selectedTechnologies.some(tech => role.technologies.includes(tech));
+      selectedTechnologies.every(tech => role.technologies.includes(tech));
     return areaMatch && techMatch;
   });
 
