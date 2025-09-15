@@ -37,12 +37,12 @@ export function Hero() {
             {/* Animated greeting */}
             <div className="animate-fade-up space-y-8 mb-8" style={{ animationDelay: "0.2s" }}>
               <div className="space-y-2">
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-tight font-modern mb-4">
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight leading-tight font-modern mb-4">
                   <span className="block text-gradient">Zahra Farimani</span>
                 </h1>
               
                 <div className="relative">
-                  <h2 className="text-xl sm:text-2xl lg:text-3xl font-medium text-muted-foreground">
+                  <h2 className="text-lg sm:text-xl lg:text-2xl font-medium text-muted-foreground">
                     Senior Product Manager | Fintech & Health Tech Expert | Stockholm
                   </h2>
                   <div className="absolute -bottom-2 left-0 w-full h-0.5 bg-gradient-to-r from-primary to-primary/50 rounded-full" />
