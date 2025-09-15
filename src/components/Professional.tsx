@@ -493,8 +493,8 @@ export function Professional() {
                   <>
                     {/* Role Header */}
                     <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6 relative">
-                      <div className="w-full">
-                        <h3 className="text-xl font-semibold text-foreground mb-2 leading-tight flex items-center gap-3 min-h-[3.5rem]">
+                      <div>
+                        <h3 className="text-xl font-semibold text-foreground mb-2 leading-tight flex items-center gap-3">
                           {role.logo && (
                             <div className="flex-shrink-0">
                               <img 
@@ -506,9 +506,9 @@ export function Professional() {
                               />
                             </div>
                           )}
-                          <span className="flex-1">{role.title}</span>
+                          {role.title}
                         </h3>
-                        <div className="flex flex-col gap-2 text-muted-foreground min-h-[4.5rem]">
+                        <div className="flex flex-col gap-2 text-muted-foreground">
                           <div className="flex items-center gap-2">
                             <Building className="h-4 w-4" />
                             <a 
@@ -596,7 +596,7 @@ export function Professional() {
                   // List View - Basic Information Only
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between relative">
                     <div className="flex-1">
-                      <h3 className="text-lg font-semibold text-foreground mb-1 leading-tight flex items-center gap-2 min-h-[2rem]">
+                      <h3 className="text-lg font-semibold text-foreground mb-1 leading-tight flex items-center gap-2">
                         {role.logo && (
                           <div className="flex-shrink-0">
                             <img 
@@ -608,9 +608,9 @@ export function Professional() {
                             />
                           </div>
                         )}
-                        <span className="flex-1">{role.title}</span>
+                        {role.title}
                       </h3>
-                      <div className="flex flex-col gap-1 text-muted-foreground min-h-[3.5rem]">
+                      <div className="flex flex-col gap-1 text-muted-foreground">
                         <a 
                           href={
                             role.company === "PayPal" ? "https://www.paypal.com/" :

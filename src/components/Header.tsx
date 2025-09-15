@@ -20,7 +20,7 @@ export function Header() {
             <img 
               src="/zahra-logo.png" 
               alt="Zahra Farimani"
-              className="h-12 w-auto transition-all duration-300 group-hover:opacity-80 dark:invert"
+              className="h-12 w-auto transition-all duration-300 group-hover:opacity-80"
             />
           </a>
         </div>
