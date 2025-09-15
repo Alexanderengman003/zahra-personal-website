@@ -421,7 +421,7 @@ export function Professional() {
             {filteredRoles.map((role, index) => (
               <div
                 key={role.id}
-                className={`card-gradient ${viewMode === 'card' ? 'rounded-2xl pt-6 px-2 pb-6' : 'rounded-xl p-2'} shadow-medium hover-lift`}
+                className={`card-gradient rounded-xl shadow-medium hover-lift ${viewMode === 'card' ? 'h-full flex flex-col overflow-hidden px-2 py-6' : 'p-2'}`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 {viewMode === 'card' ? (
