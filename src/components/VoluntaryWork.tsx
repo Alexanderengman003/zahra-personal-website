@@ -6,7 +6,7 @@ const voluntaryRoles = [
   {
     id: 1,
     title: "Mentor",
-    organization: "CEMS - The Global Alliance in Management Education",
+    organization: "CEMS",
     location: "Education",
     period: "July 2019 – Current",
     duration: "6+ years",
