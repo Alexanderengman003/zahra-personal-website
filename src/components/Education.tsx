@@ -41,8 +41,7 @@ export function Education() {
         </div>
 
         <div className="mx-auto max-w-7xl mt-8">
-          <div className="flex items-center justify-between mb-8">
-            <div></div>
+          <div className="flex items-center justify-end mb-8">
             <div className="inline-flex rounded-lg bg-muted p-1">
               <button
                 onClick={() => {
@@ -85,11 +84,11 @@ export function Education() {
             </div>
           </div>
           
-          <div className={`mx-auto mt-8 max-w-7xl ${viewMode === 'card' ? 'grid grid-cols-1 gap-8 lg:grid-cols-2' : 'space-y-4'}`}>
+          <div className={viewMode === 'card' ? "grid grid-cols-1 lg:grid-cols-2 gap-8" : "space-y-4"}>
             {education.map((edu, index) => (
               <div
                 key={edu.id}
-                className={`card-gradient rounded-xl shadow-medium hover-lift group ${viewMode === 'card' ? 'h-full flex flex-col overflow-hidden px-2 py-6' : 'p-2'}`}
+                className={`card-gradient rounded-xl shadow-medium hover-lift ${viewMode === 'card' ? 'h-full flex flex-col px-2 py-6' : 'p-2'}`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 {viewMode === 'card' ? (
