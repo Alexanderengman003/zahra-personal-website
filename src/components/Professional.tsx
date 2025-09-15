@@ -188,7 +188,7 @@ export function Professional() {
                 ))}
               </div>
               
-              <div className="flex flex-col xs:flex-row gap-2">
+              <div className="flex flex-row gap-2">
                 {/* Technology Dropdown */}
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
