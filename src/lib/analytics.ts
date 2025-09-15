@@ -220,9 +220,15 @@ export const getAnalyticsStats = async (days: number = 7) => {
     }, 0) || 0;
     const avgSessionTime = uniqueVisitors > 0 ? Math.round(totalDuration / uniqueVisitors) : 0;
 
-    // Top pages
+    // Top pages - normalize page names properly
     const pageStats = pageViews?.reduce((acc: any, view) => {
-      const page = view.page_path === '/' ? 'Home' : view.page_path.replace('/', '').replace('#', '');
+      let page = view.page_path === '/' ? 'Home' : view.page_path.replace('/', '').replace('#', '');
+      // Normalize common variations to prevent duplicates
+      page = page.toLowerCase() === 'home' || page === '' ? 'Home' : page;
+      // Capitalize first letter for consistency
+      if (page !== 'Home') {
+        page = page.charAt(0).toUpperCase() + page.slice(1);
+      }
       acc[page] = (acc[page] || 0) + 1;
       return acc;
     }, {}) || {};
@@ -251,21 +257,42 @@ export const getAnalyticsStats = async (days: number = 7) => {
       }))
       .sort((a, b) => b.count - a.count);
 
-    // Theme usage stats
-    const themeEvents = events?.filter(event => event.event_type === 'theme_usage') || [];
-    const themeStats = themeEvents.reduce((acc: any, event) => {
-      const theme = (event.event_data as any)?.theme || 'unknown';
-      acc[theme] = (acc[theme] || 0) + 1;
+    // Professional filter tracking stats  
+    const filterEvents = events?.filter(event => event.event_type === 'professional_filters_applied') || [];
+    const filterStats = filterEvents.reduce((acc: any, event) => {
+      const eventData = event.event_data as any;
+      if (eventData) {
+        // Track area filters
+        if (eventData.area && eventData.area !== 'All') {
+          const key = `Area: ${eventData.area}`;
+          acc[key] = (acc[key] || 0) + 1;
+        }
+        // Track technology filters
+        if (eventData.technologies && eventData.technologies.length > 0) {
+          eventData.technologies.forEach((tech: string) => {
+            const key = `Skill: ${tech}`;
+            acc[key] = (acc[key] || 0) + 1;
+          });
+        }
+        // Track software filters
+        if (eventData.software && eventData.software.length > 0) {
+          eventData.software.forEach((software: string) => {
+            const key = `Software: ${software}`;
+            acc[key] = (acc[key] || 0) + 1;
+          });
+        }
+      }
       return acc;
     }, {});
 
-    const themeUsage = Object.entries(themeStats)
-      .map(([theme, count]) => ({
-        theme: theme.charAt(0).toUpperCase() + theme.slice(1),
+    const filterUsage = Object.entries(filterStats)
+      .map(([filter, count]) => ({
+        filter,
         count: count as number,
-        percentage: themeEvents.length > 0 ? (((count as number) / themeEvents.length) * 100).toFixed(1) : '0'
+        percentage: filterEvents.length > 0 ? (((count as number) / filterEvents.length) * 100).toFixed(1) : '0'
       }))
-      .sort((a, b) => b.count - a.count);
+      .sort((a, b) => b.count - a.count)
+      .slice(0, 6);
 
     // Daily traffic data for charts - ensure all days in range are included
     const dailyTraffic = pageViews?.reduce((acc: any, view) => {
@@ -366,7 +393,7 @@ export const getAnalyticsStats = async (days: number = 7) => {
       avgSessionTime: formatDuration(avgSessionTime),
       topPages,
       deviceTypes,
-      themeUsage,
+      filterUsage,
       trafficData,
       recentActivity: combinedActivity,
       topCountries,

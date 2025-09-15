@@ -20,9 +20,11 @@ import {
   ArrowDownRight,
   Loader2,
   Sun,
-  Moon
+  Moon,
+  Filter,
+  Settings
 } from "lucide-react";
-import { LineChart as RechartsLineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart as RechartsBarChart, Bar } from "recharts";
+import { LineChart as RechartsLineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, BarChart as RechartsBarChart, Bar } from "recharts";
 import { getAnalyticsStats } from "@/lib/analytics";
 
 const Analytics = () => {
@@ -206,6 +208,7 @@ const Analytics = () => {
                       }}
                       labelFormatter={(value) => new Date(value).toLocaleDateString()}
                     />
+                    <Legend />
                     <Line 
                       type="monotone" 
                       dataKey="views" 
@@ -310,32 +313,33 @@ const Analytics = () => {
               </CardContent>
             </Card>
 
-            {/* Theme Usage */}
+            {/* Professional Filters Usage */}
             <Card className="card-gradient">
               <CardHeader>
-                <CardTitle className="font-modern">Theme Preference</CardTitle>
-                <CardDescription className="font-modern">Dark vs light mode usage</CardDescription>
+                <CardTitle className="font-modern">Filter Usage</CardTitle>
+                <CardDescription className="font-modern">Most applied professional experience filters</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  {stats.themeUsage && stats.themeUsage.length > 0 ? (
-                    stats.themeUsage.map((theme: any) => (
-                      <div key={theme.theme} className="flex items-center justify-between">
+                  {stats.filterUsage && stats.filterUsage.length > 0 ? (
+                    stats.filterUsage.map((filterItem: any) => (
+                      <div key={filterItem.filter} className="flex items-center justify-between">
                         <div className="flex items-center space-x-3">
-                          {theme.theme === "Dark" && <Moon className="h-4 w-4 text-muted-foreground" />}
-                          {theme.theme === "Light" && <Sun className="h-4 w-4 text-muted-foreground" />}
-                          <span className="font-medium font-modern text-sm">{theme.theme}</span>
+                          {filterItem.filter.startsWith("Area:") && <Settings className="h-4 w-4 text-muted-foreground" />}
+                          {filterItem.filter.startsWith("Skill:") && <Filter className="h-4 w-4 text-muted-foreground" />}
+                          {filterItem.filter.startsWith("Software:") && <Monitor className="h-4 w-4 text-muted-foreground" />}
+                          <span className="font-medium font-modern text-sm">{filterItem.filter}</span>
                         </div>
                         <div className="text-right">
-                          <div className="font-semibold font-modern text-sm">{theme.count}</div>
-                          <div className="text-xs text-muted-foreground">{theme.percentage}%</div>
+                          <div className="font-semibold font-modern text-sm">{filterItem.count}</div>
+                          <div className="text-xs text-muted-foreground">{filterItem.percentage}%</div>
                         </div>
                       </div>
                     ))
                   ) : (
                     <div className="text-center py-4 text-muted-foreground">
-                      <Sun className="h-6 w-6 mx-auto mb-2 opacity-50" />
-                      <p className="text-xs">No theme data yet</p>
+                      <Filter className="h-6 w-6 mx-auto mb-2 opacity-50" />
+                      <p className="text-xs">No filter usage data yet</p>
                     </div>
                   )}
                 </div>
