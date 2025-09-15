@@ -459,7 +459,7 @@ export function Professional() {
                           {role.software.map((software) => (
                             <span
                               key={software}
-                              className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-accent text-accent-foreground"
+                              className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary"
                             >
                               {software}
                             </span>
