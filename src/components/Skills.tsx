@@ -57,27 +57,27 @@ export function Skills() {
   }, []);
 
   return (
-    <section id="skills" className="py-16 bg-muted/30" ref={sectionRef}>
+    <section id="skills" className="py-8 md:py-16 bg-muted/30" ref={sectionRef}>
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Header */}
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
             Skills & Personality
           </h2>
-          <p className="mt-4 text-lg leading-8 text-muted-foreground">
+          <p className="mt-2 md:mt-4 text-base md:text-lg leading-7 md:leading-8 text-muted-foreground">
             A comprehensive overview of my technical abilities, language proficiency, and personality traits.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-16 mt-8">
+        <div className="grid lg:grid-cols-3 gap-6 md:gap-16 mt-6 md:mt-8">
           {/* Personality Section */}
-          <div className="card-gradient rounded-3xl p-8 shadow-large">
-            <h3 className="text-2xl font-semibold text-foreground mb-10 text-center">
+          <div className="card-gradient rounded-2xl md:rounded-3xl p-4 md:p-8 shadow-large">
+            <h3 className="text-lg md:text-2xl font-semibold text-foreground mb-4 md:mb-10 text-center">
               Personality
             </h3>
-            <div className="space-y-8">
+            <div className="space-y-4 md:space-y-8">
               {personalityTraits.map((trait, index) => (
-                <div key={index} className="space-y-4">
+                <div key={index} className="space-y-2 md:space-y-4">
                   <div className="flex justify-between text-sm font-medium text-foreground">
                     <span>{trait.left}</span>
                     <span>{trait.right}</span>
@@ -103,13 +103,13 @@ export function Skills() {
           </div>
 
           {/* IT Skills Section */}
-          <div className="card-gradient rounded-3xl p-8 shadow-large">
-            <h3 className="text-2xl font-semibold text-foreground mb-10 text-center">
+          <div className="card-gradient rounded-2xl md:rounded-3xl p-4 md:p-8 shadow-large">
+            <h3 className="text-lg md:text-2xl font-semibold text-foreground mb-4 md:mb-10 text-center">
               IT Skills
             </h3>
-            <div className="space-y-6">
+            <div className="space-y-3 md:space-y-6">
               {itSkills.map((skill, index) => (
-                <div key={index} className="space-y-3">
+                <div key={index} className="space-y-2 md:space-y-3">
                   <div className="flex justify-between items-center">
                     <span className="text-sm font-medium text-foreground">{skill.name}</span>
                     <span className="text-sm font-semibold text-primary">
@@ -131,13 +131,13 @@ export function Skills() {
           </div>
 
           {/* Language Skills Section */}
-          <div className="card-gradient rounded-3xl p-8 shadow-large">
-            <h3 className="text-2xl font-semibold text-foreground mb-10 text-center">
+          <div className="card-gradient rounded-2xl md:rounded-3xl p-4 md:p-8 shadow-large">
+            <h3 className="text-lg md:text-2xl font-semibold text-foreground mb-4 md:mb-10 text-center">
               Language Skills
             </h3>
-            <div className="space-y-6">
+            <div className="space-y-3 md:space-y-6">
               {languageSkills.map((language, index) => (
-                <div key={index} className="space-y-3">
+                <div key={index} className="space-y-2 md:space-y-3">
                   <div className="flex justify-between items-center">
                     <span className="text-sm font-medium text-foreground">{language.name}</span>
                     <span className="text-sm font-semibold text-primary">
