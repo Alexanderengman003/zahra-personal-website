@@ -35,8 +35,8 @@ const EMAILJS_SERVICE_ID = "service_7tx6e9l";
 const EMAILJS_TEMPLATE_ID = "template_nh4zyyu";
 const EMAILJS_PUBLIC_KEY = "WagP-Y3HRCNyL4Gj2";
 
-// Get reCAPTCHA site key from environment variables
-const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY || "";
+// reCAPTCHA configuration
+const RECAPTCHA_SITE_KEY = "6LeWYcorAAAAADxQD7qKatEs8nbRLKqPuxwz2CFG";
 
 export function Contact() {
   const [isLoading, setIsLoading] = useState(false);

@@ -67,7 +67,6 @@ export function Hero() {
                   window.open('https://www.linkedin.com/in/zahra-farimani/', '_blank');
                 }}
               >
-                <Linkedin className="mr-2 h-4 w-4" />
                 LinkedIn
               </Button>
               <Button 
