@@ -24,10 +24,10 @@ const contactInfo = [
   },
 ];
 
-// EmailJS configuration with your provided credentials
-const EMAILJS_SERVICE_ID = "service_7tx6e9l";
-const EMAILJS_TEMPLATE_ID = "template_nh4zyuu";
-const EMAILJS_PUBLIC_KEY = "WagP-Y3HRCNyL4Gj2";
+// EmailJS configuration using environment variables
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
 // reCAPTCHA configuration
 const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
