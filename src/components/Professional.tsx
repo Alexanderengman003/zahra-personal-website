@@ -232,8 +232,8 @@ export function Professional() {
 
         {/* Filter and View Controls */}
         <div className="mx-auto max-w-7xl mt-8">
-          <div className="flex flex-col sm:flex-row mb-8 gap-2 sm:gap-4 items-start sm:items-center justify-between">
-            <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 items-start sm:items-center">
+          <div className="flex flex-row mb-8 gap-2 items-start justify-between">
+            <div className="flex flex-col sm:flex-row gap-2 items-start sm:items-center">
               {/* Area Filter */}
               <div className="inline-flex rounded-lg bg-muted p-1">
                 {areas.map((area) => (
@@ -277,8 +277,8 @@ export function Professional() {
                 ))}
               </div>
               
-              {/* Filter Dropdowns */}
-              <div className="flex flex-row gap-2">
+              {/* Filter Dropdowns - Hidden on mobile */}
+              <div className="hidden sm:flex flex-row gap-2">
                 {/* Technology Dropdown */}
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
@@ -369,8 +369,8 @@ export function Professional() {
               </div>
             </div>
             
-            {/* View Mode Toggle */}
-            <div className="inline-flex rounded-lg bg-muted p-1">
+            {/* View Mode Toggle - Always visible on right */}
+            <div className="inline-flex rounded-lg bg-muted p-1 flex-shrink-0">
               <button
                 onClick={() => {
                   track('professional_view_toggle', { 
@@ -409,6 +409,99 @@ export function Professional() {
               >
                 <List className="h-4 w-4" />
               </button>
+            </div>
+          </div>
+          
+          {/* Filter Dropdowns Row - Mobile Only */}
+          <div className="sm:hidden mb-4">
+            <div className="flex flex-row gap-2">
+              {/* Technology Dropdown */}
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <button className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg bg-muted text-muted-foreground hover:text-foreground transition-all h-10">
+                    <Filter className="h-4 w-4" />
+                    Skills {selectedTechnologies.length > 0 && `(${selectedTechnologies.length})`}
+                    <ChevronDown className="h-4 w-4" />
+                  </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="start" className="w-56 bg-background border shadow-md z-50">
+                  <DropdownMenuItem
+                    onClick={(e) => {
+                      e.preventDefault();
+                      clearAllTechnologies();
+                    }}
+                    className="cursor-pointer text-muted-foreground hover:text-foreground"
+                  >
+                    Clear All
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  {uniqueTechnologies.map((tech) => (
+                    <DropdownMenuCheckboxItem
+                      key={tech}
+                      checked={selectedTechnologies.includes(tech)}
+                      onSelect={(e) => {
+                        e.preventDefault();
+                      }}
+                      onCheckedChange={(checked) => {
+                        track('professional_tech_filter_click', { 
+                          technology: tech, 
+                          source: 'professional_section',
+                          timestamp: Date.now(),
+                          userAgent: navigator.userAgent
+                        });
+                        handleTechnologyToggle(tech);
+                      }}
+                      className="cursor-pointer"
+                    >
+                      {tech}
+                    </DropdownMenuCheckboxItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+
+              {/* Software Dropdown */}
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <button className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg bg-muted text-muted-foreground hover:text-foreground transition-all h-10">
+                    <Filter className="h-4 w-4" />
+                    Software {selectedSoftware.length > 0 && `(${selectedSoftware.length})`}
+                    <ChevronDown className="h-4 w-4" />
+                  </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="start" className="w-56 bg-background border shadow-md z-50">
+                  <DropdownMenuItem
+                    onClick={(e) => {
+                      e.preventDefault();
+                      clearAllSoftware();
+                    }}
+                    className="cursor-pointer text-muted-foreground hover:text-foreground"
+                  >
+                    Clear All
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  {uniqueSoftware.map((software) => (
+                    <DropdownMenuCheckboxItem
+                      key={software}
+                      checked={selectedSoftware.includes(software)}
+                      onSelect={(e) => {
+                        e.preventDefault();
+                      }}
+                      onCheckedChange={(checked) => {
+                        track('professional_software_filter_click', { 
+                          software: software, 
+                          source: 'professional_section',
+                          timestamp: Date.now(),
+                          userAgent: navigator.userAgent
+                        });
+                        handleSoftwareToggle(software);
+                      }}
+                      className="cursor-pointer"
+                    >
+                      {software}
+                    </DropdownMenuCheckboxItem>
+                  ))}
+                </DropdownMenuContent>
+                </DropdownMenu>
             </div>
           </div>
         </div>
@@ -679,5 +772,5 @@ export function Professional() {
         </div>
       </div>
     </section>
-    );
-  }
+  );
+}
