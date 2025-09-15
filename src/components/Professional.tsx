@@ -174,9 +174,12 @@ export function Professional() {
                     <ChevronDown className="h-4 w-4" />
                   </button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="start" className="w-56 bg-popover border shadow-md">
+                <DropdownMenuContent align="start" className="w-56 bg-background border shadow-md z-50">
                   <DropdownMenuItem
-                    onClick={clearAllTechnologies}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      clearAllTechnologies();
+                    }}
                     className="cursor-pointer text-muted-foreground hover:text-foreground"
                   >
                     Clear All
@@ -186,7 +189,10 @@ export function Professional() {
                     <DropdownMenuCheckboxItem
                       key={tech}
                       checked={selectedTechnologies.includes(tech)}
-                      onCheckedChange={() => {
+                      onSelect={(e) => {
+                        e.preventDefault();
+                      }}
+                      onCheckedChange={(checked) => {
                         track('professional_tech_filter_click', { 
                           technology: tech, 
                           source: 'professional_section',
