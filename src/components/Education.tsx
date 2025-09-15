@@ -6,7 +6,7 @@ import { useTrackEvent } from "@/hooks/useTrackEvent";
 const education = [
   {
     id: 1,
-    degree: "Master of Science - MS, International Management",
+    degree: "Master of Science in International Management",
     school: "CEMS - The Global Alliance in Management Education",
     location: "Stockholm, Sweden",
     period: "2017 - 2019",
@@ -15,8 +15,8 @@ const education = [
   },
   {
     id: 2,
-    degree: "Master of Science - MS, International Business",
-    school: "Handelshögskolan i Stockholm (Stockholm School of Economics)",
+    degree: "Master of Science in International Business",
+    school: "Stockholm School of Economics",
     location: "Stockholm, Sweden", 
     period: "2017 - 2019",
     description: "Comprehensive business education focusing on international markets and global business strategies.",
@@ -24,7 +24,7 @@ const education = [
   },
   {
     id: 3,
-    degree: "Master of Business Administration (M.B.A.)",
+    degree: "Master of Business Administration",
     school: "Sharif University of Technology",
     location: "Tehran, Iran",
     period: "2013 - 2016",
@@ -33,7 +33,7 @@ const education = [
   },
   {
     id: 4,
-    degree: "Bachelor's Degree, Industrial Engineering",
+    degree: "Bachelor of Science in Industrial Engineering",
     school: "Sharif University of Technology",
     location: "Tehran, Iran",
     period: "2009 - 2013",
