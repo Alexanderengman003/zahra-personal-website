@@ -161,33 +161,78 @@ export function Professional() {
         </div>
 
         <div className="mx-auto max-w-7xl mt-8">
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8 gap-4">
-            {/* Left side: Area Filter, Technology Dropdown, and Software Dropdown */}
+          <div className="flex flex-col lg:flex-row mb-8 gap-4">
+            {/* Top row: Area Filter and View Mode Toggle */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-              <div className="inline-flex rounded-lg bg-muted p-1">
-                {areas.map((area) => (
+              <div className="flex items-center gap-2">
+                <div className="inline-flex rounded-lg bg-muted p-1">
+                  {areas.map((area) => (
+                    <button
+                      key={area}
+                      onClick={() => {
+                        track('professional_filter_click', { 
+                          area, 
+                          source: 'professional_section',
+                          timestamp: Date.now(),
+                          userAgent: navigator.userAgent
+                        });
+                        setSelectedArea(area);
+                      }}
+                      className={`px-4 py-2 text-sm font-medium rounded-md transition-all ${
+                        selectedArea === area
+                          ? "bg-background text-foreground shadow-sm"
+                          : "text-muted-foreground hover:text-foreground"
+                      }`}
+                    >
+                      {area}
+                    </button>
+                  ))}
+                </div>
+                
+                {/* View Mode Toggle */}
+                <div className="inline-flex rounded-lg bg-muted p-1">
                   <button
-                    key={area}
                     onClick={() => {
-                      track('professional_filter_click', { 
-                        area, 
+                      track('professional_view_toggle', { 
+                        viewMode: 'card', 
+                        previousMode: viewMode,
                         source: 'professional_section',
                         timestamp: Date.now(),
-                        userAgent: navigator.userAgent
+                        sessionDuration: performance.now()
                       });
-                      setSelectedArea(area);
+                      setViewMode('card');
                     }}
-                    className={`px-4 py-2 text-sm font-medium rounded-md transition-all ${
-                      selectedArea === area
+                    className={`px-3 py-2 text-sm font-medium rounded-md transition-all ${
+                      viewMode === 'card'
                         ? "bg-background text-foreground shadow-sm"
                         : "text-muted-foreground hover:text-foreground"
                     }`}
                   >
-                    {area}
+                    <Grid className="h-4 w-4" />
                   </button>
-                ))}
+                  <button
+                    onClick={() => {
+                      track('professional_view_toggle', { 
+                        viewMode: 'list', 
+                        previousMode: viewMode,
+                        source: 'professional_section',
+                        timestamp: Date.now(),
+                        sessionDuration: performance.now()
+                      });
+                      setViewMode('list');
+                    }}
+                    className={`px-3 py-2 text-sm font-medium rounded-md transition-all ${
+                      viewMode === 'list'
+                        ? "bg-background text-foreground shadow-sm"
+                        : "text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    <List className="h-4 w-4" />
+                  </button>
+                </div>
               </div>
               
+              {/* Bottom row: Filter Dropdowns */}
               <div className="flex flex-row gap-2">
                 {/* Technology Dropdown */}
                 <DropdownMenu>
@@ -277,48 +322,6 @@ export function Professional() {
                   </DropdownMenuContent>
                 </DropdownMenu>
               </div>
-            </div>
-            
-            {/* Right side: View Mode Toggle */}
-            <div className="inline-flex rounded-lg bg-muted p-1 self-start sm:self-center">
-              <button
-                onClick={() => {
-                  track('professional_view_toggle', { 
-                    viewMode: 'card', 
-                    previousMode: viewMode,
-                    source: 'professional_section',
-                    timestamp: Date.now(),
-                    sessionDuration: performance.now()
-                  });
-                  setViewMode('card');
-                }}
-                className={`px-3 py-2 text-sm font-medium rounded-md transition-all ${
-                  viewMode === 'card'
-                    ? "bg-background text-foreground shadow-sm"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                <Grid className="h-4 w-4" />
-              </button>
-              <button
-                onClick={() => {
-                  track('professional_view_toggle', { 
-                    viewMode: 'list', 
-                    previousMode: viewMode,
-                    source: 'professional_section',
-                    timestamp: Date.now(),
-                    sessionDuration: performance.now()
-                  });
-                  setViewMode('list');
-                }}
-                className={`px-3 py-2 text-sm font-medium rounded-md transition-all ${
-                  viewMode === 'list'
-                    ? "bg-background text-foreground shadow-sm"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                <List className="h-4 w-4" />
-              </button>
             </div>
           </div>
         </div>
