@@ -178,30 +178,25 @@ export const getAnalyticsStats = async (days: number = 7) => {
   }
 
   try {
-    // Get total page views
-    let pageViewsQuery = supabase.from('analytics_page_views').select('*');
-    if (shouldFilterByDate) {
-      pageViewsQuery = pageViewsQuery.gte('created_at', startDate.toISOString());
-    }
-    const { data: pageViews, error: pvError } = await pageViewsQuery;
+    // Fetch ALL data first (no time filtering in queries)
+    const { data: allPageViews, error: pvError } = await supabase.from('analytics_page_views').select('*');
+    const { data: allSessions, error: sessionsError } = await supabase.from('analytics_sessions').select('*');
+    const { data: allEvents, error: eventsError } = await supabase.from('analytics_events').select('*');
 
     if (pvError) throw pvError;
-
-    // Get unique sessions
-    let sessionsQuery = supabase.from('analytics_sessions').select('*');
-    if (shouldFilterByDate) {
-      sessionsQuery = sessionsQuery.gte('first_visit_at', startDate.toISOString());
-    }
-    const { data: sessions, error: sessionsError } = await sessionsQuery;
-
     if (sessionsError) throw sessionsError;
+    if (eventsError) throw eventsError;
 
-    // Get events for theme tracking
-    let eventsQuery = supabase.from('analytics_events').select('*');
+    // Apply time filtering in JavaScript for statistics
+    let pageViews = allPageViews;
+    let sessions = allSessions;
+    let events = allEvents;
+
     if (shouldFilterByDate) {
-      eventsQuery = eventsQuery.gte('created_at', startDate.toISOString());
+      pageViews = allPageViews?.filter(view => new Date(view.created_at) >= startDate);
+      sessions = allSessions?.filter(session => new Date(session.first_visit_at) >= startDate);
+      events = allEvents?.filter(event => new Date(event.created_at) >= startDate);
     }
-    const { data: events, error: eventsError } = await eventsQuery;
 
     if (eventsError) throw eventsError;
 
@@ -329,9 +324,10 @@ export const getAnalyticsStats = async (days: number = 7) => {
     console.log('Traffic data sample:', trafficData.slice(0, 5));
     console.log('Total traffic data points:', trafficData.length);
 
-    // Recent activity - include both page views and events (no sorting, chronological order)
-    const recentPageViews = pageViews
-      ?.slice(-50)
+    // Recent activity - use unfiltered data for complete history
+    const recentPageViews = allPageViews
+      ?.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+      .slice(0, 50)
       .map(view => ({
         action: 'Page view',
         page: view.page_path === '/' ? 'Home' : view.page_path,
@@ -341,8 +337,9 @@ export const getAnalyticsStats = async (days: number = 7) => {
         timestamp: view.created_at
       })) || [];
 
-    const recentEvents = events
-      ?.slice(-50)
+    const recentEvents = allEvents
+      ?.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+      .slice(0, 50)
       .map(event => ({
         action: event.event_type.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
         page: event.page_path || 'Unknown',
@@ -353,10 +350,9 @@ export const getAnalyticsStats = async (days: number = 7) => {
         timestamp: event.created_at
       })) || [];
 
-    // Combine activity without sorting - maintain chronological order from database
+    // Combine all activity and show complete history
     const combinedActivity = [...recentPageViews, ...recentEvents]
-      .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
-      .slice(0, 100);
+      .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
 
     // Event statistics
     const eventStats = events?.reduce((acc: any, event) => {
@@ -374,21 +370,35 @@ export const getAnalyticsStats = async (days: number = 7) => {
       .sort((a, b) => b.count - a.count)
       .slice(0, 8);
 
-    // Country statistics
-    const countryStats = pageViews?.reduce((acc: any, view) => {
+    // Country statistics - use unfiltered data for all countries
+    const countryStats = allPageViews?.reduce((acc: any, view) => {
       const country = view.country || 'Unknown';
       acc[country] = (acc[country] || 0) + 1;
       return acc;
     }, {}) || {};
 
-    const topCountries = Object.entries(countryStats)
+    const allCountries = Object.entries(countryStats)
       .map(([country, visits]) => ({
         country,
         visits: visits as number,
-        percentage: totalViews > 0 ? (((visits as number) / totalViews) * 100).toFixed(1) : '0'
+        percentage: (allPageViews?.length || 0) > 0 ? (((visits as number) / (allPageViews?.length || 1)) * 100).toFixed(1) : '0'
       }))
-      .sort((a, b) => b.visits - a.visits)
-      .slice(0, 5);
+      .sort((a, b) => b.visits - a.visits);
+
+    // City statistics - use unfiltered data for all cities
+    const cityStats = allPageViews?.reduce((acc: any, view) => {
+      const city = view.city || 'Unknown';
+      acc[city] = (acc[city] || 0) + 1;
+      return acc;
+    }, {}) || {};
+
+    const allCities = Object.entries(cityStats)
+      .map(([city, visits]) => ({
+        city,
+        visits: visits as number,
+        percentage: (allPageViews?.length || 0) > 0 ? (((visits as number) / (allPageViews?.length || 1)) * 100).toFixed(1) : '0'
+      }))
+      .sort((a, b) => b.visits - a.visits);
 
     return {
       totalViews,
@@ -400,7 +410,8 @@ export const getAnalyticsStats = async (days: number = 7) => {
       filterUsage,
       trafficData,
       recentActivity: combinedActivity,
-      topCountries,
+      allCountries,
+      allCities,
       topEvents,
       totalEvents: events?.length || 0
     };

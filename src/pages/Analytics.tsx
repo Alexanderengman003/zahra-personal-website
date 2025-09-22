@@ -3,6 +3,7 @@ import { useAnalytics } from "@/hooks/useAnalytics";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { EventDetailsModal } from "@/components/EventDetailsModal";
 
 import { 
   BarChart, 
@@ -34,6 +35,8 @@ const Analytics = () => {
   const [timeRange, setTimeRange] = useState("7d");
   const [stats, setStats] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedEventType, setSelectedEventType] = useState<string>("");
 
   const timeRanges = [
     { value: "1d", label: "24h", days: 1 },
@@ -57,6 +60,11 @@ const Analytics = () => {
     }
   };
 
+
+  const handleEventClick = (eventType: string) => {
+    setSelectedEventType(eventType);
+    setModalOpen(true);
+  };
 
   useEffect(() => {
     const selectedRange = timeRanges.find(range => range.value === timeRange);
@@ -130,7 +138,7 @@ const Analytics = () => {
 
           {/* Key Metrics */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            <Card className="card-gradient">
+            <Card className="card-gradient cursor-pointer hover:shadow-md transition-shadow">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium font-modern">Total Views</CardTitle>
                 <Eye className="h-4 w-4 text-muted-foreground" />
@@ -144,7 +152,7 @@ const Analytics = () => {
               </CardContent>
             </Card>
 
-            <Card className="card-gradient">
+            <Card className="card-gradient cursor-pointer hover:shadow-md transition-shadow">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium font-modern">Unique Visitors</CardTitle>
                 <Users2 className="h-4 w-4 text-muted-foreground" />
@@ -158,7 +166,7 @@ const Analytics = () => {
               </CardContent>
             </Card>
 
-            <Card className="card-gradient">
+            <Card className="card-gradient cursor-pointer hover:shadow-md transition-shadow">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium font-modern">Bounce Rate</CardTitle>
                 <MousePointer className="h-4 w-4 text-muted-foreground" />
@@ -171,7 +179,7 @@ const Analytics = () => {
               </CardContent>
             </Card>
 
-            <Card className="card-gradient">
+            <Card className="card-gradient cursor-pointer hover:shadow-md transition-shadow">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium font-modern">Avg. Session</CardTitle>
                 <Clock className="h-4 w-4 text-muted-foreground" />
@@ -249,10 +257,17 @@ const Analytics = () => {
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
                 {stats.topEvents && stats.topEvents.length > 0 ? (
                   stats.topEvents.map((event: any) => (
-                    <div key={event.event} className="text-center p-4 rounded-lg bg-card border border-border/50">
+                    <div 
+                      key={event.event} 
+                      className="text-center p-4 rounded-lg bg-card border border-border/50 cursor-pointer hover:shadow-md hover:border-primary/50 transition-all group"
+                      onClick={() => handleEventClick(event.event.toLowerCase().replace(/\s+/g, '_'))}
+                    >
                       <div className="font-semibold font-modern text-lg text-primary">{event.count}</div>
                       <div className="text-xs font-medium text-foreground mt-1">{event.event}</div>
                       <div className="text-xs text-muted-foreground">{event.percentage}%</div>
+                      <div className="text-xs text-primary/60 mt-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                        Click for details →
+                      </div>
                     </div>
                   ))
                 ) : (
@@ -274,17 +289,17 @@ const Analytics = () => {
                 <CardDescription className="font-modern">Most viewed pages</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="h-[200px] overflow-y-auto">
+                <div className="h-[200px] overflow-y-auto pr-4">
                   <div className="space-y-4">
                     {stats.topPages.slice(0, 10).map((page: any, index: number) => (
-                      <div key={page.page} className="flex items-center justify-between">
-                        <div className="flex items-center space-x-3">
-                          <div className="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-semibold">
+                      <div key={page.page} className="flex items-center justify-between pr-2">
+                        <div className="flex items-center space-x-3 flex-1 min-w-0">
+                          <div className="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-semibold flex-shrink-0">
                             {index + 1}
                           </div>
-                          <span className="font-medium font-modern text-sm">{page.page}</span>
+                          <span className="font-medium font-modern text-sm truncate">{page.page}</span>
                         </div>
-                        <div className="text-right">
+                        <div className="text-right ml-2 flex-shrink-0">
                           <div className="font-semibold font-modern text-sm">{page.views}</div>
                           <div className="text-xs text-muted-foreground">{page.percentage}%</div>
                         </div>
@@ -302,16 +317,16 @@ const Analytics = () => {
                 <CardDescription className="font-modern">Visitor devices</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
+                <div className="space-y-4 pr-2">
                   {stats.deviceTypes.map((device: any) => (
                     <div key={device.type} className="flex items-center justify-between">
-                      <div className="flex items-center space-x-3">
-                        {device.type === "Desktop" && <Monitor className="h-4 w-4 text-muted-foreground" />}
-                        {device.type === "Mobile" && <Smartphone className="h-4 w-4 text-muted-foreground" />}
-                        {device.type === "Tablet" && <Smartphone className="h-4 w-4 text-muted-foreground" />}
-                        <span className="font-medium font-modern text-sm">{device.type}</span>
+                      <div className="flex items-center space-x-3 flex-1 min-w-0">
+                        {device.type === "Desktop" && <Monitor className="h-4 w-4 text-muted-foreground flex-shrink-0" />}
+                        {device.type === "Mobile" && <Smartphone className="h-4 w-4 text-muted-foreground flex-shrink-0" />}
+                        {device.type === "Tablet" && <Smartphone className="h-4 w-4 text-muted-foreground flex-shrink-0" />}
+                        <span className="font-medium font-modern text-sm truncate">{device.type}</span>
                       </div>
-                      <div className="text-right">
+                      <div className="text-right ml-2 flex-shrink-0">
                         <div className="font-semibold font-modern text-sm">{device.count}</div>
                         <div className="text-xs text-muted-foreground">{device.percentage}%</div>
                       </div>
@@ -328,18 +343,18 @@ const Analytics = () => {
                 <CardDescription className="font-modern">Most applied professional experience filters</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="h-[200px] overflow-y-auto">
+                <div className="h-[200px] overflow-y-auto pr-4">
                   <div className="space-y-4">
                     {stats.filterUsage && stats.filterUsage.length > 0 ? (
                       stats.filterUsage.slice(0, 10).map((filterItem: any) => (
-                        <div key={filterItem.filter} className="flex items-center justify-between">
-                          <div className="flex items-center space-x-3">
-                            {filterItem.filter.startsWith("Area:") && <Settings className="h-4 w-4 text-muted-foreground" />}
-                            {filterItem.filter.startsWith("Skill:") && <Filter className="h-4 w-4 text-muted-foreground" />}
-                            {filterItem.filter.startsWith("Software:") && <Monitor className="h-4 w-4 text-muted-foreground" />}
-                            <span className="font-medium font-modern text-sm">{filterItem.filter}</span>
+                        <div key={filterItem.filter} className="flex items-center justify-between pr-2">
+                          <div className="flex items-center space-x-3 flex-1 min-w-0">
+                            {filterItem.filter.startsWith("Area:") && <Settings className="h-4 w-4 text-muted-foreground flex-shrink-0" />}
+                            {filterItem.filter.startsWith("Skill:") && <Filter className="h-4 w-4 text-muted-foreground flex-shrink-0" />}
+                            {filterItem.filter.startsWith("Software:") && <Monitor className="h-4 w-4 text-muted-foreground flex-shrink-0" />}
+                            <span className="font-medium font-modern text-sm truncate">{filterItem.filter}</span>
                           </div>
-                          <div className="text-right">
+                          <div className="text-right ml-2 flex-shrink-0">
                             <div className="font-semibold font-modern text-sm">{filterItem.count}</div>
                             <div className="text-xs text-muted-foreground">{filterItem.percentage}%</div>
                           </div>
@@ -357,28 +372,28 @@ const Analytics = () => {
             </Card>
           </div>
 
-          {/* Top Countries and Recent Activity Side by Side */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-            {/* Top Countries */}
+          {/* Countries, Cities, and Recent Activity */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+            {/* Countries */}
             <Card className="card-gradient">
               <CardHeader>
-                <CardTitle className="font-modern">Top Countries</CardTitle>
-                <CardDescription className="font-modern">Visitors by location</CardDescription>
+                <CardTitle className="font-modern">Countries</CardTitle>
+                <CardDescription className="font-modern">All visiting countries</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="h-[200px] overflow-y-auto">
+                <div className="h-[200px] overflow-y-auto pr-4">
                   <div className="space-y-4">
-                    {stats.topCountries && stats.topCountries.length > 0 ? (
-                      stats.topCountries.slice(0, 10).map((country: any, index: number) => (
-                        <div key={country.country} className="flex items-center justify-between">
-                          <div className="flex items-center space-x-3">
-                            <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center">
+                    {stats.allCountries && stats.allCountries.length > 0 ? (
+                      stats.allCountries.map((country: any, index: number) => (
+                        <div key={country.country} className="flex items-center justify-between pr-2">
+                          <div className="flex items-center space-x-3 flex-1 min-w-0">
+                            <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
                               <span className="text-xs font-semibold text-primary">{index + 1}</span>
                             </div>
-                            <Globe className="h-4 w-4 text-muted-foreground" />
-                            <span className="font-medium font-modern text-sm">{country.country}</span>
+                            <Globe className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+                            <span className="font-medium font-modern text-sm truncate">{country.country}</span>
                           </div>
-                          <div className="text-right">
+                          <div className="text-right ml-2 flex-shrink-0">
                             <div className="font-semibold font-modern text-sm">{country.visits}</div>
                             <div className="text-xs text-muted-foreground">{country.percentage}%</div>
                           </div>
@@ -388,6 +403,42 @@ const Analytics = () => {
                       <div className="text-center py-4 text-muted-foreground">
                         <Globe className="h-6 w-6 mx-auto mb-2 opacity-50" />
                         <p className="text-xs">No location data yet</p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Cities */}
+            <Card className="card-gradient">
+              <CardHeader>
+                <CardTitle className="font-modern">Cities</CardTitle>
+                <CardDescription className="font-modern">All visiting cities</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="h-[200px] overflow-y-auto pr-4">
+                  <div className="space-y-4">
+                    {stats.allCities && stats.allCities.length > 0 ? (
+                      stats.allCities.map((city: any, index: number) => (
+                        <div key={city.city} className="flex items-center justify-between pr-2">
+                          <div className="flex items-center space-x-3 flex-1 min-w-0">
+                            <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                              <span className="text-xs font-semibold text-primary">{index + 1}</span>
+                            </div>
+                            <Globe className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+                            <span className="font-medium font-modern text-sm truncate">{city.city}</span>
+                          </div>
+                          <div className="text-right ml-2 flex-shrink-0">
+                            <div className="font-semibold font-modern text-sm">{city.visits}</div>
+                            <div className="text-xs text-muted-foreground">{city.percentage}%</div>
+                          </div>
+                        </div>
+                      ))
+                    ) : (
+                      <div className="text-center py-4 text-muted-foreground">
+                        <Globe className="h-6 w-6 mx-auto mb-2 opacity-50" />
+                        <p className="text-xs">No city data yet</p>
                       </div>
                     )}
                   </div>
@@ -443,6 +494,14 @@ const Analytics = () => {
               </CardContent>
             </Card>
           </div>
+
+          {/* Event Details Modal */}
+          <EventDetailsModal
+            isOpen={modalOpen}
+            onClose={() => setModalOpen(false)}
+            eventType={selectedEventType}
+            timeRange={timeRanges.find(range => range.value === timeRange)?.days || 7}
+          />
         </div>
       </main>
     </div>
