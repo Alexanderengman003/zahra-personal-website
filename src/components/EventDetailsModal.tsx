@@ -370,60 +370,82 @@ export const EventDetailsModal = ({ isOpen, onClose, eventType, timeRange }: Eve
                 </Button>
               </CardHeader>
               <CardContent>
-                <div className="max-h-96 overflow-y-auto">
+                <div className="max-h-96 overflow-y-auto pr-2">
                   {stats.eventHistory.length > 0 ? (
-                    <div className="space-y-3">
+                    <div className="space-y-0 divide-y divide-border/50">
                       {stats.eventHistory.map((event, index) => (
-                        <div key={event.id} className="border-l-2 border-primary/20 pl-4 pb-3">
-                          <div className="flex items-start justify-between">
-                            <div className="space-y-1 flex-1 min-w-0">
-                              <div className="flex items-center gap-2">
-                                <Badge variant="secondary" className="text-xs">
-                                  #{stats.eventHistory.length - index}
+                        <div key={event.id} className="py-4 first:pt-0 last:pb-0">
+                          <div className="flex items-start justify-between gap-4">
+                            <div className="space-y-2 flex-1 min-w-0">
+                              {/* Header with badge and event name */}
+                              <div className="flex items-center gap-3">
+                                <Badge variant="outline" className="text-xs font-mono px-2 py-1 bg-muted/50">
+                                  #{String(stats.eventHistory.length - index).padStart(3, '0')}
                                 </Badge>
-                                <span className="text-sm font-medium font-modern">
-                                  {getDisplayName(event.event_type)}
-                                </span>
+                                <div className="flex items-center gap-2">
+                                  {getEventIcon(event.event_type)}
+                                  <span className="text-sm font-semibold font-modern text-foreground">
+                                    {getDisplayName(event.event_type)}
+                                  </span>
+                                </div>
                               </div>
                               
-                              <div className="text-sm text-muted-foreground space-y-1">
-                                <div className="flex items-center gap-4 flex-wrap">
-                                  <div className="flex items-center gap-1">
-                                    <Calendar className="h-3 w-3" />
-                                    <span>{formatTimeAgo(event.created_at)}</span>
+                              {/* Metadata row */}
+                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-muted-foreground">
+                                <div className="flex items-center gap-1.5">
+                                  <Clock className="h-3 w-3 text-primary/60" />
+                                  <span className="font-medium">{formatTimeAgo(event.created_at)}</span>
+                                </div>
+                                {event.country && (
+                                  <div className="flex items-center gap-1.5">
+                                    <MapPin className="h-3 w-3 text-primary/60" />
+                                    <span className="truncate">
+                                      {event.city ? `${event.city}, ${event.country}` : event.country}
+                                    </span>
                                   </div>
-                                  {event.country && (
-                                    <div className="flex items-center gap-1">
-                                      <MapPin className="h-3 w-3" />
-                                      <span>{event.city ? `${event.city}, ${event.country}` : event.country}</span>
+                                )}
+                                {event.device_type && (
+                                  <div className="flex items-center gap-1.5">
+                                    {event.device_type === 'desktop' ? 
+                                      <Monitor className="h-3 w-3 text-primary/60" /> : 
+                                      <Smartphone className="h-3 w-3 text-primary/60" />
+                                    }
+                                    <span className="capitalize">{event.device_type}</span>
+                                  </div>
+                                )}
+                                {event.browser && (
+                                  <div className="flex items-center gap-1.5">
+                                    <Chrome className="h-3 w-3 text-primary/60" />
+                                    <span>{event.browser}</span>
+                                  </div>
+                                )}
+                              </div>
+                              
+                              {/* Additional details */}
+                              {(event.page_path || event.event_data) && (
+                                <div className="space-y-1 pt-1">
+                                  {event.page_path && (
+                                    <div className="text-xs bg-muted/30 rounded px-2 py-1">
+                                      <span className="text-muted-foreground">Page:</span>
+                                      <span className="font-mono ml-1 text-foreground">{event.page_path}</span>
                                     </div>
                                   )}
-                                  {event.device_type && (
-                                    <div className="flex items-center gap-1">
-                                      {event.device_type === 'desktop' ? <Monitor className="h-3 w-3" /> : <Smartphone className="h-3 w-3" />}
-                                      <span>{event.device_type}</span>
-                                    </div>
-                                  )}
-                                  {event.browser && (
-                                    <div className="flex items-center gap-1">
-                                      <Chrome className="h-3 w-3" />
-                                      <span>{event.browser}</span>
+                                  
+                                  {event.event_data && (
+                                    <div className="text-xs bg-muted/30 rounded px-2 py-1">
+                                      <span className="text-muted-foreground">Data:</span>
+                                      <span className="font-mono ml-1 text-foreground break-all">
+                                        {formatEventData(event.event_data, event.event_type)}
+                                      </span>
                                     </div>
                                   )}
                                 </div>
-                                
-                                {event.page_path && (
-                                  <div className="text-xs">
-                                    Page: <span className="font-mono">{event.page_path}</span>
-                                  </div>
-                                )}
-                                
-                                {event.event_data && (
-                                  <div className="text-xs">
-                                    Data: <span className="font-mono">{formatEventData(event.event_data, event.event_type)}</span>
-                                  </div>
-                                )}
-                              </div>
+                              )}
+                            </div>
+                            
+                            {/* Status indicator */}
+                            <div className="flex-shrink-0 mt-1">
+                              <div className="w-2 h-2 rounded-full bg-green-500/60"></div>
                             </div>
                           </div>
                         </div>
